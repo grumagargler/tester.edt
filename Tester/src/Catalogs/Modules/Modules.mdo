@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="25124c06-5d99-4a77-af01-f421cdb88a32">
+  <producedTypes>
+    <objectType typeId="8c36fec3-1c45-4795-94de-a56154d0cf2c" valueTypeId="fbc1eb80-3b92-4a71-846f-24cee7f65afa"/>
+    <refType typeId="fc274491-3e90-4209-9e4f-e9088d1e0818" valueTypeId="c6ef50cd-db80-413c-b3c1-9e522ccb4f6b"/>
+    <selectionType typeId="5ce108c6-93c5-4eb7-b3a4-f882c0f2d8c2" valueTypeId="ab2f4b92-b173-4ba0-ba95-481fccdef8bc"/>
+    <listType typeId="cfeba83c-f9db-4626-8cd7-fbd843700e70" valueTypeId="35905fb4-bcc1-4122-8941-c9f33578d26c"/>
+    <managerType typeId="979f4f90-e1d8-4dfc-87a1-e1cb25b99a99" valueTypeId="113aad27-fe89-42ea-9e33-d8c448accd90"/>
+  </producedTypes>
+  <name>Modules</name>
+  <synonym>
+    <key>en</key>
+    <value>Modules</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Модуля</value>
+  </synonym>
+  <inputByString>Catalog.Modules.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Modules.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>PredefinedDataName</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Predefined</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>DeletionMark</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>IsFolder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Owner</name>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Parent</name>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Description</name>
+    <synonym>
+      <key>en</key>
+      <value>ID</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>ID</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario ID</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>ID сценария</value>
+    </toolTip>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Code</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>Use</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Time-lapse modules</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Модуля хронографа</value>
+  </explanation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <descriptionLength>150</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="a7ac2210-3f13-49b9-a790-723f90dbe491">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="27065c11-3cdf-4e54-9cd1-e9ac17882c88">
+    <name>Changed</name>
+    <synonym>
+      <key>en</key>
+      <value>Changed</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Изменен</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Modified date (UTC)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата изменения (UTC)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="9da5d6ee-403f-4e10-a129-4213ff1b8407">
+    <name>IsVersion</name>
+    <synonym>
+      <key>en</key>
+      <value>Is Version</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Это версия</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Flag that module based on scenario version</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Признак, что модуль создан на основе версии сценария</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="e38dfce4-be91-447e-aa94-2f890fc6d3b5">
+    <name>Path</name>
+    <synonym>
+      <key>en</key>
+      <value>Path</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Путь</value>
+    </synonym>
+    <type>
+      <types>DefinedType.ScenarioPath</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Full path to the Scenario script</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Полный путь к скрипту сценария</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>IndexWithAdditionalOrder</indexing>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="ea7328a4-e7a3-416d-a142-ad9523ee6ee7">
+    <name>Scenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Versions</types>
+      <types>CatalogRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Linked scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Связанный сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="eda56c2d-fc0e-4cb9-a034-50e9ce1124d5">
+    <name>Script</name>
+    <synonym>
+      <key>en</key>
+      <value>Script</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Скрипт</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Program code</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Программный код</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <extendedEdit>true</extendedEdit>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="05d37c02-6466-4189-a469-fc4656d5b166">
+    <name>Source</name>
+    <synonym>
+      <key>en</key>
+      <value>Source Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Исходный сценарий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Source scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Исходный сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+</mdclass:Catalog>

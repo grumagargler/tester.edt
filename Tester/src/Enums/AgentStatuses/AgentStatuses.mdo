@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="3b0ff8d3-5b06-4c3b-a2bb-eeed9b31e896">
+  <producedTypes>
+    <refType typeId="3346bd8f-23f3-4184-a83f-ba90c54f5f09" valueTypeId="d7f00657-a187-46ee-8c28-6c27a6ac0145"/>
+    <listType typeId="9f1c2918-a918-4fff-acad-860aa2f0b11b" valueTypeId="0a327729-8937-40aa-8f3e-5785ad2288f4"/>
+    <managerType typeId="22105dcd-9ce6-4bd9-be91-ad6e062109a9" valueTypeId="1df307ff-90a0-48f9-a9d8-c7a01cb3ef18"/>
+  </producedTypes>
+  <name>AgentStatuses</name>
+  <synonym>
+    <key>en</key>
+    <value>Agent Statuses</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Статусы агентов</value>
+  </synonym>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <explanation>
+    <key>en</key>
+    <value>Agent statuses</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Статусы агентов</value>
+  </explanation>
+  <enumValues uuid="7f64dab6-fec8-457e-96ec-5967c3256e41">
+    <name>Available</name>
+    <synonym>
+      <key>en</key>
+      <value>Available</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Доступен</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="669c9874-69c4-48bb-a524-1e819351f3cd">
+    <name>Busy</name>
+    <synonym>
+      <key>en</key>
+      <value>Busy</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Занят</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="78560cec-141d-4056-b5c2-b5c974a92f71">
+    <name>Offline</name>
+    <synonym>
+      <key>en</key>
+      <value>Offline</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Офлайн</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

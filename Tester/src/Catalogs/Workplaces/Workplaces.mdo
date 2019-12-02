@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="a028162a-802b-4002-a80d-d907c972be0b">
+  <producedTypes>
+    <objectType typeId="bd1d4239-0981-4ccf-be40-e11c4a8e4e28" valueTypeId="769717cc-efcd-4626-8e37-3d3670dd6f84"/>
+    <refType typeId="274b318a-298d-4da6-8813-efa8c578da0e" valueTypeId="c61cd6b0-4931-45ed-8641-2138b3f3e3e1"/>
+    <selectionType typeId="2c527adb-011d-4b7d-991b-00a7953719fb" valueTypeId="9f136e79-8ee7-4bcb-a8b7-9a186e209027"/>
+    <listType typeId="5cc0ce70-dcc4-460b-9061-dc75b13606c1" valueTypeId="0df42296-3445-4bad-8565-4f6b90551006"/>
+    <managerType typeId="1c41029f-600d-4007-bada-a1bb378dd54e" valueTypeId="977eea6e-6a3b-4fa4-82e7-79df442a89b2"/>
+  </producedTypes>
+  <name>Workplaces</name>
+  <synonym>
+    <key>en</key>
+    <value>Workplaces</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Рабочие области</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.Workplaces.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Workplaces.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>PredefinedDataName</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Predefined</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>DeletionMark</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>IsFolder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Owner</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:ReferenceValue">
+      <value>Catalog.Users.EmptyRef</value>
+    </fillValue>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Parent</name>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Description</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Code</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>Use</createOnInput>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>List of workplaces</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Справочник рабочих областей</value>
+  </explanation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <owners>Catalog.Users</owners>
+  <codeLength>9</codeLength>
+  <descriptionLength>100</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>Catalog.Workplaces.Form.Form</defaultObjectForm>
+  <attributes uuid="8508cb73-2608-4397-943b-c604fdedd812">
+    <name>Exclude</name>
+    <synonym>
+      <key>en</key>
+      <value>Exclude</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Исключить</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Exclude selected scenarios from scenarios tree</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Исключить выбранные сценарии из дерева сценариев</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <tabularSections uuid="0e4928b9-d8e8-49ec-9539-f19f70af1c02">
+    <producedTypes>
+      <objectType typeId="22b2e128-38f4-4c7c-bacd-c34edfbb881d" valueTypeId="978b825c-f79e-4ed2-85cc-c351d80648ca"/>
+      <rowType typeId="d1cd2969-74c0-42a3-846a-3bb105d4dda2" valueTypeId="40fbd914-01e8-453d-90a1-80028958c662"/>
+    </producedTypes>
+    <name>Scenarios</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenarios</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарии</value>
+    </synonym>
+    <fillChecking>ShowError</fillChecking>
+    <attributes uuid="cbac7807-c6f9-43ea-901f-6fe485166352">
+      <name>Scenario</name>
+      <synonym>
+        <key>en</key>
+        <value>Scenario</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Сценарий</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Scenarios</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Scenario</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Сценарий</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillChecking>ShowError</fillChecking>
+      <choiceForm>Catalog.Scenarios.Form.Tree</choiceForm>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+  <forms uuid="c3e24031-5016-433c-b8d6-77599166ceae">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+</mdclass:Catalog>

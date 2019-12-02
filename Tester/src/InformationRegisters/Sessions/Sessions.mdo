@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="4727a4ea-12ff-471b-a5de-849970b5a393">
+  <producedTypes>
+    <selectionType typeId="de7228a8-6fc9-41fa-9442-5e1db8e356b0" valueTypeId="0eca9367-1f30-490a-a57b-fec6ed5b1d09"/>
+    <listType typeId="a95e2e79-413b-42c5-8fbf-fe136f3155d5" valueTypeId="72b4477d-2041-4f87-b876-92246ea98b94"/>
+    <managerType typeId="ec7923c8-1ded-4871-8922-94bcf2dbc361" valueTypeId="7f3b2251-d335-40e5-be32-c4e4128bdf90"/>
+    <recordSetType typeId="b5b04264-9f35-4229-b8a0-e16ca03a7170" valueTypeId="92339b98-801f-4d30-b52a-89d73270f226"/>
+    <recordKeyType typeId="7347d9f1-cd09-4434-a83c-f5720ed80a65" valueTypeId="15c7420b-5eb7-4c4b-a97c-2c11db2ecea8"/>
+    <recordType typeId="2cd53a06-54f3-41fd-89dc-1b084019df2a" valueTypeId="98f914bd-5222-4e7d-851d-75a37200b387"/>
+    <recordManagerType typeId="0910fd3b-add8-4cb5-99ad-b22f57ebd9a9" valueTypeId="c03efbcc-552f-4ea8-84fc-c88f35394ccd"/>
+  </producedTypes>
+  <name>Sessions</name>
+  <synonym>
+    <key>en</key>
+    <value>Scenario sessions</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Сценарные сессии</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Scenario sessions. Used for defining periods, in which scenarios are being executed</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Сценарные сессии, задают отрезки времени внутри которых выполняются сценарии</value>
+  </explanation>
+  <resources uuid="1baa4fd0-9cb2-40c8-a1e8-b3a2953f1c87">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="a6cae4ce-6011-4989-8b6f-23d4872541d0">
+    <name>Finished</name>
+    <synonym>
+      <key>en</key>
+      <value>Finished</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Завершено</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario(s) execution time end</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Время окончания выполнения сценария(ев)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+  </resources>
+  <resources uuid="31073f70-bc2a-42a9-aada-99df6804fac2">
+    <name>Job</name>
+    <synonym>
+      <key>en</key>
+      <value>Job</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Задание</value>
+    </synonym>
+    <type>
+      <types>DocumentRef.Job</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Job</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Задание</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+  </resources>
+  <dimensions uuid="1ff096f3-7113-4c5e-9ec7-272a78e96e6b">
+    <name>Session</name>
+    <synonym>
+      <key>en</key>
+      <value>Session</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Sessions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Session</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="4162aec2-ffb8-4e3e-8832-6b98f68cbe55">
+    <name>Started</name>
+    <synonym>
+      <key>en</key>
+      <value>Started</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Запущено</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario(s) execution time</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Время запуска сценария(ев)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

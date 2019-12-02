@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="ba2d47c6-4c72-4632-ac63-f83d7f914ae2">
+  <producedTypes>
+    <selectionType typeId="629e5eb2-35f4-4c91-851d-1000d5baef3d" valueTypeId="7a657c5f-5984-4afd-997d-705b3fe51695"/>
+    <listType typeId="5341ae0a-da8e-4ec2-a577-f4170139f36c" valueTypeId="d73baf22-ca89-4db5-98d2-d3ebca08078d"/>
+    <managerType typeId="67175c28-6796-442e-8d8c-06f8fa713a81" valueTypeId="fbdc52d4-a1b1-4874-b290-05a232540e74"/>
+    <recordSetType typeId="b27e1a04-5d5c-4390-b1d9-0c35e8e2ccad" valueTypeId="610109d5-28fa-48ca-bc2f-2cba128e8073"/>
+    <recordKeyType typeId="e1b765d4-0a5e-4d49-9d86-31601bace1b1" valueTypeId="f5ef236f-7731-4837-8540-00d48db52ab3"/>
+    <recordType typeId="98a748e6-24ce-4ee3-9eb7-2b8bd1dc96b5" valueTypeId="4125a205-dd66-42ed-bf95-41735f30768a"/>
+    <recordManagerType typeId="c8b44753-0a4b-4340-bc7a-17a02f636881" valueTypeId="f3c5453c-d00a-4170-b83b-db4b7d7f7b42"/>
+  </producedTypes>
+  <name>Ports</name>
+  <synonym>
+    <key>en</key>
+    <value>Ports</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Порты</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <defaultRecordForm>InformationRegister.Ports.Form.Form</defaultRecordForm>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Specified application ports by sessions</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Специфицированные порты приложений по сессиям</value>
+  </explanation>
+  <resources uuid="da5657a6-72b5-45c4-8f6b-e2fdb88befd9">
+    <name>Port</name>
+    <synonym>
+      <key>en</key>
+      <value>Port</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Порт</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>5</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <format>
+      <key>en</key>
+      <value>NZ=; NG=</value>
+    </format>
+    <format>
+      <key>ru</key>
+      <value>NZ=; NG=</value>
+    </format>
+    <editFormat>
+      <key>en</key>
+      <value>NZ=; NG=</value>
+    </editFormat>
+    <editFormat>
+      <key>ru</key>
+      <value>NZ=; NG=</value>
+    </editFormat>
+    <toolTip>
+      <key>en</key>
+      <value>Tested application port value</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Порт тестируемого приложения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:NumberValue">
+      <value>1538</value>
+    </fillValue>
+  </resources>
+  <dimensions uuid="90021d5d-9c18-4345-9022-059691559a99">
+    <name>Session</name>
+    <synonym>
+      <key>en</key>
+      <value>Session</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Sessions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Session</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="7256cd9f-d54e-40bc-87e3-b9dc83df72ff">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <forms uuid="b20d08d3-fca9-4274-829c-27d6d1dfdbba">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+</mdclass:InformationRegister>

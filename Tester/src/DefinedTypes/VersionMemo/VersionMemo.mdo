@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DefinedType xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="e4d73bdd-6c0e-440d-86b1-da8d3e489f66">
+  <producedTypes>
+    <containerType typeId="ab3e57fa-1ede-45e8-bac3-b9a19d6379d4" valueTypeId="19411648-2de5-426c-b312-1dea2bc39a29"/>
+  </producedTypes>
+  <name>VersionMemo</name>
+  <type>
+    <types>String</types>
+    <stringQualifiers>
+      <length>250</length>
+    </stringQualifiers>
+  </type>
+</mdclass:DefinedType>

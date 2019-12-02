@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="f01c703f-0f3c-4506-a056-0e64366a7643">
+  <producedTypes>
+    <objectType typeId="626b0865-9d5e-43d9-a13f-9463d1450886" valueTypeId="1da7a17b-c949-44c2-9900-4fe074c18cce"/>
+    <managerType typeId="0ed8ab8e-ce99-4648-9276-6353e874e9e3" valueTypeId="32516e9b-f008-439c-9248-be0f1d411ab4"/>
+  </producedTypes>
+  <name>TranspilerRaw</name>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+</mdclass:DataProcessor>

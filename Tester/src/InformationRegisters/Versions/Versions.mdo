@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="8b47f6db-720c-4b7b-afea-17f10175c249">
+  <producedTypes>
+    <selectionType typeId="e99d39a1-36ea-48de-a300-1f43792121c7" valueTypeId="91f736f2-6076-43a2-862d-30e312a4a7fc"/>
+    <listType typeId="6c6ad8e9-baf6-447c-9e3b-1b9ad6b5a1a9" valueTypeId="93a84afd-7152-47a4-96ee-94bc4f903b6e"/>
+    <managerType typeId="0deba4b8-edc5-4480-868b-91c24f763ebe" valueTypeId="4b28f199-9de2-4dba-9a47-bd02147bd49a"/>
+    <recordSetType typeId="3f3155e2-4fb8-470c-b56a-97b24baccda7" valueTypeId="151c3ec6-f8c9-4e70-9028-404fb244ade3"/>
+    <recordKeyType typeId="887cdfa8-0585-45bf-af0d-95dc43d020ba" valueTypeId="94ec6f8d-24a8-4081-af56-0c4629496a6e"/>
+    <recordType typeId="0938579d-3424-4abc-8527-3df5fd441b33" valueTypeId="99f68cbd-7e39-47a9-8e2c-e37cd4c56ab1"/>
+    <recordManagerType typeId="5eca4059-25b1-492a-90ae-1d42ec0d3468" valueTypeId="3cfed923-8104-43c0-9260-ee9e51d2472f"/>
+  </producedTypes>
+  <name>Versions</name>
+  <synonym>
+    <key>en</key>
+    <value>Versions</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Версии</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <defaultListForm>InformationRegister.Versions.Form.List</defaultListForm>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Active</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>LineNumber</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Recorder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Period</name>
+    <synonym>
+      <key>en</key>
+      <value>Creation Date</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Дата создания</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Date when version was created</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата, когда версия была создана</value>
+    </toolTip>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <informationRegisterPeriodicity>Second</informationRegisterPeriodicity>
+  <mainFilterOnPeriod>true</mainFilterOnPeriod>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Current versions of scenarios </value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Текущие версии сценариев</value>
+  </explanation>
+  <resources uuid="50a4204e-cf63-4c04-97ca-7f2563462af8">
+    <name>Memo</name>
+    <synonym>
+      <key>en</key>
+      <value>Memo</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Комментарий</value>
+    </synonym>
+    <type>
+      <types>DefinedType.VersionMemo</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Memo</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Комментарий</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="8a5aff3b-aaaa-491d-ab58-d8669e89459b">
+    <name>Version</name>
+    <synonym>
+      <key>en</key>
+      <value>Version</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Версия</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Versions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Version</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Версия</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="d501bcb4-64d1-4c19-becc-a62bbc1c172f">
+    <name>Scenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <forms uuid="3bf413f2-b421-4ae1-a431-59af1f83aca1">
+    <name>List</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <commands uuid="64ab5872-e00d-489b-812a-fb129b8f34be">
+    <name>Open</name>
+    <synonym>
+      <key>en</key>
+      <value>Versions</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Версии</value>
+    </synonym>
+    <group>FormNavigationPanelSeeAlso</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Versions of scenarios</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Версии сценария</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Legend</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:InformationRegister>

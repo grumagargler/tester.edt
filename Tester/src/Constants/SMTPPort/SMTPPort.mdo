@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="c8aa01c6-2f2c-411b-9aa3-1b86b5553fe5">
+  <producedTypes>
+    <managerType typeId="17e66be3-88ed-4610-9ef2-5067a7bc75a5" valueTypeId="99b05d1b-86e8-4bbe-8ba4-df1cdd24fba9"/>
+    <valueManagerType typeId="7e077eef-953b-4c35-bf1f-12b91b93dd8f" valueTypeId="432bd1a8-e9e4-4ab9-a43c-674109e0252d"/>
+    <valueKeyType typeId="420dcb3d-96d9-50c4-8ad8-1cc64e14c4c9" valueTypeId="daaeb2e9-d4bd-552f-b44f-42821e2cd4b1"/>
+  </producedTypes>
+  <name>SMTPPort</name>
+  <synonym>
+    <key>en</key>
+    <value>SMTP Port</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Порт SMTP</value>
+  </synonym>
+  <type>
+    <types>Number</types>
+    <numberQualifiers>
+      <precision>4</precision>
+      <nonNegative>true</nonNegative>
+    </numberQualifiers>
+  </type>
+  <explanation>
+    <key>en</key>
+    <value>SMTP port. 0 - means that port 465 should be used for SSL connections and port 25 for insecure ones</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Порт протокола SMTP. 0 - означает использовать 465 порт для SSL соединений и 25 - для незащищенных</value>
+  </explanation>
+  <toolTip>
+    <key>ru</key>
+    <value>Порт протокола SMTP. 0 - означает использовать 465 порт для SSL соединений и 25 - для незащищенных</value>
+  </toolTip>
+  <toolTip>
+    <key>en</key>
+    <value>SMTP port. 0 - means that port 465 should be used for SSL connections and port 25 for insecure ones</value>
+  </toolTip>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>

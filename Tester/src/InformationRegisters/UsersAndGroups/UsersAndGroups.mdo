@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="dce50e79-f594-4b46-807e-bdf1f4325b77">
+  <producedTypes>
+    <selectionType typeId="589f5c04-3e9d-46b4-9115-7c667dec6011" valueTypeId="a1a09a65-7d1c-4e67-9d0c-64b4d4057786"/>
+    <listType typeId="0602b61b-89ae-463f-8fce-ab4b21ef3000" valueTypeId="dae86be2-af4c-4ba4-8145-827f5d8687d3"/>
+    <managerType typeId="876492e1-951a-45b2-8b02-fe2b1b57402f" valueTypeId="b05fbd74-7a6f-433b-b9cd-682247ca3f82"/>
+    <recordSetType typeId="260ea723-27ef-40fc-a91f-74b5e06fe594" valueTypeId="1ad5be6f-d81e-4243-b9f6-b89b9e49e0b3"/>
+    <recordKeyType typeId="8a745ed1-9bb4-4cf3-978f-0a1f889cddf2" valueTypeId="009d48c7-c7c0-4f49-9372-8c3d860565bd"/>
+    <recordType typeId="d207a241-d474-4a0e-b75e-9f156e73f915" valueTypeId="608c0e9a-1717-4e62-80d8-60172f83aef6"/>
+    <recordManagerType typeId="5ceba6f9-07c8-46ce-ba34-09aeeaf1f9f9" valueTypeId="73077041-c13f-4ce9-8d7a-0f8bb1d5adfd"/>
+  </producedTypes>
+  <name>UsersAndGroups</name>
+  <synonym>
+    <key>en</key>
+    <value>Users and groups</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Пользователи и группы</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Active</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>LineNumber</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Recorder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Period</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Register to create group membership for users</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Регистр членства пользователей в группах</value>
+  </explanation>
+  <dimensions uuid="86d1acaf-b7a8-4d5a-b526-f872778062a1">
+    <name>UserGroup</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка</value>
+    </synonym>
+    <comment>Нельзя использовать имя Group</comment>
+    <type>
+      <types>CatalogRef.UserGroups</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Users group</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Группа пользователей</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="68f30b32-7af7-47ed-822f-77628f44c5da">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

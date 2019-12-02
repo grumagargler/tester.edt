@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="3b2e3d53-74b8-4efa-a06b-4c188fc39343">
+  <producedTypes>
+    <selectionType typeId="c7b753be-4372-4b50-96d6-7264a9252d87" valueTypeId="029dee4c-dd55-4666-988d-ba183172cbd7"/>
+    <listType typeId="95998f0b-e90b-4a4c-bbbe-cc087d2a22f4" valueTypeId="73872c30-f222-4755-9f06-43014771ef79"/>
+    <managerType typeId="a1661d71-c84f-49fa-948c-59aa6bf38c7a" valueTypeId="0ba0326b-65e1-476c-99fe-c8276b55846c"/>
+    <recordSetType typeId="8cfe15ee-8dbd-4817-a52a-1f546a32dbca" valueTypeId="504977a6-5054-4f41-bf1c-984a550128f6"/>
+    <recordKeyType typeId="0f94756c-5062-406e-aba9-9625b2e0c4f3" valueTypeId="edcc0513-c832-4299-ab06-2ef9fce2b1f2"/>
+    <recordType typeId="332b3adf-dbd6-4f3e-aeed-fa50d51e6bca" valueTypeId="16848671-87ef-4536-8384-f6019b1b5d19"/>
+    <recordManagerType typeId="4b887ddf-4d10-488c-8287-551b2e9a0e65" valueTypeId="d807f3e6-192a-42f9-a55c-0c42b9d445c7"/>
+  </producedTypes>
+  <name>Usage</name>
+  <synonym>
+    <key>en</key>
+    <value>Usage</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Использование</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Provides the assistant sorting order by usage date</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Обеспечение сортировки помощника по дате последнего использования</value>
+  </explanation>
+  <resources uuid="633d688f-d911-4262-8ad5-ec5a00611699">
+    <name>Date</name>
+    <synonym>
+      <key>en</key>
+      <value>Date</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Дата</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Last date of usage</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата последнего использования</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="8d8cd987-656c-4a7b-91ad-bd19a36bae5b">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="e776817d-2a24-42ea-b0e2-5419ebd67017">
+    <name>Reference</name>
+    <synonym>
+      <key>en</key>
+      <value>Reference</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Ссылка</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>1</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Reference to element</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Ссылка на элемент</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="609bcfd3-8ac0-4295-a279-a03ac1d58672">
+    <name>Code</name>
+    <synonym>
+      <key>en</key>
+      <value>Code</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Код</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>10</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Code of element</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Код элемента</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

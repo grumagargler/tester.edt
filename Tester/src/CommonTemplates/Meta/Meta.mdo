@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonTemplate xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="4b6d37ed-0bdb-43bb-b32e-207a822d531b">
+  <name>Meta</name>
+  <templateType>BinaryData</templateType>
+</mdclass:CommonTemplate>

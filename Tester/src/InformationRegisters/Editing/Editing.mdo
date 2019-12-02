@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="00b06eb2-9716-4c9c-b6dc-2d40dd6a3734">
+  <producedTypes>
+    <selectionType typeId="5c69b246-369e-4b10-880f-d06cd0571a99" valueTypeId="7b02a5cd-b758-49b9-9488-053c3082d400"/>
+    <listType typeId="e5c4201c-5265-405e-af77-fad5cb35d66d" valueTypeId="a9f23ec0-bcea-456e-95ec-66e5cfad0f38"/>
+    <managerType typeId="13011f47-b57d-4844-bc4a-27046b65748b" valueTypeId="5506e79e-3576-4cd9-8fe8-b2c78d757972"/>
+    <recordSetType typeId="8b48e9e7-b71b-4d13-8e71-8daa2b525f75" valueTypeId="c33c83b8-14d8-455f-8780-778f63b46bb7"/>
+    <recordKeyType typeId="12ea83d8-d305-41af-bbca-263bff8d58c3" valueTypeId="24abcd9b-1339-480b-ade3-74798db31332"/>
+    <recordType typeId="c5f24853-5069-4695-8a81-3a1da2c39859" valueTypeId="bcc0a58b-4be3-4754-a841-ac0ee25da7ef"/>
+    <recordManagerType typeId="1b2208bd-cc18-4136-97f9-fa3aa4cde671" valueTypeId="6d8f6b11-b6e2-4672-9fd7-b9c2d998c2e4"/>
+  </producedTypes>
+  <name>Editing</name>
+  <synonym>
+    <key>en</key>
+    <value>Editing</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Редактирование</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Scenarios in editing status</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Сценарии в статусе редактирования</value>
+  </explanation>
+  <resources uuid="02282c6f-5696-4e42-9b4a-0892de3c04e6">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="d7f74913-78ac-4764-b07c-5f6d7c49ab1f">
+    <name>Date</name>
+    <synonym>
+      <key>en</key>
+      <value>Date</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Дата</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Date of locking for editing</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата захвата для редактирования</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="79afe54a-dcc9-47fe-bcd0-3fe061cb6c68">
+    <name>Scenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

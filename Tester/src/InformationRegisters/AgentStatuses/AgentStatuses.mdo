@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="6099a2ac-7815-47d2-939b-f2f06843a5ff">
+  <producedTypes>
+    <selectionType typeId="588e872e-91ce-4e15-8b39-bf857e8cb4c5" valueTypeId="038e0c82-be85-40e0-9436-2b78fc926a11"/>
+    <listType typeId="8dc96d6c-e8ed-4698-aa0b-dd329ad9a525" valueTypeId="7da8d745-0f22-4617-a45d-e913cefdb617"/>
+    <managerType typeId="93cfa793-7c1c-413c-9333-1aea2527e0f4" valueTypeId="18b51759-2270-461f-93ee-3061ee6d4ffd"/>
+    <recordSetType typeId="4021bbfd-be23-48ee-b51a-66a794c4c37c" valueTypeId="7b778583-756c-44eb-8924-7f0092c97069"/>
+    <recordKeyType typeId="d65f2627-e60d-4524-8060-5e08e341b09f" valueTypeId="182ef57c-1bc0-4c15-9887-a07bd7a34bfc"/>
+    <recordType typeId="2c062098-b0ad-4150-9b02-695c4dd026a5" valueTypeId="7e9da45d-ac88-4a44-b297-537c68cf5e29"/>
+    <recordManagerType typeId="cc4de056-4570-4687-949c-60920389a57e" valueTypeId="1c4ab0af-750a-43d8-85c6-b9a7573acac4"/>
+  </producedTypes>
+  <name>AgentStatuses</name>
+  <synonym>
+    <key>en</key>
+    <value>Agents Statuses</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Статусы агентов</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>List of agent statuses performing tasks at the current point in time</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Регистр состояния агентов выполняющих задания в текущий момент</value>
+  </explanation>
+  <resources uuid="5f9c4235-3819-43ce-9f0d-5f452d53271e">
+    <name>Status</name>
+    <synonym>
+      <key>en</key>
+      <value>Status</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Статус</value>
+    </synonym>
+    <type>
+      <types>EnumRef.AgentStatuses</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Agent status</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Статус агента</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="a595b8c2-6db4-4eae-8e01-cce141cdb47d">
+    <name>Session</name>
+    <synonym>
+      <key>en</key>
+      <value>Session</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Sessions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Session</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

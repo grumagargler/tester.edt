@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="8406f68d-fb13-4a0c-aedf-7102f2f0db89">
+  <name>DownloadMeta</name>
+  <synonym>
+    <key>en</key>
+    <value>Download Meta.epf</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Скачать Meta.epf</value>
+  </synonym>
+  <group>ActionsPanelTools</group>
+  <commandParameterType/>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>en</key>
+    <value>Download Meta.epf data processor</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Скачать обработку Meta.epf</value>
+  </toolTip>
+  <shortcut></shortcut>
+</mdclass:CommonCommand>

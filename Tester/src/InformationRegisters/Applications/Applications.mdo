@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="b4b0caae-6b4f-41f0-bcbc-6e075b6e0f08">
+  <producedTypes>
+    <selectionType typeId="98fdcb69-8366-454c-956c-24599639de4e" valueTypeId="7e652995-78f9-483b-bfe8-7d6d36b1bcab"/>
+    <listType typeId="91b168e2-ae30-418e-8001-ae2b3b56aabe" valueTypeId="81c108e4-cfb4-4e36-8312-30236feb7056"/>
+    <managerType typeId="d67313cd-3a0a-4d55-a405-a8d0498db487" valueTypeId="c2245e5a-921a-46a2-a9e1-6fff9a98dce4"/>
+    <recordSetType typeId="2622a654-eb4a-414b-b32a-ca6a89d0b029" valueTypeId="6e5c4f77-20a2-4f4b-bdc2-ab79fc2de671"/>
+    <recordKeyType typeId="db1b2b1a-ab79-4d48-9602-bf97034ec084" valueTypeId="6e308317-eccb-4d2b-b9e8-98e721652195"/>
+    <recordType typeId="1fefd077-5f59-41a8-8c7f-f6cab5bce3ee" valueTypeId="b97355ea-5284-4d3b-97a5-daefd3ab77bb"/>
+    <recordManagerType typeId="fbcf0fd4-5094-44da-8814-443fd041bc92" valueTypeId="8457f988-76ee-4fd9-a289-ee6918d168b5"/>
+  </producedTypes>
+  <name>Applications</name>
+  <synonym>
+    <key>en</key>
+    <value>Applications</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Приложения</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Active</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>LineNumber</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Recorder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Period</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Current User Application</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Текущее приложение пользователя</value>
+  </explanation>
+  <resources uuid="69772918-4c75-4582-8af3-428f63ded7a6">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="b364daeb-6c52-489c-a944-f4c66e0ae819">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

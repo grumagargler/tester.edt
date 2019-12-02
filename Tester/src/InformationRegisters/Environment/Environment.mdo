@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="1dce803e-58c4-4263-b0a9-3d32f2884733">
+  <producedTypes>
+    <selectionType typeId="79a3fe61-e768-4a7b-9ac4-2006c77001e1" valueTypeId="b7f32d9a-1e3f-421b-8e8f-be737a5caf96"/>
+    <listType typeId="53ab1939-acf9-43d7-8260-cb6f571f9e22" valueTypeId="2e9c186b-2cb6-4339-bb50-740f02df9a99"/>
+    <managerType typeId="0f168522-becc-44ae-9d59-37e9f931cfac" valueTypeId="c91bb84a-b984-4002-8048-fc04d94c03be"/>
+    <recordSetType typeId="6b0fd87a-b4e5-4707-948a-2cde3c574af7" valueTypeId="e34eb0e3-7a2b-4cab-b060-b5ab8024dfd4"/>
+    <recordKeyType typeId="36fb6915-0012-49b0-8392-cdbc673566df" valueTypeId="486ba4cd-642d-4770-be61-35237b573109"/>
+    <recordType typeId="896459b3-2e23-49af-8641-69d8a95b36a0" valueTypeId="dad629c2-db38-47c3-a0a6-f392d1c950ac"/>
+    <recordManagerType typeId="bbc198fc-eae7-452c-a4cd-718d4adb26d7" valueTypeId="c2a7fbe8-b69a-40f9-9b86-b68cb0ab15b0"/>
+  </producedTypes>
+  <name>Environment</name>
+  <synonym>
+    <key>en</key>
+    <value>Environment</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Окружение</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Special register for storing identifiers of test environments</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Служебный регистр сведений для хранения идентификаторов окружения</value>
+  </explanation>
+  <attributes uuid="39130bdf-18f4-47d1-92a1-c9a6c1f88d8c">
+    <name>Created</name>
+    <synonym>
+      <key>en</key>
+      <value>Created</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Создано</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Date and time when the environment has been created</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата и время создания окружения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <dimensions uuid="6950fa5b-aaad-4480-8ee8-6095774a7837">
+    <name>Session</name>
+    <synonym>
+      <key>en</key>
+      <value>Session</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Sessions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Session</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="08ee85f3-659d-4e6b-a4b2-46990415d60f">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="a55683e6-3613-40f9-b138-5b17a3733928">
+    <name>ID</name>
+    <synonym>
+      <key>en</key>
+      <value>ID</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>ИД</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>10</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Test environment ID</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Идентификатор тестового окружения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

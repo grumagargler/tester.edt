@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="5f4db4f5-2651-4e0a-8355-e773242cb4b3">
+  <producedTypes>
+    <managerType typeId="4d4b3f17-9f8b-4f14-b0b5-f53b9a89ec51" valueTypeId="90133183-0338-4079-923d-3d49d3b3c714"/>
+    <valueManagerType typeId="dda19e6b-d783-446a-b3a1-dc1b5dfbbf7c" valueTypeId="489d60b2-10e8-47b1-bfe9-47d3daebe243"/>
+    <valueKeyType typeId="e4fc0cb6-b043-49ff-99f9-2e20b140f7b8" valueTypeId="b8668bb1-ff26-499c-9d91-e884f91fdbdc"/>
+  </producedTypes>
+  <name>Webhook</name>
+  <synonym>
+    <key>en</key>
+    <value>Webhook</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Веб-хук</value>
+  </synonym>
+  <type>
+    <types>CatalogRef.Scenarios</types>
+  </type>
+  <explanation>
+    <key>en</key>
+    <value>Responsible scenario for serving git-repository requests</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Сценарий для обслуживания post-запросов гит-репозиториев</value>
+  </explanation>
+  <toolTip>
+    <key>en</key>
+    <value>Responsible scenario for serving git-repository requests</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Сценарий для обслуживания post-запросов гит-репозиториев</value>
+  </toolTip>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>

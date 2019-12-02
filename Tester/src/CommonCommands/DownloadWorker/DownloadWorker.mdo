@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="f3727507-dcc3-4010-8b1c-f41db31db33b">
+  <name>DownloadWorker</name>
+  <synonym>
+    <key>en</key>
+    <value>Download Worker.epf</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Скачать Worker.epf</value>
+  </synonym>
+  <group>ActionsPanelTools</group>
+  <commandParameterType/>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>en</key>
+    <value>Download Worker.epf data processor</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Скачать обработку Worker.epf</value>
+  </toolTip>
+  <shortcut></shortcut>
+</mdclass:CommonCommand>

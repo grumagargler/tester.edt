@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="fe5ab4b5-e776-47ae-94bb-46d334989adc">
+  <producedTypes>
+    <refType typeId="cd1d166b-5184-4a09-8252-5c53f156a12a" valueTypeId="bb4b34ba-789d-438e-a242-64cc20986b3e"/>
+    <listType typeId="f7e96ba5-0e3f-4b45-b54e-e6fbcd0f58db" valueTypeId="a9639e9c-3187-41ea-8fa7-2067299265df"/>
+    <managerType typeId="6acffc6f-718a-47cc-92d8-5e32eafec859" valueTypeId="a6de20fa-6427-47a5-af4a-4372684aaba6"/>
+  </producedTypes>
+  <name>Scenarios</name>
+  <synonym>
+    <key>en</key>
+    <value>Scenario types</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Типы сценариев</value>
+  </synonym>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <explanation>
+    <key>en</key>
+    <value>Scenario types</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Типы сценариев</value>
+  </explanation>
+  <enumValues uuid="b63107d2-7d65-4a55-9072-6f05e92ca68b">
+    <name>Folder</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="ffbb15d9-432f-43bb-91fb-d023970f0204">
+    <name>Library</name>
+    <synonym>
+      <key>en</key>
+      <value>Library</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Библиотека</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="06c373d9-c536-4ed7-8e59-f541855066ce">
+    <name>Scenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="a2382140-7790-4925-bb50-bacf5d24a9a4">
+    <name>Method</name>
+    <synonym>
+      <key>en</key>
+      <value>Method</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Метод</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

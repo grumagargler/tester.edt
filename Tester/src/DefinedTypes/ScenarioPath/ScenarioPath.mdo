@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DefinedType xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="e5bf51ae-61a6-4828-acef-0e4f2eb88b68">
+  <producedTypes>
+    <containerType typeId="bb9fb27b-4f05-49ec-a253-266738b7b666" valueTypeId="f8e862f2-7a71-4617-a861-cd2dbb8a4521"/>
+  </producedTypes>
+  <name>ScenarioPath</name>
+  <type>
+    <types>String</types>
+    <stringQualifiers>
+      <length>400</length>
+    </stringQualifiers>
+  </type>
+</mdclass:DefinedType>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Role xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="a6c4f978-bdd2-43f5-a7ec-627ec5741e01">
+  <name>AssistantEdit</name>
+  <synonym>
+    <key>en</key>
+    <value>Assistant edit</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Помощник, редактировать</value>
+  </synonym>
+</mdclass:Role>

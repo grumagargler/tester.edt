@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="8ddca0e2-be9a-4978-952c-e3b4b1c13158">
+  <producedTypes>
+    <objectType typeId="97dbaf93-f26e-4bb8-9553-917ca381e620" valueTypeId="f56448ef-df03-44bb-bfec-32c7d8600af8"/>
+    <refType typeId="113c7536-4ab6-4d5f-9cd3-cf00d1ad4e49" valueTypeId="32e6cea1-253b-412e-8f40-a749d37a75b4"/>
+    <selectionType typeId="8a5c9698-6283-4140-aacd-10ea4710fe51" valueTypeId="09f63815-4047-4c64-80cf-cf470090dc73"/>
+    <listType typeId="3cde021c-b30e-4368-b797-40d1dfc4e996" valueTypeId="4b354004-519b-4135-8432-a72da3b9d79d"/>
+    <managerType typeId="ca9f8a63-d32b-48cb-9835-99498435a4fd" valueTypeId="afb83943-2fd0-4561-95e3-e07b36d3a930"/>
+  </producedTypes>
+  <name>Assistant</name>
+  <synonym>
+    <key>en</key>
+    <value>Assistant</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Помощник</value>
+  </synonym>
+  <inputByString>Catalog.Assistant.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Assistant.StandardAttribute.Code</inputByString>
+  <searchStringModeOnInputByString>AnyPart</searchStringModeOnInputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>Assistant: methods, tips, program code</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Помощник: методы, подсказки, программный код</value>
+  </explanation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <descriptionLength>150</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>Catalog.Assistant.Form.Form</defaultObjectForm>
+  <defaultChoiceForm>Catalog.Assistant.Form.Choice</defaultChoiceForm>
+  <attributes uuid="b46243a6-6609-4729-9eb6-3395cd87b7cd">
+    <name>Body</name>
+    <synonym>
+      <key>en</key>
+      <value>Body</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Тело</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Used for multiline program code</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Используется для многострочного программного кода</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <extendedEdit>true</extendedEdit>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="f679e2db-f50d-4461-a26b-6248b3e1a2d5">
+    <name>Explanation</name>
+    <synonym>
+      <key>en</key>
+      <value>Explanation</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пояснение</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Explanation</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пояснение</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <extendedEdit>true</extendedEdit>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <forms uuid="669e3e24-a518-47d0-b893-7c3129acd8d5">
+    <name>Choice</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="b5e9033e-ba27-44ea-8ecd-25636a3242ce">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="89da5dce-d8c8-404a-9acd-c639790e2070">
+    <name>Params</name>
+    <synonym>
+      <key>en</key>
+      <value>Parameters</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Параметры</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <templates uuid="9d1fed05-b5a1-4e19-8ffb-55eb9095d80c">
+    <name>Builtin</name>
+  </templates>
+</mdclass:Catalog>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="5e7d7009-e43d-4788-b264-4137c2b8d099">
+  <name>CurrentApplication</name>
+  <synonym>
+    <key>en</key>
+    <value>Current Application</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Текущее приложение</value>
+  </synonym>
+  <group>ActionsPanelTools</group>
+  <commandParameterType/>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>en</key>
+    <value>Assign current application</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Установить текущее приложение</value>
+  </toolTip>
+  <shortcut></shortcut>
+</mdclass:CommonCommand>

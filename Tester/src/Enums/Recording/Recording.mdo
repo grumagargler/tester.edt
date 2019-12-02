@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="a9fd39d0-3e52-4e2f-8c5f-e102256682f0">
+  <producedTypes>
+    <refType typeId="fff0ee52-65d8-4f45-9a6e-9a3c0e8a5e18" valueTypeId="5dcd9aac-2d71-4af1-b386-8c1225385203"/>
+    <listType typeId="24362a27-4fb4-490b-87d8-5f12a63163b3" valueTypeId="5b01a03b-508f-4f0b-81a1-8c9bb664f854"/>
+    <managerType typeId="cc759239-dfcb-4cd3-b47e-955b0b0b5c30" valueTypeId="51c05ba6-2345-4caa-a3b6-c62d0fc64756"/>
+  </producedTypes>
+  <name>Recording</name>
+  <synonym>
+    <key>en</key>
+    <value>Recording</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Запись</value>
+  </synonym>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <explanation>
+    <key>en</key>
+    <value>Scenario recording modes</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Режимы записи сценария</value>
+  </explanation>
+  <enumValues uuid="016862ea-8be6-4696-becb-c76c66b51653">
+    <name>Raw</name>
+    <synonym>
+      <key>en</key>
+      <value>Raw</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Исходный</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="5e0102fc-c2e8-45b7-af54-914606e0be42">
+    <name>Smart</name>
+    <synonym>
+      <key>en</key>
+      <value>Raw, improved</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Исходный, улучшенный</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="3d21bebf-ea6a-48e2-8cf4-5cd144677d85">
+    <name>Tester</name>
+    <synonym>
+      <key>en</key>
+      <value>Tester</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Тестер</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

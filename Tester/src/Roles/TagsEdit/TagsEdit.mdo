@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Role xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="34c43914-8c05-4533-93b1-9292f3b78cf2">
+  <name>TagsEdit</name>
+  <synonym>
+    <key>ru</key>
+    <value>Право создания и редактирования тегов</value>
+  </synonym>
+  <synonym>
+    <key>en</key>
+    <value>The right to create and edit tags</value>
+  </synonym>
+</mdclass:Role>

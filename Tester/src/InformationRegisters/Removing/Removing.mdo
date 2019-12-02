@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="bd06cd23-b338-45a8-b462-10826fb1b756">
+  <producedTypes>
+    <selectionType typeId="6a2e89d8-83ca-4f5b-91b9-65395a364a8d" valueTypeId="a8b17bff-1e42-42d3-bd0d-e95b6230bbb3"/>
+    <listType typeId="aa4325d5-43f7-4a7e-ae92-76ca9a89007f" valueTypeId="242633d4-7bfa-4293-9ecb-ec51f03211c0"/>
+    <managerType typeId="fbd43dde-a17c-4482-98e3-c37efde29549" valueTypeId="77e4ec88-a951-403a-b363-ad28e9d95ade"/>
+    <recordSetType typeId="ec9987da-9311-4132-aa2d-72310042939a" valueTypeId="baab4c3d-fcf1-4bf4-b980-90790888cbec"/>
+    <recordKeyType typeId="512c9629-c9cf-4d45-b21d-7cbd0ee3cc4e" valueTypeId="8ea2a643-bd9a-404b-a6f9-0ec75fb0c0ba"/>
+    <recordType typeId="5c88f240-c997-4e7a-a6e5-94f7e51005eb" valueTypeId="0d9715be-4b42-440b-b7ec-5d8f5f46f716"/>
+    <recordManagerType typeId="5f517f04-62dc-451b-adb6-bfbdaf0b0285" valueTypeId="795641f6-47a8-4ec8-90e1-4be907df3911"/>
+  </producedTypes>
+  <name>Removing</name>
+  <synonym>
+    <key>en</key>
+    <value>Scenarios for Removing</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Сценарии под удаление</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Used for deleting files from Local Repositories when user Rename or Delete scenarios in database</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Используется для удаления файлов из локальных репозиториев при удалении или переименовании сценариев в базе</value>
+  </explanation>
+  <resources uuid="143c4a0b-b6b6-4ab7-b6b8-dc847ee74816">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="2e0e9afc-86eb-4f93-9ff8-cdc6287df163">
+    <name>Path</name>
+    <synonym>
+      <key>en</key>
+      <value>Path</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Путь</value>
+    </synonym>
+    <type>
+      <types>DefinedType.ScenarioPath</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Full path to the Scenario script</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Полный путь к скрипту сценария</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>IndexWithAdditionalOrder</indexing>
+  </resources>
+  <resources uuid="28f79662-9dc5-4d7b-b619-3b2f144a0a01">
+    <name>Tree</name>
+    <synonym>
+      <key>en</key>
+      <value>Tree</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Дерево</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Tree flag</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Признак дерева</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="f505e691-4560-4e3b-b44a-a2cd17ac63c3">
+    <name>Type</name>
+    <synonym>
+      <key>en</key>
+      <value>Type</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Тип</value>
+    </synonym>
+    <type>
+      <types>EnumRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario type</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Тип сценария</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:ReferenceValue">
+      <value>Enum.Scenarios.EmptyRef</value>
+    </fillValue>
+  </resources>
+  <dimensions uuid="30919ac8-b505-4a9f-bd61-72bac0c5e4db">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="536a30b4-ad25-4a9b-907e-f914dac06d59">
+    <name>ID</name>
+    <synonym>
+      <key>en</key>
+      <value>ID</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>ID</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>36</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario internal ID</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Внутренний ID сценария</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

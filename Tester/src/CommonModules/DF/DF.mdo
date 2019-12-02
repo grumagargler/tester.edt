@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="3efbc951-9862-4732-912f-16a856ca941a">
+  <name>DF</name>
+  <server>true</server>
+  <serverCall>true</serverCall>
+</mdclass:CommonModule>

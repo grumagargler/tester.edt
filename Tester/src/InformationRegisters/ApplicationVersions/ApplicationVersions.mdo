@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="80aea830-e348-41ba-8d6c-3bbb4e8b117a">
+  <producedTypes>
+    <selectionType typeId="c14149bf-3f4f-4781-aef5-aaac76088d5d" valueTypeId="06577bc4-1955-4346-9469-8596f5df14f3"/>
+    <listType typeId="d8d6c9e5-083c-46ab-8363-a5c63058e377" valueTypeId="3cf71ac2-fdf6-44b7-8bdd-7e4268a3e979"/>
+    <managerType typeId="8ea7a713-d67f-49e4-8491-99b5a626c724" valueTypeId="faa26a7f-5231-4f97-96e2-3f6f6355ee78"/>
+    <recordSetType typeId="2044be0a-2de5-4811-a673-a6ae1313e3e0" valueTypeId="bb742565-e8e5-43d6-bf43-25dd8ca07ab1"/>
+    <recordKeyType typeId="d72bc5c2-2ace-42cd-8630-923daa96ba4c" valueTypeId="f2d862af-19ee-493a-896d-a24353fe0ed6"/>
+    <recordType typeId="9630654d-3e6e-4347-a34b-4a03a7ebd2ff" valueTypeId="23ffd1ee-82f5-446f-979a-ab550ffbd0d7"/>
+    <recordManagerType typeId="2e1479f5-7e02-416a-8da7-046fa54d1802" valueTypeId="47f2e39a-1dc1-4f71-b665-e403e6c88bf7"/>
+  </producedTypes>
+  <name>ApplicationVersions</name>
+  <synonym>
+    <key>en</key>
+    <value>Application Versions</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Версии приложений</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Active</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>LineNumber</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Recorder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Period</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <informationRegisterPeriodicity>Second</informationRegisterPeriodicity>
+  <mainFilterOnPeriod>true</mainFilterOnPeriod>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Application versions by users</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Версии приложений, используемые пользователями</value>
+  </explanation>
+  <resources uuid="531ca8a6-ce28-4a98-bbb4-e020032eaeda">
+    <name>Version</name>
+    <synonym>
+      <key>en</key>
+      <value>Version</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Версия</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.ApplicationVersions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Version</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Версия</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="5f910f56-b916-49e5-a53d-dda384b2bf2b">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="933f6596-e350-4720-9496-bd1ed7d43d3d">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

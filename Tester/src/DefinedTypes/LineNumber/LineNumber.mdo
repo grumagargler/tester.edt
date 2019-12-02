@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DefinedType xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="6142cc0c-3aa9-4fef-b849-049237ff8888">
+  <producedTypes>
+    <containerType typeId="663f95a2-8481-445b-904c-b6799b30e7ed" valueTypeId="01abe0a5-9edb-4e48-b750-d92dfec5b30f"/>
+  </producedTypes>
+  <name>LineNumber</name>
+  <type>
+    <types>Number</types>
+    <numberQualifiers>
+      <precision>6</precision>
+    </numberQualifiers>
+  </type>
+</mdclass:DefinedType>

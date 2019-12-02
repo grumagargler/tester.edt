@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="913bd9c2-1b8b-4847-b5fa-ff8611bf3d6d">
+  <producedTypes>
+    <refType typeId="c66a77e3-2a72-4c04-a517-f5d855cd9d53" valueTypeId="87c1c78e-a025-461b-81ae-55a8741a88d8"/>
+    <listType typeId="6da2c269-5294-4412-93c0-5d8b05188f34" valueTypeId="1b58511b-e0a6-4a3d-b39e-46d007bb9a14"/>
+    <managerType typeId="c8776202-6142-499c-9585-42436971abb4" valueTypeId="4058303b-f946-4f8d-90a4-45a95a18cea9"/>
+  </producedTypes>
+  <name>Statuses</name>
+  <synonym>
+    <key>en</key>
+    <value>Statuses</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Статусы</value>
+  </synonym>
+  <quickChoice>true</quickChoice>
+  <choiceMode>QuickChoice</choiceMode>
+  <explanation>
+    <key>en</key>
+    <value>Completion statuses</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Статусы завершения</value>
+  </explanation>
+  <enumValues uuid="02679377-5b15-4ebc-b1e3-a039d8d6e677">
+    <name>Passed</name>
+    <synonym>
+      <key>en</key>
+      <value>Passed</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выполнен</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="9d4d00cc-8927-4da4-89dd-a7f5c94efd4f">
+    <name>Fault</name>
+    <synonym>
+      <key>en</key>
+      <value>Fault</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Ошибка</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="e25b81ba-b9bb-4951-a961-8af5ee12d638">
+    <name>Missed</name>
+    <synonym>
+      <key>en</key>
+      <value>Missed</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пропущен</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="280fa808-6887-4f5f-a4e1-a053fd824d7e">
+    <name>Running</name>
+    <synonym>
+      <key>en</key>
+      <value>Running</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выполняется</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

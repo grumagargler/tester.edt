@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="52b16754-9df9-4918-9609-c2302a23655a">
+  <producedTypes>
+    <objectType typeId="988b170f-754e-4bb5-ae57-48c1febc9329" valueTypeId="70b6515a-3e8d-4209-a340-a54956b43d98"/>
+    <managerType typeId="b9271dbc-4917-48ab-838c-4fc895bafaa3" valueTypeId="82664bfe-d2b7-4c45-93f6-6665ac770aca"/>
+  </producedTypes>
+  <name>TranspilerTester</name>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+</mdclass:DataProcessor>

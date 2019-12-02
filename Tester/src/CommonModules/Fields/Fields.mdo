@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="3cd9d222-c509-4b9b-859d-6fe27676bf7b">
+  <name>Fields</name>
+  <clientManagedApplication>true</clientManagedApplication>
+</mdclass:CommonModule>

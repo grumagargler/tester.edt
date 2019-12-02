@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="edfa052f-6cd6-48f6-a097-fa41d86b4aab">
+  <producedTypes>
+    <refType typeId="21d3e6bd-4c40-4ddd-a30c-017c54b141c9" valueTypeId="5e8f1e96-bb6a-459c-8e82-1f364323649c"/>
+    <listType typeId="0c8a66e0-c162-4597-9c45-f1a66b6af1c2" valueTypeId="a7304df5-9508-4aab-9650-3a11d75cbcf4"/>
+    <managerType typeId="b861a7b2-7bab-402a-b429-5fefd7c92553" valueTypeId="408ce331-02f2-404a-bf18-35873ee11705"/>
+  </producedTypes>
+  <name>Running</name>
+  <synonym>
+    <key>en</key>
+    <value>Jobs Running Mode</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Режим запуска задач</value>
+  </synonym>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <explanation>
+    <key>en</key>
+    <value>Jobs running mode</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Режим запуска задач</value>
+  </explanation>
+  <enumValues uuid="df56c76e-660d-4fcf-8109-7425c74e6a39">
+    <name>Now</name>
+    <synonym>
+      <key>en</key>
+      <value>Now</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сейчас</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="de011baa-f535-4bda-b64a-1e8400f6d762">
+    <name>Schedule</name>
+    <synonym>
+      <key>en</key>
+      <value>Schedule</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Расписание</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

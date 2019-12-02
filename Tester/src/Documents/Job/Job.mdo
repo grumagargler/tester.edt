@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="ea7b5371-d12e-41a5-8517-494f8028c744">
+  <producedTypes>
+    <objectType typeId="74773ef3-cd04-4ff8-8cd8-61f6e5e81e5a" valueTypeId="ff871798-3ff4-480b-856e-eab26567d3bd"/>
+    <refType typeId="ea0c1cc9-69c1-4fda-a987-e8c7018373dc" valueTypeId="5871c2a6-bd4e-4a40-afec-0c2e38ca0747"/>
+    <selectionType typeId="16a9c37b-52b7-49a6-b710-85a28b4d398e" valueTypeId="7f7939d2-12c7-42bd-9b89-71f1c4e05339"/>
+    <listType typeId="f88cffac-0378-40d4-98c7-36fab68a4918" valueTypeId="2c7ee156-36e6-4450-b9a5-fcb91c308332"/>
+    <managerType typeId="6ecfd432-2f3c-4d02-8813-3186e0ed3871" valueTypeId="4c125499-af3d-4406-8ea5-4e2df599cc8f"/>
+  </producedTypes>
+  <name>Job</name>
+  <synonym>
+    <key>en</key>
+    <value>Job</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Задание</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Document.Job.StandardAttribute.Number</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Posted</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>DeletionMark</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Date</name>
+    <synonym>
+      <key>en</key>
+      <value>Created</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Создано</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Job creation date</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата создания задания</value>
+    </toolTip>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Number</name>
+    <synonym>
+      <key>en</key>
+      <value>ID</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>ИД</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Job identifier</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Идентификатор задания</value>
+    </toolTip>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>Use</createOnInput>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <listPresentation>
+    <key>en</key>
+    <value>Jobs</value>
+  </listPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Задания</value>
+  </listPresentation>
+  <explanation>
+    <key>en</key>
+    <value>A job for executing scenario on a remote computer</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Задание для выполнения сценария на удаленном компьютере</value>
+  </explanation>
+  <numberType>String</numberType>
+  <numberLength>9</numberLength>
+  <numberAllowedLength>Variable</numberAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultObjectForm>Document.Job.Form.Form</defaultObjectForm>
+  <defaultListForm>Document.Job.Form.List</defaultListForm>
+  <posting>Deny</posting>
+  <postInPrivilegedMode>true</postInPrivilegedMode>
+  <unpostInPrivilegedMode>true</unpostInPrivilegedMode>
+  <attributes uuid="20b4c08c-b69b-4033-8363-bec2f050f365">
+    <name>Agent</name>
+    <synonym>
+      <key>en</key>
+      <value>Agent</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Агент</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario performer</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Исполнитель сценария</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <choiceParameters>
+      <name>Filter.Agent</name>
+      <value xsi:type="core:BooleanValue">
+        <value>true</value>
+      </value>
+    </choiceParameters>
+    <choiceForm>Catalog.Users.Form.Agents</choiceForm>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="d07d3c07-595c-430e-be81-34486c947ec8">
+    <name>Computer</name>
+    <synonym>
+      <key>en</key>
+      <value>Computer</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Компьютер</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Computers</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>The performer’s computer</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Компьютер исполнителя задания</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="48786097-b1db-445c-a03d-abd66249a1f0">
+    <name>Creator</name>
+    <synonym>
+      <key>en</key>
+      <value>Creator</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Создатель</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Job creator</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Создатель задания</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="64f494fa-8fb9-4d6f-9df4-03ab252fcef7">
+    <name>IgnoreCompletion</name>
+    <synonym>
+      <key>en</key>
+      <value>Ignore Completion</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Игнорировать завершение</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Continue queuing jobs even if the previous job has not been started</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Продолжать формирование очереди заданий, даже если предыдущее задание еще не было выполнено</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="217f1799-7b88-4bc2-ae21-1d1585c3a080">
+    <name>Job</name>
+    <synonym>
+      <key>en</key>
+      <value>By Job</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>По заданию</value>
+    </synonym>
+    <type>
+      <types>DocumentRef.Job</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Source job with execution schedule</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Исходное задание с расписанием запуска</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="4b4778db-dba9-42fb-8100-fbdf6645367e">
+    <name>Memo</name>
+    <synonym>
+      <key>en</key>
+      <value>Memo</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Комментарий</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Notes</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Произвольные заметки</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="40c53512-fae9-4f50-9545-40e378833e3a">
+    <name>Mode</name>
+    <synonym>
+      <key>en</key>
+      <value>Run</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Запуск</value>
+    </synonym>
+    <type>
+      <types>EnumRef.Running</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Running mode</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Режим запуска</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:ReferenceValue">
+      <value>Enum.Running.EnumValue.Now</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="8663b1b8-e504-423f-abef-0ca260009235">
+    <name>Parameters</name>
+    <synonym>
+      <key>en</key>
+      <value>Parameters</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Параметры</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Job parameters</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Параметры задания</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="3194a59f-d961-4e45-9b2a-02050875c037">
+    <name>Scenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Planned scenario to run</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Запланированный на выполнение сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="5413b5d9-f0e5-44db-9397-8ac2ae75ba7f">
+    <name>Schedule</name>
+    <synonym>
+      <key>en</key>
+      <value>Schedule</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Расписание</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Schedule</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Расписание</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <forms uuid="ccf548f3-5555-4366-8fdb-71b20a12d0a9">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="19425c4b-fd10-47a5-81f5-84f273bd814e">
+    <name>List</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <tabularSections uuid="74cbd5a5-6162-4b9a-9b68-421e9ff76ba4">
+    <producedTypes>
+      <objectType typeId="8288b3ed-b054-48e9-9430-f393ee28350e" valueTypeId="cd29e01e-7d99-4c66-bd6b-3bdfcd1a3692"/>
+      <rowType typeId="a59072f0-4cc1-4dc5-970c-ff9f4b0ece87" valueTypeId="3e9d7751-e8dc-4ff4-b98f-d6bb25eed098"/>
+    </producedTypes>
+    <name>Scenarios</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenarios</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарии</value>
+    </synonym>
+    <fillChecking>ShowError</fillChecking>
+    <attributes uuid="46e59cb3-1a07-4101-b82d-ac1556c20a70">
+      <name>Application</name>
+      <synonym>
+        <key>en</key>
+        <value>Application</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Приложение</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Applications</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Application field should be mandatory defined in order to run scenarios remotely</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Приложение должно быть задано в обязательном порядке для корректного выполнения делегированных сценариев</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <indexing>Index</indexing>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="1e9017b8-1049-4018-9624-7d8b13c9741f">
+      <name>Scenario</name>
+      <synonym>
+        <key>en</key>
+        <value>Scenario</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Сценарий</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Scenarios</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Planned scenario to run</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Запланированный на выполнение сценарий</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillChecking>ShowError</fillChecking>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+  <commands uuid="bf74fbf8-4273-47c2-b87b-10d1c76908a5">
+    <name>Run</name>
+    <synonym>
+      <key>en</key>
+      <value>Run Remotely</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выполнить удаленно</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Execute the scenario(s) on a remote computer</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Выполнить сценарий(и) на удаленном компьютере</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Remote</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="8354c145-a4a3-47e8-b4e4-40242a2705a2">
+    <name>Show</name>
+    <synonym>
+      <key>en</key>
+      <value>Jobs</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Задания</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Jobs list by selected scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Список заданий по выбранному сценарию</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.ScheduledJob</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:Document>

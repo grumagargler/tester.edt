@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="4ad05094-788a-4f9d-a4e1-229b97f25a6f">
+  <producedTypes>
+    <objectType typeId="09f2df54-6626-4824-9603-11adeea6ad80" valueTypeId="13f73070-db8a-441b-893f-dc072348025b"/>
+    <managerType typeId="a8bf25ed-0d5e-43a7-8a9d-a9805913ac66" valueTypeId="1da5538e-ffaa-4726-89b3-9829225139c1"/>
+  </producedTypes>
+  <name>Load</name>
+  <synonym>
+    <key>en</key>
+    <value>Load</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Загрузка</value>
+  </synonym>
+  <defaultForm>DataProcessor.Load.Form.Form</defaultForm>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <explanation>
+    <key>en</key>
+    <value>Load scenarios to database</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Загрузка сценариев в базу</value>
+  </explanation>
+  <tabularSections uuid="53ec8c11-c519-4910-8771-5b2079c2e562">
+    <producedTypes>
+      <objectType typeId="3ed4b188-a2c1-47e8-8c1a-23922560a096" valueTypeId="454f016f-95ea-4be8-8475-7d943aedf2f6"/>
+      <rowType typeId="4feb3884-e7fc-45dd-a907-49913cec0297" valueTypeId="56240b30-aa5b-4e53-b7b9-2e12799d6333"/>
+    </producedTypes>
+    <name>Repositories</name>
+    <synonym>
+      <key>en</key>
+      <value>Repositories</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Репозитории</value>
+    </synonym>
+    <standardAttributes>
+      <dataHistory>Use</dataHistory>
+      <name>LineNumber</name>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>Use</fullTextSearch>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+    </standardAttributes>
+    <attributes uuid="627d4203-6169-4548-b226-0e32b35abe66">
+      <name>Use</name>
+      <type>
+        <types>Boolean</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>The flag of usage this repository</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Флаг использования данного репозитория</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+    </attributes>
+    <attributes uuid="bb519700-4e82-4a08-9f80-e785a55ac7e1">
+      <name>Application</name>
+      <synonym>
+        <key>en</key>
+        <value>Application</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Приложение</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Applications</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Application</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Приложение</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+    </attributes>
+    <attributes uuid="6550c308-2ef1-4b60-b2f8-853067a67bfd">
+      <name>Folder</name>
+      <synonym>
+        <key>en</key>
+        <value>Folder</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Папка</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers/>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>The path from where the scenarios source code will be loaded</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Путь к папке откуда будет загружаться исходный код сценариев</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:StringValue">
+        <value></value>
+      </fillValue>
+    </attributes>
+  </tabularSections>
+  <forms uuid="75ee4465-e29e-47c2-9bff-294ce468919f">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="862bfeb8-4601-4f61-98d3-de0ae8ab74e5">
+    <name>Changes</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <commands uuid="c073fb0a-fb12-4ebe-b841-a9174ba11944">
+    <name>Show</name>
+    <synonym>
+      <key>en</key>
+      <value>Load</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Загрузка</value>
+    </synonym>
+    <group>ActionsPanelTools</group>
+    <commandParameterType/>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Load scenarios to database</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Загрузка сценариев в базу</value>
+    </toolTip>
+    <shortcut>Ctrl+Shift+L</shortcut>
+  </commands>
+</mdclass:DataProcessor>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="16ed5515-20df-4018-949e-1d737645a092">
+  <producedTypes>
+    <selectionType typeId="b547fc43-c9dc-441b-b5ac-7257cfffcaf8" valueTypeId="3d614aa0-1dfa-4974-8f72-904949922662"/>
+    <listType typeId="de5ec767-c7fb-43ef-96c4-f77fc2ab25a0" valueTypeId="ce46ce53-cc42-4395-bdeb-be1b799fdc6e"/>
+    <managerType typeId="54a9b3f4-4e40-44b0-acb6-55aa37236a04" valueTypeId="9a4b7ed5-e05d-4237-b5b1-564fca3c0d33"/>
+    <recordSetType typeId="6afb220b-ef70-411b-9e25-5901c2dbc2d8" valueTypeId="3a25434d-b6ba-4114-86bd-18cfd6b2bcdb"/>
+    <recordKeyType typeId="f1f6809f-ee9b-44fd-9684-11ad6572fdef" valueTypeId="95830907-b238-4cde-a1ae-dd0c610dcb7e"/>
+    <recordType typeId="13527138-ba25-4657-9126-56ab0afc5ed1" valueTypeId="ec5ddd01-9485-42f2-967c-3faca060e443"/>
+    <recordManagerType typeId="66bb94bf-d172-4564-a22c-7be9319e5cb5" valueTypeId="ecc0951a-e619-46df-9292-5b49cf101724"/>
+  </producedTypes>
+  <name>Sources</name>
+  <synonym>
+    <key>en</key>
+    <value>Sources</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Исходники</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <defaultRecordForm>InformationRegister.Sources.Form.Form</defaultRecordForm>
+  <defaultListForm>InformationRegister.Sources.Form.List</defaultListForm>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Active</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>LineNumber</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Recorder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Period</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Dumped configuration files</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Локальные выгрузки конфигураций в файлы</value>
+  </explanation>
+  <resources uuid="8fd6c521-81a9-411a-b5b4-1fc55bc1af76">
+    <name>Designer</name>
+    <synonym>
+      <key>en</key>
+      <value>Dumped from designer</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выгрузка из конфигуратора</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Folder with dumped configuration files</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Путь к папке с выгрузкой конфигурации в файлы</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+  </resources>
+  <resources uuid="bdf817b6-cdbd-431e-888f-72f337461508">
+    <name>EDT</name>
+    <synonym>
+      <key>en</key>
+      <value>EDT Project</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Проект EDT</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>
+Folder with Enterprise Development Tools project, for example: C:\Users\Programmer\workspace\MyApplication</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Путь к папке с проектом EDT, например: C:\Users\Programmer\workspace\MyApplication</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+  </resources>
+  <dimensions uuid="75fc6f92-b688-4b8a-8287-dfa227ad838d">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="6376d31c-9c02-4666-867b-9681671d39d2">
+    <name>Computer</name>
+    <synonym>
+      <key>en</key>
+      <value>Computer</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Компьютер</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Computers</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User computer</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Компьютер пользователя</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="8c21c1d6-06b1-45f1-9101-555300ac531f">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="cea5012b-6bfc-4b92-bd36-4ace4cf6ab68">
+    <name>Version</name>
+    <synonym>
+      <key>en</key>
+      <value>Version</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Версия</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.ApplicationVersions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application version</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Версия приложения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <choiceParameterLinks>
+      <name>Filter.Owner</name>
+      <field>InformationRegister.Sources.Dimension.Application</field>
+    </choiceParameterLinks>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <forms uuid="bd919192-1f67-4da2-a9eb-181f614298e3">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="29719ce5-7156-428c-a993-1b0bd5ba9182">
+    <name>List</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+</mdclass:InformationRegister>

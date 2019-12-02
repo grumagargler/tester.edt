@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="cca025c8-0953-400e-8c7a-ab90a3ddc7b7">
+  <producedTypes>
+    <selectionType typeId="9570b669-aed2-424a-9e07-59dccd08f362" valueTypeId="048e3bb3-1acb-4712-8134-29c8993e5044"/>
+    <listType typeId="e70d5c8c-1cea-489e-85ed-8d3877102e67" valueTypeId="8e3a81a7-362a-4094-8294-2f74533b2763"/>
+    <managerType typeId="3004c4bf-3235-4e28-b1c7-0aa6c8e5643a" valueTypeId="a46f2d24-72ce-4f35-9150-feffdc5cc000"/>
+    <recordSetType typeId="5125397a-50e1-4c79-8ce1-fa2cf1dfcfb2" valueTypeId="04eb92e8-d0fb-494d-8cb5-182d57fc1a67"/>
+    <recordKeyType typeId="fdffcf1e-f9db-474d-92ba-fab94b6396ac" valueTypeId="b78bf7d5-105e-4ca8-99ab-a7a8540609cf"/>
+    <recordType typeId="e1b6fb8f-ef5f-4263-838f-959cc46faa72" valueTypeId="ff251594-60f4-4806-8358-f41d11b39bae"/>
+    <recordManagerType typeId="38dfac08-1f71-48eb-adc1-ff8e29e8be7b" valueTypeId="3954c778-ba80-406b-b468-2cb6c938ecfe"/>
+  </producedTypes>
+  <name>ServerDebug</name>
+  <synonym>
+    <key>en</key>
+    <value>Server Debug</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Сервер, отладка</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Runtime information on the server side for passing exceptions from server to client</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Информация времени выполнения на серверной стороне при выбросе исключений с сервера на клиент</value>
+  </explanation>
+  <resources uuid="38b65b08-8fc2-4ac3-96d8-8c5ecea4405d">
+    <name>Debug</name>
+    <synonym>
+      <key>en</key>
+      <value>Debug</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Отладка</value>
+    </synonym>
+    <type>
+      <types>ValueStorage</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Debug info structure</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Структура с данными выполнения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="e67e02cb-30c7-4fb8-9d3e-690256b0e76b">
+    <name>Session</name>
+    <synonym>
+      <key>en</key>
+      <value>Session</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Sessions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Session</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

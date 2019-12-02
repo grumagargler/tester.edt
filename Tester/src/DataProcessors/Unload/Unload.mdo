@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="2a91bfc8-9e84-4af6-b293-ba6e04d8c75a">
+  <producedTypes>
+    <objectType typeId="e92ea47d-a316-4b52-9964-fa006c5bbb01" valueTypeId="913eb308-1497-443e-b6f7-39313d060591"/>
+    <managerType typeId="0677caca-d920-4801-9547-4d20fc2111c2" valueTypeId="1e19393f-f1d2-4c4c-ae5d-b6eeff10794d"/>
+  </producedTypes>
+  <name>Unload</name>
+  <synonym>
+    <key>en</key>
+    <value>Unload</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Выгрузка</value>
+  </synonym>
+  <defaultForm>DataProcessor.Unload.Form.Form</defaultForm>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <explanation>
+    <key>en</key>
+    <value>Scenarios unload to file system</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Выгрузка сценариев в файловую систему</value>
+  </explanation>
+  <attributes uuid="7b2646f4-c15b-43b4-9e6b-7868b22c822d">
+    <name>Changes</name>
+    <synonym>
+      <key>en</key>
+      <value>Changes Only</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Только изменения</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>If flag is checked only changes from the previous unload will be saved</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Если флаг установлен, только последние изменения с момента предыдущей выгрузки будут выгружены</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <tabularSections uuid="5d5ddfaa-7c06-44ba-b84f-0927be367efc">
+    <producedTypes>
+      <objectType typeId="6e395583-0c55-447e-ab5f-386c7e835854" valueTypeId="a9aca9a3-d9bf-466f-ad58-dc50672dc3ce"/>
+      <rowType typeId="1faad188-00bd-4586-9654-a3e8be57b700" valueTypeId="3490d13a-09a7-48b5-9c76-48b4b6df1b7d"/>
+    </producedTypes>
+    <name>Repositories</name>
+    <synonym>
+      <key>en</key>
+      <value>Repositories</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Репозитории</value>
+    </synonym>
+    <standardAttributes>
+      <dataHistory>Use</dataHistory>
+      <name>LineNumber</name>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>Use</fullTextSearch>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+    </standardAttributes>
+    <attributes uuid="20c25a9b-057e-4f5f-81ec-72cd8a13803c">
+      <name>Use</name>
+      <type>
+        <types>Boolean</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>The flag of usage this repository</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Флаг использования данного репозитория</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+    </attributes>
+    <attributes uuid="aa7a7aef-faa2-42c5-a045-48362e592c46">
+      <name>Application</name>
+      <synonym>
+        <key>en</key>
+        <value>Application</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Приложение</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Applications</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Application</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Приложение</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+    </attributes>
+    <attributes uuid="ff3db302-0283-4474-9cd7-519b76a18b1a">
+      <name>Folder</name>
+      <synonym>
+        <key>en</key>
+        <value>Folder</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Папка</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers/>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>The path where the scenarios source code will be unloaded</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Путь к папке куда будет выгружаться исходный код сценариев</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:StringValue">
+        <value></value>
+      </fillValue>
+    </attributes>
+    <attributes uuid="aa7f85aa-733e-4a86-a316-9b71344b4047">
+      <name>Node</name>
+      <synonym>
+        <key>en</key>
+        <value>Node</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Узел</value>
+      </synonym>
+      <type>
+        <types>ExchangePlanRef.Changes</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Node</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Узел</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+    </attributes>
+  </tabularSections>
+  <forms uuid="bdfc2e97-0881-400c-beb0-244ea92dae02">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <commands uuid="a80b07dd-8475-45db-a331-5bec6f030094">
+    <name>Show</name>
+    <synonym>
+      <key>en</key>
+      <value>Unload</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выгрузка</value>
+    </synonym>
+    <group>ActionsPanelTools</group>
+    <commandParameterType/>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Scenarios unload to file system</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Выгрузка сценариев в файловую систему</value>
+    </toolTip>
+    <shortcut>Ctrl+Shift+B</shortcut>
+  </commands>
+</mdclass:DataProcessor>

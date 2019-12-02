@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="bf6d3a3b-93cc-4576-b9a7-e272e3402b4b">
+  <name>ReportsExtender</name>
+  <server>true</server>
+</mdclass:CommonModule>

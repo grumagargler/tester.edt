@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:SessionParameter xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="dfabb7da-1401-4db3-adce-8422f1aac9cf">
+  <name>Session</name>
+  <type>
+    <types>CatalogRef.Sessions</types>
+  </type>
+</mdclass:SessionParameter>

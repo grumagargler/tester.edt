@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="73a486c4-8e58-446f-8626-98c07a21e932">
+  <producedTypes>
+    <objectType typeId="4d3f2c8d-85c4-4df9-94c3-7bac8be7209f" valueTypeId="45a4e6e8-5217-46ab-9267-f575f6bda592"/>
+    <managerType typeId="9257b09a-b7e4-48c0-ade0-36bda807e532" valueTypeId="01e2e2e5-8638-4a10-94e6-44f0449c0311"/>
+  </producedTypes>
+  <name>Assertions</name>
+  <defaultForm>DataProcessor.Assertions.Form.Form</defaultForm>
+  <attributes uuid="7552a93a-b154-4b56-8239-1f3af5a3fff1">
+    <name>Details</name>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="470628ad-91e2-4c77-9e0f-c2a69100a32f">
+    <name>Negation</name>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <attributes uuid="9af1d0d9-0d69-454f-9033-dfca28b82979">
+    <name>Value</name>
+    <type/>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </attributes>
+  <forms uuid="28019c5a-a4bf-44ef-9243-0dc8a148acf8">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+</mdclass:DataProcessor>

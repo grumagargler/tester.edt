@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="edc3882d-3768-485f-9c49-20a1cac2fb6b">
+  <producedTypes>
+    <objectType typeId="d50c76e3-1750-4257-8e33-1598fdde8d21" valueTypeId="c06c1579-63a9-4920-b2e8-e94495c97b95"/>
+    <managerType typeId="1cadc24e-b323-49eb-a21f-efbc7c464020" valueTypeId="a0ab190d-efd0-4114-8029-1049a5c687bf"/>
+  </producedTypes>
+  <name>Tables</name>
+  <synonym>
+    <key>en</key>
+    <value>Tables</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Таблицы</value>
+  </synonym>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <explanation>
+    <key>en</key>
+    <value>Used to embed table parts into other objects</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Используется для внедрения в другие объекты системы</value>
+  </explanation>
+  <tabularSections uuid="6c21abbd-691e-4c2a-8a33-475d77756918">
+    <producedTypes>
+      <objectType typeId="0917a7b9-4468-47de-956e-5e4ce34e9b1e" valueTypeId="1eea54f9-2ce6-48d5-a28d-f38155227cbe"/>
+      <rowType typeId="b80a36f6-27c6-45d3-b993-8e44c69cd78a" valueTypeId="d4874f6b-3589-42b0-a952-7d930e9e53f9"/>
+    </producedTypes>
+    <name>Tags</name>
+    <synonym>
+      <key>ru</key>
+      <value>Теги</value>
+    </synonym>
+    <synonym>
+      <key>en</key>
+      <value>Tags</value>
+    </synonym>
+    <standardAttributes>
+      <dataHistory>Use</dataHistory>
+      <name>LineNumber</name>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>Use</fullTextSearch>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+    </standardAttributes>
+    <attributes uuid="a1069b17-bc71-4887-a3f5-d804d8bd976c">
+      <name>Dirty</name>
+      <synonym>
+        <key>ru</key>
+        <value>Грязно</value>
+      </synonym>
+      <synonym>
+        <key>en</key>
+        <value>Dirty</value>
+      </synonym>
+      <type>
+        <types>Boolean</types>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Признак, что тег еще не сохранен</value>
+      </toolTip>
+      <toolTip>
+        <key>en</key>
+        <value>The sign that this tag is not saved</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+    </attributes>
+    <attributes uuid="336d059e-aa7f-4e9d-a2fd-15cf69788c73">
+      <name>Tag</name>
+      <synonym>
+        <key>ru</key>
+        <value>Тег</value>
+      </synonym>
+      <synonym>
+        <key>en</key>
+        <value>Tag</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Tags</types>
+      </type>
+      <toolTip>
+        <key>ru</key>
+        <value>Тег</value>
+      </toolTip>
+      <toolTip>
+        <key>en</key>
+        <value>Tag</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillFromFillingValue>true</fillFromFillingValue>
+      <fillValue xsi:type="core:UndefinedValue"/>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="65c7283b-1b6f-4405-b664-5980af6d4662">
+    <producedTypes>
+      <objectType typeId="3a6d128f-6266-4b06-b99e-bba3979f34a8" valueTypeId="207fd214-8bd5-4df8-bcd2-a88c81153b43"/>
+      <rowType typeId="92e906b0-d549-4e09-8684-c861c3706c73" valueTypeId="a141e233-e3cf-463e-8254-b4cb5ed21498"/>
+    </producedTypes>
+    <name>UserGroups</name>
+    <synonym>
+      <key>en</key>
+      <value>Groups</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Группы</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Users groups</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Группы пользователей</value>
+    </toolTip>
+    <standardAttributes>
+      <dataHistory>Use</dataHistory>
+      <name>LineNumber</name>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>Use</fullTextSearch>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+    </standardAttributes>
+    <attributes uuid="896385fb-9916-413f-a97d-1bfbcbf56436">
+      <name>Use</name>
+      <type>
+        <types>Boolean</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:BooleanValue"/>
+    </attributes>
+    <attributes uuid="7c5d9f1b-3b30-4409-adbf-3236977fe5c6">
+      <name>UserGroup</name>
+      <synonym>
+        <key>en</key>
+        <value>Folder</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Папка</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.UserGroups</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Users group</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Группа пользователей</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillValue xsi:type="core:UndefinedValue"/>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="37061aba-e578-477f-a848-f1b90dcb70f2">
+    <producedTypes>
+      <objectType typeId="1f169a88-1925-429c-8889-6e95603e57cd" valueTypeId="14cb0597-9055-49e2-b481-9f9834f83b99"/>
+      <rowType typeId="3c5ca635-e361-4768-8f9b-531e30a893bb" valueTypeId="6a2ce8b6-3218-43df-a8cd-d4592da9a849"/>
+    </producedTypes>
+    <name>Users</name>
+    <synonym>
+      <key>en</key>
+      <value>Users</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователи</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Group members</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Членство в группах</value>
+    </toolTip>
+    <standardAttributes>
+      <dataHistory>Use</dataHistory>
+      <name>LineNumber</name>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>Use</fullTextSearch>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+    </standardAttributes>
+    <attributes uuid="a3db0384-58b0-49d4-90bf-fcb93d7bf0a4">
+      <name>User</name>
+      <synonym>
+        <key>en</key>
+        <value>User</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Пользователь</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Users</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>User, group member</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Пользователь, член группы</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillChecking>ShowError</fillChecking>
+      <fillValue xsi:type="core:UndefinedValue"/>
+    </attributes>
+  </tabularSections>
+</mdclass:DataProcessor>

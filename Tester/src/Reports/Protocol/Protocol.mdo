@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Report xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="8ce9d691-4c48-4de2-bc35-5a6f11b027ce">
+  <producedTypes>
+    <objectType typeId="99cfc079-6fa0-4cab-8ab4-19dea2cff561" valueTypeId="ed5c9f11-0657-4073-884f-78a1dcb5082e"/>
+    <managerType typeId="1aff3042-f05f-4e72-bf28-d97f09ca0f4c" valueTypeId="d8ce3356-601f-4c4e-aee4-d53d995658c4"/>
+  </producedTypes>
+  <name>Protocol</name>
+  <synonym>
+    <key>en</key>
+    <value>Protocol</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Протокол</value>
+  </synonym>
+  <mainDataCompositionSchema>Report.Protocol.Template.Schema</mainDataCompositionSchema>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <explanation>
+    <key>en</key>
+    <value>List of executed tests by sessions of scenarios</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Протокол запуска тестов в разрезе сценарных сессий</value>
+  </explanation>
+  <templates uuid="0f257bc7-0393-40b0-8927-2072e80ce751">
+    <name>Schema</name>
+    <templateType>DataCompositionSchema</templateType>
+  </templates>
+  <commands uuid="84b1540e-9986-4e5e-aa99-9d0718919328">
+    <name>OpenByJob</name>
+    <synonym>
+      <key>en</key>
+      <value>Protocol</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Протокол</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>DocumentRef.Job</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>List of executed tests by sessions of scenarios</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Протокол запуска тестов в разрезе сценарных сессий</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="65852d8d-8510-4898-9b64-b217c264a5a3">
+    <name>Show</name>
+    <synonym>
+      <key>en</key>
+      <value>Protocol</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Протокол</value>
+    </synonym>
+    <group>ActionsPanelReports</group>
+    <commandParameterType/>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>List of executed tests by sessions of scenarios</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Протокол запуска тестов в разрезе сценарных сессий</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:Report>

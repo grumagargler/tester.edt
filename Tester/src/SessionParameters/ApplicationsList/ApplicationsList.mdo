@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:SessionParameter xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="59d7aade-b3ba-41ef-a5a9-648672db91f1">
+  <name>ApplicationsList</name>
+  <type>
+    <types>FixedArray</types>
+  </type>
+</mdclass:SessionParameter>

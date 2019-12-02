@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="35797b66-56d8-4215-b25d-849c50146ed4">
+  <producedTypes>
+    <refType typeId="66f62d9b-cfa8-4a1b-bbd1-257b2653cbde" valueTypeId="8d2eb724-c81f-4b7d-9d31-212aaaf4c3c0"/>
+    <listType typeId="eab07d44-0607-4b25-9980-75e76ebbcc86" valueTypeId="ea7b4a2e-e833-41d8-b96f-e773edc1e38b"/>
+    <managerType typeId="2bc0cf1c-7abd-4f12-ad5c-71e50fde808b" valueTypeId="f0df47ad-5d90-488b-babc-52c6772b607f"/>
+  </producedTypes>
+  <name>Search</name>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Order</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="5ae4bc29-c6a2-407f-9b9d-09a1a27c112a">
+    <name>Scenarios</name>
+  </enumValues>
+</mdclass:Enum>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="6ddb9f2f-dd20-461f-966f-5bc2c477cbad">
+  <producedTypes>
+    <objectType typeId="5642c300-b818-4adc-ab1e-8264b90754f3" valueTypeId="e1fb5bfc-6833-4487-9309-954b6c656d74"/>
+    <managerType typeId="4daa740d-8d14-4c09-84d2-b7aa49d4022b" valueTypeId="72732064-f948-4117-a677-1870b42a5d4c"/>
+  </producedTypes>
+  <name>Compiler</name>
+  <useStandardCommands>true</useStandardCommands>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+</mdclass:DataProcessor>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="a907e16b-db8b-40fa-ba6a-a1392ae11cad">
+  <name>TestSrv</name>
+  <server>true</server>
+  <serverCall>true</serverCall>
+</mdclass:CommonModule>

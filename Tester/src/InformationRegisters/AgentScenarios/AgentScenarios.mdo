@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="5b6df603-b6e9-4e60-989b-b8a3f03c065c">
+  <producedTypes>
+    <selectionType typeId="6e8daae7-ea36-41fa-bb3a-c91104139e7b" valueTypeId="570f76c5-709f-4bb2-9825-2ba6a3ded1c5"/>
+    <listType typeId="8567e05f-4f6f-4508-b7ee-fc5530ebdafe" valueTypeId="55d35e1e-b31c-440b-bd08-ae2788dc04b7"/>
+    <managerType typeId="370794a5-e094-4717-860c-a91e789896aa" valueTypeId="6f34209f-4190-4717-90ca-f125ddec05d1"/>
+    <recordSetType typeId="392dfff7-7bb4-48f0-829b-b7c293caebad" valueTypeId="ae734dea-2196-4edd-8e3f-33bc7ff67268"/>
+    <recordKeyType typeId="30ce5573-bb2f-422d-899a-23ed81f68605" valueTypeId="ac732294-d56d-452e-a72c-a743c52035d7"/>
+    <recordType typeId="36403b9d-41ec-4449-9688-5a966cc1c235" valueTypeId="4fb51c8f-8378-40ce-81f7-a75e633f02b3"/>
+    <recordManagerType typeId="faf7cf0c-de08-4276-b0af-ce87e20e34fd" valueTypeId="989fd357-7aaa-401a-8b8d-aec265049f82"/>
+  </producedTypes>
+  <name>AgentScenarios</name>
+  <synonym>
+    <key>en</key>
+    <value>Detailed Jobs Log</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Детальный журнал заданий</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Active</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>LineNumber</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Recorder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Period</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Detailed agent’s jobs log</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Детальный журнал заданий агентов</value>
+  </explanation>
+  <resources uuid="216ac124-1afd-40fd-955a-4db9c940ae56">
+    <name>Finished</name>
+    <synonym>
+      <key>en</key>
+      <value>Finished</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Закончено</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Job finished date</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата окончания выполнения задания</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="525b2652-8776-4fb5-ad63-c14f16952806">
+    <name>Started</name>
+    <synonym>
+      <key>en</key>
+      <value>Started</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Начато</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Job started date</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата начала выполнения задания</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="e033b012-efb8-43a9-880b-cc56e189ee9b">
+    <name>Job</name>
+    <synonym>
+      <key>en</key>
+      <value>Job</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Задание</value>
+    </synonym>
+    <type>
+      <types>DocumentRef.Job</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Agent</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Агент</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="1a4e6291-b95f-4868-9ef3-045c627893da">
+    <name>Row</name>
+    <synonym>
+      <key>en</key>
+      <value>Line Number</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Номер строки</value>
+    </synonym>
+    <type>
+      <types>DefinedType.LineNumber</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario position in the job</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Позиция сценария в задании</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

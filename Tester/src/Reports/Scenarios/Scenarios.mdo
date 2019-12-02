@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Report xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="1b980188-2e11-4ede-9efd-aeb9b11a4e83">
+  <producedTypes>
+    <objectType typeId="54a10b53-7edc-43bf-85ea-8323260b8c84" valueTypeId="12981830-4b9f-4768-a5b0-cabd952c0088"/>
+    <managerType typeId="c2b877cb-0fd9-4079-b660-be1e291f681a" valueTypeId="dc6e544d-a443-444a-817e-e0c9abadb918"/>
+  </producedTypes>
+  <name>Scenarios</name>
+  <synonym>
+    <key>en</key>
+    <value>Scenarios</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Сценарии</value>
+  </synonym>
+  <mainDataCompositionSchema>Report.Scenarios.Template.Schema</mainDataCompositionSchema>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <explanation>
+    <key>en</key>
+    <value>Scenarios list</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Список сценариев</value>
+  </explanation>
+  <templates uuid="f8a6fb74-4a95-4eaa-9ddd-377c45826b89">
+    <name>Schema</name>
+    <templateType>DataCompositionSchema</templateType>
+  </templates>
+  <commands uuid="65dbd2f3-4a40-47d0-a76f-852653fd0b2c">
+    <name>Show</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenarios</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарии</value>
+    </synonym>
+    <group>ActionsPanelReports</group>
+    <commandParameterType/>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Scenarios list</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Список сценариев</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:Report>

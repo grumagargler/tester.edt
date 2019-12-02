@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DefinedType xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="0d812e24-404a-4412-8ea2-6c100be99f43">
+  <producedTypes>
+    <containerType typeId="737e2160-09ca-413a-bc82-376c9d83af8f" valueTypeId="225cef14-a1fe-453d-89c7-95258b377e26"/>
+  </producedTypes>
+  <name>Pointer</name>
+  <type>
+    <types>Number</types>
+    <numberQualifiers>
+      <precision>10</precision>
+      <nonNegative>true</nonNegative>
+    </numberQualifiers>
+  </type>
+</mdclass:DefinedType>

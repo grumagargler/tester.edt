@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="9a9a1943-e4f1-4c2b-a9e5-8865c0e07ad6">
+  <producedTypes>
+    <objectType typeId="dc9bb09c-9771-4667-a7e3-bb238e6c9497" valueTypeId="210be427-41ad-46fe-9c29-7fee9ec997fd"/>
+    <refType typeId="4bbdd619-ca12-4180-9255-fa7b3706e89d" valueTypeId="f1e67eed-3a90-4c1b-b9f8-cab4b496a42d"/>
+    <selectionType typeId="4b3b185e-9a4f-49f9-ac71-47e3989c0499" valueTypeId="32a16725-fb07-417d-82a5-3997db60f198"/>
+    <listType typeId="4cef0485-6865-4b5c-8d7f-118621ae1dbd" valueTypeId="20ef218f-22b8-4288-921b-9b55d3d47425"/>
+    <managerType typeId="8bb7047e-1e7d-4d61-aa35-b2fe6a54cef4" valueTypeId="42373217-c624-45a1-802e-7f140f194339"/>
+  </producedTypes>
+  <name>OnExit</name>
+  <synonym>
+    <key>en</key>
+    <value>Call Server on Exist</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Вызов сервера при выходе</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.OnExit.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.OnExit.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>Strictly internal catalog for enforcing platform to call server when application closes</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Исключительно для внутреннего использования. Справочник вынуждает платформу произвести серверный вызов перед закрытием программы</value>
+  </explanation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <descriptionLength>25</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <predefined>
+    <items id="3cc45a44-7ce6-4e4e-8900-11d4eede7b54">
+      <name>DisconnectAgent</name>
+      <description>Disconnect Agent</description>
+      <code xsi:type="core:StringValue">
+        <value>000000001</value>
+      </code>
+    </items>
+  </predefined>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+</mdclass:Catalog>

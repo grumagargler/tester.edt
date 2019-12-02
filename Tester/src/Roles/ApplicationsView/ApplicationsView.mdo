@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Role xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="1a740816-0039-4f1f-825e-27def157bcb5">
+  <name>ApplicationsView</name>
+  <synonym>
+    <key>en</key>
+    <value>Applications View</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Приложения, просмотр</value>
+  </synonym>
+</mdclass:Role>

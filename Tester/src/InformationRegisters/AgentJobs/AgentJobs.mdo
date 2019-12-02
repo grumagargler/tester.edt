@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="f62a66ed-4005-4d57-a225-75e6a042800a">
+  <producedTypes>
+    <selectionType typeId="d4283174-9d2c-411f-98f2-e08d0537c66e" valueTypeId="b60a2e81-064e-4ba9-9d07-0496603ebf3f"/>
+    <listType typeId="4957ce7d-6279-439c-a448-11b3a6473d36" valueTypeId="32bf76ea-1624-4201-a961-8de29b45daf8"/>
+    <managerType typeId="c095a3d9-b1ba-4a4c-aae6-d356faf8839c" valueTypeId="ff5ab170-4ca7-4739-95ce-7d6609b673ad"/>
+    <recordSetType typeId="f0561126-a88e-464b-ac8e-3c7daee879df" valueTypeId="9602653f-8901-44bd-8186-b0fcee618aca"/>
+    <recordKeyType typeId="eddd7885-855b-4788-95a2-1b0569ac4f42" valueTypeId="14dced82-0285-4b49-b3ca-f4227b6320af"/>
+    <recordType typeId="722410e9-07ce-4182-9e01-db77847e4b95" valueTypeId="7c004b53-eee3-4e55-a4ab-a119a28973e5"/>
+    <recordManagerType typeId="ba99cf82-338c-447f-a359-45077d2f2873" valueTypeId="6b3b5963-ca73-4e7c-a381-935f4008783f"/>
+  </producedTypes>
+  <name>AgentJobs</name>
+  <synonym>
+    <key>en</key>
+    <value>Jobs Log</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Журнал заданий</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Active</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>LineNumber</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Recorder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Period</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Agent’s jobs log</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Журнал заданий агентов</value>
+  </explanation>
+  <resources uuid="469bc837-cf0b-4f0b-a6d9-126dd200c913">
+    <name>Duration</name>
+    <synonym>
+      <key>en</key>
+      <value>Duration</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Продолжительность</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Execution duration in milliseconds</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Продолжительность выполнения в миллисекундах</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="167eb2f0-9642-4b8b-9fcd-de9ade197ad3">
+    <name>Finish</name>
+    <synonym>
+      <key>en</key>
+      <value>Finish, ms</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Окончание, мс</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>15</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>End execution in milliseconds</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Окончание выполнения в миллисекундах</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="af899d32-49be-4211-a67d-f9e98ef3ceae">
+    <name>Finished</name>
+    <synonym>
+      <key>en</key>
+      <value>Finished</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Закончено</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Job finished date</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата окончания выполнения задания</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="446154ad-696f-4e44-a55b-3e74c06a6cd2">
+    <name>Session</name>
+    <synonym>
+      <key>en</key>
+      <value>Session</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Sessions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Session</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="a5167327-3c1e-4d67-86b8-f9f9fd76bbe0">
+    <name>Start</name>
+    <synonym>
+      <key>en</key>
+      <value>Start, ms</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Начало, мс</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>15</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Start execution in milliseconds</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Начало выполнения в миллисекундах</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="8dd9004d-ef52-4944-a3ec-ecfa11c849b8">
+    <name>Started</name>
+    <synonym>
+      <key>en</key>
+      <value>Started</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Начато</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Job started date</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата начала выполнения задания</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="e0774b50-42df-4c57-b2fb-3c49dcf8dfa7">
+    <name>Status</name>
+    <synonym>
+      <key>en</key>
+      <value>Status</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Статус</value>
+    </synonym>
+    <type>
+      <types>EnumRef.JobStatuses</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Status</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Статус</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="67e7b1fe-e3af-4b8f-a828-80d20675b1c1">
+    <name>Job</name>
+    <synonym>
+      <key>en</key>
+      <value>Job</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Задание</value>
+    </synonym>
+    <type>
+      <types>DocumentRef.Job</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Job</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Задание</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

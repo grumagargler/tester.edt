@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:HTTPService xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="9ac90e64-d614-4f81-86bc-d7e9658e6832">
+  <name>Hook</name>
+  <rootURL>Hook</rootURL>
+  <reuseSessions>AutoUse</reuseSessions>
+  <sessionMaxAge>20</sessionMaxAge>
+  <urlTemplates uuid="1d99e446-aff2-43fe-987c-6f3eea0e2639">
+    <name>Common</name>
+    <template>/*</template>
+    <methods uuid="331bef5b-deee-4254-aaee-51f696149e1c">
+      <name>POST</name>
+      <httpMethod>POST</httpMethod>
+      <handler>NotifyTester</handler>
+    </methods>
+  </urlTemplates>
+</mdclass:HTTPService>

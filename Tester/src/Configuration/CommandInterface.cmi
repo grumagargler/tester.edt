@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmi:CommandInterface xmlns:cmi="http://g5.1c.ru/v8/dt/cmi">
+  <subsystemsVisibility>
+    <visibilityFragments>
+      <subsystem>236c784f-72a2-4427-8ce6-b6a937dae657</subsystem>
+      <visible/>
+    </visibilityFragments>
+    <visibilityFragments>
+      <subsystem>dffe4b25-59c2-4427-a582-32bca81414d7</subsystem>
+      <visible/>
+    </visibilityFragments>
+  </subsystemsVisibility>
+  <subsystemsOrder>
+    <subsystems>236c784f-72a2-4427-8ce6-b6a937dae657</subsystems>
+    <subsystems>dffe4b25-59c2-4427-a582-32bca81414d7</subsystems>
+  </subsystemsOrder>
+</cmi:CommandInterface>

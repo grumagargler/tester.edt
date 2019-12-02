@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:HTTPService xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="c64b230c-c595-46a0-93bd-8f45b47a98db">
+  <name>Job</name>
+  <rootURL>Job</rootURL>
+  <reuseSessions>AutoUse</reuseSessions>
+  <sessionMaxAge>20</sessionMaxAge>
+  <urlTemplates uuid="8fc32b1f-cc34-49fc-bbf0-6829e26da5e0">
+    <name>Common</name>
+    <template>/*</template>
+    <methods uuid="778b28fe-65be-42e5-b812-6eeadf1823af">
+      <name>POST</name>
+      <httpMethod>POST</httpMethod>
+      <handler>CreateJob</handler>
+    </methods>
+  </urlTemplates>
+</mdclass:HTTPService>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonCommand xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="223d90ea-4277-4fa9-8f19-f26281c8ba3f">
+  <name>Help</name>
+  <synonym>
+    <key>en</key>
+    <value>Help</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Справка</value>
+  </synonym>
+  <group>ActionsPanelTools</group>
+  <commandParameterType/>
+  <representation>Auto</representation>
+  <toolTip>
+    <key>en</key>
+    <value>Help</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Справка</value>
+  </toolTip>
+  <shortcut></shortcut>
+</mdclass:CommonCommand>

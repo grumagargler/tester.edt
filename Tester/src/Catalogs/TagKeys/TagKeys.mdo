@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="0bb0737c-af43-48bb-ac54-4767b17cd9cd">
+  <producedTypes>
+    <objectType typeId="37595878-7814-4b84-94b1-8822523bd28c" valueTypeId="6ff791fd-8bb3-4004-a391-39f2670cc5b7"/>
+    <refType typeId="5f6ffdcf-bcb7-453d-8433-2088944a494e" valueTypeId="75cfcf50-5fa9-4ced-98bb-5daf2e5219f1"/>
+    <selectionType typeId="fa276820-2938-408a-9c86-3aad5eaf5e0e" valueTypeId="a7a5abe9-d756-4e9d-aa4c-27e94fc4f9c5"/>
+    <listType typeId="38889ae3-d767-4a2d-9829-c354555c8686" valueTypeId="84a064c6-4672-4ce9-9747-dac88b09c43d"/>
+    <managerType typeId="a341b59f-9924-447d-89ea-5a853825023a" valueTypeId="e7b0a67f-bb1e-490c-a8a1-a88ad7b88062"/>
+  </producedTypes>
+  <name>TagKeys</name>
+  <synonym>
+    <key>en</key>
+    <value>Tag Keys</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Ключи тегов</value>
+  </synonym>
+  <inputByString>Catalog.TagKeys.StandardAttribute.Description</inputByString>
+  <searchStringModeOnInputByString>AnyPart</searchStringModeOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Internal use catalog for storing tag keys</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Справочник ключей тегов для внутреннего использования</value>
+  </explanation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <descriptionLength>150</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <tabularSections uuid="4bef6336-060a-4035-86f6-7ab6a0911589">
+    <producedTypes>
+      <objectType typeId="7bdecfc7-47c0-4aac-84be-7fe82cfa27b7" valueTypeId="d01ea5ef-1845-4596-8a8c-16c89b6a790a"/>
+      <rowType typeId="ee428958-ea9d-44ff-b915-bfff901f4206" valueTypeId="f7617b36-428c-471f-a208-5046feb386e8"/>
+    </producedTypes>
+    <name>Tags</name>
+    <synonym>
+      <key>en</key>
+      <value>Tags</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Теги</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Tags</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Теги</value>
+    </toolTip>
+    <attributes uuid="cfd89c44-7735-44e2-8586-ac3f78d2807b">
+      <name>Tag</name>
+      <synonym>
+        <key>en</key>
+        <value>Tag</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Тег</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Tags</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Tag</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Тег</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+</mdclass:Catalog>

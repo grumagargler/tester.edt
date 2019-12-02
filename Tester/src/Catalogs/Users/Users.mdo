@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="fcb07d93-87b3-4940-8983-567904ae3766">
+  <producedTypes>
+    <objectType typeId="e90aed0e-db9f-4695-ab6a-1c12ef7913a7" valueTypeId="626e8828-068e-448f-811b-86efaa6bd80f"/>
+    <refType typeId="97f12dcb-41bb-45ba-9038-ea3a99d098ca" valueTypeId="b4cf5311-c728-4607-b052-136f435bcdfa"/>
+    <selectionType typeId="9afa3253-d130-479c-969d-63259f1ae8d4" valueTypeId="8f4d373c-c178-4e36-8d04-714f89b43583"/>
+    <listType typeId="46483fb0-e894-4039-88fe-02c09b8c9b33" valueTypeId="a3348b0e-4604-4769-b3a7-ce89479c7fe1"/>
+    <managerType typeId="a14c9fbb-1849-4736-9308-2885597aec7f" valueTypeId="25ddfc17-9d44-47bf-975d-d19cbd866b61"/>
+  </producedTypes>
+  <name>Users</name>
+  <synonym>
+    <key>en</key>
+    <value>Users</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Пользователи</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.Users.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Users.StandardAttribute.Code</inputByString>
+  <searchStringModeOnInputByString>AnyPart</searchStringModeOnInputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>PredefinedDataName</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Predefined</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>DeletionMark</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>IsFolder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Owner</name>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Parent</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка</value>
+    </synonym>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:ReferenceValue">
+      <value>Catalog.Users.EmptyRef</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Description</name>
+    <synonym>
+      <key>en</key>
+      <value>Name</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Имя</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>User Login or Group name</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Логин пользователя или Название папки</value>
+    </toolTip>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Code</name>
+    <toolTip>
+      <key>en</key>
+      <value>The unique user code</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Уникальный код пользователя</value>
+    </toolTip>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <mask>!!!</mask>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>Use</createOnInput>
+  <includeHelpInContents>true</includeHelpInContents>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>Users of system</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Пользователь системы</value>
+  </explanation>
+  <hierarchical>true</hierarchical>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>3</codeLength>
+  <descriptionLength>50</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>Catalog.Users.Form.Form</defaultObjectForm>
+  <defaultListForm>Catalog.Users.Form.List</defaultListForm>
+  <attributes uuid="0e0050be-466f-42d8-8849-34755bbf6427">
+    <name>AccessDenied</name>
+    <synonym>
+      <key>en</key>
+      <value>Access is denied</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Доступ запрещен</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Access denied</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Доступ запрещен</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="123ed441-e502-4b00-918d-daeacdd900f6">
+    <name>Agent</name>
+    <synonym>
+      <key>en</key>
+      <value>Agent</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Агент</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User-agents can run scheduled tasks. It is not recommended to install this flag for regular users</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователи-агенты могут выполнять запланированные для них задачи. Не рекомендуется устанавливать этот флаг для обычных пользователей</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="479b9c1f-12c4-4ece-ac25-413a30ec0b01">
+    <name>ApplicationsAccess</name>
+    <synonym>
+      <key>en</key>
+      <value>Access</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Доступ</value>
+    </synonym>
+    <type>
+      <types>EnumRef.Access</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Allow or deny access to values specified in the directory</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Разрешить или запретить доступ списком из справочника</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:ReferenceValue">
+      <value>Enum.Access.EnumValue.Undefined</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="0d15cbfb-b7fe-47ea-a259-6df5f685083f">
+    <name>Email</name>
+    <synonym>
+      <key>en</key>
+      <value>E-mail</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>E-mail</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>250</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User's e-mail</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Email пользователя</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="f32ed197-3e2e-404d-a299-aea5fd61061a">
+    <name>FirstName</name>
+    <synonym>
+      <key>en</key>
+      <value>First name</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Имя</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>75</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>First name</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Имя</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="21fb6549-f121-4e86-b8e1-160c4b1c18b2">
+    <name>FullName</name>
+    <synonym>
+      <key>en</key>
+      <value>Full name</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Полное имя</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>150</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Full name, background information</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Полное имя</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="3cc34df9-b1af-4a6b-aa63-73589da044d7">
+    <name>Language</name>
+    <synonym>
+      <key>ru</key>
+      <value>Язык</value>
+    </synonym>
+    <synonym>
+      <key>en</key>
+      <value>Language</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>10</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Используемый пользователем язык интерфейса</value>
+    </toolTip>
+    <toolTip>
+      <key>en</key>
+      <value>Users language interface</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:StringValue">
+      <value>Russian</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="ec53bf7e-52a1-4845-a133-2b02b01084db">
+    <name>LastName</name>
+    <synonym>
+      <key>en</key>
+      <value>Last name</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Фамилия</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>75</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Last name</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Фамилия</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="af5b2d6e-0a55-490c-9064-2de057dbde3c">
+    <name>TimeZone</name>
+    <synonym>
+      <key>en</key>
+      <value>Time Zone</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Временная зона</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>50</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User Time Zone</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Временная зона пользователя</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <tabularSections uuid="fb000da8-133f-4ee3-ba98-869c7cbae73d">
+    <producedTypes>
+      <objectType typeId="f94059eb-2a40-4e80-a913-e5461222b36c" valueTypeId="cb214bea-1021-4476-ad79-d61fb2268b65"/>
+      <rowType typeId="d1df2c28-29f1-49cb-a9d7-ed15957a1005" valueTypeId="500e0ae9-b6f3-48c3-9dd4-dd2e3da2c985"/>
+    </producedTypes>
+    <name>Applications</name>
+    <synonym>
+      <key>en</key>
+      <value>Access to organizations</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Доступ к организациям</value>
+    </synonym>
+    <standardAttributes>
+      <dataHistory>Use</dataHistory>
+      <name>LineNumber</name>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>Use</fullTextSearch>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+    </standardAttributes>
+    <attributes uuid="368fa9ad-b378-4fe1-a3cf-9e69248dc9da">
+      <name>Application</name>
+      <synonym>
+        <key>en</key>
+        <value>Application</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Приложение</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Applications</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Application</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Приложение</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillChecking>ShowError</fillChecking>
+      <dataHistory>Use</dataHistory>
+      <indexing>Index</indexing>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="35bbcdec-2ffc-4474-9d7c-5b0a8bc2c32b">
+    <producedTypes>
+      <objectType typeId="7a3ecfcc-a83c-4e77-a843-adb9b6a2711b" valueTypeId="e396927a-a673-459d-b343-9382a901bd65"/>
+      <rowType typeId="c404ad96-5697-4f9b-a7d7-20b9712fa013" valueTypeId="15aa568f-d984-4dba-813e-94f78d7fcb36"/>
+    </producedTypes>
+    <name>Managers</name>
+    <synonym>
+      <key>en</key>
+      <value>Users</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователи</value>
+    </synonym>
+    <attributes uuid="08399834-87a4-487d-9e9e-6db0146c4e22">
+      <name>User</name>
+      <synonym>
+        <key>en</key>
+        <value>User</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Пользователь</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Users</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="2f2240fb-64da-4fd9-9060-2f397c7e2a71">
+    <producedTypes>
+      <objectType typeId="5698842d-bf40-464f-a760-2e025b42deeb" valueTypeId="f44da204-8829-49ff-aa6d-16bd8b101500"/>
+      <rowType typeId="c8ff054d-76c5-463a-a63c-228e055199dd" valueTypeId="d3baade8-06b8-4f9c-bdd5-c7cd0c62ccd0"/>
+    </producedTypes>
+    <name>Rights</name>
+    <synonym>
+      <key>en</key>
+      <value>Rights</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Права</value>
+    </synonym>
+    <standardAttributes>
+      <dataHistory>Use</dataHistory>
+      <name>LineNumber</name>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>Use</fullTextSearch>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+    </standardAttributes>
+    <attributes uuid="624857e3-8a94-4936-b090-688c0a83fcec">
+      <name>RoleName</name>
+      <synonym>
+        <key>en</key>
+        <value>Role Name</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Имя роли</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>150</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Name of the right (role) as it set in the configuration</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя права (роли) как оно задано в конфигурации</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+  <forms uuid="35cdcba6-5628-4b55-b490-30588556b61c">
+    <name>Agents</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="90687dbd-b94d-49bb-b3d2-2ed680f3b7ed">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="db993e9f-0bf9-4459-ab1f-6840b0752e61">
+    <name>List</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="ad3f989e-5989-4b90-abc0-fabd25238c2a">
+    <name>Rights</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+</mdclass:Catalog>

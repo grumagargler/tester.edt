@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Role xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="5b026c1d-6665-401f-935b-fe66e387a7a0">
+  <name>JobsUse</name>
+  <synonym>
+    <key>en</key>
+    <value>Jobs Use</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Использование заданий</value>
+  </synonym>
+</mdclass:Role>

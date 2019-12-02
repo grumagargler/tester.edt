@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="20e59f1e-82dc-472d-b6ee-759c011a1a63">
+  <producedTypes>
+    <selectionType typeId="70b96dfa-492f-414f-9150-c59100e1d6de" valueTypeId="5da52c15-915d-4edf-b0e0-0db4b090cb32"/>
+    <listType typeId="458ab2fa-f8aa-4ffe-b664-dd1162077204" valueTypeId="a995d3d2-8134-4f2a-bec0-336ad335f589"/>
+    <managerType typeId="60b5c13c-441a-4057-9a48-2be6d83f2747" valueTypeId="43fb9ddd-8805-488d-ba54-9085ad7814ac"/>
+    <recordSetType typeId="3da840cc-8f78-4985-a7a5-f3b69aa1cf17" valueTypeId="48480f17-d61f-4ffb-a4f8-1fe42470c412"/>
+    <recordKeyType typeId="ed3c5235-eaab-4d6a-a61f-5f9f1f74fa14" valueTypeId="d4b27914-cb7c-4f31-92ca-9ac3120e9743"/>
+    <recordType typeId="15934126-f7ab-47b9-86ed-195aec3e6a76" valueTypeId="c7fed8ea-8659-4fdd-b824-2130503c5bcc"/>
+    <recordManagerType typeId="ed380cc1-98b2-4ce9-8637-327dd64f9797" valueTypeId="aaf68f65-2a1c-4890-9035-89a30889521a"/>
+  </producedTypes>
+  <name>Controls</name>
+  <synonym>
+    <key>en</key>
+    <value>Controls</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Элементы</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>List of tested application controls</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Список элементов тестируемого приложения</value>
+  </explanation>
+  <resources uuid="3ed21d04-1817-483d-8c72-ba696bb75fbe">
+    <name>FormName</name>
+    <synonym>
+      <key>en</key>
+      <value>Form Name</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Имя формы</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>150</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Form Name</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Имя формы</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+  </resources>
+  <resources uuid="26884c83-0fd8-45b8-8c89-eebf4c8fd79b">
+    <name>Name</name>
+    <synonym>
+      <key>en</key>
+      <value>Name</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Имя</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>150</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Name</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Имя</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+  </resources>
+  <resources uuid="8a1e1c03-6791-4e8e-8e21-4bd51fa90d07">
+    <name>TitleText</name>
+    <synonym>
+      <key>en</key>
+      <value>Title text</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Заголовок</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>150</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Title</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Заголовок</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+  </resources>
+  <resources uuid="d9aa262c-48ff-409a-80a0-c7fc34918ff2">
+    <name>Type</name>
+    <synonym>
+      <key>en</key>
+      <value>Type</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Тип</value>
+    </synonym>
+    <type>
+      <types>EnumRef.Controls</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Type</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Тип</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="3f534187-4ae5-4800-93fb-13742daac2f4">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="130dc2a4-6751-49f2-81ab-c2179d102857">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="ddefc52b-a3c3-4faa-8961-b24d5c87644a">
+    <name>Metadata</name>
+    <synonym>
+      <key>en</key>
+      <value>Metadata</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Метаданные</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Metadata</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Metadata</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Метаданные</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="f9ea4b2c-3e3e-4920-ba6b-0f57f199d766">
+    <name>Position</name>
+    <synonym>
+      <key>en</key>
+      <value>Position</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Позиция</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>5</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Position in list</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Позиция в списке</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

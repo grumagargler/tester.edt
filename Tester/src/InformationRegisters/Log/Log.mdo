@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="26ffb895-b6a5-4d4b-92eb-15df31677499">
+  <producedTypes>
+    <selectionType typeId="85bc9926-b508-4908-b8f8-724b53790ee1" valueTypeId="59d5b18f-e919-45de-895c-028b74740793"/>
+    <listType typeId="65e77e2d-fdd6-44e5-ad15-9a0458b69f8a" valueTypeId="e974d94e-b6c5-4c42-bd02-24ddfce96fd1"/>
+    <managerType typeId="8f3fdad0-d8b9-45cc-9f1d-97ea9d3d537b" valueTypeId="5ad0560e-2461-4ab4-a632-b8e91d8ee85d"/>
+    <recordSetType typeId="301fc705-b3fa-4132-a807-9368102bd31c" valueTypeId="e70ae0db-6186-4bd8-83fe-3e38b4b04734"/>
+    <recordKeyType typeId="cd6574c2-31d5-47fc-ab1d-031656e8cffc" valueTypeId="a8ec9f01-b91e-41ef-b215-f01d203e4062"/>
+    <recordType typeId="90b039b4-9066-48d8-bd76-618b9deb9938" valueTypeId="d9991312-f872-48c4-92b2-33ccde3ad75f"/>
+    <recordManagerType typeId="f6ee6fc3-7196-48ed-88cd-4234d1ca3212" valueTypeId="fa6232f2-0247-4888-bfd7-141a90196883"/>
+  </producedTypes>
+  <name>Log</name>
+  <synonym>
+    <key>en</key>
+    <value>Execution Log</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Журнал выполнения</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <defaultListForm>InformationRegister.Log.Form.List</defaultListForm>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Active</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>LineNumber</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Recorder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Period</name>
+    <synonym>
+      <key>en</key>
+      <value>Completed</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Завершено</value>
+    </synonym>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <informationRegisterPeriodicity>Second</informationRegisterPeriodicity>
+  <mainFilterOnPeriod>true</mainFilterOnPeriod>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Scenarios execution log</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Журнал запуска тестов</value>
+  </explanation>
+  <resources uuid="fadabb5c-b5cf-4f83-a80b-aedeff35e8e9">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+  </resources>
+  <resources uuid="b9596eed-9dce-428c-8e46-ab922c8a0150">
+    <name>Duration</name>
+    <synonym>
+      <key>en</key>
+      <value>Duration</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Продолжительность</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Execution duration in milliseconds</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Продолжительность выполнения в миллисекундах</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="c5803a81-56ac-45c7-8f8a-66a03597a671">
+    <name>Error</name>
+    <synonym>
+      <key>en</key>
+      <value>Error Log</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Журнал ошибок</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.ErrorLog</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Reference to error log</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Ссылка на запись в журнале ошибок</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+  </resources>
+  <resources uuid="31bc9f39-0170-4625-a828-295fad3277b4">
+    <name>Job</name>
+    <synonym>
+      <key>en</key>
+      <value>Job</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Задание</value>
+    </synonym>
+    <type>
+      <types>DocumentRef.Job</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Job</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Задание</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+  </resources>
+  <resources uuid="d1a51a52-7e77-4bf8-98c5-33147d7f8534">
+    <name>Level</name>
+    <synonym>
+      <key>en</key>
+      <value>Level</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Уровень</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>3</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Level in stack of calls</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Уровень стека вызова</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="82415582-2515-49c5-bf98-f0db2074fa9f">
+    <name>Row</name>
+    <synonym>
+      <key>en</key>
+      <value>Row</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Строка</value>
+    </synonym>
+    <type>
+      <types>DefinedType.LineNumber</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario position in the job</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Позиция сценария в задании</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="37975707-b3ea-4aad-955b-b855d05d1b0c">
+    <name>Source</name>
+    <synonym>
+      <key>en</key>
+      <value>Source Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Исходный сценарий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Source scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Исходный сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+  </resources>
+  <resources uuid="820ce7c6-1ffc-46fe-ad71-0683a65f1c6f">
+    <name>Started</name>
+    <synonym>
+      <key>en</key>
+      <value>Started</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Начало</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>15</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Timestamp when scenario started</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Момент времени начала выполнения сценария</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="77634608-940e-4a86-8ceb-2d0350ed73ea">
+    <name>Status</name>
+    <synonym>
+      <key>en</key>
+      <value>Status</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Статус</value>
+    </synonym>
+    <type>
+      <types>EnumRef.Statuses</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Completion status</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Статус завершения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="68c81550-4be2-499d-8b60-aa757337c095">
+    <name>Session</name>
+    <synonym>
+      <key>en</key>
+      <value>Session</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Sessions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Session</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="98bdcb9a-0f97-4466-92b3-fe2db639007f">
+    <name>Scenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Versions</types>
+      <types>CatalogRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <forms uuid="7234bae5-d6f3-411c-90cf-960c3858c52f">
+    <name>List</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <commands uuid="08d796a9-4078-47a1-be35-4a683846145e">
+    <name>OpenByScenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Log</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Журнал запуска</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Versions</types>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <representation>PictureAndText</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Open Execution Log by selected scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Открыть журнал запуска по выбранному сценарию</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.EventLog</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="5c80e09c-1045-47fe-af6c-35ad7f840a58">
+    <name>OpenByJob</name>
+    <synonym>
+      <key>en</key>
+      <value>Log</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Журнал запуска</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>DocumentRef.Job</types>
+    </commandParameterType>
+    <representation>PictureAndText</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Open Execution Log by selected job</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Открыть журнал выполнения по выбранному заданию</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.EventLog</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:InformationRegister>

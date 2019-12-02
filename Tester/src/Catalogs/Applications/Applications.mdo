@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="d3aa96db-2d91-4a9d-969e-6bdecfdf3cae">
+  <producedTypes>
+    <objectType typeId="25c6d5eb-c80e-4fe2-9dac-fa059b1d4ef5" valueTypeId="b880ff00-dcfa-4be1-805b-4f0576e19081"/>
+    <refType typeId="c11162b8-897b-408c-b890-2cd7bd550a2a" valueTypeId="dc41b11e-9d1a-4a53-8a05-4452d9222666"/>
+    <selectionType typeId="fa921606-1d2b-48a1-bf73-82851dd42a5f" valueTypeId="1bf9e6e2-ff18-42a3-9e63-781bab73419a"/>
+    <listType typeId="b598340a-16fd-4df9-8825-aecdf2c368ea" valueTypeId="c6d40130-cf87-4b3f-9b6b-4173cacdccee"/>
+    <managerType typeId="d8ccf80e-f499-48bc-a9f4-afad8e6af060" valueTypeId="5b7e2b2d-7d45-4e18-9498-08ad3b7db804"/>
+  </producedTypes>
+  <name>Applications</name>
+  <synonym>
+    <key>en</key>
+    <value>Applications</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Приложения</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.Applications.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Applications.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>PredefinedDataName</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Predefined</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>DeletionMark</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>IsFolder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Owner</name>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Parent</name>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Description</name>
+    <synonym>
+      <key>en</key>
+      <value>Name</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Имя</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Application identifier</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Идентификатор приложения</value>
+    </toolTip>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Code</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>Use</createOnInput>
+  <includeHelpInContents>true</includeHelpInContents>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>List of applications</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Список приложений</value>
+  </explanation>
+  <hierarchical>true</hierarchical>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>4</codeLength>
+  <descriptionLength>150</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>Catalog.Applications.Form.Form</defaultObjectForm>
+  <defaultListForm>Catalog.Applications.Form.List</defaultListForm>
+  <attributes uuid="54f65359-729d-458f-a25f-4d92cfccc3a8">
+    <name>ClientID</name>
+    <synonym>
+      <key>en</key>
+      <value>Client ID</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>ИД клиента</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Web application Client ID</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>ИД веб-клиента</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="82b238c6-9534-45ec-8efa-996baf793763">
+    <name>Computer</name>
+    <synonym>
+      <key>en</key>
+      <value>Computer</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Компьютер</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Name or IP address of the computer where the tested application is running</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Имя или IP-адрес компьютера где запускается тестируемое приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:StringValue">
+      <value>localhost</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="009570c1-8888-4137-96de-fd8ce1900393">
+    <name>DialogsTitle</name>
+    <synonym>
+      <key>en</key>
+      <value>Dialogs Title</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Заголовок диалогов</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>150</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Dialog boxes Title. Used for searching query boxes and automatic answering to them</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Заголовок диалогового окна. Используется для поиска диалогов с вопросами для автоматического ответа</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="df173462-dc96-4140-bc64-03075b4d4506">
+    <name>Metadata</name>
+    <synonym>
+      <key>en</key>
+      <value>Metadata</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Метаданные</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Use Meta.epf data processor for building such file</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Используйте обработку Meta.epf для построения такого файла</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="efaeae10-fb71-4afd-984a-307d00086d05">
+    <name>OriginalQuality</name>
+    <synonym>
+      <key>en</key>
+      <value>Original Quality</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Оригинальное качество</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>If enabled, screenshots will have original quality but taking more space</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Если включено, скриншоты будут оригинального качества, но большего размера</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="3ecfa177-ad98-4da9-b458-c9c2a2f0584a">
+    <name>Port</name>
+    <synonym>
+      <key>en</key>
+      <value>Port</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Порт</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>5</precision>
+        <nonNegative>true</nonNegative>
+      </numberQualifiers>
+    </type>
+    <format>
+      <key>en</key>
+      <value>NZ=; NG=</value>
+    </format>
+    <format>
+      <key>ru</key>
+      <value>NZ=; NG=</value>
+    </format>
+    <editFormat>
+      <key>en</key>
+      <value>NZ=; NG=</value>
+    </editFormat>
+    <editFormat>
+      <key>ru</key>
+      <value>NZ=; NG=</value>
+    </editFormat>
+    <toolTip>
+      <key>en</key>
+      <value>Tested application port value</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Порт тестируемого приложения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:NumberValue">
+      <value>1538</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="dfacb544-d8b1-4e8a-9622-67483fc27201">
+    <name>Responsible</name>
+    <synonym>
+      <key>en</key>
+      <value>Responsible</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Ответственный</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Responsible for testing. Make sure that selected user has access to this application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Ответственный за тестирование. Удостоверьтесь, что у этого пользователя есть доступ к данному приложению</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="8cde221b-af76-446a-8145-9df7b8e22009">
+    <name>ScreenshotsLocator</name>
+    <synonym>
+      <key>en</key>
+      <value>Application Title</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Заголовок приложения</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>150</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Regular expression for locating application is being tested. Used for making screenshots (ECMAScript grammar)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Регулярное выражение для обнаружения окна тестируемого приложения. Используется для получения скриншотов (ECMAScript grammar)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <forms uuid="31b1ea2f-2b2e-4d2d-97e8-f5f41510c1a7">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="7140ca5d-520c-4339-91fd-dcff8e8c4ea3">
+    <name>List</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+</mdclass:Catalog>

@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="281657dc-114e-48ec-b2d3-7a0f4edb6f98">
+  <producedTypes>
+    <objectType typeId="628f9e91-839d-49e5-b105-a8229f00f766" valueTypeId="e24fbb34-a06c-43b9-9626-2ee50e317d95"/>
+    <refType typeId="c44c875b-f052-49e2-8e5b-928dde97a460" valueTypeId="3e4c14ac-6545-4f66-8aa5-8e8c7aaac77f"/>
+    <selectionType typeId="5d7a6440-5d15-42ba-a444-9d127aa1e7eb" valueTypeId="2b5f8f54-7b9f-4530-88a7-3428e1b0c99b"/>
+    <listType typeId="bee28a49-b6da-4559-9968-8f94341ecf44" valueTypeId="44e0b953-9b7c-449d-9ff2-060364f3dfd1"/>
+    <managerType typeId="9b286319-c229-49e8-bdae-6ebf1d088a02" valueTypeId="353b722f-4e0e-4524-a6bc-603a0ca9dc21"/>
+  </producedTypes>
+  <name>Scenarios</name>
+  <synonym>
+    <key>en</key>
+    <value>Scenarios</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Сценарии</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.Scenarios.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Scenarios.StandardAttribute.Code</inputByString>
+  <searchStringModeOnInputByString>AnyPart</searchStringModeOnInputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>PredefinedDataName</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Predefined</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>DeletionMark</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>IsFolder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Owner</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:ReferenceValue">
+      <value>Catalog.Applications.EmptyRef</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Parent</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка</value>
+    </synonym>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:ReferenceValue">
+      <value>Catalog.Scenarios.EmptyRef</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Description</name>
+    <synonym>
+      <key>en</key>
+      <value>ID</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>ID</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario ID</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>ID сценария</value>
+    </toolTip>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Code</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>Use</createOnInput>
+  <includeHelpInContents>true</includeHelpInContents>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockFields>Catalog.Scenarios.StandardAttribute.Code</dataLockFields>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>List of Scenarios</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Список сценариев</value>
+  </explanation>
+  <hierarchical>true</hierarchical>
+  <hierarchyType>HierarchyOfItems</hierarchyType>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <descriptionLength>150</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>Catalog.Scenarios.Form.Form</defaultObjectForm>
+  <defaultListForm>Catalog.Scenarios.Form.Form</defaultListForm>
+  <defaultChoiceForm>Catalog.Scenarios.Form.Choice</defaultChoiceForm>
+  <attributes uuid="76020dec-e16f-4c18-ad6e-e2a7c671312e">
+    <name>Access</name>
+    <synonym>
+      <key>en</key>
+      <value>Access</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Доступ</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Special access to this scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Специальный доступ к сценарию</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="f6965de6-efec-408d-b023-03df469a8964">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>IndexWithAdditionalOrder</indexing>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="21bbc95b-74ca-4aa8-b915-ba3ec2a4850c">
+    <name>Changed</name>
+    <synonym>
+      <key>en</key>
+      <value>Changed</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Изменен</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Modified date (UTC)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата изменения (UTC)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="2ca2533c-2322-44d8-9cb2-a601e85797aa">
+    <name>Creator</name>
+    <synonym>
+      <key>en</key>
+      <value>Creator</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Автор</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Creator</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Автор</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="45927bbb-2fa4-4e35-b145-1f5cd40db80d">
+    <name>LastCreator</name>
+    <synonym>
+      <key>en</key>
+      <value>Last Creator</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Последний автор</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>The user who has changed the scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь, последним изменивший сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="c4fdabcf-b17c-497b-bc05-9f502c3839df">
+    <name>Memo</name>
+    <synonym>
+      <key>en</key>
+      <value>Memo</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Комментарий</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Memo</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Комментарий</value>
+    </toolTip>
+    <multiLine>true</multiLine>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="adea4cc3-7ba8-43b2-998f-cc48d3434850">
+    <name>Path</name>
+    <synonym>
+      <key>en</key>
+      <value>Path</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Путь</value>
+    </synonym>
+    <type>
+      <types>DefinedType.ScenarioPath</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Full path to the Scenario script</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Полный путь к скрипту сценария</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="f5e9eaaa-dc3d-43de-af91-b316b9437b52">
+    <name>Script</name>
+    <synonym>
+      <key>en</key>
+      <value>Script</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Скрипт</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <multiLine>true</multiLine>
+    <extendedEdit>true</extendedEdit>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="f3333d82-fcde-4114-bcb0-8f72e599860e">
+    <name>Severity</name>
+    <synonym>
+      <key>en</key>
+      <value>Severity</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Важность</value>
+    </synonym>
+    <type>
+      <types>EnumRef.Severity</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Severity class</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Класс важности теста</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="07480ae7-264b-4ff6-9db2-a721f2bd2634">
+    <name>Sorting</name>
+    <synonym>
+      <key>en</key>
+      <value>Sorting</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сортировка</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>1</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>System field for speeding up scenarios navigation tree</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Системное поля для ускорения навигации по дереву сценариев</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>IndexWithAdditionalOrder</indexing>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="12faac98-0fc5-4f56-8c5b-e83a54c00efc">
+    <name>Spreadsheet</name>
+    <synonym>
+      <key>en</key>
+      <value>Spreadsheet</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Таблица</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Flag of usage of spreadsheet document</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Признак использования табличного документа</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="7a585315-cc8c-4a19-86aa-3ef52a672aff">
+    <name>Tag</name>
+    <synonym>
+      <key>en</key>
+      <value>Tag</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Тег</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.TagKeys</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Tag key</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Ключ тега</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>IndexWithAdditionalOrder</indexing>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="bb6a8d77-120f-4fbc-be70-7bc62985f32d">
+    <name>Template</name>
+    <synonym>
+      <key>en</key>
+      <value>Template</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Шаблон</value>
+    </synonym>
+    <type>
+      <types>ValueStorage</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Spreadsheet Template for testing Reports or Document Records</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Табличный документ для тестирования отчетов или движений документов</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="9e156860-9b40-4f7c-b31c-4ac2746f30a1">
+    <name>Tree</name>
+    <synonym>
+      <key>en</key>
+      <value>Tree</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Дерево</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Tree flag</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Признак дерева</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="f8574d7b-5529-4fe0-96ae-c0c5b11d2acd">
+    <name>Type</name>
+    <synonym>
+      <key>en</key>
+      <value>Type</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Тип</value>
+    </synonym>
+    <type>
+      <types>EnumRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario type</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Тип сценария</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:ReferenceValue">
+      <value>Enum.Scenarios.EmptyRef</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <tabularSections uuid="facdaa63-18f9-4488-a465-18393c9b9181">
+    <producedTypes>
+      <objectType typeId="789aa272-a54c-4bca-874d-d3dee772c9a0" valueTypeId="454d2745-b572-4d22-a9b7-182f484c1d42"/>
+      <rowType typeId="ed278f25-712f-4ea9-b8d8-b389ff0d1bbc" valueTypeId="7c225dda-896e-4e77-a28d-dc90a3422d53"/>
+    </producedTypes>
+    <name>Areas</name>
+    <synonym>
+      <key>en</key>
+      <value>Areas</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Области</value>
+    </synonym>
+    <attributes uuid="0327f230-586a-462e-9ed8-990ad434e308">
+      <name>Name</name>
+      <synonym>
+        <key>en</key>
+        <value>Name</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Имя</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers>
+          <length>20</length>
+        </stringQualifiers>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Name of checking area</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Имя проверяемой области</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="c024977c-0356-416b-a35e-adbad4ed5530">
+      <name>Top</name>
+      <synonym>
+        <key>en</key>
+        <value>Top</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Верх</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>10</precision>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Top</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Верх</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="51fc9dbd-db97-430e-a1c1-d26041d028b5">
+      <name>Left</name>
+      <synonym>
+        <key>en</key>
+        <value>Left</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Слева</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>10</precision>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Left</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Слева</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="2f101f4e-553e-432e-b299-6a027cecca5b">
+      <name>Bottom</name>
+      <synonym>
+        <key>en</key>
+        <value>Bottom</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Верх</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>10</precision>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Bottom</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Верх</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="9f3fbdf5-765f-41d7-b779-9307e1cbba0a">
+      <name>Right</name>
+      <synonym>
+        <key>en</key>
+        <value>Right</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Справа</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>10</precision>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Right</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Справа</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+  <tabularSections uuid="93c54a59-b1d7-4c94-8408-d4cba016f3a2">
+    <producedTypes>
+      <objectType typeId="e753cd58-94a5-4b73-8256-84c91eaaaa2a" valueTypeId="5156cf2c-73c2-443a-aaa0-a061bdc5099d"/>
+      <rowType typeId="71aeed9d-2976-4ef9-8e08-d33c3d02112b" valueTypeId="3ce85aec-dba7-4d8f-88a8-ce90da3e7cad"/>
+    </producedTypes>
+    <name>Users</name>
+    <synonym>
+      <key>en</key>
+      <value>Users</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователи</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Users who have an access to this scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователи, имеющие доступ к сценарию</value>
+    </toolTip>
+    <attributes uuid="1915cba6-f2a7-46ec-9283-c9716ebe6455">
+      <name>User</name>
+      <synonym>
+        <key>en</key>
+        <value>User</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Пользователь</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Users</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>User</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Пользователь</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <fillChecking>ShowError</fillChecking>
+      <dataHistory>Use</dataHistory>
+      <indexing>Index</indexing>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+  <forms uuid="40bb3c9e-bb62-4cad-bd49-772ff18c00c1">
+    <name>ChangeApplication</name>
+    <synonym>
+      <key>en</key>
+      <value>Application Changing</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Смена приложения</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="ac9aa513-0074-4df9-839a-2acc2024fc1a">
+    <name>Choice</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="32388144-7e91-4fed-a448-83e13d195bfd">
+    <name>Convert</name>
+    <synonym>
+      <key>en</key>
+      <value>Converting</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Конвертация</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="1ef5db68-ad15-4d35-8216-2b221554b1f1">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="3aca9bb4-93ad-41b8-afad-8de63d5490f6">
+    <name>List</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="e627a23b-05ff-417f-a310-1623f11bdded">
+    <name>Lock</name>
+    <synonym>
+      <key>en</key>
+      <value>Lock</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Захват</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="71413a13-45b8-4566-8702-1ad73a531835">
+    <name>New</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="8818a147-981f-4717-9b49-7545088bbda1">
+    <name>Picking</name>
+    <synonym>
+      <key>en</key>
+      <value>Picking</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Подбор</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="8e3f2114-2f68-4365-9c16-8a225128f417">
+    <name>Record</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="ed4a8530-a8f2-4cdb-b67a-08a4f39a0735">
+    <name>Restart</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="177fd288-cd69-4b50-913d-c8b8f8af2d7f">
+    <name>Store</name>
+    <synonym>
+      <key>en</key>
+      <value>Store</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Поместить</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="0419de7b-ff99-4121-88ff-9dcb4cd827a5">
+    <name>Template</name>
+    <synonym>
+      <key>en</key>
+      <value>Template</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Шаблон</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="0b25d32b-5917-47a5-8872-503471dc1d72">
+    <name>Tree</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="86ec4725-c54a-466e-a3b6-20d3454a805a">
+    <name>Unlock</name>
+    <synonym>
+      <key>en</key>
+      <value>Unlock</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Разблокировать</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <commands uuid="66e9d197-7b92-47bb-a612-d4998c29a32e">
+    <name>ChangeApplication</name>
+    <synonym>
+      <key>en</key>
+      <value>Change Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Изменить приложение</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Change scenario(s) application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Изменить приложение сценария(ев)</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="49ab9e60-9a34-42a3-bfbe-fd9a25bc0e31">
+    <name>Copy</name>
+    <synonym>
+      <key>en</key>
+      <value>Copy With Subfolders</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Копировать с вложениями</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Copy selected scenarios including subfolders</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Копировать выбранные сценарии с вложенными подсценариями</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Copy</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="ebef3435-815d-4a1a-8b39-30b94a0b474e">
+    <name>Debug</name>
+    <synonym>
+      <key>en</key>
+      <value>Run Debugging</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Запустить отладку</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <representation>PictureAndText</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Executes default test in debug mode</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Выполнить основной тест в режиме отладки</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Debug</picture>
+    </picture>
+    <shortcut>Alt+F5</shortcut>
+  </commands>
+  <commands uuid="1e4d0bfa-575f-414c-a61e-6165a1acf5ce">
+    <name>Execute</name>
+    <synonym>
+      <key>en</key>
+      <value>Execute</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выполнить</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>PictureAndText</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Executes selected scenario(s)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Выполнить выбранный(е) сценарий(и)</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.BusinessProcessStart</picture>
+    </picture>
+    <shortcut>Shift+F5</shortcut>
+  </commands>
+  <commands uuid="e273fed8-2a8a-4d7a-a04d-b0c3a5c0edb9">
+    <name>Lock</name>
+    <synonym>
+      <key>en</key>
+      <value>Lock</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Захватить</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Lock scenario for editing</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Захватить сценарий для редактирования</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Lock</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="4dd4197c-f794-4c5d-a083-bd9215d0aeee">
+    <name>OpenStudio</name>
+    <synonym>
+      <key>en</key>
+      <value>Open in VS Code</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Открыть в VS Code</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Open scenario in Visual Studio Code</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Открыть сценарий в Visual Studio Code</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Studio</picture>
+    </picture>
+    <shortcut>Ctrl+Shift+E</shortcut>
+  </commands>
+  <commands uuid="220c0aec-dc07-4acb-9e9b-ac99ac91471e">
+    <name>Record</name>
+    <synonym>
+      <key>en</key>
+      <value>Execute With Chronograph</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выполнить с хронографом</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>PictureAndText</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Executes selected scenario(s) and filming them</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Выполнить выбранный(е) сценарий(и) и записывает в хронограф</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.PlayingReel</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="28dda413-473f-437c-bcd3-496e247cba36">
+    <name>Run</name>
+    <synonym>
+      <key>en</key>
+      <value>Run</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Запустить</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <representation>PictureAndText</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Executes default test</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Выполнить основной тест</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.GenerateReport</picture>
+    </picture>
+    <shortcut>F5</shortcut>
+  </commands>
+  <commands uuid="703bb528-aec7-48df-9e26-77fa9765460d">
+    <name>SetMain</name>
+    <synonym>
+      <key>en</key>
+      <value>Set Main</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Основной</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <representation>PictureAndText</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Set current Scenario as Main Scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Установить текущий сценарий как основной</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Pin</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="ef080cbc-8902-4b77-bf83-c10ea84e05e1">
+    <name>Store</name>
+    <synonym>
+      <key>en</key>
+      <value>Store</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Поместить</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Store changes in repository of scenarios</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сохранить изменения в хранилище тестов</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Store</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="6e3e57d9-cacb-4ba7-b7df-3210c92308c8">
+    <name>Unlock</name>
+    <synonym>
+      <key>en</key>
+      <value>Unlock</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Разблокировать</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Cancel changes and load last scenario version</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Отменить изменения и загрузить предыдущую версию сценария</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Unlock</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:Catalog>

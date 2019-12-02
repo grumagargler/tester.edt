@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="65af6bc5-747a-4a5a-bd25-3577189d71d7">
+  <producedTypes>
+    <refType typeId="44d75a15-186f-4188-b09a-b4088d0cb2d8" valueTypeId="95f37ba9-725e-48b6-9da9-e823b5ddbebe"/>
+    <listType typeId="a193d21c-02cb-450b-9673-77013c9f569e" valueTypeId="40984dc9-4214-4733-a092-f7c4eaaad1bb"/>
+    <managerType typeId="94458a84-be36-4303-8835-e74050ac8d32" valueTypeId="1e4b32af-1544-42ae-8450-5b2f8a225fbc"/>
+  </producedTypes>
+  <name>Severity</name>
+  <synonym>
+    <key>en</key>
+    <value>Severity</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Важность</value>
+  </synonym>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <explanation>
+    <key>en</key>
+    <value>Scenario severity types</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Классы важности теста</value>
+  </explanation>
+  <enumValues uuid="51d90099-165b-429a-83a4-fb90cc7d5aa0">
+    <name>Low</name>
+    <synonym>
+      <key>en</key>
+      <value>Low</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Низкая</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="0998ec76-daec-4c33-9c16-4c4a9f981177">
+    <name>Normal</name>
+    <synonym>
+      <key>en</key>
+      <value>Medium</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Средняя</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="451eca6d-a0c2-4002-b7f6-b30372da7cbb">
+    <name>Critical</name>
+    <synonym>
+      <key>en</key>
+      <value>Critical</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Критичная</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

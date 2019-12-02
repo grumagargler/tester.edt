@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="42b4c21f-7130-4fda-b3a3-25a7e0ac69fb">
+  <name>RunScenarios</name>
+  <clientManagedApplication>true</clientManagedApplication>
+</mdclass:CommonModule>

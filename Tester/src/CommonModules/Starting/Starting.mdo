@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="4258f66c-9486-4715-a26d-9f6f634092c0">
+  <name>Starting</name>
+  <clientManagedApplication>true</clientManagedApplication>
+</mdclass:CommonModule>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="e9ffbf1e-2888-48e3-afbf-be57432037fe">
+  <producedTypes>
+    <selectionType typeId="cfc6b92e-ff01-47ec-b3f1-747fefff5693" valueTypeId="0134886a-e62a-4645-9532-b7afae23b1a2"/>
+    <listType typeId="8dc11f3d-510d-46b3-8c24-00f27ec990b4" valueTypeId="d04629cf-d44d-4f75-ae30-40983d104fd5"/>
+    <managerType typeId="aabf8b3e-6f90-456e-9be6-68e8258dec78" valueTypeId="f67fa5a9-396e-4f20-95a0-ead42cdbbd85"/>
+    <recordSetType typeId="601bb457-ffc4-4897-ade6-721ec72ea22e" valueTypeId="b14b970e-da64-471e-a26c-a221e8276abd"/>
+    <recordKeyType typeId="f1a98a44-a220-44ae-823c-33bd849961f3" valueTypeId="e7c30068-60d3-46f2-8a83-3a3e7bc4a2f6"/>
+    <recordType typeId="5cd5b4f9-a799-4fa8-9feb-e95d9b8aaaa9" valueTypeId="2b68bb0b-7708-4831-b882-f43a0d0977b5"/>
+    <recordManagerType typeId="374ad4ad-3ca7-46bf-87fd-51f15e41174c" valueTypeId="c173f35f-79ab-4732-ab4a-474ade2d2885"/>
+  </producedTypes>
+  <name>Timelapse</name>
+  <synonym>
+    <key>en</key>
+    <value>Time-lapse</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Хронограф</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Capturing scenario execution process</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Журналирование хода выполнения сценария</value>
+  </explanation>
+  <resources uuid="bfcd43b5-df46-4408-9bae-c2e91dab90d1">
+    <name>Module</name>
+    <synonym>
+      <key>en</key>
+      <value>Module</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Модуль</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Modules</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Module</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Модуль</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="2866b01d-1165-4796-8be2-12edb0926330">
+    <name>Row</name>
+    <synonym>
+      <key>en</key>
+      <value>Row</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Строка</value>
+    </synonym>
+    <type>
+      <types>DefinedType.LineNumber</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Source code row number</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Исходный номер строки кода</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="c41c917e-0cbc-4252-b892-5696160c648e">
+    <name>Screenshot</name>
+    <synonym>
+      <key>en</key>
+      <value>Screenshot</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Скриншот</value>
+    </synonym>
+    <type>
+      <types>ValueStorage</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Screenshot</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Скриншот</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="bc5451dc-c648-475f-b1b6-11f2b21455d1">
+    <name>Session</name>
+    <synonym>
+      <key>en</key>
+      <value>Session</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Sessions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Session</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сеанс</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="2953c9be-4a9e-46e8-b727-c93420d14a28">
+    <name>Scenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Versions</types>
+      <types>CatalogRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <master>true</master>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="58baa8ea-e82c-47b9-89c3-da72805dc449">
+    <name>Date</name>
+    <synonym>
+      <key>en</key>
+      <value>Date</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Дата</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Record date</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Дата записи</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="c7f587f5-248b-42e9-aa4a-d790b72253d8">
+    <name>Pointer</name>
+    <synonym>
+      <key>en</key>
+      <value>Pointer</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Указатель</value>
+    </synonym>
+    <type>
+      <types>DefinedType.Pointer</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Index of execution process</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Индекс шага выполнения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </dimensions>
+  <forms uuid="37e0d3fc-f164-4f81-9873-37ccdc669bb6">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="52256266-b16c-4b65-8647-7cd2eb72397f">
+    <name>Sessions</name>
+    <synonym>
+      <key>en</key>
+      <value>Sessions</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сессии</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <commands uuid="ef515030-ae18-4527-b8bc-5041abf094e4">
+    <name>Open</name>
+    <synonym>
+      <key>en</key>
+      <value>Time-lapse</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Хронограф</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.ErrorLog</types>
+      <types>CatalogRef.Versions</types>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <representation>PictureAndText</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Open time-lapse</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Открыть хронограф</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Reel</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:InformationRegister>

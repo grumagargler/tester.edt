@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="ad18dbc0-0f40-4df1-a195-e2fd159baeeb">
+  <producedTypes>
+    <refType typeId="228acc19-e595-4763-b3da-967117c6e9e3" valueTypeId="223cbf85-2093-40b3-b92d-3d605b3c2a84"/>
+    <listType typeId="9c1b7a89-d941-478b-b29d-db30692a85b2" valueTypeId="afa356ed-e025-42b6-b249-55b4bebdd038"/>
+    <managerType typeId="564302a3-7272-4f2c-935f-1c47b2b0d5b0" valueTypeId="f9b81afe-45a2-4820-87a0-78661ae512f1"/>
+  </producedTypes>
+  <name>JobStatuses</name>
+  <synonym>
+    <key>en</key>
+    <value>Job Statuses</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Статусы заданий</value>
+  </synonym>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Order</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <quickChoice>true</quickChoice>
+  <choiceMode>QuickChoice</choiceMode>
+  <explanation>
+    <key>en</key>
+    <value>Job statuses</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Статусы заданий</value>
+  </explanation>
+  <enumValues uuid="62126ce6-df42-4c3c-bfe3-609ea85a3cec">
+    <name>Fault</name>
+    <synonym>
+      <key>en</key>
+      <value>Errors</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Ошибки</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="565f44a2-76c8-418b-ae6a-2b2f982e55ff">
+    <name>Passed</name>
+    <synonym>
+      <key>en</key>
+      <value>Passed</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выполнено</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="2d70fce0-64e9-43f6-866b-ba4fced9ebf0">
+    <name>Pending</name>
+    <synonym>
+      <key>en</key>
+      <value>Pending</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>В ожидании</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="a473bc15-8d23-4314-b598-c82dec71c5d9">
+    <name>Removed</name>
+    <synonym>
+      <key>en</key>
+      <value>Removed</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Удалено</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="0a55c248-f655-46b3-a1b8-8b6217cbbacb">
+    <name>Running</name>
+    <synonym>
+      <key>en</key>
+      <value>Running</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выполняется</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

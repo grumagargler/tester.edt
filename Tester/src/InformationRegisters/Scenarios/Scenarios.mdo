@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="d9282565-1645-403a-987a-0b7a76b0ad71">
+  <producedTypes>
+    <selectionType typeId="2b94b38e-8aa3-4c04-83a4-75c0e901d618" valueTypeId="31556af7-555c-406e-9b61-ab291c0bbf49"/>
+    <listType typeId="4ad2cbd4-c0fe-4c5f-b5b6-63dff4bbc1a0" valueTypeId="e0754868-67e5-4f02-87c7-1a835c4b1838"/>
+    <managerType typeId="3421d364-0c18-4ce4-9e44-d0cd49a74648" valueTypeId="25d937f1-312c-4522-bd8d-cc2aa565b975"/>
+    <recordSetType typeId="bd0be7f2-42d3-49fe-9e97-c7d33f864e39" valueTypeId="b7cef4e7-b4bf-4f10-85e6-51c43f46bc39"/>
+    <recordKeyType typeId="c638e649-e53e-4be0-ad24-73181f123643" valueTypeId="9d910e49-0bcc-4704-8cdf-aeed90223734"/>
+    <recordType typeId="23dc0e72-ef00-4d20-add1-299d73445e2e" valueTypeId="4e6bfe06-061e-4f87-976e-af4916d3e83d"/>
+    <recordManagerType typeId="f97a5036-1cd5-4ef0-83d9-1e8829fe517b" valueTypeId="9bc0a856-c501-47d2-a295-18d54435546f"/>
+  </producedTypes>
+  <name>Scenarios</name>
+  <synonym>
+    <key>en</key>
+    <value>Scenarios</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Сценарии</value>
+  </synonym>
+  <editType>InDialog</editType>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <explanation>
+    <key>en</key>
+    <value>Current User Scenario</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Текущий сценарий пользователя</value>
+  </explanation>
+  <resources uuid="b3eee338-c434-4e93-b184-468fe13badf6">
+    <name>Scenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Scenario</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Scenarios</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сценарий</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="5c9227f8-63f6-4a02-8036-5d71f28f726a">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

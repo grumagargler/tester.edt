@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Report xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="66df6400-45fc-4a6a-9df9-9a3431e5a463">
+  <producedTypes>
+    <objectType typeId="ebbe73cd-9fb3-46ef-bc1c-2500103ead13" valueTypeId="362cde2e-b753-4c5c-9488-21e8922f5d35"/>
+    <managerType typeId="b5b34fa5-63a8-4980-a1f0-57edf8bec155" valueTypeId="68b66e72-267e-4967-b0a5-9b61f46cdf80"/>
+  </producedTypes>
+  <name>Summary</name>
+  <synonym>
+    <key>en</key>
+    <value>Summary</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Сводка</value>
+  </synonym>
+  <mainDataCompositionSchema>Report.Summary.Template.Schema</mainDataCompositionSchema>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <explanation>
+    <key>en</key>
+    <value>Current summary by all scenarios</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Текущая сводка по всем сценариям</value>
+  </explanation>
+  <templates uuid="36ff642c-2e80-4077-8a46-3d175b3247f4">
+    <name>Schema</name>
+    <templateType>DataCompositionSchema</templateType>
+  </templates>
+  <commands uuid="9ac66bd0-f6e2-49e4-9cd4-a033a5d15181">
+    <name>OpenByScenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Summary</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сводка</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+      <types>DocumentRef.Job</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Scenarios summary</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Текущая сводка по сценариям</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="35e0423d-0847-41cd-a3d4-9a4fbd0553df">
+    <name>Show</name>
+    <synonym>
+      <key>en</key>
+      <value>Summary</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сводка</value>
+    </synonym>
+    <group>ActionsPanelReports</group>
+    <commandParameterType/>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Current summary by all scenarios</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Текущая сводка по всем сценариям</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:Report>

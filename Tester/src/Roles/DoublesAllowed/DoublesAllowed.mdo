@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Role xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="aff63859-5037-4e37-8760-1d711fd8f8f7">
+  <name>DoublesAllowed</name>
+  <synonym>
+    <key>en</key>
+    <value>Doubles Allowed</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Дублирование разрешено</value>
+  </synonym>
+</mdclass:Role>

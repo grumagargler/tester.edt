@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="6624af49-972f-4d67-bb6e-d31d28e521a4">
+  <producedTypes>
+    <refType typeId="11cff431-da67-4c41-bfad-55d90cb333ca" valueTypeId="80c55646-2035-496d-9525-e08631b03ba4"/>
+    <listType typeId="f36eecae-5d19-4ce5-8b6f-01f69e5e0680" valueTypeId="51132148-0a8f-4b40-9445-35b200e12ca8"/>
+    <managerType typeId="d3e70756-6069-435e-b7cb-5c6b89a93c8e" valueTypeId="6d1fc8bb-af52-48a7-bdb8-bd7122959640"/>
+  </producedTypes>
+  <name>Controls</name>
+  <synonym>
+    <key>en</key>
+    <value>Controls</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Элементы</value>
+  </synonym>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <explanation>
+    <key>en</key>
+    <value>Tested control types</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Тестируемые типы элементов</value>
+  </explanation>
+  <enumValues uuid="0b19423b-a760-430a-96df-c12109115b5a">
+    <name>Button</name>
+    <synonym>
+      <key>en</key>
+      <value>Button</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Кнопка</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="5a3e18ef-694f-47c4-8d47-1d63a896ead3">
+    <name>CommandBar</name>
+    <synonym>
+      <key>en</key>
+      <value>CommandBar</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>КоманднаяПанель</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="3334cd5d-1c5c-4913-a26f-3d52ff3fcef5">
+    <name>CommandInterface</name>
+    <synonym>
+      <key>en</key>
+      <value>CommandInterface</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>КомандныйИнтерфейс</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="5e37d548-98c5-4639-bf07-b49d5141ddfd">
+    <name>ContextMenu</name>
+    <synonym>
+      <key>en</key>
+      <value>ContextMenu</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>КонтекстноеМеню</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="7360d8e5-eb6e-4fb2-993f-3bae84744a03">
+    <name>Decoration</name>
+    <synonym>
+      <key>en</key>
+      <value>Decoration</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Декорация</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="f0df594b-2210-4361-9c0b-2bfffc29a16c">
+    <name>Field</name>
+    <synonym>
+      <key>en</key>
+      <value>Field</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Поле</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="ba95b3ac-7c1b-4f9f-8aa0-6bd1e9697d22">
+    <name>Form</name>
+    <synonym>
+      <key>en</key>
+      <value>Form</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Форма</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="3591361d-c0b7-4c1a-b285-1dd1868efe0c">
+    <name>Group</name>
+    <synonym>
+      <key>en</key>
+      <value>Group</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Группа</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="c19c081d-225b-46a5-8aef-667e31e2ad49">
+    <name>InterfaceButton</name>
+    <synonym>
+      <key>en</key>
+      <value>InterfaceButton</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>КнопкаКИ</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="94b58d3f-4c7f-46ff-8240-a95c19a0bd2c">
+    <name>InterfaceGroup</name>
+    <synonym>
+      <key>en</key>
+      <value>InterfaceGroup</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>ГруппаКИ</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="62d8add8-c409-4cf0-9ae0-b37504d9d887">
+    <name>Table</name>
+    <synonym>
+      <key>en</key>
+      <value>Table</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Таблица</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="f156d7c6-4960-4388-b42b-e18d030d1fb6">
+    <name>Window</name>
+    <synonym>
+      <key>en</key>
+      <value>Window</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Окно</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>
