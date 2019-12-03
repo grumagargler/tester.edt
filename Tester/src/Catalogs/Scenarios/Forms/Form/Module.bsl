@@ -23,35 +23,42 @@ var OldParent;
 
 // *****************************************
 // *********** Form events
-
 &AtServer
 Procedure OnReadAtServer(CurrentObject)
-	
+
 	readMyself(CurrentObject);
-	
+
 EndProcedure
 
 &AtServer
 Procedure readMyself(CurrentObject)
-	
+
+	iHook();
 	initTags();
 	readStatus();
 	restoreTemplate(CurrentObject);
 	Appearance.Apply(ThisObject);
+
+EndProcedure
+
+&AtServer
+Procedure iHook()
+	
+	WebHook = Constants.Webhook.Get() = Object.Ref;
 	
 EndProcedure
 
 &AtServer
 Procedure initTags()
-	
+
 	initTagsList();
 	initTagsFilter();
-	
+
 EndProcedure
 
 &AtServer
 Procedure initTagsList()
-	
+
 	set = Items.TagsList.ChoiceList;
 	tags = readTags();
 	if (tags = undefined) then
@@ -59,12 +66,12 @@ Procedure initTagsList()
 	else
 		insertTag(tags, set)
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Function readTags()
-	
+
 	tag = Object.Tag;
 	if (tag.IsEmpty()) then
 		return undefined;
@@ -78,24 +85,24 @@ Function readTags()
 	q = new Query(s);
 	q.SetParameter("Key", tag);
 	return q.Execute().Unload().UnloadColumn("Tag");
-	
+
 EndFunction
 
 &AtClientAtServerNoContext
 Procedure insertTag(Tag, List)
-	
+
 	if (TypeOf(Tag) = Type("Array")) then
 		List.LoadValues(Tag);
 	else
 		List.Add(Tag);
 	endif;
 	List.SortByValue();
-	
+
 EndProcedure
 
 &AtServer
 Procedure initTagsFilter()
-	
+
 	tags = getTagClassifier();
 	for each row in tags do
 		tag = row.Ref;
@@ -105,12 +112,12 @@ Procedure initTagsFilter()
 		endif;
 	enddo;
 	TagsFilter.SortByPresentation();
-	
+
 EndProcedure
 
 &AtServer
 Function getTagClassifier()
-	
+
 	s = "
 		|select Tags.Ref as Ref, Tags.Description as Description
 		|from Catalog.Tags as Tags
@@ -118,12 +125,12 @@ Function getTagClassifier()
 		|";
 	q = new Query(s);
 	return q.Execute().Unload();
-	
+
 EndFunction
 
 &AtServer
 Procedure readStatus()
-	
+
 	Locked = false;
 	LockedBy = undefined;
 	if (Object.Ref.IsEmpty()) then
@@ -140,23 +147,23 @@ Procedure readStatus()
 	else
 		LockedBy = "" + user + ", " + info.Date;
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Procedure restoreTemplate(Scenario)
-	
+
 	TabDoc = Scenario.Template.Get();
 	TemplateChanged = Object.Ref.IsEmpty();
 	entitleTemplate(ThisObject);
 	AreasStorage = "";
 	markAreas();
-	
+
 EndProcedure
 
 &AtClientAtServerNoContext
 Procedure entitleTemplate(Form)
-	
+
 	items = Form.Items;
 	tabDoc = Form.TabDoc;
 	caption = Output.TemplateCaption();
@@ -164,18 +171,18 @@ Procedure entitleTemplate(Form)
 		caption = caption + " *";
 	endif;
 	items.PageTemplate.Title = caption;
-	
+
 EndProcedure
 
 &AtServer
 Procedure markAreas(val List = undefined)
-	
+
 	noline = new Line(SpreadsheetDocumentCellLineType.None);
 	redLine = new Line(SpreadsheetDocumentCellLineType.LargeDashed, 3);
 	redColor = new Color(255, 0, 0);
 	savedAreas = getSavedAreas();
 	if (List = undefined) then
-		set = Object.Areas.Unload( , "Name").UnloadColumn("Name");
+		set = Object.Areas.Unload(, "Name").UnloadColumn("Name");
 	else
 		set = List;
 	endif;
@@ -190,30 +197,30 @@ Procedure markAreas(val List = undefined)
 		area.BorderColor = redColor;
 	enddo;
 	saveAreas(savedAreas);
-	
+
 EndProcedure
 
 &AtServer
 Function getSavedAreas()
-	
+
 	if (AreasStorage = "") then
 		return new Map();
 	else
 		return GetFromTempStorage(AreasStorage);
 	endif;
-	
+
 EndFunction
 
 &AtServer
 Procedure saveAreas(Areas)
-	
+
 	AreasStorage = PutToTempStorage(Areas, UUID);
-	
+
 EndProcedure
 
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
-	
+
 	if (Object.Ref.IsEmpty()) then
 		if (not Parameters.CopyingValue.IsEmpty()) then
 			restoreTemplate(Parameters.CopyingValue);
@@ -227,24 +234,23 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	setFilters();
 	showFilters(ThisObject);
 	AppearanceSrv.Read(ThisObject);
-	
+
 EndProcedure
 
 &AtServer
 Procedure bindWorkplace()
-	
+
 	params = new Array();
 	params.Add(new ChoiceParameter("Filter.Owner", SessionParameters.User));
 	Items.WorkplaceFilter.ChoiceParameters = new FixedArray(params);
-	
+
 EndProcedure
 
 &AtServer
 Procedure setView()
-	
+
 	control = Items.List;
-	if (StatusFilter = 0
-			and IsBlankString(SearchString)
+	if (StatusFilter = 0 and IsBlankString(SearchString)
 			and not tagsFiltered()) then
 		control.Representation = TableRepresentation.Tree;
 	else
@@ -253,24 +259,24 @@ Procedure setView()
 	showPath = StatusFilter <> 0;
 	Items.ListDescription.Visible = not showPath;
 	Items.ListFullDescription.Visible = showPath;
-	
+
 EndProcedure
 
 &AtServer
 Function tagsFiltered()
-	
+
 	for each item in TagsFilter do
 		if (item.Check) then
 			return true;
 		endif;
 	enddo;
 	return false;
-	
+
 EndFunction
 
 &AtServer
 Procedure setFilters()
-	
+
 	DC.SetParameter(List, "User", SessionParameters.User);
 	ApplicationFilter = EnvironmentSrv.GetApplication();
 	WorkplaceFilter = CommonSettingsStorage.Load(Enum.SettingsWorkplaceFilter());
@@ -278,27 +284,26 @@ Procedure setFilters()
 	filterByApplication();
 	filterByWorkplace();
 	filterByDeletion();
-	
+
 EndProcedure
 
 &AtClientAtServerNoContext
 Function applicationFixed(Form)
-	
+
 	object = Form.Object;
 	application = object.Application;
-	if (Form.ApplicationFilter <> application
-			and not application.IsEmpty()) then
+	if (Form.ApplicationFilter <> application and not application.IsEmpty()) then
 		Form.ApplicationFilter = application;
 		return true;
 	else
 		return false;
 	endif;
-	
+
 EndFunction
 
 &AtServer
 Procedure filterByApplication()
-	
+
 	if (ApplicationFilter.IsEmpty()) then
 		DC.ChangeFilter(List, "Application", undefined, false);
 	else
@@ -307,12 +312,12 @@ Procedure filterByApplication()
 		filter.Add(ApplicationFilter);
 		DC.ChangeFilter(List, "Application", filter, true, DataCompositionComparisonType.InList);
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Procedure filterByWorkplace()
-	
+
 	show = DC.FindParameter(List, "Show");
 	hide = DC.FindParameter(List, "Hide");
 	show.Use = false;
@@ -328,23 +333,23 @@ Procedure filterByWorkplace()
 		show.Use = true;
 		show.Value = set;
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Procedure filterByDeletion()
-	
+
 	if (DeletionFilter) then
 		DC.DeleteFilter(List, "DeletionMark");
 	else
 		DC.ChangeFilter(List, "DeletionMark", false, true);
 	endif;
-	
+
 EndProcedure
 
 &AtClientAtServerNoContext
 Procedure showFilters(Form)
-	
+
 	label = Form.Items.ShowOptionsLabel;
 	if (Form.ShowOptions) then
 		label.Title = Output.OptionsLabelHide();
@@ -374,12 +379,12 @@ Procedure showFilters(Form)
 			label.Title = Output.FilterLabelShow() + StrConcat(parts, " | ");
 		endif;
 	endif;
-	
+
 EndProcedure
 
 &AtClientAtServerNoContext
 Function selectedTags(Form)
-	
+
 	set = new Array();
 	for each item in Form.TagsFilter do
 		if (item.Check) then
@@ -387,12 +392,12 @@ Function selectedTags(Form)
 		endif;
 	enddo;
 	return StrConcat(set, ", ");
-	
+
 EndFunction
 
 &AtClient
 Procedure OnOpen(Cancel)
-	
+
 	saveOldParent();
 	ScenariosPanel.Push(ThisObject);
 	initProperties();
@@ -402,30 +407,30 @@ Procedure OnOpen(Cancel)
 		AttachIdleHandler("activateEditor", 0.1, true);
 	endif;
 	setTitle();
-	
+
 EndProcedure
 
 &AtClient
 Procedure saveOldParent()
-	
+
 	OldParent = Object.Parent;
-	
+
 EndProcedure
 
 &AtClient
 Procedure initProperties()
-	
+
 	if (TestManager = true) then
 		TestedMode = true;
 	else
 		TestedMode = false;
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Procedure loadScenario(val Scenario)
-	
+
 	exists = (Scenario <> undefined);
 	if (exists) then
 		obj = Scenario.GetObject();
@@ -439,38 +444,38 @@ Procedure loadScenario(val Scenario)
 	endif;
 	readStatus();
 	Appearance.Apply(ThisObject);
-	
+
 EndProcedure
 
 &AtClient
 Procedure syncScenario()
-	
+
 	Items.List.CurrentRow = Object.Ref;
-	
+
 EndProcedure
 
 &AtClient
 Procedure activateEditor()
-	
+
 	CurrentItem = Items.Script;
-	
+
 EndProcedure
 
 &AtClient
 Procedure setTitle()
-	
+
 	ref = Object.Ref;
 	if (ref.IsEmpty()) then
 		Title = Output.NewScenario();
 	else
 		Title = ?(ref = SessionScenario, "►", "") + Object.Path;
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure NotificationProcessing(EventName, Parameter, Source)
-	
+
 	if (EventName = Enum.MessageSaveAll()) then
 		if (Locked) then
 			if (isModified()) then
@@ -488,8 +493,7 @@ Procedure NotificationProcessing(EventName, Parameter, Source)
 			unlock();
 		endif;
 	elsif (EventName = Enum.MessageSave()) then
-		if (Locked
-				and Parameter.Find(Object.Ref) <> undefined) then
+		if (Locked and Parameter.Find(Object.Ref) <> undefined) then
 			if (isModified()) then
 				Write();
 			endif;
@@ -503,25 +507,25 @@ Procedure NotificationProcessing(EventName, Parameter, Source)
 	elsif (EventName = Enum.MessageMainScenarioChanged()) then
 		setTitle();
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Function isModified()
-	
-	// Modified flag will not appear unless editor box looses focus
+
+// Modified flag will not appear unless editor box looses focus
 	editor = Items.Script;
 	if (CurrentItem = editor) then
 		CurrentItem = Items.Description;
 		CurrentItem = editor;
 	endif;
 	return Modified;
-	
+
 EndFunction
 
 &AtServer
 Procedure reload()
-	
+
 	if (Object.Ref.IsEmpty()) then
 		return;
 	endif;
@@ -535,39 +539,40 @@ Procedure reload()
 	filterByApplication();
 	showFilters(ThisObject);
 	Appearance.Apply(ThisObject);
-	
+
 EndProcedure
 
 &AtServer
 Procedure unlock()
-	
+
 	readStatus();
 	if (not Locked) then
 		UnlockFormDataForEdit();
 	endif;
 	Appearance.Apply(ThisObject, "Locked");
-	
+
 EndProcedure
 
 &AtClient
 Procedure activateRow(Line)
-	
-	Items.Script.SetTextSelectionBounds(Line, 1, Line, StrLen(StrGetLine(Object.Script, Line)) + 1);
-	
+
+	Items.Script.SetTextSelectionBounds(Line, 1, Line, StrLen(StrGetLine(Object.Script, Line))
+		+ 1);
+
 EndProcedure
 
 &AtClient
 Procedure ChoiceProcessing(SelectedValue, ChoiceSource)
-	
+
 	if (TypeOf(SelectedValue) = Type("String")) then
 		applyAssistant(SelectedValue, false, false);
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure applyAssistant(Replacement, Picking, Comment)
-	
+
 	multiline = StrLineCount(Replacement) > 1;
 	if (multiline) then
 		getSelection();
@@ -586,87 +591,87 @@ Procedure applyAssistant(Replacement, Picking, Comment)
 		text = "//" + text;
 	endif;
 	Items.Script.SelectedText = text;
-	
+
 EndProcedure
 
 &AtClient
 Procedure NewWriteProcessing(NewObject, Source, StandardProcessing)
-	
+
 	type = TypeOf(NewObject);
 	if (type = Type("CatalogRef.Tags")) then
 		insertTag(String(NewObject), Items.TagsList.ChoiceList);
 		initTagsFilter();
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
-	
+
 	if (not checkName()) then
 		Cancel = true;
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Function checkName()
-	
+
 	forbidden = "\ / : * ? "" < > | . ^ , $ # @ ` ~ & % ( ) { } - + =";
 	description = Object.Description;
 	for each restriction in StrSplit(forbidden, " ") do
 		if (StrFind(description, restriction) > 0) then
-			Output.ScenarioIDError( , "Description");
+			Output.ScenarioIDError(, "Description");
 			return false;
 		endif;
 	enddo;
 	return true;
-	
+
 EndFunction
 
 &AtClient
 Procedure BeforeWrite(Cancel, WriteParameters)
-	
+
 	if (not ScenarioForm.SaveParents(Object, OldParent)) then
 		Cancel = true;
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Procedure BeforeWriteAtServer(Cancel, CurrentObject, WriteParameters)
-	
+
 	saveTags(CurrentObject);
 	if (TemplateChanged) then
 		prepareTempale();
 		saveTemplate(CurrentObject);
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Procedure saveTags(CurrentObject)
-	
+
 	BeginTransaction();
 	lockTags();
 	CurrentObject.Tag = tagsToKey();
 	CommitTransaction();
-	
+
 EndProcedure
 
 &AtServer
 Procedure lockTags()
-	
+
 	lock = new DataLock();
 	item = lock.Add("Catalog.TagKeys");
 	item.Mode = DataLockMode.Exclusive;
 	lock.Lock();
-	
+
 EndProcedure
 
 &AtServer
 Function tagsToKey()
-	
+
 	tags = Items.TagsList.ChoiceList.UnloadValues();
 	ref = findKey(tags);
 	if (ref <> undefined) then
@@ -681,12 +686,12 @@ Function tagsToKey()
 	obj.SetDescription();
 	obj.Write();
 	return obj.Ref;
-	
+
 EndFunction
 
 &AtServer
 Function findKey(Tags)
-	
+
 	s = "
 		|select top 1 Keys.Ref as Ref
 		|from (
@@ -714,12 +719,12 @@ Function findKey(Tags)
 	q.SetParameter("Tags", Tags);
 	table = q.Execute().Unload();
 	return ?(table.Count() = 0, undefined, table[0].Ref);
-	
+
 EndFunction
 
 &AtServer
 Function tagsTable(Tags)
-	
+
 	s = "
 		|select Tags.Ref as Tag
 		|from Catalog.Tags as Tags
@@ -729,12 +734,12 @@ Function tagsTable(Tags)
 	q = new Query(s);
 	q.SetParameter("Tags", Tags);
 	return q.Execute().Unload();
-	
+
 EndFunction
 
 &AtServer
 Procedure prepareTempale()
-	
+
 	begin = undefined;
 	end = undefined;
 	marker = getMarker();
@@ -748,166 +753,163 @@ Procedure prepareTempale()
 			begin.TextColor = marker;
 		endif;
 	enddo;
-	
+
 EndProcedure
 
 &AtClientAtServerNoContext
 Function getMarker()
-	
+
 	return new Color(255, 0, 255);
-	
+
 EndFunction
 
 &AtClientAtServerNoContext
 Function isTemplate(Text)
-	
+
 	s = TrimAll(Text);
-	return StrStartsWith(s, "{")
-	and StrEndsWith(s, "}");
-	
+	return StrStartsWith(s, "{") and StrEndsWith(s, "}");
+
 EndFunction
 
 &AtServer
 Procedure saveTemplate(CurrentObject)
-	
+
 	restoreAreas();
 	CurrentObject.Template = new ValueStorage(TabDoc);
 	CurrentObject.Spreadsheet = (TabDoc.TableHeight + TabDoc.TableWidth) > 0;
 	TemplateChanged = false;
-	
+
 EndProcedure
 
 &AtServer
 Procedure AfterWriteAtServer(CurrentObject, WriteParameters)
-	
+
 	markAreas();
 	if (tagsFiltered()) then
 		filterByTag();
 	endif;
 	Appearance.Apply(ThisObject, "Object.Ref");
-	
+
 EndProcedure
 
 &AtClient
 Procedure AfterWrite(WriteParameters)
-	
+
 	ScenarioForm.RereadParents(Object, OldParent);
 	saveOldParent();
 	setTitle();
 	ScenariosPanel.Push(ThisObject);
 	RepositoryFiles.Sync(Object.Application);
 	resetCursor();
-	
+
 EndProcedure
 
 &AtClient
 Procedure resetCursor()
-	
-	// Bug workaround: the following actions try to avoid
+
+// Bug workaround: the following actions try to avoid
 	// undefined behaviour of cursor position in Text Editor
 	OldCurrentItem = CurrentItem;
 	CurrentItem = Items.Description;
 	CurrentItem = OldCurrentItem;
-	
+
 EndProcedure
 
 &AtClient
 Procedure OnClose(Exit)
-	
+
 	ScenariosPanel.Pop(Object.Ref);
-	
+
 EndProcedure
 
 &AtClient
 Procedure Reread() export
-	
+
 	rereadMyself();
 	saveOldParent();
 	setTitle();
-	
+
 EndProcedure
 
 &AtServer
 Procedure rereadMyself()
-	
+
 	obj = Object.Ref.GetObject();
 	ValueToFormAttribute(obj, "Object");
 	readMyself(obj);
-	
+
 EndProcedure
 
 // *****************************************
 // *********** Group Form
-
 &AtClient
 Procedure Restart(Command)
-	
+
 	OpenForm("Catalog.Scenarios.Form.Restart");
-	
+
 EndProcedure
 
 &AtClient
 Procedure RunSelected(Command)
-	
+
 	runCode();
 	activateEditor();
-	
+
 EndProcedure
 
 &AtClient
 Procedure runCode()
-	
+
 	getSelection();
 	ModuleCode = getBlock();
 	Test.Exec(Object.Ref, , ModuleCode, , SelectionStart);
-	
+
 EndProcedure
 
 &AtClient
 Procedure getSelection()
-	
+
 	Items.Script.GetTextSelectionBounds(RowStart, ColumnStart, RowEnd, ColumnEnd);
 	SelectionStart = RowStart;
 	SelectionEnd = RowEnd;
-	if (ColumnStart = ColumnEnd
-			and ColumnStart = 1) then
+	if (ColumnStart = ColumnEnd and ColumnStart = 1) then
 		SelectionEnd = Max(SelectionStart, SelectionEnd - 1);
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Function getBlock()
-	
+
 	text = Object.Script;
 	rows = new Array();
 	for i = SelectionStart to SelectionEnd do
 		rows.Add(StrGetLine(text, i));
 	enddo;
 	return StrConcat(rows, Chars.LF);
-	
+
 EndFunction
 
 &AtClient
 Procedure Comment(Command)
-	
+
 	commentScript();
 	activateEditor();
-	
+
 EndProcedure
 
 &AtClient
 Procedure commentScript()
-	
+
 	getSelection();
 	insertComments();
 	restoreSelection();
-	
+
 EndProcedure
 
 &AtClient
 Procedure insertComments()
-	
+
 	text = Object.Script;
 	rows = new Array();
 	for i = SelectionStart to SelectionEnd do
@@ -915,46 +917,47 @@ Procedure insertComments()
 		rows.Add("//" + row);
 	enddo;
 	replaceSelection(rows);
-	
+
 EndProcedure
 
 &AtClient
 Procedure replaceSelection(Rows)
-	
+
 	control = Items.Script;
-	control.SetTextSelectionBounds(SelectionStart, 1, SelectionEnd, 2 + StrLen(StrGetLine(Object.Script, SelectionEnd)));
+	control.SetTextSelectionBounds(SelectionStart, 1, SelectionEnd, 2
+		+ StrLen(StrGetLine(Object.Script, SelectionEnd)));
 	control.SelectedText = StrConcat(rows, Chars.LF);
-	
+
 EndProcedure
 
 &AtClient
 Procedure restoreSelection()
-	
+
 	control = Items.Script;
 	control.SetTextSelectionBounds(RowStart, ColumnStart, RowEnd, ColumnEnd);
-	
+
 EndProcedure
 
 &AtClient
 Procedure Uncomment(Command)
-	
+
 	uncommentScript();
 	activateEditor();
-	
+
 EndProcedure
 
 &AtClient
 Procedure uncommentScript()
-	
+
 	getSelection();
 	removeComments();
 	restoreSelection();
-	
+
 EndProcedure
 
 &AtClient
 Procedure removeComments()
-	
+
 	text = Object.Script;
 	rows = new Array();
 	for i = SelectionStart to SelectionEnd do
@@ -966,40 +969,40 @@ Procedure removeComments()
 		endif;
 	enddo;
 	replaceSelection(rows);
-	
+
 EndProcedure
 
 &AtClient
 Procedure GotoDefinition(Command)
-	
+
 	openSubScenario();
 	activateEditor();
-	
+
 EndProcedure
 
 &AtClient
 Procedure openSubScenario()
-	
+
 	scenario = getScenario();
 	if (scenario = undefined) then
 		return;
 	endif;
 	OpenForm("Catalog.Scenarios.ObjectForm", new Structure("Key", scenario), Items.List);
-	
+
 EndProcedure
 
 &AtClient
 Function getScenario()
-	
+
 	getSelection();
 	s = StrGetLine(Object.Script, RowStart);
 	return findScenario(s, Object.Application, ?(Object.Tree, Object.Ref, Object.Parent));
-	
+
 EndFunction
 
 &AtServerNoContext
 Function findScenario(val Row, val Application, val Parent)
-	
+
 	variants = new Array();
 	variants.Add(getSignature("call|вызвать", 1, 3));
 	variants.Add(getSignature("run|позвать", 1, 3, Parent));
@@ -1012,19 +1015,19 @@ Function findScenario(val Row, val Application, val Parent)
 			return RuntimeSrv.FindScenario(p.Scenario, Application, p.Application, variant.Parent, true);
 		endif;
 	enddo;
-	
+
 EndFunction
 
 &AtServerNoContext
 Function getSignature(Names, Scenario, Application, Parent = undefined)
-	
+
 	return new Structure("Names, Scenario, Application, Parent", Names, Scenario, Application, Parent);
-	
+
 EndFunction
 
 &AtServerNoContext
 Function extractParams(Variant, Row)
-	
+
 	params = getParams(Variant.Names, Row);
 	if (params = undefined) then
 		return undefined;
@@ -1038,12 +1041,12 @@ Function extractParams(Variant, Row)
 	i = Variant.Application;
 	app = ?(count < i, undefined, params[i - 1]);
 	return new Structure("Scenario, Application", scenario, app);
-	
+
 EndFunction
 
 &AtServerNoContext
 Function getParams(Functions, Row)
-	
+
 	exp = Regexp.Get();
 	exp.Pattern = "(" + Functions + ")(\(| +\()(.+)\)";
 	matches = exp.Execute(Row);
@@ -1055,64 +1058,63 @@ Function getParams(Functions, Row)
 		params[i] = TrimAll(StrReplace(params[i], """", ""));
 	enddo;
 	return ?(params.Count() = 0, undefined, params);
-	
+
 EndFunction
 
 &AtClient
 Procedure FindDefinition(Command)
-	
+
 	scenario = getScenario();
 	if (scenario = undefined) then
 		return;
 	endif;
 	Items.List.CurrentRow = scenario;
 	activateList();
-	
+
 EndProcedure
 
 &AtClient
 Procedure ActivateTree(Command)
-	
+
 	activateList();
-	
+
 EndProcedure
 
 &AtClient
 Procedure activateList()
-	
+
 	CurrentItem = Items.List;
-	
+
 EndProcedure
 
 &AtClient
 Procedure NewScenario(Command)
-	
-	// Bug workaround 8.3.8.2088:
+
+// Bug workaround 8.3.8.2088:
 	// I have to create special command because standard form command disables F5 shortcut
 	OpenForm("Catalog.Scenarios.ObjectForm");
-	
+
 EndProcedure
 
 &AtClient
 Procedure SyncTree(Command)
-	
+
 	if (Object.Ref.IsEmpty()) then
 		Write();
 	endif;
 	applicationChanged = applicationFixed(ThisObject);
 	searchUsed = SearchString <> "";
-	if (applicationChanged
-			or searchUsed) then
+	if (applicationChanged or searchUsed) then
 		resetFilters(applicationChanged, searchUsed);
 	endif;
 	syncScenario();
 	activateList();
-	
+
 EndProcedure
 
 &AtServer
 Procedure resetFilters(val Application, val Search)
-	
+
 	if (Application) then
 		filterByApplication();
 		showFilters(ThisObject);
@@ -1121,309 +1123,308 @@ Procedure resetFilters(val Application, val Search)
 		SearchString = "";
 		applySearch();
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure CheckSyntax(Command)
-	
+
 	checkCode();
 	activateEditor();
-	
+
 EndProcedure
 
 &AtClient
 Procedure checkCode()
-	
+
 	Test.CheckSyntax(Object.Script);
-	
+
 EndProcedure
 
 &AtClient
 Procedure Assist(Command)
-	
+
 	OpenForm("Catalog.Assistant.ChoiceForm", , ThisObject);
-	
+
 EndProcedure
 
 &AtClient
 Procedure DescriptionOnChange(Item)
-	
+
 	Object.Description = TrimAll(Object.Description);
-	
+
 EndProcedure
 
 &AtClient
 Procedure InsertID(Command)
-	
+
 	insertIdentifier();
-	
+
 EndProcedure
 
 &AtClient
 Procedure insertIdentifier()
-	
+
 	Items.Script.SelectedText = Environment.GenerateID();
-	
+
 EndProcedure
 
 &AtClient
 Procedure StartRecording(Command)
-	
+
 	if (SessionScenario.IsEmpty()) then
 		Output.SetupMainScenario(ThisObject, Object.Ref);
 	else
 		openRecording();
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure Convert(Command)
-	
+
 	openConversion();
-	
+
 EndProcedure
 
 &AtClient
 Procedure openConversion()
-	
+
 	OpenForm("Catalog.Scenarios.Form.Convert", , , , , , new NotifyDescription("Converting", ThisObject));
-	
+
 EndProcedure
 
 &AtClient
 Procedure SetupMainScenario(Answer, Scenario) export
-	
+
 	if (Answer = DialogReturnCode.No) then
 		return;
 	endif;
 	Environment.ChangeScenario(Scenario);
 	openRecording();
-	
+
 EndProcedure
 
 &AtClient
 Procedure openRecording()
-	
+
 	OpenForm("Catalog.Scenarios.Form.Record", , , , , , new NotifyDescription("Converting", ThisObject));
-	
+
 EndProcedure
 
 &AtClient
 Procedure Converting(Data, Params) export
-	
+
 	if (Data = undefined) then
 		return;
 	endif;
 	Log = Data.Log;
 	Items.Script.SelectedText = transpile(Data, Object.Script);
-	
+
 EndProcedure
 
 &AtServerNoContext
 Function transpile(val Data, val Script)
-	
+
 	mode = Data.Mode;
 	if (mode = Enums.Recording.Tester) then
 		return DataProcessors.TranspilerTester.Perform(Data.Log, Data.Lang, findConnect(Script));
 	else
 		return DataProcessors.TranspilerRaw.Perform(Data.Log, Data.Lang, mode = Enums.Recording.Smart, findConnect(Script));
 	endif;
-	
+
 EndFunction
 
 &AtServerNoContext
 Function findConnect(Script)
-	
+
 	exp = Regexp.Get();
 	exp.Pattern = "(^|\s+)(connect\W|подключить\W)";
 	return exp.Test(Script);
-	
+
 EndFunction
 
 &AtClient
 Procedure PickAction(Command)
-	
+
 	ScenarioForm.Picking(ThisObject, false);
-	
+
 EndProcedure
 
 &AtClient
 Procedure AddBreakpoint(Command)
-	
+
 	insertDebugger();
-	
+
 EndProcedure
 
 &AtClient
 Procedure insertDebugger()
-	
+
 	lang = CurrentLanguage();
 	s = ?(lang = "ru", "ОтладкаСтарт ();", "DebugStart ();") + Chars.LF;
 	Items.Script.SelectedText = s;
-	
+
 EndProcedure
 
 &AtClient
 Procedure ShowScenarios(Command)
-	
+
 	togglePanel();
-	
+
 EndProcedure
 
 &AtClient
 Procedure togglePanel()
-	
+
 	HidePanel = not HidePanel;
 	Appearance.Apply(ThisObject, "HidePanel");
-	
+
 EndProcedure
 
 // *****************************************
 // *********** Group Filters
-
 &AtClient
 Procedure QuickFilterStartChoice(Item, ChoiceData, StandardProcessing)
-	
+
 	StandardProcessing = false;
-	
+
 EndProcedure
 
 &AtClient
 Procedure QuickFilterClearing(Item, StandardProcessing)
-	
+
 	resetSearch();
 	activateList();
-	
+
 EndProcedure
 
 &AtClient
 Procedure resetSearch()
-	
+
 	SearchString = "";
 	filterScenario();
-	
+
 EndProcedure
 
 &AtClient
 Procedure filterScenario() export
-	
+
 	applySearch();
 	OldScenario = undefined;
-	
+
 EndProcedure
 
 &AtServer
 Procedure applySearch()
-	
+
 	setView();
 	refs = FullSearch.Refs(SearchString, Enums.Search.Scenarios);
 	DC.ChangeFilter(List, "Ref", refs, not IsBlankString(SearchString), DataCompositionComparisonType.InList);
-	
+
 EndProcedure
 
 &AtClient
 Procedure QuickFilterEditTextChange(Item, Text, StandardProcessing)
-	
+
 	DetachIdleHandler("filterScenario");
 	SearchString = Text;
 	AttachIdleHandler("filterScenario", 0.4, true);
-	
+
 EndProcedure
 
 &AtClient
 Procedure ShowOptionsLabelClick(Item)
-	
+
 	ShowOptions = not ShowOptions;
 	Appearance.Apply(ThisObject, "ShowOptions");
 	showFilters(ThisObject);
-	
+
 EndProcedure
 
 &AtClient
 Procedure ApplicationFilterOnChange(Item)
-	
+
 	filterByApplication();
 	activateList();
-	
+
 EndProcedure
 
 &AtClient
 Procedure WorkplaceFilterOnChange(Item)
-	
+
 	applyWorkplace();
-	
+
 EndProcedure
 
 &AtServer
 Procedure applyWorkplace()
-	
+
 	LoginsSrv.SaveSettings(Enum.SettingsWorkplaceFilter(), , WorkplaceFilter);
 	filterByWorkplace();
-	
+
 EndProcedure
 
 &AtClient
 Procedure StatusFilterOnChange(Item)
-	
+
 	applyStatusFilter();
 	activateList();
-	
+
 EndProcedure
 
 &AtServer
 Procedure applyStatusFilter()
-	
+
 	setView();
 	filterByStatus();
-	
+
 EndProcedure
 
 &AtServer
 Procedure filterByStatus()
-	
+
 	if (StatusFilter = 2) then
 		DC.ChangeFilter(List, "Locked", 1, true, DataCompositionComparisonType.NotEqual);
 	else
 		DC.ChangeFilter(List, "Locked", StatusFilter, StatusFilter <> 0);
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure DeletionFilterOnChange(Item)
-	
+
 	filterByDeletion();
-	
+
 EndProcedure
 
 &AtClient
 Procedure TagsFilterOnChange(Item)
-	
+
 	applyTagsFilter();
-	
+
 EndProcedure
 
 &AtServer
 Procedure applyTagsFilter()
-	
+
 	setView();
 	filterByTag();
-	
+
 EndProcedure
 
 &AtServer
 Procedure filterByTag()
-	
+
 	tags = gatherTags();
 	DC.ChangeFilter(List, "Tag", gatherKeys(Tags), tags.Count() > 0, DataCompositionComparisonType.InList);
-	
+
 EndProcedure
 
 &AtServer
 Function gatherTags()
-	
+
 	set = new Array();
 	for each item in TagsFilter do
 		if (item.Check) then
@@ -1431,12 +1432,12 @@ Function gatherTags()
 		endif;
 	enddo;
 	return set;
-	
+
 EndFunction
 
 &AtServer
 Function gatherKeys(Tags)
-	
+
 	if (Tags.Count() = 0) then
 		result = new Array();
 	else
@@ -1462,22 +1463,22 @@ Function gatherKeys(Tags)
 		result = q.Execute().Unload().UnloadColumn("Ref");
 	endif;
 	return result;
-	
+
 EndFunction
 
 &AtClient
 Procedure TagsFilterBeforeRowChange(Item, Cancel)
-	
+
 	if (Item.CurrentItem.Name = "TagsFilterValue") then
 		Cancel = true;
 		toggleTagsFilter();
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure toggleTagsFilter()
-	
+
 	row = Items.TagsFilter.CurrentData;
 	// The code does not work in 8.3.11.2924:
 	// row.Check = not row.Check;
@@ -1485,29 +1486,28 @@ Procedure toggleTagsFilter()
 	// Workaround is used:
 	TagsFilter.FindByValue(row.Value).Check = not row.Check;
 	applyTagsFilter();
-	
+
 EndProcedure
 
 // *****************************************
 // *********** Group List
-
 &AtClient
 Procedure SetCurrent(Command)
-	
+
 	Environment.ChangeApplication(ApplicationFilter);
-	
+
 EndProcedure
 
 &AtClient
 Procedure OpenHere(Command)
-	
+
 	applyScenario(TableRow.Ref);
-	
+
 EndProcedure
 
 &AtClient
 Procedure applyScenario(Scenario)
-	
+
 	if (Scenario = Object.Ref) then
 		return;
 	endif;
@@ -1519,46 +1519,46 @@ Procedure applyScenario(Scenario)
 	ScenariosPanel.Push(ThisObject);
 	setTitle();
 	activateEditor();
-	
+
 EndProcedure
 
 &AtClient
 Procedure FindMain(Command)
-	
+
 	findHead();
-	
+
 EndProcedure
 
 &AtClient
 Procedure findHead()
-	
+
 	if (SessionScenario.IsEmpty()) then
 		Output.MainScenarioUndefined();
 	else
 		Items.List.CurrentRow = SessionScenario;
 		activateList();
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure RefreshList(Command)
-	
+
 	Items.List.Refresh();
-	
+
 EndProcedure
 
 &AtClient
 Procedure ListOnActivateRow(Item)
-	
+
 	TableRow = Item.CurrentData;
 	AttachIdleHandler("showCode", 0.1, true);
-	
+
 EndProcedure
 
 &AtClient
 Procedure showCode() export
-	
+
 	if (TableRow = undefined) then
 		CodePreview = "";
 		return;
@@ -1568,12 +1568,12 @@ Procedure showCode() export
 	endif;
 	OldScenario = TableRow.Ref;
 	CodePreview = preview(OldScenario, adjustText(Items.QuickFilter.EditText));
-	
+
 EndProcedure
 
 &AtClientAtServerNoContext
 Function adjustText(Text)
-	
+
 	if (IsBlankString(Text)) then
 		return "";
 	endif;
@@ -1586,28 +1586,28 @@ Function adjustText(Text)
 		s = s + " " + part;
 	enddo;
 	return Mid(s, 2);
-	
+
 EndFunction
 
 &AtServerNoContext
 Function preview(val Scenario, val Highlighting) export
-	
+
 	return "
-	|<html>
-	|<head>
-	|<style>" + styles() + "</style>
-	|<script type=""text/javascript"">" + scripts() + "</script>
-	|</head>
-	|<body onload=""highlightWord('" + Highlighting + "')"">
-	|<pre>" + body(Scenario) + "</pre>
-	|</body>
-	|</html>";
-	
+		|<html>
+		|<head>
+		|<style>" + styles() + "</style>
+		|<script type=""text/javascript"">" + scripts() + "</script>
+		|</head>
+		|<body onload=""highlightWord('" + Highlighting + "')"">
+		|<pre>" + body(Scenario) + "</pre>
+		|</body>
+		|</html>";
+
 EndFunction
 
 &AtServerNoContext
 Function styles()
-	
+
 	s = "
 		|.yellow{
 		|	background-color:yellow;
@@ -1615,12 +1615,12 @@ Function styles()
 		|}
 		|";
 	return s;
-	
+
 EndFunction
 
 &AtServerNoContext
 Function scripts()
-	
+
 	s = "
 		|function highlightWord(searchString) {
 		|	if ( searchString == '' ) return;
@@ -1653,40 +1653,39 @@ Function scripts()
 		|}
 		|";
 	return s;
-	
+
 EndFunction
 
 &AtServerNoContext
 Function body(val Scenario)
-	
+
 	body = DF.Pick(Scenario, "Script");
 	return Conversion.XMLToStandard(body);
-	
+
 EndFunction
 
 &AtClient
 Procedure ListSelection(Item, SelectedRow, Field, StandardProcessing)
-	
+
 	if (hierarchy()) then
 		StandardProcessing = false;
 		processHierarchy();
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Function hierarchy()
-	
+
 	type = TableRow.Type;
-	return TableRow.Tree
-	and (type = PredefinedValue("Enum.Scenarios.Folder")
-			or type = PredefinedValue("Enum.Scenarios.Library"));
-	
+	return TableRow.Tree and (type = PredefinedValue("Enum.Scenarios.Folder")
+		or type = PredefinedValue("Enum.Scenarios.Library"));
+
 EndFunction
 
 &AtClient
 Procedure processHierarchy()
-	
+
 	tree = Items.List;
 	row = tree.CurrentRow;
 	if (tree.Expanded(row)) then
@@ -1694,30 +1693,29 @@ Procedure processHierarchy()
 	else
 		tree.Expand(row);
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure ListDrag(Item, DragParameters, StandardProcessing, Row, Field)
-	
+
 	ScenarioForm.ListDrag(ThisObject, DragParameters, StandardProcessing, Row);
-	
+
 EndProcedure
 
 // *****************************************
 // *********** Table FieldsTable
-
 &AtClient
 Procedure FetchFields(Command)
-	
+
 	fill(false);
 	expandTree();
-	
+
 EndProcedure
 
 &AtClient
 Procedure fill(ActiveOnly)
-	
+
 	scenario = Object.Ref;
 	if (not Test.AttachApplication(scenario)) then
 		return;
@@ -1726,22 +1724,22 @@ Procedure fill(ActiveOnly)
 	initTree();
 	source = ?(ActiveOnly, App.GetActiveWindow(), App);
 	fillTree(FieldsTable.GetItems(), source.GetChildObjects());
-	
+
 EndProcedure
 
 &AtClient
 Procedure initTree()
-	
+
 	rows = FieldsTable.GetItems();
 	rows.Clear();
 	FieldsMap = new Map();
 	TestedForm = undefined;
-	
+
 EndProcedure
 
 &AtClient
 Procedure fillTree(Rows, Objects)
-	
+
 	form = PredefinedValue("Enum.Controls.Form");
 	for each obj in Objects do
 		try
@@ -1766,27 +1764,27 @@ Procedure fillTree(Rows, Objects)
 			TestedForm = obj;
 		endif;
 	enddo;
-	
+
 EndProcedure
 
 &AtClient
 Procedure FetchActive(Command)
-	
+
 	fill(true);
 	expandTree();
-	
+
 EndProcedure
 
 &AtClient
 Procedure Sync(Command)
-	
+
 	syncItem();
-	
+
 EndProcedure
 
 &AtClient
 Procedure syncItem()
-	
+
 	if (TestedForm = undefined) then
 		return;
 	endif;
@@ -1801,37 +1799,37 @@ Procedure syncItem()
 			break;
 		endif;
 	enddo;
-	
+
 EndProcedure
 
 &AtClient
 Procedure Expand(Command)
-	
+
 	expandTree();
-	
+
 EndProcedure
 
 &AtClient
 Procedure expandTree()
-	
+
 	tree = Items.FieldsTable;
 	rows = FieldsTable.GetItems();
 	for each row in rows do
 		tree.Expand(row.GetID(), true);
 	enddo;
-	
+
 EndProcedure
 
 &AtClient
 Procedure Collapse(Command)
-	
+
 	collapseTree(FieldsTable.GetItems());
-	
+
 EndProcedure
 
 &AtClient
 Procedure collapseTree(Rows)
-	
+
 	tree = Items.FieldsTable;
 	for each row in rows do
 		next = row.GetItems();
@@ -1840,21 +1838,20 @@ Procedure collapseTree(Rows)
 		endif;
 		tree.Collapse(row.GetID());
 	enddo;
-	
+
 EndProcedure
 
 &AtClient
 Procedure ExpressionOnChange(Item)
-	
+
 	calcResult();
-	
+
 EndProcedure
 
 &AtClient
 Procedure calcResult()
-	
-	if (FieldsRow = undefined
-			or IsBlankString(Expression)) then
+
+	if (FieldsRow = undefined or IsBlankString(Expression)) then
 		ExpressionResult = "";
 	else
 		try
@@ -1863,30 +1860,29 @@ Procedure calcResult()
 			ExpressionResult = BriefErrorDescription(ErrorInfo());
 		endtry;
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure ExpressionStartChoice(Item, ChoiceData, StandardProcessing)
-	
+
 	StandardProcessing = false;
 	calcResult();
-	
+
 EndProcedure
 
 &AtClient
 Procedure FieldsTableOnActivateRow(Item)
-	
+
 	FieldsRow = Item.CurrentData;
 	AttachIdleHandler("activateItem", 0.1, true);
-	
+
 EndProcedure
 
 &AtClient
 Procedure activateItem() export
-	
-	if (App = undefined
-			or FieldsRow = undefined) then
+
+	if (App = undefined or FieldsRow = undefined) then
 		return;
 	endif;
 	field = FieldsMap[FieldsRow.GetID()];
@@ -1896,37 +1892,37 @@ Procedure activateItem() export
 		except
 		endtry;
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure FieldsTableSelection(Item, SelectedRow, Field, StandardProcessing)
-	
+
 	StandardProcessing = false;
 	ScenarioForm.OpenAssistant(Items.FieldsTable, Items.FieldsTableName, true);
-	
+
 EndProcedure
 
 &AtClient
 Procedure FieldsTableChoiceProcessing(Item, SelectedValue, StandardProcessing)
-	
+
 	StandardProcessing = false;
 	applyAction(SelectedValue);
-	
+
 EndProcedure
 
 &AtClient
 Procedure applyAction(Action)
-	
+
 	withActiveForm();
 	error = not ScenarioForm.ApplyAction(Action);
 	applyAssistant(Action.Expression, true, error);
-	
+
 EndProcedure
 
 &AtClient
 Procedure withActiveForm()
-	
+
 	form = PredefinedValue("Enum.Controls.Form");
 	row = FieldsRow;
 	while (row <> undefined) do
@@ -1936,32 +1932,31 @@ Procedure withActiveForm()
 		endif;
 		row = row.GetParent();
 	enddo;
-	
+
 EndProcedure
 
 // *****************************************
 // *********** Group Template
-
 &AtClient
 Procedure TabDocOnChange(Item)
-	
+
 	TemplateChanged = true;
 	entitleTemplate(ThisObject);
 	restoreAreas();
 	markAreas();
-	
+
 EndProcedure
 
 &AtClient
 Procedure UseTemplate(Command)
-	
+
 	openReplacement();
-	
+
 EndProcedure
 
 &AtClient
 Procedure openReplacement()
-	
+
 	if (isPicture(TabDoc.CurrentArea)) then
 		return;
 	endif;
@@ -1971,25 +1966,25 @@ Procedure openReplacement()
 	endif;
 	p = new Structure("Text", text);
 	OpenForm("Catalog.Scenarios.Form.Template", p, Items.TabDoc, , , , new NotifyDescription("ApplyTemplate", ThisObject, text));
-	
+
 EndProcedure
 
 &AtClient
 Function isPicture(Area)
-	
+
 	try
-		//@skip-warning
+	//@skip-warning
 		text = Area.Text;
 	except
 		return true;
 	endtry;
 	return false;
-	
+
 EndFunction
 
 &AtClient
 Procedure ApplyTemplate(Result, Text) export
-	
+
 	if (Result = undefined) then
 		return;
 	endif;
@@ -2011,29 +2006,29 @@ Procedure ApplyTemplate(Result, Text) export
 	else
 		replaceValue(TabDoc.CurrentArea, template, marker);
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure replaceValue(Area, Text, Marker)
-	
+
 	Area.Text = Text;
 	if (Marker <> undefined) then
 		Area.TextColor = Marker;
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure CheckArea(Command)
-	
+
 	attachAreas();
-	
+
 EndProcedure
 
 &AtClient
 Procedure attachAreas()
-	
+
 	names = new Array();
 	for each area in TabDoc.SelectedAreas do
 		if (isPicture(area)) then
@@ -2054,20 +2049,20 @@ Procedure attachAreas()
 	if (names.Count() > 0) then
 		markAreas(names);
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure ClearAreas(Command)
-	
+
 	restoreAreas();
 	Object.Areas.Clear();
-	
+
 EndProcedure
 
 &AtServer
 Procedure restoreAreas(Name = undefined)
-	
+
 	savedAreas = getSavedAreas();
 	if (savedAreas.Count() = 0) then
 		return;
@@ -2083,12 +2078,12 @@ Procedure restoreAreas(Name = undefined)
 		savedAreas.Delete(Name);
 		saveAreas(savedAreas);
 	endif;
-	
+
 EndProcedure
 
 &AtServer
 Procedure unmarkArea(Source, Name)
-	
+
 	receiver = TabDoc.Area(Name);
 	for i = 1 to source.TableHeight do
 		for j = 1 to source.TableWidth do
@@ -2103,19 +2098,19 @@ Procedure unmarkArea(Source, Name)
 			receiverCell.BorderColor = sourceCell.BorderColor;
 		enddo;
 	enddo;
-	
+
 EndProcedure
 
 &AtClient
 Procedure RemoveArea(Command)
-	
+
 	detachAreas();
-	
+
 EndProcedure
 
 &AtClient
 Procedure detachAreas()
-	
+
 	areas = Object.Areas;
 	for each area in TabDoc.SelectedAreas do
 		if (isPicture(area)) then
@@ -2127,8 +2122,8 @@ Procedure detachAreas()
 				while (k > 0) do
 					k = k - 1;
 					row = areas[k];
-					if (row.Top <= i and i <= row.Bottom
-							and row.Left <= j and j <= row.Right) then
+					if (row.Top <= i and i <= row.Bottom and row.Left <= j
+							and j <= row.Right) then
 						restoreAreas(row.Name);
 						areas.Delete(k);
 					endif;
@@ -2136,39 +2131,38 @@ Procedure detachAreas()
 			enddo;
 		enddo;
 	enddo;
-	
+
 EndProcedure
 
 &AtClient
 Procedure ClearTabDoc(Command)
-	
+
 	deleteTabDoc();
 	TemplateChanged = true;
 	entitleTemplate(ThisObject);
-	
+
 EndProcedure
 
 &AtServer
 Procedure deleteTabDoc()
-	
+
 	Object.Areas.Clear();
 	TabDoc.Clear();
-	
+
 EndProcedure
 
 // *****************************************
 // *********** Tags
-
 &AtClient
 Procedure AddTag(Command)
-	
+
 	selectTag();
-	
+
 EndProcedure
 
 &AtClient
 Procedure selectTag()
-	
+
 	callback = new NotifyDescription("TagSelected", ThisObject);
 	tags = getTags(Items.TagsList.ChoiceList.UnloadValues());
 	menu = tags.Count();
@@ -2182,12 +2176,12 @@ Procedure selectTag()
 	else
 		ShowChooseFromMenu(callback, tags);
 	endif;
-	
+
 EndProcedure
 
 &AtServerNoContext
 Function getTags(val SelectedTags)
-	
+
 	s = "
 		|select Tags.Description as Description
 		|from Catalog.Tags as Tags
@@ -2201,32 +2195,32 @@ Function getTags(val SelectedTags)
 	list = new ValueList();
 	list.LoadValues(tags);
 	if (AccessRight("Edit", Metadata.Catalogs.Tags)) then
-		list.Add( , Output.NewTag(), , PictureLib.CreateListItem);
+		list.Add(, Output.NewTag(), , PictureLib.CreateListItem);
 	endif;
 	return list;
-	
+
 EndFunction
 
 &AtClient
 Procedure newTag()
-	
+
 	callback = new NotifyDescription("TagCreated", ThisObject);
 	OpenForm("Catalog.Tags.ObjectForm", , ThisObject, , , , callback);
-	
+
 EndProcedure
 
 &AtClient
 Procedure TagCreated(Tag, Params) export
-	
-	// For backward compatibility with versions < 8.3.11
+
+// For backward compatibility with versions < 8.3.11
 	//@skip-warning
 	noerrorshere = true;
-	
+
 EndProcedure
 
 &AtClient
 Procedure TagSelected(Tag, Params) export
-	
+
 	if (Tag = undefined) then
 		return;
 	endif;
@@ -2236,59 +2230,58 @@ Procedure TagSelected(Tag, Params) export
 	else
 		insertTag(value, Items.TagsList.ChoiceList);
 	endif;
-	
+
 EndProcedure
 
 &AtClient
 Procedure TagsListOnChange(Item)
-	
+
 	Output.TagRemovingConfirmation(ThisObject);
-	
+
 EndProcedure
 
 &AtClient
 Procedure TagRemovingConfirmation(Answer, Params) export
-	
+
 	if (Answer = DialogReturnCode.Yes) then
 		removeTag();
 	endif;
 	TagsList = "";
-	
+
 EndProcedure
 
 &AtClient
 Procedure removeTag()
-	
+
 	set = Items.TagsList.ChoiceList;
 	set.Delete(set.FindByValue(TagsList));
-	
+
 EndProcedure
 
 // *****************************************
 // *********** Access
-
 &AtClient
 Procedure AccessOnChange(Item)
-	
+
 	applyAccess();
-	
+
 EndProcedure
 
 &AtClient
 Procedure applyAccess()
-	
+
 	if (Object.Access) then
 		defaultAccess();
 	else
 		Object.Users.Clear();
 	endif;
 	Appearance.Apply(ThisObject, "Object.Access");
-	
+
 EndProcedure
 
 &AtClient
 Procedure defaultAccess()
-	
+
 	table = Object.Users;
 	if (table.Count() <> 0) then
 		return;
@@ -2301,6 +2294,6 @@ Procedure defaultAccess()
 		row = table.Add();
 		row.User = user;
 	endif;
-	
+
 EndProcedure
 

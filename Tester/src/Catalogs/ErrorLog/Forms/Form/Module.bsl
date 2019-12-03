@@ -6,6 +6,7 @@ Procedure OnReadAtServer ( CurrentObject )
 
 	readApplication ();
 	setScreenshot ();
+	setTitle ();
 	ErrorLogForm.UpdateStack ( Object.Ref, Stack );
 	AppearanceSrv.Read ( ThisObject );
 	Appearance.Apply ( ThisObject );
@@ -28,6 +29,13 @@ Procedure setScreenshot ()
 		Screenshot = "";
 	endif; 
 
+EndProcedure
+
+&AtServer
+Procedure setTitle ()
+	
+	Title = Title + ": " + Object.Date;
+	
 EndProcedure 
 
 // *****************************************

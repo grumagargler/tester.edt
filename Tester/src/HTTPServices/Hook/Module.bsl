@@ -1,18 +1,19 @@
 
 Function NotifyTester ( Request )
 
-	create ( Request.GetBodyAsString () );
+	create ( Request );
 	response = new HTTPServiceResponse ( 200 );
 	return response;
 
 EndFunction
 
-Procedure create ( Params )
+Procedure create ( Request )
 	
+	params = new Structure ( "Headers, Body", Request.Headers, Request.GetBodyAsString () );
 	jobKey = "Webhook";
 	if ( Jobs.GetBackground ( jobKey ) = undefined ) then
 		p = new Array ();
-		p.Add ( Params );
+		p.Add ( params );
 		BackgroundJobs.Execute ( "Webhook.Go", p, jobKey );
 	endif;
 	
