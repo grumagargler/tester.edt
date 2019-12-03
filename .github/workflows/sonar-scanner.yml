@@ -19,7 +19,7 @@ jobs:
       uses: Legion2/download-release-action@v2.1.0
       with:
         repository: 1c-syntax/bsl-language-server
-        teg: latest
+        tag: latest
         file: bsl-language-server-0.12.3.jar
     - name: Setup SonarQube scanner
       uses: warchant/setup-sonar-scanner@v1
