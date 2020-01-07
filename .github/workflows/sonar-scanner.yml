@@ -15,14 +15,24 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+    - name: Download BSL LS Release
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: 1c-syntax/bsl-language-server
+        tag: latest
+        file: bsl-language-server-0.12.3.jar
     - name: Setup SonarQube scanner
       uses: warchant/setup-sonar-scanner@v1
+    - name: Run BSL LS
+      run: java -jar bsl-language-server-0.12.3.jar --analyze --srcDir ./Tester --reporter json -c ./.bsl-language-server.json
     - name: Run SonarQube on push
       if: github.event_name == 'push'
       run: sonar-scanner
         -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         -Dsonar.host.url=https://sonar.openbsl.ru
         -Dsonar.branch.name=${GITHUB_REF#refs/heads/}
+        -Dsonar.bsl.languageserver.enabled=false
+        -Dsonar.bsl.languageserver.reportPaths=./bsl-json.json
     - name: Run SonarQube on pull request
       if: github.event_name == 'pull_request'
       run: sonar-scanner
@@ -32,3 +42,5 @@ jobs:
         -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
         -Dsonar.pullrequest.branch=${{ github.event.pull_request.head.ref }}
         -Dsonar.pullrequest.base=${{ github.event.pull_request.base.ref }}
+        -Dsonar.bsl.languageserver.enabled=false
+        -Dsonar.bsl.languageserver.reportPaths=./bsl-json.json
