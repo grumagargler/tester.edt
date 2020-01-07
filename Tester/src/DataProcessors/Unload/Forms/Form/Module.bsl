@@ -19,6 +19,8 @@ var FolderSuffix;
 &AtClient
 var MXLExtension;
 &AtClient
+var JSONExtension;
+&AtClient
 var ContinueUnloading;
 &AtClient
 var CurrentIndex;
@@ -49,60 +51,28 @@ EndProcedure
 Procedure loadRepositories ()
 	
 	if ( silentMode ( Parameters ) ) then
-		s = "
-		|select &Application as Application, Repositories.Folder as Folder, true as Use, Nodes.Ref as Node
-		|from ExchangePlan.Changes as Nodes
-		|	//
-		|	// Repositories
-		|	//
-		|	left join InformationRegister.Repositories as Repositories
-		|	on Repositories.User = &User
-		|	and Repositories.Computer = &Computer
-		|	and Repositories.Application = &Application
-		|where Nodes.User = &User
-		|and Nodes.Application = &Application
-		|and not Nodes.DeletionMark
-		|";
+		s = "select Repositories.Application as Application, Repositories.Folder as Folder, true as Use, Repositories.Ref as Node
+		|from ExchangePlan.Repositories as Repositories
+		|where Repositories.Session = &Session
+		|and not Repositories.DeletionMark
+		|and Repositories.Mapping";
 	else
-		s = "
-		|select allowed Applications.Ref as Application, Repositories.Folder as Folder,
-		|	case when Settings.Application is null then false else true end as Use,
-		|	Nodes.Ref as Node
-		|from (
-		|	select value ( Catalog.Applications.EmptyRef ) as Ref
-		|	union all
-		|	select Applications.Ref
-		|	from Catalog.Applications as Applications
-		|	where not Applications.DeletionMark
-		|	and not Applications.IsFolder
-		|	) as Applications
-		|	//
-		|	// Repositories
-		|	//
-		|	left join InformationRegister.Repositories as Repositories
-		|	on Repositories.User = &User
-		|	and Repositories.Computer = &Computer
-		|	and Repositories.Application = Applications.Ref
+		s = "select allowed Repositories.Application as Application, Repositories.Folder as Folder,
+		|	case when Settings.Application is null then false else true end as Use, Repositories.Ref as Node
+		|from ExchangePlan.Repositories as Repositories
 		|	//
 		|	// Settings
 		|	//
 		|	left join InformationRegister.Applications as Settings
 		|	on Settings.User = &User
-		|	and Settings.Application = Applications.Ref
-		|	//
-		|	// Nodes
-		|	//
-		|	join ExchangePlan.Changes as Nodes
-		|	on Nodes.User = &User
-		|	and Nodes.Application = Applications.Ref
-		|	and not Nodes.DeletionMark
-		|order by Application
-		|";
+		|	and Settings.Application = Repositories.Application
+		|where Repositories.Session = &Session
+		|and not Repositories.DeletionMark
+		|order by Application";
 	endif;
 	q = new Query ( s );
 	q.SetParameter ( "User", SessionParameters.User );
-	q.SetParameter ( "Computer", SessionData.Computer () );
-	q.SetParameter ( "Application", Parameters.Application );
+	q.SetParameter ( "Session", SessionParameters.Session );
 	Object.Repositories.Load ( q.Execute ().Unload () );
 	
 EndProcedure 
@@ -128,13 +98,14 @@ Procedure setConstants ()
 	Slash = GetPathSeparator ();
 	FolderSuffix = RepositoryFiles.FolderSuffix ();
 	MXLExtension = RepositoryFiles.MXLFile ();
+	JSONExtension = RepositoryFiles.JSONFile ();
 	
 EndProcedure 
 
 &AtClientAtServerNoContext
 Function silentMode ( Parameters )
 	
-	return Parameters.Application <> undefined;
+	return Parameters.Silent;
 	
 EndFunction
 
@@ -154,7 +125,6 @@ EndProcedure
 Procedure prepareScenarios ()
 	
 	init ();
-	RepositoryForm.SavePaths ( Object );
 	fillScenarios ();
 	
 EndProcedure 
@@ -206,8 +176,8 @@ Procedure fillScenarios ()
 				or CurrentData.DeletionMark ) then
 				addDeletion ();
 			else
+				addRenaming ();
 				if ( CurrentData.Application = CurrentApplication ) then
-					addRenaming ();
 					addScenario ();
 				endif; 
 			endif; 
@@ -222,7 +192,7 @@ EndProcedure
 Function getChanges ()
 	
 	if ( not Object.Changes ) then
-		ExchangePlans.Changes.Reset ( Node );
+		ExchangePlans.Repositories.Reset ( Node );
 	endif; 
 	return ExchangePlans.SelectChanges ( Node, Node.SentNo );
 	
@@ -233,33 +203,31 @@ Procedure addDeletion ()
 	
 	if ( DataType = DeletionType ) then
 		id = CurrentData.Ref.UUID ();
-		RemovingSet.Add ( id );
-		r = InformationRegisters.Removing.Get ( new Structure ( "User, ID", SessionParameters.User, id ) );
-		if ( r.Application <> CurrentApplication ) then
+		r = InformationRegisters.Removing.Get ( new Structure ( "Repository, ID", Node, id ) );
+		if ( r.path = "" ) then
 			return;
 		endif; 
+		RemovingSet.Add ( new Structure ( "ID, Repository", id, Node ) );
 		path = r.Path;
 		tree = r.Tree;
-		type = r.Type;
 	else
 		path = CurrentData.Path;
 		tree = CurrentData.Tree;
-		type = CurrentData.Type;
 	endif;
 	if ( scenarioRecreated ( path, tree ) ) then
 		return;
 	endif; 
 	row = AllScenarios.Add ();
 	row.Application = CurrentApplication;
-	row.Delete = deletedFile ( path, tree, type );
+	row.Delete = deletedFile ( path );
 	ScenariosCounter = ScenariosCounter + 1;
 
 EndProcedure
 
 &AtServer
-Function deletedFile ( Path, Tree, Type )
+Function deletedFile ( Path )
 	
-	return StrReplace ( Path, ".", Slash ) + RepositoryFiles.TypeToExtension ( Type );
+	return StrReplace ( Path, ".", Slash ) + ".*";
 	
 EndFunction 
 
@@ -277,8 +245,7 @@ EndFunction
 Procedure addRenaming ()
 	
 	id = CurrentData.Ref.UUID ();
-	RemovingSet.Add ( id );
-	r = InformationRegisters.Removing.Get ( new Structure ( "User, ID", SessionParameters.User, id ) );
+	r = InformationRegisters.Removing.Get ( new Structure ( "Repository, ID", Node, id ) );
 	path = r.Path;
 	tree = r.Tree;
 	if ( path = ""
@@ -287,7 +254,8 @@ Procedure addRenaming ()
 	endif; 
 	row = AllScenarios.Add ();
 	row.Application = CurrentApplication;
-	row.Delete = deletedFile ( path, tree, r.Type );
+	row.Delete = deletedFile ( path );
+	RemovingSet.Add ( new Structure ( "ID, Repository", id, Node ) );
 		
 EndProcedure 
 
@@ -354,10 +322,9 @@ EndProcedure
 &AtClient
 Procedure createSystemFolders ()
 	
-	folder = RepositoryFiles.SystemFolder ();
 	stub = new NotifyDescription ( "Stub", ThisObject );
 	for each root in Roots do
-		BeginCreatingDirectory ( stub, root.Value + slash + folder );
+		BeginCreatingDirectory ( stub, root.Value + slash + TesterSystemFolder );
 	enddo;
 	
 EndProcedure
@@ -384,8 +351,8 @@ Procedure unloadScenarios ()
 	ProgressBar = ProgressBar + 1;
 	RefreshDataRepresentation ( Items.ProgressBar );
 	if ( CurrentIndex > LastIndex ) then
-		deleteRecords ();
 		toggleWatching ( true );
+		deleteRecords ();
 		showInfo ();
 		return;
 	endif; 
@@ -393,10 +360,11 @@ Procedure unloadScenarios ()
 	root = Roots [ row.Application ];
 	if ( row.Delete = "" ) then
 		data = scenarioData ( row.Scenario );
-		p = new Structure ( "Root, Data", root, data );
+		p = new Structure ( "Root, Data, BaseName", root, data );
+		p.BaseName = getBaseName ( p );
 		createFolder ( p );
 	else
-		BeginDeletingFiles ( ContinueUnloading, root + Slash + row.Delete );
+		BeginDeletingFiles ( ContinueUnloading, root, row.Delete );
 	endif; 
 	
 EndProcedure 
@@ -417,11 +385,10 @@ EndProcedure
 &AtServer
 Procedure commitRemoving ()
 	
-	user = SessionParameters.User;
-	for each id in RemovingIDs do
+	for each record in RemovingIDs do
 		r = InformationRegisters.Removing.CreateRecordManager ();
-		r.User = user;
-		r.ID = id;
+		r.Repository = record.Repository;
+		r.ID = record.ID;
 		r.Delete ();
 	enddo; 
 	
@@ -450,17 +417,36 @@ EndProcedure
 Function scenarioData ( val Scenario )
 	
 	data = new Structure ();
+	data.Insert ( "Version", "1.3.4.6" );
 	data.Insert ( "Path", Scenario.Path );
 	data.Insert ( "Script", Scenario.Script );
 	data.Insert ( "Spreadsheet", Scenario.Spreadsheet );
 	data.Insert ( "Template", getTemplate ( Scenario ) );
 	data.Insert ( "Type", Scenario.Type );
+	data.Insert ( "TypeID", Conversion.EnumToName ( Scenario.Type ) );
 	data.Insert ( "Tree", Scenario.Tree );
-	changed = Scenario.Changed;
-	data.Insert ( "Changed", ? ( changed = Date ( 1, 1, 1 ), Date ( 2000, 1, 1 ), changed ) );
+	data.Insert ( "Creator", String ( Scenario.Creator ) );
+	data.Insert ( "LastCreator", String ( Scenario.LastCreator ) );
+	data.Insert ( "Severity", Conversion.EnumToName ( Scenario.Severity ) );
+	data.Insert ( "Tags", getTags ( Scenario ) );
+	data.Insert ( "Memo", Scenario.Memo );
+	changed = ? ( Scenario.Changed = Date ( 1, 1, 1 ), Date ( 2000, 1, 1 ), Scenario.Changed );
+	data.Insert ( "Changed", changed );
 	return data;
 	
-EndFunction 
+EndFunction
+
+&AtServerNoContext
+Function getTags ( Scenario )
+
+	s = "select Tags.Tag.Description as Tag
+	|from Catalog.TagKeys.Tags as Tags
+	|where Tags.Ref = &Key";
+	q = new Query ( s );
+	q.SetParameter ( "Key", Scenario.Tag );
+	return q.Execute ().Unload ().UnloadColumn ( "Tag" );
+	
+EndFunction
 
 &AtServerNoContext
 Function getTemplate ( Scenario )
@@ -490,6 +476,20 @@ Function serializeAreas ( Scenario )
 EndFunction 
 
 &AtClient
+Function getBaseName ( Params )
+	
+	data = Params.Data;
+	path = data.Path;
+	file = Params.Root + Slash + StrReplace ( path, ".", Slash );
+	if ( data.Tree ) then
+		dirname = Mid ( path, 1 + StrFind ( path, ".", SearchDirection.FromEnd ) ) + FolderSuffix;
+		file = file + Slash + dirname;
+	endif;
+	return file;
+	
+EndFunction 
+
+&AtClient
 Procedure createFolder ( Params )
 	
 	data = Params.Data;
@@ -514,9 +514,8 @@ EndProcedure
 &AtClient
 Procedure createScript ( Params )
 	
-	baseName = getBaseName ( Params );
 	data = Params.Data;
-	file = baseName + RepositoryFiles.TypeToExtension ( data.Type );
+	file = Params.BaseName + RepositoryFiles.BSLFile ();
 	p = new Structure ( "File, Params", file, Params );
 	doc = new TextDocument ();
 	doc.SetText ( data.Script );
@@ -525,31 +524,55 @@ Procedure createScript ( Params )
 EndProcedure 
 
 &AtClient
-Function getBaseName ( Params )
-	
-	data = Params.Data;
-	path = data.Path;
-	file = Params.Root + Slash + StrReplace ( path, ".", Slash );
-	if ( data.Tree ) then
-		dirname = Mid ( path, 1 + StrFind ( path, ".", SearchDirection.FromEnd ) ) + FolderSuffix;
-		file = file + Slash + dirname;
-	endif;
-	return file;
-	
-EndFunction 
-
-&AtClient
 Procedure ScriptCreated ( Result, Params ) export
 	
 	p = Params.Params;
-	callback = new NotifyDescription ( "SettingModificationUniversalTime", ThisObject, p );
+	callback = new NotifyDescription ( "ScriptTimeChanged", ThisObject, p );
 	file = new File ( Params.File );
 	file.BeginSettingModificationUniversalTime ( callback, p.Data.Changed );
 
 EndProcedure 
 
 &AtClient
-Procedure SettingModificationUniversalTime ( Params ) export
+Procedure ScriptTimeChanged ( Params ) export
+	
+	createPropeties ( Params );
+	
+EndProcedure
+
+&AtClient
+Procedure createPropeties ( Params )
+	
+	data = Params.Data;
+	file = Params.BaseName + JSONExtension;
+	p = new Structure ( "File, Params", file, Params );
+	doc = new TextDocument ();
+	properties = new Structure ( "Version, Type, Tree, Severity, Creator, LastCreator, Memo, Tags" );
+	properties.Version = data.Version;
+	properties.Type = data.TypeID;
+	properties.Tree = data.Tree;
+	properties.Severity = ? ( data.Severity = undefined, "", data.Severity );
+	properties.Creator = data.Creator;
+	properties.LastCreator = data.LastCreator;
+	properties.Memo = data.Memo;
+	properties.Tags = data.Tags;
+	doc.SetText ( Conversion.ToJSON ( properties ) );
+	doc.BeginWriting ( new NotifyDescription ( "PropertiesCreated", ThisObject, p ), file );
+		
+EndProcedure 
+
+&AtClient
+Procedure PropertiesCreated ( Result, Params ) export
+	
+	p = Params.Params;
+	callback = new NotifyDescription ( "PropertiesTimeChanged", ThisObject, p );
+	file = new File ( Params.File );
+	file.BeginSettingModificationUniversalTime ( callback, p.Data.Changed );
+
+EndProcedure
+
+&AtClient
+Procedure PropertiesTimeChanged ( Params ) export
 	
 	createSpreadsheet ( Params );
 	
@@ -558,8 +581,7 @@ EndProcedure
 &AtClient
 Procedure createSpreadsheet ( Params )
 	
-	baseName = getBaseName ( Params );
-	file = baseName + MXLExtension;
+	file = Params.BaseName + MXLExtension;
 	data = Params.Data;
 	if ( data.Spreadsheet ) then
 		data.Template.Write ( file );

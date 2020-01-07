@@ -1,3 +1,21 @@
+&AtClient
+Function CheckSyntax(val Code, val Scenario = undefined) export
+	
+	//@skip-warning
+	var _, _procedures, _oldSource, this, тут, Chronograph, Хронограф;
+	program = Compiler.SyntaxCode(code);
+	try
+		Execute ( program.Client );
+		if ( program.Server <> undefined ) then
+			RuntimeSrv.CheckSyntax ( program.Server );
+		endif; 
+	except
+		return BriefErrorDescription ( ErrorInfo () ) + ? ( Scenario = undefined, "", " (" + Scenario + ")" );
+	endtry;
+	return undefined;
+	
+EndFunction
+
 Function RunScript(val Code, val Params = undefined, DebugInfo = undefined, val _Scenario = undefined) export
 	
 	result = undefined;
@@ -35,8 +53,10 @@ Function RunScript(val Code, val Params = undefined, DebugInfo = undefined, val 
 	endif;
 	#region ExecutionContext
 	_errorInfo = undefined;
+	_header = StrFind(Code, Chars.LF);
 	try
-		Execute(Code);
+		Execute(Left(Code, _header));
+		Execute(Mid(Code, _header));
 	except
 		_errorInfo = ErrorInfo();
 		#if ( Client ) then
@@ -140,18 +160,6 @@ Procedure Exec(SessionApplication = undefined, ProgramCode = undefined, ResetDeb
 	endif;
 	scenario = AppData.Scenario;
 	result = Compiler.Build(scenario, ProgramCode);
-	try
-		Runtime.RunScript(result.ClientSyntax);
-	except
-		Runtime.ThrowError(BriefErrorDescription(ErrorInfo()), Debug);
-	endtry;
-	if (result.ServerSyntax <> undefined) then
-		try
-			RuntimeSrv.CheckSyntax(result.ServerSyntax);
-		except
-			Runtime.ThrowError(BriefErrorDescription(ErrorInfo()), Debug);
-		endtry;
-	endif;
 	Runtime.RunScript(result.Compiled, , , scenario);
 	#if ( Client ) then
 	Runtime.StopSession();
@@ -265,7 +273,7 @@ EndProcedure
 Procedure ThrowError(Text, DebugInfo) export
 	
 	if (syntaxError(DebugInfo)) then
-		throwSyntaxError(Text);
+		throwSyntaxError(Text, , DebugInfo.Offset);
 	elsif (DebugInfo.Error) then
 		RuntimeSrv.LogFailing(DebugInfo);
 	else
@@ -301,13 +309,14 @@ Procedure saveError(Text, DebugInfo)
 	DebugInfo.ErrorLog = log;
 	DebugInfo.ErrorLine = line;
 	DebugInfo.FallenScenario = scenario;
-	Output.PutMessage(entry.Error, undefined, , log, "");
+	error = entry.Error;
+	Output.PutMessage(error, undefined, , log, "");
 	#if ( Client ) then
 	if (ScenarioForm.IsOpen(scenario)) then
 		Notify(Enum.MessageActivateError(), line, scenario);
 	endif;
 	refreshLog();
-	Runtime.PassError(DebugInfo);
+	passError(error, DebugInfo);
 	#endif
 	
 EndProcedure
@@ -339,43 +348,29 @@ Procedure storeDebugInfo(DebugInfo)
 EndProcedure
 
 &AtClient
-Procedure PassError(DebugInfo) export
+Procedure passError(Error, DebugInfo)
 	
 	if (not TesterServerMode) then
 		return;
 	endif;
-	text = String(DebugInfo.ErrorLog);
-	splitter = StrFind(text, ":");
-	Watcher.AddMessage(Mid(text, splitter + 2), Enum.MessageTypesError(), DebugInfo.FallenScenario, DebugInfo.ErrorLine);
+	splitter = StrFind(Error, ":");
+	Watcher.AddMessage(Mid(Error, splitter + 2), Enum.MessageTypesError(), DebugInfo.FallenScenario, DebugInfo.ErrorLine);
 	
 EndProcedure
 
-Procedure throwSyntaxError(Error, Scenario = undefined)
+Procedure throwSyntaxError(Error, Scenario = undefined, Offset = 0)
 	
 	s = Output.CompilationError() + ":" + Error;
 	Output.PutMessage(s, undefined, "", Scenario, "");
 	#if ( Client ) then
 	if (TesterServerMode) then
-		range = errorRange(Error);
-		Watcher.AddMessage(range.Message, Enum.MessageTypesError(), Scenario, range.Line, range.Column);
+		Watcher.ThrowError(Error, Scenario, Offset);
 	endif;
 	Runtime.StopSession();
 	#endif
 	raise Output.ScenarioError();
 	
 EndProcedure
-
-&AtClient
-Function errorRange(Text)
-	
-	i = StrFind(Text, "{(");
-	j = StrFind(Text, ")}");
-	core = Mid(Text, i + 2, j - i - 2);
-	parts = StrSplit(core, ",");
-	message = Mid(Text, j + 4);
-	return new Structure("Message, Line, Column", message, parts[0], parts[1]);
-	
-EndFunction
 
 &AtClient
 Procedure refreshLog()
@@ -432,15 +427,6 @@ Function callProgram ( Program, Scenario, Params, DebugInfo )
 	else
 		compilation = Program.Compilation;
 		reference = Program.Scenario;
-		try
-			Runtime.RunScript(compilation.ClientSyntax, , DebugInfo);
-			if (compilation.ServerSyntax <> undefined) then
-				RuntimeSrv.CheckSyntax(compilation.ServerSyntax);
-			endif;
-		except
-			throwSyntaxError(BriefErrorDescription(ErrorInfo()), reference);
-			return undefined;
-		endtry;
 		Runtime.NextLevel(DebugInfo);
 		result = Runtime.RunScript(compilation.Compiled, toStructure(Params), DebugInfo, reference);
 		Runtime.PreviousLevel(DebugInfo);

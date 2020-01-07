@@ -83,28 +83,3 @@ Procedure markUsage ( Form )
 	row.Use = row.Folder <> "";
 	
 EndProcedure 
-
-&AtServer
-Procedure SavePaths ( Object ) export
-	
-	BeginTransaction ();
-	data = new Structure ( "User, Computer, Application", SessionParameters.User, SessionData.Computer () );
-	for each row in Object.Repositories do
-		if ( not row.Use ) then
-			continue;
-		endif; 
-		r = InformationRegisters.Repositories.CreateRecordManager ();
-		data.Application = row.Application;
-		FillPropertyValues ( r, data );
-		r.Read ();
-		if ( r.Mapping ) then
-			continue;
-		elsif ( not r.Selected () ) then
-			FillPropertyValues ( r, data );
-		endif;
-		r.Folder = row.Folder;
-		r.Write ();
-	enddo; 
-	CommitTransaction ();
-	
-EndProcedure 

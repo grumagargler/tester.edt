@@ -723,7 +723,7 @@
     <valueType>
       <types>Number</types>
       <numberQualifiers>
-        <precision>4</precision>
+        <precision>5</precision>
       </numberQualifiers>
     </valueType>
     <view>

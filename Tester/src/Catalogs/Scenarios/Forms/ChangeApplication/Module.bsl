@@ -23,6 +23,7 @@ Procedure OK ( Command )
 	
 	change ( changed, locked, alreadyLocked, errors );
 	broadcast ( changed );
+	RepositoryFiles.Sync ();
 	Close ( new Structure ( "AlreadyLocked, Errors", alreadyLocked, errors ) );
 	
 EndProcedure

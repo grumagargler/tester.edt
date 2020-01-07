@@ -716,7 +716,6 @@
     <name>OnCreateAtServer</name>
   </handlers>
   <width>80</width>
-  <height>30</height>
   <windowOpeningMode>LockOwnerWindow</windowOpeningMode>
   <autoUrl>true</autoUrl>
   <group>Vertical</group>

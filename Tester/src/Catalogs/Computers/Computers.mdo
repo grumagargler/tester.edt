@@ -159,11 +159,11 @@
     </type>
     <toolTip>
       <key>en</key>
-      <value>Path to the exe-file of Microsoft Visual Studio Code. The “C:\Program Files\Microsoft VS Code\Code.exe” will be used by default</value>
+      <value>Path to the exe-file of Microsoft Visual Studio Code. The “%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\Code.exe” will be used by default</value>
     </toolTip>
     <toolTip>
       <key>ru</key>
-      <value>Путь к exe-файлу запуска Microsoft Visual Studio Code. Если не задан, будет использоваться «C:\Program Files\Microsoft VS Code\Code.exe»</value>
+      <value>Путь к exe-файлу запуска Microsoft Visual Studio Code. Если не задан, будет использоваться &quot;%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\Code.exe&quot;</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>

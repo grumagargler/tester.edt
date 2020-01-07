@@ -1005,8 +1005,10 @@
     <currentRowUse>DontUse</currentRowUse>
   </formCommands>
   <parameters>
-    <name>Application</name>
-    <valueType/>
+    <name>Silent</name>
+    <valueType>
+      <types>Boolean</types>
+    </valueType>
     <keyParameter>true</keyParameter>
   </parameters>
   <commandInterface>

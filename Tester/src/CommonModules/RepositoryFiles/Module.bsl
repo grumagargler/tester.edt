@@ -5,24 +5,6 @@ Function FolderSuffix () export
 	
 EndFunction 
 
-Function ScriptFile () export
-	
-	return ".1c";
-	
-EndFunction 
-
-Function MethodFile () export
-	
-	return ".1cm";
-	
-EndFunction 
-
-Function LibFile () export
-	
-	return ".1cl";
-	
-EndFunction 
-
 Function MXLFile () export
 	
 	return ".mxl";
@@ -32,6 +14,33 @@ EndFunction
 Function BSLFile () export
 	
 	return ".bsl";
+	
+EndFunction 
+
+Function JSONFile () export
+	
+	return ".json";
+	
+EndFunction 
+
+&AtClient
+Function VSCodeWorkspace () export
+	
+	return ".code-workspace";
+	
+EndFunction 
+
+&AtClient
+Function Gitignore () export
+	
+	return ".gitignore";
+	
+EndFunction 
+
+&AtClient
+Function BSLServerSettings () export
+	
+	return ".bsl-language-server.json";
 	
 EndFunction 
 
@@ -49,19 +58,6 @@ Function SystemFolder () export
 	
 EndFunction
 
-Function TypeToExtension ( Type ) export
-	
-	if ( Type = PredefinedValue ( "Enum.Scenarios.Library" ) ) then
-		suffix = RepositoryFiles.LibFile ();
-	elsif ( Type = PredefinedValue ( "Enum.Scenarios.Method" ) ) then
-		suffix = RepositoryFiles.MethodFile ();
-	else
-		suffix = RepositoryFiles.ScriptFile ();
-	endif; 
-	return suffix + RepositoryFiles.BSLFile ();
-	
-EndFunction 
-
 &AtClient
 Function ScenarioToFile ( Scenario, Error = undefined ) export
 	
@@ -76,7 +72,7 @@ Function ScenarioToFile ( Scenario, Error = undefined ) export
 		parts = StrSplit ( path, slash );
 		name = parts [ parts.UBound() ];
 		root = FoldersWatchdog [ application ].Folder;
-		extension = RepositoryFiles.TypeToExtension ( data.Type );
+		extension = RepositoryFiles.BSLFile ();
 		if ( data.Tree ) then
 			return root + slash + path + slash + name + RepositoryFiles.FolderSuffix () + extension;
 		else
@@ -89,18 +85,45 @@ Function ScenarioToFile ( Scenario, Error = undefined ) export
 EndFunction
 
 &AtClient
-Function mapped ( Application )
+Function mapped ( Application = undefined )
 	
-	return FoldersWatchdog <> undefined
-	and FoldersWatchdog [ Application ] <> undefined;
+	if ( FoldersWatchdog = undefined ) then
+		return false;
+	endif;
+	if ( Application = undefined ) then
+		return FoldersWatchdog.Count () > 0;
+	else
+		return FoldersWatchdog [ Application ] <> undefined;
+	endif;
 
 EndFunction
 
 &AtClient
-Procedure Sync ( Application ) export
+Function FileToPath ( File, PathBegins ) export
+
+	slash = GetPathSeparator ();
+	name = FileSystem.GetFileName(File);
+	id = Mid ( name, 1, StrFind ( name, "." ) - 1 );
+	isFolder = StrFind ( name, RepositoryFiles.FolderSuffix () ) > 0;
+	path = FileSystem.GetParent ( File ) + ? ( isFolder, "", slash + id );
+	path = StrReplace ( Mid ( path, PathBegins ), slash, "." );
+	return path;
 	
-	if ( mapped ( Application ) ) then
-		OpenForm ( "DataProcessor.Unload.Form", new Structure ( "Application", Application ) );
+EndFunction
+
+Function FileToName ( File ) export
+	
+	name = FileSystem.GetFileName ( File );
+	i = StrFind ( name, "." );
+	return ? ( i = 0, name, Left ( name, i - 1 ) );
+	
+EndFunction
+
+&AtClient
+Procedure Sync () export
+	
+	if ( mapped () ) then
+		OpenForm ( "DataProcessor.Unload.Form", new Structure ( "Silent", true ) );
 	endif;
 	
 EndProcedure

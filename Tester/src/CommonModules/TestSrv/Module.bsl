@@ -3,9 +3,6 @@ Function Data ( val Scenario ) export
 	app = DF.Pick ( Scenario, "Application" );
 	if ( app.IsEmpty () ) then
 		app = EnvironmentSrv.GetApplication ();
-		if ( app.IsEmpty () ) then
-			return undefined;
-		endif; 
 	endif; 
 	result = new Structure ( "Scenario, Application, Computer, Port, ClientID, Connected, Proxy, Localhost, Version, ConnectedHost, ConnectedPort" );
 	info = getData ( app );
@@ -20,13 +17,21 @@ EndFunction
 Function getData ( App )
 	
 	s = "
-	|select allowed Applications.Computer as Computer,
+	|select allowed Applications.Computer as Computer, Applications.ClientID as ClientID,
 	|	isnull ( Ports.Port, Applications.Port ) as Port,
-	|	Applications.ClientID as ClientID,
 	|	case when isnull ( Sessions.Proxy, false ) then Sessions.Port else undefined end as Proxy,
 	|	case when isnull ( Sessions.Proxy, false ) then Sessions.Version else undefined end as Version,
 	|	case when isnull ( Sessions.Proxy, false ) then Sessions.Localhost else undefined end as Localhost
-	|from Catalog.Applications as Applications
+	|from ";
+	if ( App.IsEmpty () ) then
+		s = s + "(
+		|	select value ( Catalog.Applications.EmptyRef ) as Ref, ""localhost"" as Computer,
+		|	0 as Port, """" as ClientID
+		|)";
+	else
+		s = s + "Catalog.Applications";
+	endif;
+	s = s + " as Applications
 	|	//
 	|	// Sessions
 	|	//

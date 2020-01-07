@@ -167,6 +167,27 @@ Function ExternalRequestsSaveFile () export
 EndFunction 
 
 &AtClient
+Function ExternalRequestsNewFile () export
+	
+	return "NewFile";
+	
+EndFunction 
+
+&AtClient
+Function ExternalRequestsRenaming () export
+	
+	return "Renaming";
+	
+EndFunction 
+
+&AtClient
+Function ExternalRequestsRemoving () export
+	
+	return "Removing";
+	
+EndFunction 
+
+&AtClient
 Function ExternalRequestsRun () export
 	
 	return "Run";

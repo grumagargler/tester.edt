@@ -920,7 +920,7 @@
     </synonym>
     <synonym>
       <key>ru</key>
-      <value>Разблокировать</value>
+      <value>Отменить захват</value>
     </synonym>
     <usePurposes>PersonalComputer</usePurposes>
     <usePurposes>MobileDevice</usePurposes>
@@ -1066,6 +1066,34 @@
     </picture>
     <shortcut></shortcut>
   </commands>
+  <commands uuid="caf45b60-85b0-40c4-81d0-506a6343c8f0">
+    <name>OpenFolder</name>
+    <synonym>
+      <key>en</key>
+      <value>Open Scenario in Explorer</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Открыть сценарий в проводнике</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Open scenario in explorer</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Открыть сценарий в проводнике</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.OpenFile</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
   <commands uuid="4dd4197c-f794-4c5d-a083-bd9215d0aeee">
     <name>OpenStudio</name>
     <synonym>
@@ -1120,6 +1148,36 @@
     </toolTip>
     <picture xsi:type="core:PictureRef">
       <picture>CommonPicture.PlayingReel</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="4d8eb4fb-d405-41ee-ba52-b58b9d6d9676">
+    <name>Remove</name>
+    <synonym>
+      <key>en</key>
+      <value>Mark/Unmark scenario for deletion</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Установить/снять пометку удаления</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <modifiesData>true</modifiesData>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Mark/Unmark scenario for deletion</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Установить/снять пометку удаления</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.MarkToDelete</picture>
     </picture>
     <shortcut></shortcut>
   </commands>
@@ -1216,7 +1274,7 @@
     </synonym>
     <synonym>
       <key>ru</key>
-      <value>Разблокировать</value>
+      <value>Отменить захват</value>
     </synonym>
     <group>FormCommandBarImportant</group>
     <commandParameterType>

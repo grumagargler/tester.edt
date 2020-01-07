@@ -24,6 +24,12 @@
       </visible>
     </visibilityFragments>
     <visibilityFragments>
+      <command>ExchangePlan.Repositories.StandardCommand.OpenList</command>
+      <visible>
+        <common>true</common>
+      </visible>
+    </visibilityFragments>
+    <visibilityFragments>
       <command>Catalog.UserGroups.StandardCommand.OpenList</command>
       <visible>
         <common>true</common>
@@ -31,12 +37,6 @@
     </visibilityFragments>
     <visibilityFragments>
       <command>Catalog.Tags.StandardCommand.OpenList</command>
-      <visible>
-        <common>true</common>
-      </visible>
-    </visibilityFragments>
-    <visibilityFragments>
-      <command>InformationRegister.Repositories.StandardCommand.OpenList</command>
       <visible>
         <common>true</common>
       </visible>
@@ -55,15 +55,7 @@
     </visibilityFragments>
     <visibilityFragments>
       <command>Catalog.Workplaces.StandardCommand.OpenList</command>
-      <visible>
-        <common>true</common>
-      </visible>
-    </visibilityFragments>
-    <visibilityFragments>
-      <command>0:c81054e7-a2e1-4177-a79e-0237bbf27a7f</command>
-      <visible>
-        <common>true</common>
-      </visible>
+      <visible/>
     </visibilityFragments>
   </commandsVisibility>
   <commandsPlacement>
@@ -75,13 +67,12 @@
     <placementFragments>
       <group>NavigationPanelSeeAlso</group>
       <commands>Catalog.Users.StandardCommand.OpenList</commands>
+      <commands>ExchangePlan.Repositories.StandardCommand.OpenList</commands>
       <commands>Catalog.UserGroups.StandardCommand.OpenList</commands>
       <commands>Catalog.Tags.StandardCommand.OpenList</commands>
-      <commands>InformationRegister.Repositories.StandardCommand.OpenList</commands>
       <commands>Catalog.Computers.StandardCommand.OpenList</commands>
       <commands>InformationRegister.ScheduledReports.StandardCommand.OpenList</commands>
       <commands>Catalog.Workplaces.StandardCommand.OpenList</commands>
-      <commands>0:c81054e7-a2e1-4177-a79e-0237bbf27a7f</commands>
     </placementFragments>
   </commandsPlacement>
   <commandsOrder>
@@ -102,13 +93,12 @@
     <orderFragments>
       <group>NavigationPanelSeeAlso</group>
       <commands>Catalog.Users.StandardCommand.OpenList</commands>
+      <commands>ExchangePlan.Repositories.StandardCommand.OpenList</commands>
       <commands>Catalog.UserGroups.StandardCommand.OpenList</commands>
       <commands>Catalog.Tags.StandardCommand.OpenList</commands>
-      <commands>InformationRegister.Repositories.StandardCommand.OpenList</commands>
       <commands>Catalog.Computers.StandardCommand.OpenList</commands>
       <commands>InformationRegister.ScheduledReports.StandardCommand.OpenList</commands>
       <commands>Catalog.Workplaces.StandardCommand.OpenList</commands>
-      <commands>0:c81054e7-a2e1-4177-a79e-0237bbf27a7f</commands>
     </orderFragments>
     <orderFragments>
       <group>ActionsPanelTools</group>

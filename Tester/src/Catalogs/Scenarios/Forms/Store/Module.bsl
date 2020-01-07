@@ -29,9 +29,11 @@ Procedure OK ( Command )
 	
 	AllScenarios = fetchScenarios ();
 	Notify ( Enum.MessageSave (), AllScenarios );
-	stored = store ();
-	broadcast ( stored );
-	Close ();
+	if ( checkSyntax () ) then
+		startStoring ();
+	else
+		Output.ContinueStoring ( ThisObject );
+	endif;
 	
 EndProcedure
 
@@ -40,7 +42,32 @@ Function fetchScenarios ()
 	
 	return new FixedArray ( LockingForm.FetchScenarios ( ThisObject ).UnloadColumn ( "Ref" ) );
 	
-EndFunction 
+EndFunction
+
+&AtClient
+Function checkSyntax ()
+
+	ok = true;
+	target = FormOwner.UUID;
+	for each scenario in AllScenarios do
+		error = Runtime.CheckSyntax ( DF.Pick ( scenario, "Script" ), scenario );
+		if ( error <> undefined ) then
+			ok = false;
+			Output.SyntaxError ( target, new Structure ( "Error", error ), , scenario );
+		endif;
+	enddo;
+	return ok;
+
+EndFunction
+
+&AtClient
+Procedure startStoring ()
+
+	stored = store ();
+	broadcast ( stored );
+	Close ();
+
+EndProcedure 
 
 &AtServer
 Function store ()
@@ -113,6 +140,17 @@ Procedure broadcast ( Scenarios )
 	NotifyChanged ( Type ( "CatalogRef.Scenarios" ) );
 	
 EndProcedure 
+
+&AtClient
+Procedure ContinueStoring ( Answer, Params ) export
+	
+	if ( Answer = DialogReturnCode.No ) then
+		Close ();
+		return;
+	endif;
+	startStoring ();
+	
+EndProcedure
 
 // *****************************************
 // *********** Table List

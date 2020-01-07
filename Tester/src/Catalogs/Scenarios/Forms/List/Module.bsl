@@ -190,6 +190,25 @@ Function selectedTags ( Form )
 EndFunction 
 
 &AtClient
+Procedure OnOpen ( Cancel )
+	
+	initProperties ();
+	Appearance.Apply ( ThisObject );
+	
+EndProcedure
+
+&AtClient
+Procedure initProperties ()
+
+	if ( TestManager = true ) then
+		TestedMode = true;
+	else
+		TestedMode = false;
+	endif;
+
+EndProcedure
+
+&AtClient
 Procedure NewWriteProcessing ( NewObject, Source, StandardProcessing )
 	
 	type = TypeOf ( NewObject );
@@ -416,6 +435,20 @@ EndProcedure
 
 // *****************************************
 // *********** Group List
+
+&AtClient
+Procedure Restart(Command)
+
+	OpenForm ( "Catalog.Scenarios.Form.Restart" );
+
+EndProcedure
+
+&AtClient
+Procedure RunScenario ( Command )
+	
+	RunScenarios.Go ( undefined, false );
+	
+EndProcedure
 
 &AtClient
 Procedure SetCurrent ( Command )

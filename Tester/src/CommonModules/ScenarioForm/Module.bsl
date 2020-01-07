@@ -106,9 +106,7 @@ EndFunction
 &AtClient
 Procedure Picking ( Owner, SelectOnly ) export
 	
-	if ( not Test.AttachApplication ( SessionScenario ) ) then
-		return;
-	endif;
+	Test.AttachApplication ( SessionScenario );
 	p = new Structure ();
 	p.Insert ( "SelectOnly", SelectOnly );
 	p.Insert ( "Application", SessionApplication );
@@ -376,7 +374,7 @@ Procedure startCopyMove ( Context )
 	
 	copying = Context.Copying;
 	target = Context.Target;
-	applications = ScenarioFormSrv.CopyMove ( Context.Scenarios, target, copying );
+	ScenarioFormSrv.CopyMove ( Context.Scenarios, target, copying );
 	reread = Context.Reread;
 	if ( reread <> undefined ) then
 		for each scenario in reread do
@@ -388,9 +386,7 @@ Procedure startCopyMove ( Context )
 	else
 		NotifyChanged ( target );
 	endif;
-	for each reference in applications do
-		RepositoryFiles.Sync ( reference );
-	enddo;
+	RepositoryFiles.Sync ();
 
 EndProcedure
 
@@ -447,4 +443,17 @@ Function getApplications ()
 	q.SetParameter ( "Session", SessionParameters.Session );
 	return q.Execute ().Unload ();
 	
+EndFunction
+
+Function CheckName ( Name ) export
+
+	forbidden = "\ / : * ? "" < > | . ^ , $ # @ ` ~ & % ( ) { } - + =";
+	description = Name;
+	for each restriction in StrSplit ( forbidden, " " ) do
+		if ( StrFind(description, restriction ) > 0 ) then
+			return false;
+		endif;
+	enddo;
+	return true;
+
 EndFunction

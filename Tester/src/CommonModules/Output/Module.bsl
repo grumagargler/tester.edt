@@ -33,7 +33,7 @@ Function Sformat ( Str, Params ) export
 	
 EndFunction
 
-Procedure PutMessage ( Text, Params, Field, DataKey, DataPath ) export
+Procedure PutMessage ( Text, Params, Field, DataKey, DataPath, Form = undefined ) export
 	
 	msg = new UserMessage ();
 	s = Output.Sformat ( Text, Params );
@@ -55,7 +55,10 @@ Procedure PutMessage ( Text, Params, Field, DataKey, DataPath ) export
 		if ( prefix.Count () > 0 ) then
 			s = StrConcat ( prefix, ", " ) + ": " + s;
 		endif; 
-	endif; 
+	endif;
+	if ( Form <> undefined ) then
+		msg.TargetID = Form; 
+	endif;
 	msg.Text = s;
 	msg.Message ();
 	
@@ -227,25 +230,6 @@ Function ManyPlaces ( Params ) export
 EndFunction
 
 &AtClient
-Procedure ApplicationUndefined ( Module = undefined, CallbackParams = undefined, Params = undefined, ProcName = "ApplicationUndefined" ) export
-	
-	text = ApplicationUndefinedMessage ();
-	title = NStr ( "en=''" );
-	openMessageBox ( text, Params, ProcName, Module, CallbackParams, 0, title );
-	
-EndProcedure
-
-&AtClient
-Function ApplicationUndefinedMessage () export
-	
-	text = NStr ( "en = 'Application is not defined.
-                  |Set Application in Menu / Current Application'; ru = 'Приложение не определено.
-                  |Установите приложение в Меню / Текущее приложение'" );
-	return text;
-	
-EndFunction
-
-&AtClient
 Function StopMessage () export
 
 	text = NStr ( "en='Scenario stopped';ru='Сценарий остановлен'" );
@@ -406,10 +390,17 @@ EndProcedure
 
 Procedure LockError ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
 	
-	text = NStr ( "en='Scenario ""%Scenario"" has already been locked by %User';ru='Сценарий ""%Scenario"" уже захватил %User'" );
+	text = Output.LockingError ();
 	putMessage ( text, Params, Field, DataKey, DataPath );
 	
 EndProcedure
+
+Function LockingError ( Params = undefined ) export
+
+	text = NStr ( "en='Scenario ""%Scenario"" has already been locked by %User';ru='Сценарий ""%Scenario"" уже захватил %User'" );
+	return Sformat ( text, Params );
+
+EndFunction
 
 &AtServer
 Procedure ScenarioNotLocked ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
@@ -440,7 +431,7 @@ Procedure EnrollmentError ( Module = undefined, CallbackParams = undefined, Para
 EndProcedure
 
 &AtClient
-Procedure EnrollMobile ( Module, CallbackParams = undefined, Params = undefined, ProcName = "EnrollMobile" ) export
+Procedure EnrollNode ( Module, CallbackParams = undefined, Params = undefined, ProcName = "EnrollNode" ) export
 	
 	text = NStr ( "en = 'For this User, all scenarios will be marked as changed!
                    |Would you like to continue?'; ru = 'Для данного пользователя все сценарии будут помечены как измененные!
@@ -497,7 +488,6 @@ Procedure ScenariosProcessedNotification ( Params = undefined, NavigationLink = 
 	
 EndProcedure
 
-&AtServer
 Function CommonApplicationName () export
 
 	text = NStr ( "en='<Common>';ru='<Общее>'" );
@@ -549,7 +539,7 @@ Procedure SetupMainScenario ( Module, CallbackParams = undefined, Params = undef
 EndProcedure
 
 &AtClient
-Procedure UndefinedMainScenario ( Module, CallbackParams = undefined, Params = undefined, ProcName = "UndefinedMainScenario" ) export
+Procedure UndefinedMainScenario ( Module = undefined, CallbackParams = undefined, Params = undefined, ProcName = "UndefinedMainScenario" ) export
 	
 	title = NStr ( "en=''" );
 	text = NStr ( "en = 'Main scenario is undefined'; ru = 'Основной сценарий не определен'" );
@@ -897,7 +887,6 @@ Function ErrorsNotFound () export
 
 EndFunction
 
-&AtClient
 Function UndefinedScenario ( Params ) export
 
 	text = NStr ( "en = 'Cannot find scenario by file: %File'; ru = 'Не удалось найти сценарий согласно файла: %File'" );
@@ -1227,3 +1216,183 @@ Function WebClientDoesNotSupport () export
 	return text;
 	
 EndFunction
+
+&AtServer
+Function WatcherRenamingError ( Params ) export
+
+	text = NStr ( "en = 'Scenario renaming error: %Scenario (%File). %Error'; ru = 'Ошибка переименования сценария: %Scenario (%File). %Error'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Function WatcherUpdatingError ( Params ) export
+
+	text = NStr ( "en = 'Scenario updating error: %Scenario. %Error'; ru = 'Ошибка обновления сценария: %Scenario. %Error'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Function WatcherParentNotFound ( Params ) export
+
+	text = NStr ( "en = 'Parent scenario for the %File is not found'; ru = 'Родительский сценарий для %File не найден'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Function WatcherCreatingError ( Params ) export
+
+	text = NStr ( "en = 'Scenario creating error. Folder: %Parent (%File). %Error'; ru = 'Ошибка создания сценария. Папка: %Parent (%File). %Error'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Function WatcherRestorationError ( Params ) export
+
+	text = NStr ( "en = 'Restoration of %Scenario (%File) caused an error: %Error'; ru = 'Ошибка восстановления сценария %Scenario (%File). %Error'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Function WatcherRemovingError ( Params ) export
+
+	text = NStr ( "en = 'Scenario removing error: %Scenario. %Error'; ru = 'Ошибка удаления сценария: %Scenario. %Error'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Function WatcherTemplateRemovingError ( Params ) export
+
+	text = NStr ( "en = 'Scenario template removing error: %Scenario. %Error'; ru = 'Ошибка удаления шаблона сценария: %Scenario. %Error'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Function WatcherScriptRemovingError ( Params ) export
+
+	text = NStr ( "en = 'Scenario script removing error: %Scenario. %Error'; ru = 'Ошибка удаления программного кода сценария: %Scenario. %Error'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtClient
+Function WatcherRenamingFolderError ( Params ) export
+
+	text = NStr ( "en = 'You renamed the file (%File) responsible for the current folder which can cause synchronization issues. Please, use Tester for renaming folders and test-libraries';ru = 'Вы переименовали файл (%File) ответственный за именование текущей папки. Это может привести к ошибкам синхронизации. Пожалуйста, используйте Тестер для переименования папок и библиотек с тестами'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+Function WatcherFileNameError ( Params = undefined ) export
+	
+	text = NStr ( "en = 'File (%File) should not contain special characters'; ru = 'Файл (%File) не должен содержать специальные символы'" );
+	return Sformat ( text, Params );
+	
+EndFunction
+
+&AtClient
+Procedure SyntaxError ( Form, Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+	
+	text = NStr ( "en = '%Error'; ru = '%Error'" );
+	putMessage ( text, Params, Field, DataKey, DataPath, Form );
+	
+EndProcedure
+
+&AtClient
+Procedure ContinueStoring ( Module, CallbackParams = undefined, Params = undefined, ProcName = "ContinueStoring" ) export
+	
+	text = NStr ( "en = 'Syntax errors have been found!
+				  |Would you like to continue?';ru = 'Обнаружены синтаксические ошибки!
+				  |Продолжить?'" );
+	title = NStr ( "ru='';en=''" );
+	openQueryBox ( text, Params, ProcName, Module, CallbackParams, QuestionDialogMode.YesNo, 0, DialogReturnCode.No, title );
+	
+EndProcedure
+
+&AtClient
+Function VSCodeWorkspace ( Params ) export
+
+	text = NStr ( "en = 'Visual Studio Code Workspace (*%Extension)|*%Extension';ru = 'Рабочая область Visual Studio Code (*%Extension)|*%Extension'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtClient
+Function SelectWorkspace () export
+
+	text = NStr ( "en = 'Select Workspace';ru = 'Выберите рабочую область'" );
+	return text;
+
+EndFunction
+
+&AtClient
+Procedure VSCodeWorkspaceUndefined ( Module = undefined, CallbackParams = undefined, Params = undefined, ProcName = "VSCodeWorkspaceUndefined" ) export
+	
+	text = NStr ( "en = 'Workspace is not defined!
+				  |Please, open Repositories and specify Visual Studio Code workspace
+				  |for application %Application';ru = 'Рабочая область не задана!
+				  |Откройте пожалуйста Репозитории и задайте
+				  |для приложения %Application
+				  |рабочую область Visual Studio Code'" );
+	title = NStr ( "ru='';en=''" );
+	openMessageBox ( text, Params, ProcName, Module, CallbackParams, 0, title );
+	
+EndProcedure
+
+&AtClient
+Function WatcherListeningEvents () export
+
+	text = NStr ( "en = 'Listening repository changes...';ru = 'Получение событий от репозитория...'" );
+	return text;
+
+EndFunction
+
+&AtClient
+Function WatcherSyncingMessage () export
+
+	text = NStr ( "en = 'Syncing with repository';ru = 'Синхронизация с репозиторием'" );
+	return text;
+
+EndFunction
+
+&AtClient
+Procedure WorkspaceCreated ( Params = undefined, NavigationLink = undefined, Picture = undefined ) export
+	
+	text = NStr ( "en='Tester';ru='Тестер'" );
+	explanation = NStr ( "en = 'Workspace has been created: %Path'; ru = 'Создана рабочая область: %Path'" );
+	putUserNotification ( text, Params, NavigationLink, explanation, Picture );
+	
+EndProcedure
+
+&AtClient
+Procedure MarkForDeletion ( Module, CallbackParams = undefined, Params = undefined, ProcName = "MarkForDeletion" ) export
+	
+	text = NStr ( "en = 'Mark for deletion?';ru = 'Пометить на удаление?'" );
+	title = NStr ( "ru='';en=''" );
+	openQueryBox ( text, Params, ProcName, Module, CallbackParams, QuestionDialogMode.YesNo, 0, DialogReturnCode.Yes, title );
+	
+EndProcedure
+
+&AtClient
+Procedure UnmarkForDeletion ( Module, CallbackParams = undefined, Params = undefined, ProcName = "UnmarkForDeletion" ) export
+	
+	text = NStr ( "en = 'Do you want to remove the deletion mark for selected elements?';ru = 'Снять пометку на удаление?'" );
+	title = NStr ( "ru='';en=''" );
+	openQueryBox ( text, Params, ProcName, Module, CallbackParams, QuestionDialogMode.YesNo, 0, DialogReturnCode.Yes, title );
+	
+EndProcedure
+
+&AtClient
+Procedure ShowError ( Module = undefined, CallbackParams = undefined, Params = undefined, ProcName = "ShowError" ) export
+	
+	text = "%Error";
+	title = NStr ( "ru='';en=''" );
+	openMessageBox ( text, Params, ProcName, Module, CallbackParams, 0, title );
+	
+EndProcedure

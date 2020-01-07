@@ -1928,10 +1928,6 @@ from Catalog.ApplicationVersions as Versions
   </attributes>
   <commandInterface>
     <navigationPanel>
-      <cmiFragmentRecord>
-        <command>InformationRegister.Repositories.StandardCommand.OpenByValue.Application</command>
-        <userVisible/>
-      </cmiFragmentRecord>
     </navigationPanel>
     <commandBar/>
   </commandInterface>

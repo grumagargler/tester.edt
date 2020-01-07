@@ -14,8 +14,7 @@ Procedure DisplayCaption () export
 		parts.Add ( EnvironmentSrv.GetApplication () );
 	endif; 
 	parts.Add ( SessionUser );
-	// Bug workaround: EDT1.15 does not know about SetClientApplicationCaption method
-	Execute ( "SetClientApplicationCaption ( StrConcat ( parts, ""."" ) )" );
+	SetClientApplicationCaption ( StrConcat ( parts, "." ) );
 	
 EndProcedure 
 
@@ -97,3 +96,13 @@ Procedure SetApplicationVersion ( Version, Application ) export
 	pinVersion ( ref, true );
 	
 EndProcedure
+
+Function GetVariable ( Name ) export
+	
+	if ( ExternalLibrary = undefined ) then
+		return "";
+	else
+		return ExternalLibrary.GetEnv ( Name );
+	endif; 
+	
+EndFunction 

@@ -105,7 +105,9 @@
       <id>19</id>
       <visible>true</visible>
       <enabled>true</enabled>
-      <userVisible/>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
       <dataPath xsi:type="form:MultiLanguageDataPath">
         <paths xsi:type="form:DataPath">
           <segments>List.Code</segments>
@@ -197,7 +199,9 @@
       <id>25</id>
       <visible>true</visible>
       <enabled>true</enabled>
-      <userVisible/>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
       <dataPath xsi:type="form:MultiLanguageDataPath">
         <paths xsi:type="form:DataPath">
           <segments>List.User</segments>

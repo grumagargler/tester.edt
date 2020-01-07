@@ -17,6 +17,7 @@ var Dictionary;
 var NameIndicator;
 var CheckFinishEditingCurrentArea;
 var CurrentForm;
+var FormTables;
 
 Function Perform () export
 	
@@ -39,6 +40,7 @@ Procedure init ()
 	NameIndicator = ? ( Lang = "en", "#", "!" );
 	CheckFinishEditingCurrentArea = false;
 	CurrentForm = undefined;
+	FormTables = new Map ();
 
 EndProcedure 
 
@@ -437,6 +439,7 @@ Procedure applyWith ( Title, Activate = undefined )
 		return;
 	endif;
 	CurrentForm = Title;
+	FormTables = new Map ();
 	addLineBreak ();
 	addCall ( translate ( "With" ), """" + CurrentForm + """", Activate );
 	
@@ -495,9 +498,13 @@ EndProcedure
 Procedure applyRowTree ( Expand )
 	
 	if ( NodeComplete ) then
-		if ( Node <> LastNode ) then
-			addCall ( getTable ().Attributes [ "name" ] + "." + translate ( Node ), translate ( "search" ) );
-		endif; 
+		if ( Node = LastNode ) then
+			rollback ();
+			search = undefined;
+		else
+			search = translate ( "search" ); 
+		endif;
+		addCall ( getTable ().Attributes [ "name" ] + "." + translate ( Node ), search );
 	else
 		fetchSearch ();
 	endif; 
@@ -616,8 +623,19 @@ Procedure defineVar ()
 	elsif ( Node = "Form" ) then
 		applyWith ( Attributes [ "title" ] );
 	elsif ( Node = "FormTable" ) then
-		addDefinition ( Attributes [ "name" ], translate ( "Get" ) + " ( """ + NameIndicator + Attributes [ "name" ] + """ )" );
+		applyFormTable ();
 	endif;
+	
+EndProcedure
+
+Procedure applyFormTable ()
+
+	name = Attributes [ "name" ];
+	if ( FormTables [ name ] <> undefined ) then
+		return;
+	endif;
+	FormTables [ name ] = true;
+	addDefinition ( name, translate ( "Get" ) + " ( """ + NameIndicator + name + """ )" );
 	
 EndProcedure
 

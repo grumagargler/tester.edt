@@ -112,11 +112,11 @@
       <textEdit>true</textEdit>
       <inputHint>
         <key>en</key>
-        <value>C:\Program Files\Microsoft VS Code\Code.exe</value>
+        <value>%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\Code.exe</value>
       </inputHint>
       <inputHint>
         <key>ru</key>
-        <value>C:\Program Files\Microsoft VS Code\Code.exe</value>
+        <value>%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\Code.exe</value>
       </inputHint>
     </extInfo>
   </items>

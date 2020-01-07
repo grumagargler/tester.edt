@@ -11,15 +11,10 @@ Function HierarchyList ( val Scenarios ) export
 	
 EndFunction
 
-Function CopyMove ( val Scenarios, val Folder, val Copying ) export
+Procedure CopyMove ( val Scenarios, val Folder, val Copying ) export
 	
 	if ( recursion ( Scenarios, Folder ) ) then
 		raise Output.CopyingError ();
-	endif;
-	changes = new Array ();
-	if ( not Copying
-		or Folder = undefined ) then
-		getApplications ( changes, Scenarios );
 	endif;
 	BeginTransaction ();
 	for each scenario in Scenarios do
@@ -30,13 +25,8 @@ Function CopyMove ( val Scenarios, val Folder, val Copying ) export
 		endif;
 	enddo;
 	CommitTransaction ();
-	if ( Folder <> undefined ) then
-		getApplications ( changes, Folder );
-	endif;
-	Collections.Group ( changes );
-	return changes;
 	
-EndFunction
+EndProcedure
 
 Function recursion ( Scenarios, Folder )
 	
@@ -58,22 +48,6 @@ Function recursion ( Scenarios, Folder )
 	return not q.Execute ().IsEmpty ();
 	
 EndFunction
-
-Procedure getApplications ( List, Source )
-	
-	s = "
-	|select distinct Scenarios.Application as Application
-	|from Catalog.Scenarios as Scenarios
-	|where Scenarios.Ref in hierarchy ( &Source )
-	|and not Scenarios.DeletionMark
-	|";
-	q = new Query ( s );
-	q.SetParameter ( "Source", Source );
-	for each item in q.Execute ().Unload ().UnloadColumn ( "Application" ) do
-		List.Add ( item );
-	enddo;
-	
-EndProcedure
 
 Procedure copyScenario ( Scenario, Folder )
 	

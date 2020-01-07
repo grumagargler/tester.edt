@@ -246,7 +246,7 @@ select allowed Log.Period as Completed, Log.Session as Session, Log.Scenario as 
 	Log.Duration as Duration, Log.Error as Error, Log.Level as Level, Log.Status as Status,
 	Log.Started as Begin, Log.Job as Job, Log.Scenario.Severity as Severity, Sessions.DateStart as Started,
 	Sessions.Application as Application,
-	isnull ( Versions.Version, SystemVersions.Version ) as Version
+	isnull ( Versions.Version, isnull ( SystemVersions.Version, value ( Catalog.ApplicationVersions.EmptyRef ) ) ) as Version
 {select Completed, Session.*, Scenario.*, Duration, Error.*, Level, Status.*, Started,
 	Version.*, Application.*, Begin, Job.*, Severity.*}
 from InformationRegister.Log as Log

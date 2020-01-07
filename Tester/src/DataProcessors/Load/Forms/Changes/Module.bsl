@@ -117,7 +117,7 @@ Function getQuery ()
 	|	//
 	|	left join InformationRegister.Editing as Editing
 	|	on Editing.Scenario = Scenarios.Ref
-	|where Scenarios.Application in ( &Application, value ( Catalog.Applications.EmptyRef ) )
+	|where Scenarios.Application = &Application
 	|and not Scenarios.DeletionMark
 	|order by Application, Tree desc, Sorting, Path
 	|totals by Scenario hierarchy
@@ -294,15 +294,8 @@ Procedure setType ( Row )
 	if ( not Row.New ) then
 		return;
 	endif; 
-	extensions = Row.Extensions;
 	folder = StrEndsWith ( Row.File, RepositoryFiles.FolderSuffix () );
-	if ( StrFind ( Extensions, RepositoryFiles.ScriptFile () + ";" ) > 0 ) then
-		type = ? ( folder, Enums.Scenarios.Folder, Enums.Scenarios.Scenario );
-	elsif ( StrFind ( Extensions, RepositoryFiles.MethodFile () + ";" ) > 0 ) then
-		type = Enums.Scenarios.Method;
-	else
-		type = Enums.Scenarios.Library;
-	endif;
+	type = ? ( folder, Enums.Scenarios.Folder, Enums.Scenarios.Scenario );
 	Row.Type = type;
 		
 EndProcedure 
@@ -445,13 +438,15 @@ Procedure loadFiles ()
 	FileIndex = FileIndex + 1;
 	if ( FileIndex > LastFile ) then
 		remove = not CurrentData.Found and not CurrentData.New;
-		CurrentData.Scenario = updateScenario ( CurrentData.Application, CurrentData.GetParent ().Scenario, CurrentData.Path, FilesContent, CurrentData.Type, remove );
+		isCommon = CurrentData.Extensions = "";
+		parent = CurrentData.GetParent ().Scenario;
+		CurrentData.Scenario = updateScenario ( CurrentData.Application, isCommon, parent, CurrentData.Path, FilesContent, CurrentData.Type, remove );
 		RenewList.Add ( CurrentData.Scenario );
 		startLoading ();
 		return;
 	endif; 
 	CurrentFile = FilesList [ FileIndex ];
-	file = fileName ();
+	file = CurrentFile.Name + CurrentFile.Extension;
 	if ( CurrentFile.Extension = RepositoryFiles.MXLFile () ) then
 		BeginPutFile ( new NotifyDescription ( "PutMXL", ThisObject ), , file, false, UUID );
 	else
@@ -460,17 +455,6 @@ Procedure loadFiles ()
 	endif; 
 	
 EndProcedure 
-
-&AtClient
-Function fileName ()
-	
-	if ( CurrentFile.Extension = RepositoryFiles.MXLFile () ) then
-		return CurrentFile.Name + CurrentFile.Extension;
-	else
-		return CurrentFile.Name + CurrentFile.Extension + RepositoryFiles.BSLFile ();
-	endif; 
-	
-EndFunction 
 
 &AtClient
 Procedure PutMXL ( Result, Address, File, Params ) export
@@ -507,12 +491,15 @@ Procedure ReadingComplete ( Document ) export
 EndProcedure 
 
 &AtServerNoContext
-Function updateScenario ( val Application, val Parent, val Path, val Content, val Type, val Remove )
+Function updateScenario ( val Application, val IsCommon, val Parent, val Path, val Content, val Type, val Remove )
 	
-	scenario = getScenario ( Path, Application );
+	targetApplication = ? ( IsCommon, Catalogs.Applications.EmptyRef (), Application );
+	scenario = getScenario ( Path, targetApplication );
+	wasDeleted = ? ( scenario = undefined, false, DF.Pick ( scenario, "DeletionMark" ) );
 	if ( Remove ) then
-		if ( scenario <> undefined ) then
-			scenario.GetObject ().SetDeletionMark ( true );
+		if ( scenario <> undefined
+			and not wasDeleted ) then
+			markDeletion ( scenario, true );
 		endif; 
 		return undefined;
 	endif;
@@ -520,14 +507,24 @@ Function updateScenario ( val Application, val Parent, val Path, val Content, va
 		obj = Catalogs.Scenarios.CreateItem ();
 		loadFields ( obj, Path, Parent );
 	else
+		if ( wasDeleted ) then
+			markDeletion ( scenario, false );
+		endif;
 		Catalogs.Versions.Create ( scenario, Output.LoadingProcessVersionMemo () );
-		obj = scenario.GetObject ();
-	endif; 
-	obj.AdditionalProperties.Insert ( "Loading", true );
-	obj.Application = Application;
+		if ( IsCommon ) then
+			return scenario;
+		else
+			obj = scenario.GetObject ();
+		endif;
+	endif;
+	obj.Application = targetApplication;
 	obj.Type = Type;
-	loadScript ( obj, Content );
-	loadTemplate ( obj, Content );
+	if ( not IsCommon ) then
+		loadProperties ( obj, Content );
+		loadScript ( obj, Content );
+		loadTemplate ( obj, Content );
+	endif;
+	enableLoading ( obj );
 	obj.Write ();
 	return obj.Ref;
 	
@@ -541,7 +538,6 @@ Function getScenario ( Path, Application )
 	|from Catalog.Scenarios as Scenarios
 	|where Scenarios.Path = &Path
 	|and Scenarios.Application = &Application
-	|and not Scenarios.DeletionMark
 	|";
 	q = new Query ( s );
 	q.SetParameter ( "Path", Path );
@@ -549,7 +545,23 @@ Function getScenario ( Path, Application )
 	table = q.Execute ().Unload ();
 	return ? ( table.Count () = 0, undefined, table [ 0 ].Ref );
 	
-EndFunction 
+EndFunction
+
+&AtServerNoContext
+Procedure markDeletion ( Scenario, Mark )
+	
+	obj = Scenario.GetObject ();
+	enableLoading ( obj );
+	obj.SetDeletionMark ( Mark );
+	
+EndProcedure
+
+&AtServerNoContext
+Procedure enableLoading ( Scenario )
+	
+	Scenario.AdditionalProperties.Insert ( "Loading", true );
+	
+EndProcedure
 
 &AtServerNoContext
 Procedure loadFields ( Obj, Path, Parent )
@@ -564,16 +576,20 @@ Procedure loadFields ( Obj, Path, Parent )
 EndProcedure 
 
 &AtServerNoContext
+Procedure loadProperties ( Scenario, Content )
+	
+	s = Content [ RepositoryFiles.JSONFile () ];
+	if ( s = undefined ) then
+		return;
+	endif;
+	DataProcessors.Load.Properties ( s, Scenario );
+
+EndProcedure 
+
+&AtServerNoContext
 Procedure loadScript ( Scenario, Content )
 	
-	s = Content [ RepositoryFiles.ScriptFile () ];
-	if ( s = undefined ) then
-		s = Content [ RepositoryFiles.MethodFile () ];
-		if ( s = undefined ) then
-			s = Content [ RepositoryFiles.LibFile () ];
-		endif; 
-	endif; 
-	Scenario.Script = s;
+	Scenario.Script = Content [ RepositoryFiles.BSLFile () ];
 
 EndProcedure 
 
@@ -582,51 +598,12 @@ Procedure loadTemplate ( Scenario, Content )
 	
 	address = Content [ RepositoryFiles.MXLFile () ];
 	if ( address = undefined ) then
-		Scenario.Template = new ValueStorage ( new SpreadsheetDocument () );
-		Scenario.Areas.Clear ();
-		Scenario.Spreadsheet = false;
+		DataProcessors.Load.ResetTemplate ( Scenario );
 	else
-		assembleTemplate ( address, Scenario );
+		DataProcessors.Load.AssembleTemplate ( address, Scenario );
 	endif; 
 
 EndProcedure 
-
-&AtServerNoContext
-Procedure assembleTemplate ( Address, Scenario )
-	
-	tabDoc = getSpreadsheet ( Address );
-	anchor = Max ( 1, tabDoc.TableHeight - 1 );
-	areas = Scenario.Areas;
-	signature = tabDoc.Area ( anchor, 1, anchor, 1 ).Text;
-	if ( signature = RepositoryFiles.Signature () ) then
-		table = areas.UnloadColumns ();
-		anchor = anchor + 1;
-		set = Conversion.FromJSON ( tabDoc.Area ( anchor, 1, anchor, 1 ).Text );
-		for each fields in set do
-			row = table.Add ();
-			FillPropertyValues ( row, fields );
-		enddo; 
-		areas.Load ( table );
-		tabDoc = tabDoc.GetArea ( "R1:R" + Format ( anchor - 2, "NG=" ) );
-	else
-		areas.Clear ();
-	endif;
-	Scenario.Template = new ValueStorage ( tabDoc );
-	Scenario.Spreadsheet = true;
-	
-EndProcedure
-
-&AtServerNoContext
-Function getSpreadsheet ( Address )
-	
-	storage = GetFromTempStorage ( address );
-	file = GetTempFileName ();
-	storage.Write ( file );
-	tabDoc = new SpreadsheetDocument ();
-	tabDoc.Read ( file );
-	return tabDoc;
-	
-EndFunction 
 
 // *****************************************
 // *********** Group Tree

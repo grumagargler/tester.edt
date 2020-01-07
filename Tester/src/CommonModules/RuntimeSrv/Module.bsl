@@ -22,7 +22,7 @@ Procedure StopSession ( val Started ) export
 	
 EndProcedure 
 
-Function FindScenario ( val Scenario, val DefaultApplication, val Application, val Parent, val EvenLocked = false ) export
+Function FindScenario ( val Scenario, val DefaultApplication, val Application, val Parent, val EvenLocked = false, val EvenRemoved = false ) export
 	
 	s = "
 	|select allowed top 1 1 as Priority, Scenarios.Ref as Ref
@@ -36,8 +36,10 @@ Function FindScenario ( val Scenario, val DefaultApplication, val Application, v
 	|from Catalog.Scenarios as Scenarios
 	|where Scenarios.Path = &Scenario
 	|and Scenarios.Application = &Application
-	|and not Scenarios.DeletionMark
 	|";
+	if ( not EvenRemoved ) then
+		s = s + "and not Scenarios.DeletionMark"; 
+	endif;
 	if ( Application = undefined ) then
 		s = s + "
 		|union all
@@ -45,8 +47,10 @@ Function FindScenario ( val Scenario, val DefaultApplication, val Application, v
 		|from Catalog.Scenarios as Scenarios
 		|where Scenarios.Path = &Scenario
 		|and Scenarios.Application = value ( Catalog.Applications.EmptyRef )
-		|and not Scenarios.DeletionMark
 		|";
+		if ( not EvenRemoved ) then
+			s = s + "and not Scenarios.DeletionMark"; 
+		endif;
 	endif; 
 	s = s + "
 	|order by Priority

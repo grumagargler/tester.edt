@@ -39,18 +39,6 @@ EndFunction
 Procedure perform ( Scenario, Params, Debug )
 	
 	result = Compiler.Build ( Scenario, , true );
-	try
-		Runtime.RunScript ( result.ClientSyntax );
-	except
-		Runtime.ThrowError ( BriefErrorDescription ( ErrorInfo () ), Debug );
-	endtry;
-	if ( result.ServerSyntax <> undefined ) then
-		try
-			RuntimeSrv.CheckSyntax ( result.ServerSyntax );
-		except
-			Runtime.ThrowError ( BriefErrorDescription ( ErrorInfo () ), Debug );
-		endtry;
-	endif;
 	Runtime.RunScript ( result.Compiled, Params, Debug );
 	
 EndProcedure

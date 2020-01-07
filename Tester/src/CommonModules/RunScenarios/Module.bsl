@@ -3,7 +3,7 @@ Procedure Go ( Scenario, Debugging ) export
 	
 	if ( SessionScenario.IsEmpty () ) then
 		if ( Scenario = undefined ) then
-			Output.UndefinedMainScenario ( ThisObject );
+			Output.UndefinedMainScenario ();
 		else
 			Output.SetupMainScenario ( ThisObject, new Structure ( "Scenario, Debugging", Scenario ) );
 		endif;
@@ -27,12 +27,10 @@ Procedure runScenario ( Debugging )
 	
 	saveAll ();
 	ClearMessages ();
-	complete = Test.Exec ( SessionScenario, , , Debugging );
-	if ( complete ) then
-		Output.TestComlete ();
-		if ( TesterServerMode ) then
-			Watcher.AddMessage ( Output.TestComleteMessage () );
-		endif;
+	Test.Exec ( SessionScenario, , , Debugging );
+	Output.TestComlete ();
+	if ( TesterServerMode ) then
+		Watcher.AddMessage ( Output.TestComleteMessage () );
 	endif;
 	
 EndProcedure 

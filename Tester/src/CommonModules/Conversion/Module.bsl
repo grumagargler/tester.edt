@@ -129,12 +129,22 @@ EndFunction
 Function ToJSON ( Object, Formatted = true ) export
 	
 	js = new JSONWriter ();
-	settings = new JSONWriterSettings ( ? ( Formatted, JSONLineBreak.Auto, JSONLineBreak.None ) );
+	if ( Formatted ) then
+		settings = new JSONWriterSettings ( JSONLineBreak.Windows, Chars.Tab );
+	else
+		settings = new JSONWriterSettings ( JSONLineBreak.None );
+	endif;
 	js.SetString ( settings );
-	WriteJSON ( js, Object );
+	WriteJSON ( js, Object, , "JSONValueToString", Conversion );
 	return js.Close ();
 	
 EndFunction 
+
+Function JSONValueToString ( Name, Value, Params, Cancel ) export 
+	
+	return String ( Value );
+	
+EndFunction
 	
 Function JSONToObject ( JSON, Type = undefined ) export
 	
@@ -158,15 +168,18 @@ EndFunction
 &AtServer
 Function RowToStructure ( Table ) export
 	
-	if ( Table.Count () = 0 ) then
-		return undefined;
-	endif;
-	row = Table [ 0 ];
+	row = ? ( Table.Count () = 0, undefined, Table [ 0 ] );
 	result = new Structure ();
 	columns = Table.Columns;
-	for each column in columns do
-		result.Insert ( column.Name, row [ column.Name ] );
-	enddo; 
+	if ( row = undefined ) then
+		for each column in columns do
+			result.Insert ( column.Name );
+		enddo; 
+	else
+		for each column in columns do
+			result.Insert ( column.Name, row [ column.Name ] );
+		enddo; 
+	endif; 
 	return result;
 	
 EndFunction 
@@ -338,3 +351,15 @@ Function ParametersToMap ( Parameters ) export
 	return result;
 	
 EndFunction 
+
+&AtServer
+Function CodeToNumber ( Number ) export
+	
+	try
+		value = Number ( Number );
+	except
+		return Number;
+	endtry;
+	return Format ( value, "NG=" );
+	
+EndFunction

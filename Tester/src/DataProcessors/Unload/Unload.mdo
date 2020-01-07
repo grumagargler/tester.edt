@@ -157,7 +157,7 @@
         <value>Узел</value>
       </synonym>
       <type>
-        <types>ExchangePlanRef.Changes</types>
+        <types>ExchangePlanRef.Repositories</types>
       </type>
       <toolTip>
         <key>en</key>
@@ -169,7 +169,6 @@
       </toolTip>
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
-      <fillValue xsi:type="core:UndefinedValue"/>
     </attributes>
   </tabularSections>
   <forms uuid="bdfc2e97-0881-400c-beb0-244ea92dae02">

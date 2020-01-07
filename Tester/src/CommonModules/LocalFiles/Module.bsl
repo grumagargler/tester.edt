@@ -23,21 +23,22 @@ Procedure InstallingFileSystemExtension ( Callback ) export
 	
 EndProcedure 
 
-Procedure SetTempFolder ( Callback = undefined ) export
+Procedure SetDocumentsFolder ( Callback = undefined ) export
 	
-	p = new NotifyDescription ( "StartSetTempFolder", ThisObject, Callback );
+	p = new NotifyDescription ( "StartSetDocumentsFolder", ThisObject, Callback );
 	LocalFiles.Prepare ( p );
 
 EndProcedure
 
-Procedure StartSetTempFolder ( Result, Callback ) export
+Procedure StartSetDocumentsFolder ( Result, Callback ) export
 	
-	BeginGettingTempFilesDir ( new NotifyDescription ( "GettingTempFilesDir", ThisObject, Callback ) );
+	BeginGettingDocumentsDir ( new NotifyDescription ( "GettingDocumentsFilesDir", ThisObject, Callback ) );
 	
 EndProcedure 
 
-Procedure GettingTempFilesDir ( Result, Callback ) export
+Procedure GettingDocumentsFilesDir ( Result, Callback ) export
 	
+	UserDocumentsFolder = Result;
 	if ( Callback <> undefined ) then
 		ExecuteNotifyProcessing ( Callback );
 	endif; 

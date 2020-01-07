@@ -5,11 +5,9 @@ Procedure CommandProcessing ( Scenarios, CommandExecuteParameters )
 	saveAll ();
 	ClearMessages ();
 	for each scenario in Scenarios do
-		complete = Test.Exec ( Scenario, DF.Pick ( Scenario, "Application" ), , , , true );
+		Test.Exec ( Scenario, DF.Pick ( Scenario, "Application" ), , , , true );
 	enddo; 
-	if ( complete ) then
-		Output.TestComlete ();
-	endif;
+	Output.TestComlete ();
 	
 EndProcedure
 

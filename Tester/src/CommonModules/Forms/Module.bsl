@@ -314,3 +314,22 @@ Function FindSource ( Source ) export
 	endif; 
 	
 EndFunction
+
+Procedure ToggleWindow ( Pattern, Maximize ) export
+	
+	if ( ExternalLibrary = undefined ) then
+		return;
+	else
+		title = ? ( Pattern = "", ScreenshotsLocator, Pattern );
+		if ( title = "" ) then
+			return;
+		else
+			if ( Maximize ) then
+				ExternalLibrary.Maximize ( title );
+			else
+				ExternalLibrary.Minimize ( title );
+			endif;
+		endif; 
+	endif;
+	 
+EndProcedure

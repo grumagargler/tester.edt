@@ -487,6 +487,7 @@ Procedure NotificationProcessing(EventName, Parameter, Source)
 			or EventName = Enum.MessageReload()) then
 		if (Parameter.Find(Object.Ref) <> undefined) then
 			reload();
+			setTitle();
 		endif;
 	elsif (EventName = Enum.MessageStored()) then
 		if (Parameter.Find(Object.Ref) <> undefined) then
@@ -556,8 +557,7 @@ EndProcedure
 &AtClient
 Procedure activateRow(Line)
 
-	Items.Script.SetTextSelectionBounds(Line, 1, Line, StrLen(StrGetLine(Object.Script, Line))
-		+ 1);
+	Items.Script.SetTextSelectionBounds(Line, 1, Line, StrLen(StrGetLine(Object.Script, Line)) + 1);
 
 EndProcedure
 
@@ -608,26 +608,12 @@ EndProcedure
 &AtServer
 Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 
-	if (not checkName()) then
+	if (not ScenarioForm.CheckName(Object.Description)) then
+		Output.ScenarioIDError ( , "Description" );
 		Cancel = true;
 	endif;
 
 EndProcedure
-
-&AtServer
-Function checkName()
-
-	forbidden = "\ / : * ? "" < > | . ^ , $ # @ ` ~ & % ( ) { } - + =";
-	description = Object.Description;
-	for each restriction in StrSplit(forbidden, " ") do
-		if (StrFind(description, restriction) > 0) then
-			Output.ScenarioIDError(, "Description");
-			return false;
-		endif;
-	enddo;
-	return true;
-
-EndFunction
 
 &AtClient
 Procedure BeforeWrite(Cancel, WriteParameters)
@@ -652,90 +638,9 @@ EndProcedure
 &AtServer
 Procedure saveTags(CurrentObject)
 
-	BeginTransaction();
-	lockTags();
-	CurrentObject.Tag = tagsToKey();
-	CommitTransaction();
+	CurrentObject.Tag = Catalogs.TagKeys.Pick(Items.TagsList.ChoiceList.UnloadValues());
 
 EndProcedure
-
-&AtServer
-Procedure lockTags()
-
-	lock = new DataLock();
-	item = lock.Add("Catalog.TagKeys");
-	item.Mode = DataLockMode.Exclusive;
-	lock.Lock();
-
-EndProcedure
-
-&AtServer
-Function tagsToKey()
-
-	tags = Items.TagsList.ChoiceList.UnloadValues();
-	ref = findKey(tags);
-	if (ref <> undefined) then
-		return ref;
-	endif;
-	table = tagsTable(tags);
-	if (table.Count() = 0) then
-		return undefined;
-	endif;
-	obj = Catalogs.TagKeys.CreateItem();
-	obj.Tags.Load(table);
-	obj.SetDescription();
-	obj.Write();
-	return obj.Ref;
-
-EndFunction
-
-&AtServer
-Function findKey(Tags)
-
-	s = "
-		|select top 1 Keys.Ref as Ref
-		|from (
-		|	select TagKeys.Ref as Ref, case when Tags.Tag is null then -1 else 1 end as Count
-		|	from Catalog.TagKeys.Tags as TagKeys
-		|		//
-		|		// TagsCount
-		|		//
-		|		left join (
-		|			select Tags.Ref as Tag
-		|			from Catalog.Tags as Tags
-		|			where Tags.Description in ( &Tags )
-		|		) as Tags
-		|		on Tags.Tag = TagKeys.Tag
-		|	union all
-		|	select TagKeys.Ref, -1
-		|	from Catalog.TagKeys as TagKeys,
-		|		 Catalog.Tags as Classifier
-		|	where Classifier.Description in ( &Tags )
-		|) as Keys
-		|group by Keys.Ref
-		|having sum ( Keys.Count ) = 0
-		|";
-	q = new Query(s);
-	q.SetParameter("Tags", Tags);
-	table = q.Execute().Unload();
-	return ?(table.Count() = 0, undefined, table[0].Ref);
-
-EndFunction
-
-&AtServer
-Function tagsTable(Tags)
-
-	s = "
-		|select Tags.Ref as Tag
-		|from Catalog.Tags as Tags
-		|where Tags.Description in ( &Tags )
-		|and not Tags.DeletionMark
-		|";
-	q = new Query(s);
-	q.SetParameter("Tags", Tags);
-	return q.Execute().Unload();
-
-EndFunction
 
 &AtServer
 Procedure prepareTempale()
@@ -799,7 +704,7 @@ Procedure AfterWrite(WriteParameters)
 	saveOldParent();
 	setTitle();
 	ScenariosPanel.Push(ThisObject);
-	RepositoryFiles.Sync(Object.Application);
+	RepositoryFiles.Sync();
 	resetCursor();
 
 EndProcedure
@@ -807,7 +712,7 @@ EndProcedure
 &AtClient
 Procedure resetCursor()
 
-// Bug workaround: the following actions try to avoid
+	// Bug workaround: the following actions try to avoid
 	// undefined behaviour of cursor position in Text Editor
 	OldCurrentItem = CurrentItem;
 	CurrentItem = Items.Description;
@@ -842,6 +747,7 @@ EndProcedure
 
 // *****************************************
 // *********** Group Form
+
 &AtClient
 Procedure Restart(Command)
 
@@ -1705,6 +1611,7 @@ EndProcedure
 
 // *****************************************
 // *********** Table FieldsTable
+
 &AtClient
 Procedure FetchFields(Command)
 
@@ -1717,9 +1624,7 @@ EndProcedure
 Procedure fill(ActiveOnly)
 
 	scenario = Object.Ref;
-	if (not Test.AttachApplication(scenario)) then
-		return;
-	endif;
+	Test.AttachApplication(scenario);
 	Test.ConnectClient(false);
 	initTree();
 	source = ?(ActiveOnly, App.GetActiveWindow(), App);
@@ -2212,7 +2117,7 @@ EndProcedure
 &AtClient
 Procedure TagCreated(Tag, Params) export
 
-// For backward compatibility with versions < 8.3.11
+	// For backward compatibility with versions < 8.3.11
 	//@skip-warning
 	noerrorshere = true;
 

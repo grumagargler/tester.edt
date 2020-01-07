@@ -1,9 +1,9 @@
 Procedure Init() export
-	
+
 	stopWatching();
 	type = "AddIn.Extender.Watcher";
 	try
-		lib = new(type);
+		lib = new (type);
 	except
 		return;
 	endtry;
@@ -12,73 +12,87 @@ Procedure Init() export
 	apps = data.Applications;
 	folders = data.Folders;
 	slash = GetPathSeparator();
-	testerFolder = slash + RepositoryFiles.SystemFolder() + slash;
+	testerFolder = slash + TesterSystemFolder + slash;
 	for i = 0 to apps.UBound() do
 		folder = folders[i];
 		DeleteFiles(folder + testerFolder, "*");
-		lib = new(type);
+		lib = new (type);
 		FoldersWatchdog[apps[i]] = new Structure("Lib, Folder", lib, folder);
 		lib.Start(folder);
 	enddo;
-	
+
 EndProcedure
 
 Procedure stopWatching()
-	
+
 	if (FoldersWatchdog = undefined) then
 		return;
 	endif;
 	for each item in FoldersWatchdog do
-		// There is only one right way to clean the mess properly:
-		// - stop thread
-		// - execute destructor
+	// There is only one right way to clean the mess properly:
+	// - stop thread
+	// - execute destructor
 		item.Value.Lib.Stop();
 		item.Value.Lib = undefined;
 	enddo;
 	FoldersWatchdog = undefined;
-	
+
 EndProcedure
 
-Function SystemFolder() export
-	
-	return ".tester" + GetPathSeparator();
-	
-EndFunction
-
 Procedure Proceed(Event, Path) export
-	
-	if (myResponse(Path)) then
+
+	if (myResponse(Path)
+		or systemChanges(Path)) then
 		return;
 	elsif (externalRequest(Path)) then
-		if (Event = "Added"
-				or Event = "Changed") then
+		if (Event = "Added" or Event = "Changed") then
 			if (newRequest(Path)) then
 				proceedRequest();
 			endif;
 		endif;
 	else
 		if (Event = "Changed") then
-			proceedFile(Path);
+			proceedChanging(Path);
+		elsif (Event = "FolderAdded") then
+			proceedCreating(Path, true);
+		elsif (Event = "Added") then
+			proceedCreating(Path, false);
+		elsif (Event = "RenamedOld" or Event = "FolderRenamedOld") then
+			TesterExternalRequestsRenaming = Path;
+		elsif (Event = "RenamedNew") then
+			proceedRenaming(Path, false);
+		elsif (Event = "FolderRenamedNew") then
+			proceedRenaming(Path, true);
+		elsif (Event = "Removed" or Event = "FolderRemoved") then
+			proceedRemoving(Path);
 		endif;
 	endif;
-	
+
 EndProcedure
 
 Function myResponse(Path)
-	
+
 	return StrEndsWith(Path, TesterExternalResponses);
-	
+
+EndFunction
+
+Function systemChanges(Path)
+
+	return StrFind(Path, GetPathSeparator() + ".git") > 0
+	or StrEndsWith(Path, TesterSystemFolder) > 0
+	or StrEndsWith(Path, TesterWatcherBSLServerSettings) > 0;
+
 EndFunction
 
 Function externalRequest(Path)
-	
+
 	return StrEndsWith(Path, TesterExternalRequests);
-	
+
 EndFunction
 
 Function newRequest(Path)
-	
-	request = Conversion.FromJSON(readFile(Path));
+
+	request = Conversion.FromJSON(readFile(Path, RepositoryFiles.BSLFile()));
 	if (TesterExternalRequestObject <> undefined
 			and TesterExternalRequestObject.ID = request.ID) then
 		return false;
@@ -86,11 +100,22 @@ Function newRequest(Path)
 	TesterExternalRequestObject = request;
 	TesterExternalRequestsApplication = findApplication(Path);
 	return true;
-	
+
+EndFunction
+
+Function findApplication(File)
+
+	for each item in FoldersWatchdog do
+		value = item.Value;
+		if (StrStartsWith(File, value.Folder)) then
+			return item;
+		endif;
+	enddo;
+
 EndFunction
 
 Procedure proceedRequest()
-	
+
 	request = TesterExternalRequestObject.Request;
 	if (request = Enum.ExternalRequestsRun()) then
 		runTesting();
@@ -118,66 +143,96 @@ Procedure proceedRequest()
 		endif;
 		TesterServerMode = false;
 	endif;
-	
+
 EndProcedure
 
 Procedure runTesting()
-	
+
 	// Client session will not survive if exception happens in ExternalEvent processing
 	DetachIdleHandler("TesterRunsMainScenario");
 	AttachIdleHandler("TesterRunsMainScenario", 0.1, true);
-	
+
 EndProcedure
 
 Procedure setMain()
-	
+
 	file = TesterExternalRequestObject.File;
-	scenario = findScenario(file);
+	scenario = WatcherSrv.FindScenario(syncingContext(File));
 	if (scenario = undefined) then
-		undefinedScenario(File, Enum.ExternalRequestsSaveFile());
-		return;
+		syncingResponse(Output.UndefinedScenario(new Structure("File", file)));
+	else
+		Environment.ChangeScenario(scenario);
+		Watcher.SendResponse();
 	endif;
-	Environment.ChangeScenario(scenario);
+
+EndProcedure
+
+Function syncingContext(File, Removing = false)
+
+	p = new Structure("Application, File, Extension, Path, Changed");
+	p.Application = TesterExternalRequestsApplication.Key;
+	p.File = File;
+	p.Extension = FileSystem.Extension(File);
+	p.Path = RepositoryFiles.FileToPath(File, StrLen(TesterExternalRequestsApplication.Value.Folder)+2);
+	if (not Removing) then
+		handler = new File(File);
+		p.Changed = handler.GetModificationUniversalTime();
+	endif;
+	return p;
+
+EndFunction
+
+Procedure syncingResponse(Error)
+
+	Message(Error);
+	Watcher.AddMessage(Error, Enum.MessageTypesPopupWarning());
 	Watcher.SendResponse();
-	
+
 EndProcedure
 
 Procedure runSelected()
-	
+
 	file = TesterExternalRequestObject.File;
-	scenario = findScenario(file);
+	scenario = WatcherSrv.FindScenario(syncingContext(File));
 	if (scenario = undefined) then
-		undefinedScenario(File, Enum.ExternalRequestsSaveFile());
-		return;
+		syncingResponse(Output.UndefinedScenario(new Structure("File", file)));
+	else
+		TesterExternalRequestsScenario = scenario;
+		// Client session will not survive if exception happens in ExternalEvent processing
+		DetachIdleHandler("TesterRunsSelectedScript");
+		AttachIdleHandler("TesterRunsSelectedScript", 0.1, true);
 	endif;
-	TesterExternalRequestsScenario = scenario;
-	// Client session will not survive if exception happens in ExternalEvent processing
-	DetachIdleHandler("TesterRunsSelectedScript");
-	AttachIdleHandler("TesterRunsSelectedScript", 0.1, true);
-	
+
 EndProcedure
 
 Procedure checkSyntax()
-	
+
 	file = TesterExternalRequestObject.File;
-	error = Test.FindError(readFile(file));
+	error = Runtime.CheckSyntax(readFile(file, RepositoryFiles.BSLFile()));
 	if (error = undefined) then
 		Watcher.AddMessage(Output.ErrorsNotFound());
+	else
+		Watcher.ThrowError ( error );
 	endif;
 	Watcher.SendResponse();
-	
+
 EndProcedure
 
-Function readFile(File)
-	
+Function readFile(File, Extension)
+
 	#if ( WebClient ) then
 	raise Output.WebClientDoesNotSupport();
 	#else
 	timeout = CurrentDate() + 7;
 	while (true) do
 		try
-			text = new TextReader(File, TextEncoding.UTF8, , , true);
-			return text.Read();
+			if (Extension = RepositoryFiles.MXLFile()) then
+				return new BinaryData(File);
+			else
+				text = new TextReader(File, TextEncoding.UTF8, , , true);
+				data = text.Read();
+				return ?(data = undefined, "", data);
+			endif;
 		except
 			if (CurrentDate() > timeout) then
 				raise Output.FileReadingError(new Structure("File", File));
@@ -185,11 +240,29 @@ Function readFile(File)
 		endtry;
 	enddo;
 	#endif
+
+EndFunction
+
+Procedure ThrowError(Error, Scenario=undefined, Offset=0) export
+	
+	range = errorRange(Error, Offset);
+	Watcher.AddMessage(range.Message, Enum.MessageTypesError(), Scenario, range.Line, range.Column);
+	
+EndProcedure
+
+Function errorRange(Text, Offset)
+	
+	i = StrFind(Text, "{(");
+	j = StrFind(Text, ")}");
+	core = Mid(Text, i + 2, j - i - 2);
+	parts = StrSplit(core, ",");
+	message = Mid(Text, j + 4);
+	return new Structure("Message, Line, Column", message, Offset + parts[0], parts[1]);
 	
 EndFunction
 
 Procedure pickField()
-	
+
 	response = prepareResponse();
 	try
 		Test.Attach();
@@ -204,11 +277,11 @@ Procedure pickField()
 		Watcher.AddMessage(error, Enum.MessageTypesPopupWarning());
 	endif;
 	Watcher.SendResponse(response);
-	
+
 EndProcedure
 
 Procedure insertFields(Response)
-	
+
 	result = new Structure("Set, Language, Current");
 	controls = getControls();
 	if (controls <> undefined) then
@@ -216,11 +289,11 @@ Procedure insertFields(Response)
 	endif;
 	result.Language = CurrentLanguage();
 	Response.Insert("Fields", result);
-	
+
 EndProcedure
 
 Function getControls()
-	
+
 	set = new Array();
 	try
 		objects = App.GetActiveWindow().FindObjects();
@@ -255,16 +328,16 @@ Function getControls()
 		set.Add(field);
 	enddo;
 	return new Structure("Set, Current", set, currentControl);
-	
+
 EndFunction
 
 Procedure pickScenario()
-	
+
 	if (TesterExternalRequestObject.Method = "Run") then
 		file = TesterExternalRequestObject.File;
-		scenario = findScenario(file);
+		scenario = WatcherSrv.FindScenario(syncingContext(File));
 		if (scenario = undefined) then
-			undefinedScenario(file, Enum.ExternalRequestsPickScenario());
+			syncingResponse(Output.UndefinedScenario(new Structure("File", file)));
 			return;
 		endif;
 	else
@@ -273,80 +346,89 @@ Procedure pickScenario()
 	response = prepareResponse();
 	response.Insert("Scenarios", WatcherSrv.GetMethods(scenario));
 	Watcher.SendResponse(response);
-	
+
 EndProcedure
 
 Procedure generateID()
-	
+
 	response = prepareResponse();
 	response.Insert("GeneratedID", Environment.GenerateID());
 	Watcher.SendResponse(response);
-	
+
 EndProcedure
 
 Procedure undefinedRequest()
-	
+
 	Watcher.AddMessage(Output.UndefinedExternalRequest(), Enum.MessageTypesPopupWarning());
 	Watcher.SendResponse();
-	
+
 EndProcedure
 
-Procedure proceedFile(File)
-	
-	ext = FileSystem.Extension(File);
-	if (ext = RepositoryFiles.BSLFile()) then
-		TesterExternalRequestsApplication = findApplication(File);
-		scenario = findScenario(File);
-		if (scenario = undefined) then
-			undefinedScenario(File, Enum.ExternalRequestsSaveFile());
-			return;
-		endif;
-		if (WatcherSrv.Update(scenario, readFile(File))) then
-			broadcast(scenario);
-		endif;
-		if (savingRequest(File)) then
-			comleteSaving();
-		endif;
+Procedure proceedChanging(File)
+
+	if (not validFile(File, false)) then
+		return;
 	endif;
-	
+	TesterExternalRequestsApplication = findApplication(File);
+	error = undefined;
+	context = syncingContext(File);
+	scenario = WatcherSrv.Update(context, readFile(File, context.Extension), error);
+	if (error <> undefined) then
+		syncingResponse(error);
+		return;
+	endif;
+	if (scenario <> undefined) then
+		broadcast(scenario);
+	endif;
+	if (savingRequest(File)) then
+		comleteSaving();
+	endif;
+
 EndProcedure
 
-Function findApplication(File)
-	
-	for each item in FoldersWatchdog do
-		value = item.Value;
-		if (StrStartsWith(File, value.Folder)) then
-			return item;
-		endif;
-	enddo;
-	
-EndFunction
+Function validFile(File, IsFolder)
 
-Function findScenario(File)
-	
-	slash = GetPathSeparator();
-	source = Lower(File);
-	path = Lower(Mid(source, 1, StrFind(source, ".", SearchDirection.FromEnd, , 2) - 1));
-	if (StrEndsWith(path, RepositoryFiles.FolderSuffix())) then
-		path = Mid(source, 1, StrFind(source, slash, SearchDirection.FromEnd) - 1);
+	if (IsFolder) then
+		return StrFind(File, ".") = 0;
+	else
+		ext = FileSystem.Extension(File);
+		return ext = RepositoryFiles.BSLFile()
+		or ext = RepositoryFiles.MXLFile()
+		or ext = RepositoryFiles.JSONFile();
 	endif;
-	path = StrReplace(StrReplace(path, Lower(TesterExternalRequestsApplication.Value.Folder) + slash, ""), slash, ".");
-	scenario = RuntimeSrv.FindScenario(path, undefined, TesterExternalRequestsApplication.Key, undefined, true);
-	return scenario;
-	
+
 EndFunction
 
-Procedure undefinedScenario(File, Request)
-	
+Procedure broadcast(Them)
+
+	DetachIdleHandler("TesterWatcherBroadcasting");
+	TesterExternalBroadcasting = them;
+	AttachIdleHandler("TesterWatcherBroadcasting", 0.5, true);
+
+EndProcedure
+
+Function savingRequest(File)
+
+	return TesterExternalRequestObject <> undefined
+		and (TesterExternalRequestObject.Request = Enum.ExternalRequestsSaveBeforeCheckSyntax()
+		or TesterExternalRequestObject.Request = Enum.ExternalRequestsSaveBeforeRun()
+		or TesterExternalRequestObject.Request = Enum.ExternalRequestsSaveBeforeRunSelected()
+		or TesterExternalRequestObject.Request = Enum.ExternalRequestsSaveBeforeAssigning())
+		and Lower(TesterExternalRequestObject.File) = Lower(File);
+
+EndFunction
+
+Procedure comleteSaving()
+
 	response = prepareResponse();
-	response.Insert("Request", new Structure("Request", Request));
-	Watcher.AddMessage(Output.UndefinedScenario(new Structure("File", File)), Enum.MessageTypesError(), File);
+	response.TransactionComplete = true;
+	TesterExternalRequestObject = undefined;
 	Watcher.SendResponse(response);
-	
+
 EndProcedure
 
 Function prepareResponse()
-	
+
 	response = new Structure();
 	if (TesterExternalRequestObject <> undefined) then
 		response.Insert("Request", Collections.CopyStructure(TesterExternalRequestObject));
@@ -355,59 +437,177 @@ Function prepareResponse()
 	response.Insert("TransactionComplete", false);
 	response.Insert("Messages");
 	return response;
-	
+
 EndFunction
 
-Procedure broadcast(Scenario)
-	
-	list = new Array();
-	list.Add(Scenario);
-	Notify(Enum.MessageReload(), list);
-	NotifyChanged(Type("CatalogRef.Scenarios"));
-	
+Procedure proceedCreating(File, IsFolder)
+
+	if (not validFile(File, IsFolder)) then
+		return;
+	endif;
+	TesterExternalRequestsApplication = findApplication(File);
+	if (not checkName(File)) then
+		return;
+	endif;
+	error = undefined;
+	context = syncingContext(File);
+	changes = WatcherSrv.Create(context, IsFolder, error);
+	if (error <> undefined) then
+		syncingResponse(error);
+		return;
+	endif;
+	if (IsFolder) then
+		uploadFiles(File);
+	endif;
+	broadcast(changes);
+
 EndProcedure
 
-Function savingRequest(File)
-	
-	return TesterExternalRequestObject <> undefined
-	and (TesterExternalRequestObject.Request = Enum.ExternalRequestsSaveBeforeCheckSyntax()
-			or TesterExternalRequestObject.Request = Enum.ExternalRequestsSaveBeforeRun()
-			or TesterExternalRequestObject.Request = Enum.ExternalRequestsSaveBeforeRunSelected()
-			or TesterExternalRequestObject.Request = Enum.ExternalRequestsSaveBeforeAssigning())
-		and TesterExternalRequestObject.File = File;
-	
+Function checkName(Name)
+
+	if (not ScenarioForm.CheckName(RepositoryFiles.FileToName(Name))) then
+		error = Output.WatcherFileNameError(new Structure("File", Name));
+		syncingResponse(error);
+		return false;
+	endif;
+	return true;
+
 EndFunction
 
-Procedure comleteSaving()
-	
-	response = prepareResponse();
-	response.TransactionComplete = true;
-	TesterExternalRequestObject = undefined;
-	Watcher.SendResponse(response);
-	
+Procedure uploadFiles(Folder)
+
+	files = FindFiles(Folder, "*.*");
+	for each file in files do
+		isFolder = file.IsDirectory();
+		path = file.FullName;
+		proceedCreating(path, isFolder);
+		if (not isFolder) then
+			proceedChanging(path);
+		endif;
+	enddo;
+
 EndProcedure
+
+Procedure proceedRenaming(NewFile, IsFolder)
+
+	if (not validFile(NewFile, IsFolder)) then
+		return;
+	endif;
+	oldFile = TesterExternalRequestsRenaming;
+	if ( not validFile(oldFile, IsFolder) ) then
+		proceedCreating(NewFile, IsFolder);
+		proceedChanging(NewFile);
+		return;
+	endif;
+	TesterExternalRequestsApplication = findApplication(oldFile);
+	if (not checkName(NewFile)) then
+		return;
+	endif;
+	if (renamingFolderFile()) then
+		error = Output.WatcherRenamingFolderError(new Structure("File", oldFile));
+		syncingResponse(error);
+		return;
+	endif;
+	error = undefined;
+	context = syncingContext(oldFile, true);
+	scenario = WatcherSrv.Rename(context, NewFile, RepositoryFiles.FileToPath(NewFile, StrLen(TesterExternalRequestsApplication.Value.Folder)+2), IsFolder, error);
+	if (error <> undefined) then
+		syncingResponse(error);
+		return;
+	endif;
+	broadcast(scenario);
+	syncRenaming(NewFile, IsFolder);
+
+EndProcedure
+
+Function renamingFolderFile()
+
+	oldFile = TesterExternalRequestsRenaming;
+	renameFolder = StrFind(oldFile, RepositoryFiles.FolderSuffix());
+	if (renameFolder) then
+		folder = FileSystem.GetParent(FileSystem.GetParent(oldFile)) + GetPathSeparator() + RepositoryFiles.FileToName(oldFile);
+		folders = FindFiles(folder);
+		if (folders.Count() = 1) then
+			return true;
+		endif;
+	endif;
+	return false;
+
+EndFunction
+
+Procedure syncRenaming(NewFile, IsFolder)
+
+	oldFile = TesterExternalRequestsRenaming;
+	folderSuffix = RepositoryFiles.FolderSuffix();
+	oldName = FileSystem.GetBaseName(FileSystem.GetFileName(OldFile));
+	newName = FileSystem.GetBaseName(FileSystem.GetFileName(NewFile));
+	if (IsFolder) then
+		suffix = folderSuffix;
+		files = FindFiles(NewFile, oldName + ".*");
+	else
+		suffix = "";
+		files = FindFiles(FileSystem.GetParent(NewFile), oldName + ".*");
+	endif;
+	for each file in files do
+		if (not IsFolder and StrFind(file.Name, folderSuffix) > 0) then
+			continue;
+		endif;
+		MoveFile(file.FullName, file.Path + newName + suffix + file.Extension);
+	enddo;
+
+EndProcedure
+
+Procedure proceedRemoving(File)
+
+	if (not validRemoving(File)) then
+		return;
+	endif;
+	TesterExternalRequestsApplication = findApplication(File);
+	error = undefined;
+	context = syncingContext(File, true);
+	scenario = WatcherSrv.Remove(context, error);
+	if (error <> undefined) then
+		syncingResponse(error);
+		return;
+	endif;
+	broadcast(scenario);
+
+EndProcedure
+
+Function validRemoving(File)
+
+	ext = FileSystem.Extension(File);
+	return ext = RepositoryFiles.BSLFile() or ext = RepositoryFiles.MXLFile()
+		or ext = RepositoryFiles.JSONFile() or ext = "";
+
+EndFunction
 
 Procedure SendResponse(Response = undefined) export
-	
+
 	#if ( WebClient ) then
 	raise Output.WebClientDoesNotSupport();
 	#else
+	path = TesterExternalRequestsApplication.Value.Folder + GetPathSeparator() + TesterExternalResponses;
+	file = new File(FileSystem.GetParent(path));
+	if ( not file.Exist() ) then
+		return;
+	endif;
 	if (Response = undefined) then
 		answer = prepareResponse();
 	else
 		answer = Response;
 	endif;
-	path = TesterExternalRequestsApplication.Value.Folder + GetPathSeparator() + TesterExternalResponses;
 	writer = new TextWriter(path);
 	answer.Messages = TesterServerMessages;
 	writer.Write(Conversion.ToJSON(answer, false));
 	TesterServerMessages = undefined;
 	#endif
-	
+
 EndProcedure
 
-Procedure AddMessage(Text, Type = undefined, Scenario = undefined, Line = 1, Column = 1) export
-	
+Procedure AddMessage(Text, Type = undefined, Scenario = undefined, Line = 1,
+		Column = 1) export
+
 	if (Scenario = undefined) then
 		file = undefined;
 	else
@@ -422,11 +622,11 @@ Procedure AddMessage(Text, Type = undefined, Scenario = undefined, Line = 1, Col
 	messageType = ?(Type = undefined, Enum.MessageTypesPopup(), Type);
 	p = new Structure("Text, Type, File, Line, Column", Text, messageType, file, Line, Column);
 	TesterServerMessages.Add(p);
-	
+
 EndProcedure
 
 Function scenarioFile(Scenario)
-	
+
 	if (TypeOf(Scenario) = Type("String")) then
 		return Scenario;
 	endif;
@@ -437,6 +637,5 @@ Function scenarioFile(Scenario)
 	else
 		return file;
 	endif;
-	
-EndFunction
 
+EndFunction

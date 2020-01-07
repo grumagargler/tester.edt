@@ -1,8 +1,8 @@
 
 &AtClient
-Procedure CommandProcessing ( Scenarios, CommandExecuteParameters )
+Procedure CommandProcessing ( Scenarios, ExecuteParameters )
 	
 	p = new Structure ( "Scenarios", Scenarios );
-	OpenForm ( "Catalog.Scenarios.Form.Store", p, CommandExecuteParameters.Source, CommandExecuteParameters.Uniqueness, CommandExecuteParameters.Window, CommandExecuteParameters.URL );
-	
+	OpenForm ( "Catalog.Scenarios.Form.Store", p, ExecuteParameters.Source, ExecuteParameters.Uniqueness, ExecuteParameters.Window, ExecuteParameters.URL );
+
 EndProcedure

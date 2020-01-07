@@ -1,15 +1,12 @@
 
-Function Exec ( Scenario, Application = undefined, ProgramCode = undefined, Debugging = false, Offset = 0, Filming = false ) export
+Procedure Exec ( Scenario, Application = undefined, ProgramCode = undefined, Debugging = false, Offset = 0, Filming = false ) export
 	
 	data = Test.FindScenario ( Scenario, Application );
-	if ( not Test.AttachApplication ( data.Scenario ) ) then
-		return false;
-	endif; 
+	Test.AttachApplication ( data.Scenario );
 	program = ? ( data.Application.IsEmpty (), SessionApplication, data.Application );
 	Runtime.Exec ( program, ProgramCode, true, Debugging, Offset, Filming );
-	return true;
 	
-EndFunction
+EndProcedure
 
 Function FindScenario ( Scenario, Application = undefined ) export
 	
@@ -33,20 +30,12 @@ Function FindScenario ( Scenario, Application = undefined ) export
 	
 EndFunction 
 
-Function AttachApplication ( Scenario ) export
+Procedure AttachApplication ( Scenario ) export
 	
 	AppData = TestSrv.Data ( Scenario );
 	СвойстваПриложения = AppData;
-	if ( AppData = undefined ) then
-		Output.ApplicationUndefined ();
-		if ( TesterServerMode ) then
-			Watcher.AddMessage ( Output.ApplicationUndefinedMessage (), Enum.MessageTypesPopupWarning () );
-		endif;
-		return false;
-	endif; 
-	return true;
 	
-EndFunction 
+EndProcedure
 	
 Procedure DisconnectClient ( Close = false, ShutdownProxy = false ) export
 	
@@ -108,7 +97,9 @@ Procedure tryConnect ( ClearErrors, Port, Computer )
 			host = proxy.Localhost;
 			hostPort = proxy.Port;
 		endif;
-		App = new TestedApplication ( host, hostPort, AppData.ClientID );
+		// Evaluation is required because TestedApplication is not defined as a Type
+		// outside of TestManager running mode
+		App = Eval ( "new TestedApplication ( host, hostPort, AppData.ClientID )" );
 		App.Connect ();
 		Приложение = App;
 		AppData.Connected = true;
@@ -202,50 +193,29 @@ EndProcedure
 
 Procedure CheckSyntax ( ProgramCode ) export
 	
-	error = Test.FindError ( ProgramCode );
+	error = Runtime.CheckSyntax ( ProgramCode );
 	if ( error = undefined ) then
 		OpenForm ( "CommonForm.SyntaxPassed" );
 	else
-		ShowValue ( , error );
+		Output.SyntaxError ( undefined, new Structure ( "Error", error ) );
 	endif;
 	
 EndProcedure 
 
-Function FindError ( ProgramCode ) export
-	
-	code = Compiler.SyntaxCode ( ProgramCode );
-	Runtime.InitDebug ();
-	try
-		Runtime.RunScript ( code.Client );
-		if ( code.Server <> undefined ) then
-			RuntimeSrv.CheckSyntax ( code.Server );
-		endif; 
-		return undefined;
-	except
-		return BriefErrorDescription ( ErrorInfo () );
-	endtry;
-	
-EndFunction
-
-Function Start ( Scenario, Application = undefined ) export
+Procedure Start ( Scenario, Application = undefined ) export
 	
 	data = Test.FindScenario ( Scenario, Application );
-	if ( Test.AttachApplication ( data.Scenario ) ) then
-		Runtime.NextLevel ( Debug );
-		Runtime.Exec ( , , false );
-		Runtime.PreviousLevel ( Debug );
-		return true;
-	else
-		return false;
-	endif; 
+	Test.AttachApplication ( data.Scenario );
+	Runtime.NextLevel ( Debug );
+	Runtime.Exec ( , , false );
+	Runtime.PreviousLevel ( Debug );
 	
-EndFunction
+EndProcedure
 
 Procedure Attach ( Port = undefined ) export
 	
-	if ( Test.AttachApplication ( SessionScenario ) ) then
-		Test.ConnectClient ( false, Port );
-	endif;
+	Test.AttachApplication ( SessionScenario );
+	Test.ConnectClient ( false, Port );
 
 EndProcedure
 

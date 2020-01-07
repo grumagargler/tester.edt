@@ -7,8 +7,6 @@ Procedure OnCreateAtServer ( Cancel, StandardProcessing )
 	if ( Object.Ref.IsEmpty () ) then
 		ScenarioForm.Init ( ThisObject );
 	endif; 
-	AppearanceSrv.Read ( ThisObject );
-	Appearance.Apply ( ThisObject );
 	
 EndProcedure
 
@@ -29,6 +27,7 @@ Procedure AfterWrite ( WriteParameters )
 	if ( Main ) then
 		Environment.ChangeScenario ( ref );
 	endif;
+	RepositoryFiles.Sync ();
 	type = Object.Type;
 	if ( type = PredefinedValue ( "Enum.Scenarios.Scenario" )
 		or type = PredefinedValue ( "Enum.Scenarios.Method" ) ) then
@@ -44,25 +43,5 @@ EndProcedure
 Procedure DescriptionOnChange ( Item )
 	
 	Object.Description = TrimAll ( Object.Description );
-	
-EndProcedure
-
-&AtClient
-Procedure TypeOnChange ( Item )
-	
-	applyType ();
-	
-EndProcedure
-
-&AtClient
-Procedure applyType ()
-	
-	type = Object.Type;
-	if ( type = PredefinedValue ( "Enum.Scenarios.Scenario" )
-		or type = PredefinedValue ( "Enum.Scenarios.Method" ) ) then
-	else
-		Object.Severity = undefined;
-	endif;
-	Appearance.Apply ( ThisObject, "Object.Type" );
 	
 EndProcedure

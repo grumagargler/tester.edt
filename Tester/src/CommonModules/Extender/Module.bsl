@@ -775,3 +775,45 @@ Procedure ПрогрессСкрыть () export
 	ProgressHide ();
 	
 EndProcedure
+
+&AtClient
+Function SystemVariable ( Name ) export
+	
+	return Environment.GetVariable ( Name );
+	
+EndFunction
+
+&AtClient
+Function ПеременнаяСреды ( Name ) export
+
+	return SystemVariable ( Name );
+	
+EndFunction
+
+&AtClient
+Procedure MaximizeWindow ( Pattern = "" ) export
+	
+	Forms.ToggleWindow ( Pattern, true );
+	
+EndProcedure
+
+&AtClient
+Procedure МаксимизироватьОкно ( Pattern = "" ) export
+	
+	MaximizeWindow ( Pattern );
+	
+EndProcedure
+
+&AtClient
+Procedure MinimizeWindow ( Pattern = "" ) export
+	
+	Forms.ToggleWindow ( Pattern, false );
+	
+EndProcedure
+
+&AtClient
+Procedure МинимизироватьОкно ( Pattern = "" ) export
+	
+	MinimizeWindow ( Pattern );
+	
+EndProcedure

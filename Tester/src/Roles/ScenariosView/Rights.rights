@@ -44,7 +44,21 @@
 		</right>
 	</object>
 	<object>
+		<name>ExchangePlan.Repositories.Attribute.Application</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
 		<name>Catalog.ErrorLog.Attribute.Job</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>ExchangePlan.Repositories.Attribute.Mapping</name>
 		<right>
 			<name>Edit</name>
 			<value>false</value>
@@ -143,6 +157,24 @@
 		<name>Catalog.Scenarios.Command.Record</name>
 		<right>
 			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.Workspaces</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#Owners</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InputByString</name>
 			<value>true</value>
 		</right>
 	</object>
@@ -308,10 +340,85 @@ and T.Application in ( #Applications ( "Application" ) )</condition>
 		</right>
 	</object>
 	<object>
+		<name>ExchangePlan.Repositories.Attribute.Session</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
 		<name>InformationRegister.Log.Command.OpenByJob</name>
 		<right>
 			<name>View</name>
 			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>ExchangePlan.Repositories</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#Sessions
+or T.ThisNode</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InputByString</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>ExchangePlan.Repositories.StandardAttribute.ThisNode</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>ExchangePlan.Repositories.StandardAttribute.ReceivedNo</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>ExchangePlan.Repositories.StandardAttribute.SentNo</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>ExchangePlan.Repositories.StandardAttribute.Ref</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>ExchangePlan.Repositories.StandardAttribute.DeletionMark</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>ExchangePlan.Repositories.StandardAttribute.Description</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>ExchangePlan.Repositories.StandardAttribute.Code</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
 		</right>
 	</object>
 	<object>
@@ -507,24 +614,6 @@ and T.Scenario.Application in ( #Applications ( "Application" ) )</condition>
 		</right>
 	</object>
 	<object>
-		<name>ExchangePlan.Changes</name>
-		<right>
-			<name>Read</name>
-			<value>true</value>
-			<restrictionByCondition>
-				<condition>#Users</condition>
-			</restrictionByCondition>
-		</right>
-		<right>
-			<name>View</name>
-			<value>true</value>
-		</right>
-		<right>
-			<name>InputByString</name>
-			<value>true</value>
-		</right>
-	</object>
-	<object>
 		<name>InformationRegister.Applications</name>
 		<right>
 			<name>Read</name>
@@ -550,9 +639,6 @@ and T.Scenario.Application in ( #Applications ( "Application" ) )</condition>
 		<right>
 			<name>Read</name>
 			<value>true</value>
-			<restrictionByCondition>
-				<condition>#Users</condition>
-			</restrictionByCondition>
 		</right>
 		<right>
 			<name>View</name>
@@ -567,24 +653,24 @@ and T.Scenario.Application in ( #Applications ( "Application" ) )</condition>
 		</right>
 	</object>
 	<object>
-		<name>InformationRegister.Sources.Dimension.Version</name>
+		<name>ExchangePlan.Repositories.Attribute.Folder</name>
 		<right>
 			<name>Edit</name>
 			<value>false</value>
 		</right>
 	</object>
 	<object>
-		<name>InformationRegister.Repositories</name>
-		<right>
-			<name>Read</name>
-			<value>true</value>
-			<restrictionByCondition>
-				<condition>T where T.Application in ( #Applications ( "Application" ) )</condition>
-			</restrictionByCondition>
-		</right>
+		<name>Catalog.Scenarios.Command.OpenFolder</name>
 		<right>
 			<name>View</name>
 			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.Sources.Dimension.Version</name>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
 		</right>
 	</object>
 	<object>
@@ -722,6 +808,13 @@ and T.Application in ( #Applications ( "Application" ) )</condition>
 			<value>true</value>
 		</right>
 	</object>
+	<object>
+		<name>Catalog.Workspaces.Command.OpenStudio</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
 	<restrictionTemplate>
 		<name>Applications</name>
 		<condition>// #Parameter(1) - Reference Field
@@ -753,6 +846,10 @@ and #Parameter(1) not in ( &amp;ApplicationsList )
 	<restrictionTemplate>
 		<name>Owners</name>
 		<condition>T where T.Owner = &amp;User</condition>
+	</restrictionTemplate>
+	<restrictionTemplate>
+		<name>Sessions</name>
+		<condition>T where T.Session.User = &amp;User</condition>
 	</restrictionTemplate>
 	<restrictionTemplate>
 		<name>SpecialAccess</name>

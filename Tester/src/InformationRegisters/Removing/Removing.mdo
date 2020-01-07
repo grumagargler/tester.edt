@@ -36,33 +36,6 @@
     <key>ru</key>
     <value>Используется для удаления файлов из локальных репозиториев при удалении или переименовании сценариев в базе</value>
   </explanation>
-  <resources uuid="143c4a0b-b6b6-4ab7-b6b8-dc847ee74816">
-    <name>Application</name>
-    <synonym>
-      <key>en</key>
-      <value>Application</value>
-    </synonym>
-    <synonym>
-      <key>ru</key>
-      <value>Приложение</value>
-    </synonym>
-    <type>
-      <types>CatalogRef.Applications</types>
-    </type>
-    <toolTip>
-      <key>en</key>
-      <value>Application</value>
-    </toolTip>
-    <toolTip>
-      <key>ru</key>
-      <value>Приложение</value>
-    </toolTip>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-    <fillValue xsi:type="core:UndefinedValue"/>
-  </resources>
   <resources uuid="2e0e9afc-86eb-4f93-9ff8-cdc6287df163">
     <name>Path</name>
     <synonym>
@@ -118,64 +91,29 @@
     <dataHistory>Use</dataHistory>
     <fillValue xsi:type="core:UndefinedValue"/>
   </resources>
-  <resources uuid="f505e691-4560-4e3b-b44a-a2cd17ac63c3">
-    <name>Type</name>
+  <dimensions uuid="a26d15ee-8c64-48fa-bf9b-f3ae181d63d4">
+    <name>Repository</name>
     <synonym>
       <key>en</key>
-      <value>Type</value>
+      <value>Repository</value>
     </synonym>
     <synonym>
       <key>ru</key>
-      <value>Тип</value>
+      <value>Репозиторий</value>
     </synonym>
     <type>
-      <types>EnumRef.Scenarios</types>
+      <types>ExchangePlanRef.Repositories</types>
     </type>
     <toolTip>
       <key>en</key>
-      <value>Scenario type</value>
+      <value>Repository</value>
     </toolTip>
     <toolTip>
       <key>ru</key>
-      <value>Тип сценария</value>
+      <value>Репозиторий</value>
     </toolTip>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
-    <fillFromFillingValue>true</fillFromFillingValue>
-    <fillValue xsi:type="core:ReferenceValue">
-      <value>Enum.Scenarios.EmptyRef</value>
-    </fillValue>
-  </resources>
-  <dimensions uuid="30919ac8-b505-4a9f-bd61-72bac0c5e4db">
-    <name>User</name>
-    <synonym>
-      <key>en</key>
-      <value>User</value>
-    </synonym>
-    <synonym>
-      <key>ru</key>
-      <value>Пользователь</value>
-    </synonym>
-    <type>
-      <types>CatalogRef.Users</types>
-    </type>
-    <toolTip>
-      <key>en</key>
-      <value>User</value>
-    </toolTip>
-    <toolTip>
-      <key>ru</key>
-      <value>Пользователь</value>
-    </toolTip>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-    <fillFromFillingValue>true</fillFromFillingValue>
-    <fillValue xsi:type="core:UndefinedValue"/>
-    <master>true</master>
     <mainFilter>true</mainFilter>
   </dimensions>
   <dimensions uuid="536a30b4-ad25-4a9b-907e-f914dac06d59">

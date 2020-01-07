@@ -20,7 +20,7 @@
   <usePurposes>PersonalComputer</usePurposes>
   <defaultRoles>Role.User</defaultRoles>
   <vendor>Reshitko Dmitry</vendor>
-  <version>1.3.4.5</version>
+  <version>1.3.5.1</version>
   <includeHelpInContents>true</includeHelpInContents>
   <help>
     <pages>
@@ -241,7 +241,9 @@
   <commonModules>CommonModule.Watcher</commonModules>
   <commonModules>CommonModule.WatcherSrv</commonModules>
   <commonModules>CommonModule.Webhook</commonModules>
-  <exchangePlans>ExchangePlan.Changes</exchangePlans>
+  <commonModules>CommonModule.WorkspaceForm</commonModules>
+  <commonModules>CommonModule.WorkspaceFormSrv</commonModules>
+  <exchangePlans>ExchangePlan.Repositories</exchangePlans>
   <httpServices>HTTPService.Job</httpServices>
   <httpServices>HTTPService.Hook</httpServices>
   <eventSubscriptions>EventSubscription.CheckDoubles</eventSubscriptions>
@@ -291,6 +293,7 @@
   <catalogs>Catalog.Users</catalogs>
   <catalogs>Catalog.Versions</catalogs>
   <catalogs>Catalog.Workplaces</catalogs>
+  <catalogs>Catalog.Workspaces</catalogs>
   <documents>Document.Job</documents>
   <enums>Enum.Access</enums>
   <enums>Enum.AgentStatuses</enums>
@@ -328,7 +331,6 @@
   <informationRegisters>InformationRegister.Log</informationRegisters>
   <informationRegisters>InformationRegister.Ports</informationRegisters>
   <informationRegisters>InformationRegister.Removing</informationRegisters>
-  <informationRegisters>InformationRegister.Repositories</informationRegisters>
   <informationRegisters>InformationRegister.Scenarios</informationRegisters>
   <informationRegisters>InformationRegister.ScheduledReports</informationRegisters>
   <informationRegisters>InformationRegister.SendingReports</informationRegisters>

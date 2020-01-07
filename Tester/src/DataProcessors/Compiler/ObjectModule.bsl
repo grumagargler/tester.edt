@@ -26,7 +26,6 @@ Function Compile() export
 	
 	init();
 	initExp();
-	syntax();
 	enumerate();
 	compileProcedures(Program, false);
 	assemble();
@@ -38,7 +37,7 @@ Procedure init()
 	
 	Program = new Array();
 	Module = DF.Pick(Scenario, "Code");
-	IsVersion = TypeOf(Scenario) = Type("CatalogRef.Versions");
+	IsVersion = ? ( TypeOf(Scenario) = Type("CatalogRef.Versions"), "true", "false" );
 	RunSelected = Script <> undefined;
 	if (not RunSelected) then
 		Script = DF.Pick(Scenario, "Script");
@@ -49,33 +48,6 @@ EndProcedure
 Procedure initExp()
 	
 	Exp = Regexp.Get();
-	
-EndProcedure
-
-Procedure syntax()
-	
-	rows = StrSplit(Script, Chars.LF);
-	compileProcedures(rows, true);
-	fixReturn(rows, true);
-	composeClient(rows);
-	composeServer(rows);
-	
-EndProcedure
-
-Procedure composeClient(Scope)
-	
-	clientCode = "if ( false ) then " + StrConcat(Scope, Chars.LF) + Chars.LF + "endif;";
-	ClientSyntax = StrReplace(clientCode, Clauses.IfClient, Clauses.IfNotServer);
-	
-EndProcedure
-
-Procedure composeServer(Scope)
-	
-	serverCode = extractServerCode(Scope);
-	if (serverCode = undefined) then
-		return;
-	endif;
-	ServerSyntax = StrReplace(serverCode, Clauses.IfServer, Clauses.IfNotClient);
 	
 EndProcedure
 
@@ -287,16 +259,14 @@ EndProcedure
 
 Procedure debugInfo(Line, LastLine)
 	
-	command = hook("""" + Module + """", Line, ?(IsVersion, "true", "false"));
+	command = hook("""" + Module + """", Line);
 	Program.Insert(LastLine, command);
 	
 EndProcedure
 
-Function hook(Module, Line, IsVersion)
+Function hook(Module, Line)
 	
-	row = Format(Line, "NG=;NZ=");
-	progress = ?(Line > ModuleSize, "undefined", Format(Round(Line * ProgressStep, 0, RoundMode.Round15as20), "NG=;NZ="));
-	debugCall = "Debugger.Line ( Chronograph, Debug, " + Module + ", " + row + ", " + IsVersion + ", """ + Scenario + """, " + progress + " )";
+	debugCall = debugger ( Line );
 	if ( ServerOnly ) then
 		s = ";" + debugCall + ";";
 	else
@@ -324,6 +294,14 @@ Function hook(Module, Line, IsVersion)
 			|endif;";
 	endif;
 	return StrReplace(s, Chars.LF, " ");
+	
+EndFunction
+
+Function debugger ( Line )
+
+	row = Format(Line, "NG=;NZ=");
+	progress = ?(Line > ModuleSize, "undefined", Format(Round(Line * ProgressStep, 0, RoundMode.Round15as20), "NG=;NZ="));
+	return "Debugger.Line ( Chronograph, Debug, """ + Module + """, " + row + ", " + IsVersion + ", """ + Scenario + """, " + progress + " )";
 	
 EndFunction
 
@@ -598,7 +576,10 @@ Procedure assemble()
 	if (RunSelected) then
 		Program.Insert(0, attachEnvironment());
 	endif;
-	Program.Insert(0, getProcedures());
+	if ( Procedures.Count () > 0 ) then
+		Program.Insert(0, getProcedures());
+	endif;
+	Program.Insert(0, debugger(1));
 	fixReturn(Program, false);
 	finalize(Program);
 	Compiled = StrConcat(Program, Chars.LF);
@@ -633,9 +614,7 @@ EndFunction
 
 Function result()
 	
-	p = new Structure("Compiled, ClientSyntax, ServerSyntax, Server");
-	p.ClientSyntax = ClientSyntax;
-	p.ServerSyntax = ServerSyntax;
+	p = new Structure("Compiled");
 	p.Compiled = Compiled;
 	return p;
 	
@@ -644,10 +623,31 @@ EndFunction
 Function SyntaxCode() export
 	
 	initExp();
-	syntax();
+	rows = StrSplit(Script, Chars.LF);
+	compileProcedures(rows, true);
+	fixReturn(rows, true);
+	composeClient(rows);
+	composeServer(rows);
 	return new Structure("Client, Server", ClientSyntax, ServerSyntax);
 	
 EndFunction
+
+Procedure composeClient(Scope)
+	
+	clientCode = "if ( false ) then " + StrConcat(Scope, Chars.LF) + Chars.LF + "endif;";
+	ClientSyntax = StrReplace(clientCode, Clauses.IfClient, Clauses.IfNotServer);
+	
+EndProcedure
+
+Procedure composeServer(Scope)
+	
+	serverCode = extractServerCode(Scope);
+	if (serverCode = undefined) then
+		return;
+	endif;
+	ServerSyntax = StrReplace(serverCode, Clauses.IfServer, Clauses.IfNotClient);
+	
+EndProcedure
 
 // *****************************************
 // *********** Variables Initialization
@@ -682,4 +682,3 @@ Clauses.Insert("IfNotClient", "#if ( not Client ) then");
 Clauses.Insert("IfEnd", "#endif");
 
 ParametersLimit = 20;
-

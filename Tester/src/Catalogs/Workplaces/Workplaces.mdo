@@ -14,7 +14,7 @@
   </synonym>
   <synonym>
     <key>ru</key>
-    <value>Рабочие области</value>
+    <value>Рабочие профили</value>
   </synonym>
   <useStandardCommands>true</useStandardCommands>
   <inputByString>Catalog.Workplaces.StandardAttribute.Description</inputByString>
@@ -123,7 +123,7 @@
   </explanation>
   <explanation>
     <key>ru</key>
-    <value>Справочник рабочих областей</value>
+    <value>Справочник рабочих профилей</value>
   </explanation>
   <levelCount>2</levelCount>
   <foldersOnTop>true</foldersOnTop>

@@ -341,7 +341,7 @@ index by Date, Application, Version
 // Log
 select allowed Log.Session as Session, Log.Scenario as Scenario, Log.Duration as Duration,
 	Log.Status as Status, Sessions.DateStart as Started, Sessions.Application as Application,
-	isnull ( Versions.Version, SystemVersions.Version ) as Version
+	isnull ( Versions.Version, isnull ( SystemVersions.Version, value ( Catalog.ApplicationVersions.EmptyRef ) ) ) as Version
 into Log
 from InformationRegister.Log as Log
 	//
@@ -369,7 +369,7 @@ from InformationRegister.Log as Log
 ;
 // Scenarios
 select allowed Scenarios.Scenario as Scenario, Scenarios.Application as Application,
-	Sessions.Session as Session, isnull ( Versions.Version, SystemVersions.Version ) as Version,
+	Sessions.Session as Session, isnull ( Versions.Version, isnull ( SystemVersions.Version, value ( Catalog.ApplicationVersions.EmptyRef ) ) ) as Version,
 	Sessions.DateStart as Started, Scenarios.Severity as Severity
 into Scenarios
 from (

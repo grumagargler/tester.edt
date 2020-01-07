@@ -56,7 +56,7 @@ Function Extension ( File ) export
 			ext = Mid ( ext, pos + 1 );
 		endif;
 	enddo;
-	return ?( ext = File, "", "." + Lower ( ext ) );
+	return ? ( ext = File, "", "." + Lower ( ext ) );
 
 EndFunction
 
@@ -71,14 +71,21 @@ Function RemoveSlash ( Path ) export
 	
 EndFunction
 
-&AtServer
-Function GetParent ( Folder, Separator ) export
+Function GetParent ( Folder ) export
 	
-	i = StrFind ( Folder, Separator, SearchDirection.FromEnd );
-	if ( i = 0 ) then
-		return undefined;
-	else
-		return Left ( Folder, i - 1 );
-	endif;
+	// Do not use GetPathSeparator () bacause we do not know from where files come
+	dot = StrFind ( Folder, "/", SearchDirection.FromEnd );
+	if ( dot = 0 ) then
+		dot = StrFind ( Folder, "\", SearchDirection.FromEnd );
+	endif; 
+	return ? ( dot = 0, undefined, Left ( Folder, dot - 1 ) );
 
+EndFunction
+
+Function GetFileName ( Path ) export
+
+	separator = GetPathSeparator ();
+	a = StrFind ( Path, separator, SearchDirection.FromEnd );
+	return ? ( a = 0, Path, Mid ( Path, a + 1 ) );
+	
 EndFunction

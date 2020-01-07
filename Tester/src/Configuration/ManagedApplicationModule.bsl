@@ -57,11 +57,19 @@ var ScreenshotsLocator export;
 var ScreenshotsCompressed export;
 var ExternalLibrary export;
 var FoldersWatchdog export;
+var TesterSystemFolder export;
 var TesterExternalRequests export;
 var TesterExternalRequestObject export;
 var TesterExternalRequestsApplication export;
 var TesterExternalRequestsScenario export;
+var TesterExternalRequestsRenaming export;
 var TesterExternalResponses export;
+var TesterExternalBroadcasting export;
+var TesterWatcherBuffer;
+var TesterWatcherListeningMessage;
+var TesterWatcherSyncingMessage;
+var TesterWatcherIndicationThreshold;
+var TesterWatcherBSLServerSettings export;
 var TesterServerMode export;
 var TesterServerMessages export;
 var IAmAgent export;
@@ -72,6 +80,7 @@ var CurrentDelegatedJob export;
 var PlatformFeatures export;
 var ProxyConnections export;
 var FrameworkVersion export;
+var UserDocumentsFolder export;
 
 Procedure BeforeStart ( Cancel )
 	
@@ -116,9 +125,15 @@ Procedure init ()
 
 	si = new SystemInfo ();
 	FrameworkVersion = si.AppVersion;
-	folder = RepositoryFiles.SystemFolder () + GetPathSeparator ();
+	TesterSystemFolder = RepositoryFiles.SystemFolder (); 
+	folder = TesterSystemFolder + GetPathSeparator ();
 	TesterExternalRequests = folder + "request";
 	TesterExternalResponses = folder + "response";
+	TesterWatcherBuffer = new Array ();
+	TesterWatcherListeningMessage = Output.WatcherListeningEvents ();
+	TesterWatcherSyncingMessage = Output.WatcherSyncingMessage ();
+	TesterWatcherIndicationThreshold = 10;
+	TesterWatcherBSLServerSettings = RepositoryFiles.BSLServerSettings ();
 	TesterServerMode = false;
 	RunningDelegatedJob = false;
 	initSession ();
@@ -330,8 +345,32 @@ EndProcedure
 Procedure ExternEventProcessing ( Source, Event, Data )
 	
 	if ( Source = "Watcher" ) then
-		Watcher.Proceed ( Event, Data );
+		DetachIdleHandler ( "WatcherStartSyncing" );
+		TesterWatcherBuffer.Add ( new Structure ( "Event, Data", Event, Data ) );
+		if ( TesterWatcherBuffer.UBound () > TesterWatcherIndicationThreshold ) then
+			Status ( TesterWatcherListeningMessage );
+		endif;
+		AttachIdleHandler ( "WatcherStartSyncing", 0.1, true );
 	endif;
+
+EndProcedure
+
+Procedure WatcherStartSyncing () export
+	
+	total = TesterWatcherBuffer.UBound ();
+	index = 0;
+	indication = total > TesterWatcherIndicationThreshold;
+	if ( indication ) then
+		
+	endif;
+	for each event in TesterWatcherBuffer do
+		if ( indication ) then
+			Status ( TesterWatcherSyncingMessage, index * 100 / total );
+		endif;
+		Watcher.Proceed ( event.Event, event.Data );
+		index = index + 1;
+	enddo;
+	TesterWatcherBuffer.Clear ();
 
 EndProcedure
 
@@ -358,6 +397,19 @@ Procedure TesterRunsSelectedScript () export
 	Watcher.SendResponse ();
 	TesterServerMode = false;
 
+EndProcedure
+
+Procedure TesterWatcherBroadcasting () export
+	
+	if ( TypeOf ( TesterExternalBroadcasting ) = Type ( "Array" ) ) then
+		list = TesterExternalBroadcasting;
+	else
+		list = new Array ();	
+		list.Add ( TesterExternalBroadcasting );
+	endif;
+	Notify ( Enum.MessageReload (), list );
+	NotifyChanged ( Type ( "CatalogRef.Scenarios" ) );
+	
 EndProcedure
 
 Procedure BeforeExit ( Cancel, MessageText )

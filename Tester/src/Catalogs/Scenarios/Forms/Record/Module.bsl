@@ -38,9 +38,8 @@ EndProcedure
 &AtClient
 Procedure init ()
 	
-	if ( Test.AttachApplication ( SessionScenario ) ) then
-		Port = AppData.Port;
-	endif;
+	Test.AttachApplication ( SessionScenario );
+	Port = AppData.Port;
 	flagConnected ();
 	
 EndProcedure

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="24f41ee1-95de-4792-b88d-5d314997bc74">
+  <producedTypes>
+    <objectType typeId="fb5536c9-214d-4de9-87da-f95d74112bab" valueTypeId="1810dcd1-a664-4e39-a5a1-ba943035a167"/>
+    <refType typeId="bcbf7d7d-fa90-4fdb-a681-81131bbe6248" valueTypeId="6cf8675b-cb71-480a-8cff-4b0256c0476e"/>
+    <selectionType typeId="6178a5c0-7674-4b1f-9229-ed55c07bdfcc" valueTypeId="b36f709a-261b-42a1-a363-0b4c33bea7c4"/>
+    <listType typeId="4f0b3126-613d-4dc7-a70b-00f4c9e29f87" valueTypeId="79e5b7a1-f052-45f3-bdf6-6a1c6105ac31"/>
+    <managerType typeId="9707cd12-0365-42d3-8da5-ca0e28a6633a" valueTypeId="eb398904-30c7-42a6-9464-eeb757fe59f1"/>
+  </producedTypes>
+  <name>Workspaces</name>
+  <synonym>
+    <key>en</key>
+    <value>Workspaces</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Рабочие области</value>
+  </synonym>
+  <inputByString>Catalog.Workspaces.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Workspaces.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>PredefinedDataName</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Predefined</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>DeletionMark</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>IsFolder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Owner</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:ReferenceValue">
+      <value>Catalog.Users.EmptyRef</value>
+    </fillValue>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Parent</name>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Description</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Code</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>Use</createOnInput>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>List of Visual Studio Code workplaces</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Справочник рабочих областей Visual Studio Code</value>
+  </explanation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <owners>Catalog.Users</owners>
+  <codeLength>9</codeLength>
+  <descriptionLength>100</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>Catalog.Workspaces.Form.Form</defaultObjectForm>
+  <attributes uuid="904d328c-9970-40fd-a853-f7298d6cada8">
+    <name>Computer</name>
+    <synonym>
+      <key>en</key>
+      <value>Computer</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Компьютер</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Computers</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User computer</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Компьютер пользователя</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="e3937ac4-dd1b-45da-80e8-f731533b4d67">
+    <name>Workspace</name>
+    <synonym>
+      <key>en</key>
+      <value>Workspace File</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Файл рабочей области</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Visual Studio Code workspace settings file</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Файл настроек рабочей области Visual Studio Code</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <tabularSections uuid="83d0c236-f17a-4804-a4a2-98562bcd3570">
+    <producedTypes>
+      <objectType typeId="5bf4d045-036d-4eb9-a06d-aa893ccfe353" valueTypeId="080f3c23-1d1f-44fe-b945-6ef881a7cb64"/>
+      <rowType typeId="b2f2cce8-9db1-4710-a584-a37c6811638c" valueTypeId="02f8ee25-db38-4bbb-aa86-3fee10fbc52e"/>
+    </producedTypes>
+    <name>Applications</name>
+    <synonym>
+      <key>en</key>
+      <value>Applications</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложения</value>
+    </synonym>
+    <fillChecking>ShowError</fillChecking>
+    <attributes uuid="1ac4ec42-ea01-415a-b9d5-9085f4c4849c">
+      <name>Application</name>
+      <synonym>
+        <key>en</key>
+        <value>Application</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Приложение</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Applications</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Application</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Приложение</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+  <forms uuid="880e54ae-e4c4-4587-b39a-1a65eff7986a">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <commands uuid="71fb435c-dbc9-422e-bfef-90870dc66547">
+    <name>OpenStudio</name>
+    <synonym>
+      <key>en</key>
+      <value>Open in VS Code</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Открыть в VS Code</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Workspaces</types>
+    </commandParameterType>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Open workspace in Visual Studio Code</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Открыть рабочую область в Visual Studio Code</value>
+    </toolTip>
+    <picture xsi:type="core:PictureRef">
+      <picture>CommonPicture.Studio</picture>
+    </picture>
+    <shortcut>Ctrl+Shift+E</shortcut>
+  </commands>
+</mdclass:Catalog>

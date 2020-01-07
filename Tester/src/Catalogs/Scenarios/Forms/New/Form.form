@@ -78,10 +78,6 @@
         <segments>Object.Type</segments>
       </paths>
     </dataPath>
-    <handlers>
-      <event>OnChange</event>
-      <name>TypeOnChange</name>
-    </handlers>
     <extendedTooltip>
       <name>TypeExtendedTooltip</name>
       <id>57</id>
@@ -527,17 +523,6 @@
     <valueType>
       <types>Boolean</types>
     </valueType>
-    <view>
-      <common>true</common>
-    </view>
-    <edit>
-      <common>true</common>
-    </edit>
-  </attributes>
-  <attributes>
-    <name>FormAppearance</name>
-    <id>3</id>
-    <valueType/>
     <view>
       <common>true</common>
     </view>

@@ -1135,6 +1135,39 @@
             </picture>
             <representationInContextMenu>Auto</representationInContextMenu>
           </items>
+          <items xsi:type="form:Button">
+            <name>OpenFolder</name>
+            <id>698</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <dataPath xsi:type="form:DataPath">
+              <segments>Object.Ref</segments>
+            </dataPath>
+            <extendedTooltip>
+              <name>OpenFolderExtendedTooltip</name>
+              <id>699</id>
+              <visible>true</visible>
+              <enabled>true</enabled>
+              <userVisible>
+                <common>true</common>
+              </userVisible>
+              <type>Label</type>
+              <autoMaxWidth>true</autoMaxWidth>
+              <autoMaxHeight>true</autoMaxHeight>
+              <extInfo xsi:type="form:LabelDecorationExtInfo">
+                <horizontalAlign>Left</horizontalAlign>
+              </extInfo>
+            </extendedTooltip>
+            <commandName>Catalog.Scenarios.Command.OpenFolder</commandName>
+            <representation>Auto</representation>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <placementArea>UserCmds</placementArea>
+            <representationInContextMenu>Auto</representationInContextMenu>
+          </items>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
@@ -1437,16 +1470,19 @@
           <representationInContextMenu>Auto</representationInContextMenu>
         </items>
         <items xsi:type="form:Button">
-          <name>SetDeletionMark</name>
-          <id>286</id>
+          <name>CatalogScenariosRemove</name>
+          <id>700</id>
           <visible>true</visible>
           <enabled>true</enabled>
           <userVisible>
             <common>true</common>
           </userVisible>
+          <dataPath xsi:type="form:DataPath">
+            <segments>Object.Ref</segments>
+          </dataPath>
           <extendedTooltip>
-            <name>SetDeletionMarkExtendedTooltip</name>
-            <id>287</id>
+            <name>CatalogScenariosRemoveExtendedTooltip</name>
+            <id>701</id>
             <visible>true</visible>
             <enabled>true</enabled>
             <userVisible>
@@ -1459,9 +1495,8 @@
               <horizontalAlign>Left</horizontalAlign>
             </extInfo>
           </extendedTooltip>
-          <commandName>Form.StandardCommand.SetDeletionMark</commandName>
+          <commandName>Catalog.Scenarios.Command.Remove</commandName>
           <representation>Auto</representation>
-          <onlyInAllActions>true</onlyInAllActions>
           <autoMaxWidth>true</autoMaxWidth>
           <autoMaxHeight>true</autoMaxHeight>
           <placementArea>UserCmds</placementArea>
@@ -5428,6 +5463,9 @@
                 <segments>List</segments>
               </dataPath>
               <titleLocation>None</titleLocation>
+              <excludedCommands>MoveItem</excludedCommands>
+              <excludedCommands>Delete</excludedCommands>
+              <excludedCommands>SetDeletionMark</excludedCommands>
               <items xsi:type="form:FormGroup">
                 <name>ListGroup2</name>
                 <id>664</id>
@@ -6111,6 +6149,39 @@
                   <placementArea>UserCmds</placementArea>
                   <representationInContextMenu>Auto</representationInContextMenu>
                 </items>
+                <items xsi:type="form:Button">
+                  <name>ListContextMenuCatalogScenariosOpenFolder</name>
+                  <id>696</id>
+                  <visible>true</visible>
+                  <enabled>true</enabled>
+                  <userVisible>
+                    <common>true</common>
+                  </userVisible>
+                  <dataPath xsi:type="form:DataPath">
+                    <segments>Items.List.CurrentData.Ref</segments>
+                  </dataPath>
+                  <extendedTooltip>
+                    <name>ListContextMenuCatalogScenariosOpenFolderExtendedTooltip</name>
+                    <id>697</id>
+                    <visible>true</visible>
+                    <enabled>true</enabled>
+                    <userVisible>
+                      <common>true</common>
+                    </userVisible>
+                    <type>Label</type>
+                    <autoMaxWidth>true</autoMaxWidth>
+                    <autoMaxHeight>true</autoMaxHeight>
+                    <extInfo xsi:type="form:LabelDecorationExtInfo">
+                      <horizontalAlign>Left</horizontalAlign>
+                    </extInfo>
+                  </extendedTooltip>
+                  <commandName>Catalog.Scenarios.Command.OpenFolder</commandName>
+                  <representation>Auto</representation>
+                  <autoMaxWidth>true</autoMaxWidth>
+                  <autoMaxHeight>true</autoMaxHeight>
+                  <placementArea>UserCmds</placementArea>
+                  <representationInContextMenu>Auto</representationInContextMenu>
+                </items>
                 <items xsi:type="form:FormGroup">
                   <name>ListContextMenuGroup2</name>
                   <id>405</id>
@@ -6269,36 +6340,6 @@
                       </extInfo>
                     </extendedTooltip>
                     <commandName>Catalog.Scenarios.Command.Copy</commandName>
-                    <representation>Auto</representation>
-                    <autoMaxWidth>true</autoMaxWidth>
-                    <autoMaxHeight>true</autoMaxHeight>
-                    <placementArea>UserCmds</placementArea>
-                    <representationInContextMenu>Auto</representationInContextMenu>
-                  </items>
-                  <items xsi:type="form:Button">
-                    <name>ListContextMenuMoveItem</name>
-                    <id>541</id>
-                    <visible>true</visible>
-                    <enabled>true</enabled>
-                    <userVisible>
-                      <common>true</common>
-                    </userVisible>
-                    <extendedTooltip>
-                      <name>ListContextMenuMoveItemExtendedTooltip</name>
-                      <id>542</id>
-                      <visible>true</visible>
-                      <enabled>true</enabled>
-                      <userVisible>
-                        <common>true</common>
-                      </userVisible>
-                      <type>Label</type>
-                      <autoMaxWidth>true</autoMaxWidth>
-                      <autoMaxHeight>true</autoMaxHeight>
-                      <extInfo xsi:type="form:LabelDecorationExtInfo">
-                        <horizontalAlign>Left</horizontalAlign>
-                      </extInfo>
-                    </extendedTooltip>
-                    <commandName>Form.Item.List.StandardCommand.MoveItem</commandName>
                     <representation>Auto</representation>
                     <autoMaxWidth>true</autoMaxWidth>
                     <autoMaxHeight>true</autoMaxHeight>
@@ -6789,6 +6830,39 @@
                     </extInfo>
                   </extendedTooltip>
                   <commandName>Catalog.Scenarios.Command.ChangeApplication</commandName>
+                  <representation>Auto</representation>
+                  <autoMaxWidth>true</autoMaxWidth>
+                  <autoMaxHeight>true</autoMaxHeight>
+                  <placementArea>UserCmds</placementArea>
+                  <representationInContextMenu>Auto</representationInContextMenu>
+                </items>
+                <items xsi:type="form:Button">
+                  <name>ListContextMenuCatalogScenariosRemove</name>
+                  <id>702</id>
+                  <visible>true</visible>
+                  <enabled>true</enabled>
+                  <userVisible>
+                    <common>true</common>
+                  </userVisible>
+                  <dataPath xsi:type="form:DataPath">
+                    <segments>Items.List.CurrentData.Ref</segments>
+                  </dataPath>
+                  <extendedTooltip>
+                    <name>ListContextMenuCatalogScenariosRemoveExtendedTooltip</name>
+                    <id>703</id>
+                    <visible>true</visible>
+                    <enabled>true</enabled>
+                    <userVisible>
+                      <common>true</common>
+                    </userVisible>
+                    <type>Label</type>
+                    <autoMaxWidth>true</autoMaxWidth>
+                    <autoMaxHeight>true</autoMaxHeight>
+                    <extInfo xsi:type="form:LabelDecorationExtInfo">
+                      <horizontalAlign>Left</horizontalAlign>
+                    </extInfo>
+                  </extendedTooltip>
+                  <commandName>Catalog.Scenarios.Command.Remove</commandName>
                   <representation>Auto</representation>
                   <autoMaxWidth>true</autoMaxWidth>
                   <autoMaxHeight>true</autoMaxHeight>
@@ -7999,6 +8073,8 @@
     <event>FillCheckProcessingAtServer</event>
     <name>FillCheckProcessingAtServer</name>
   </handlers>
+  <excludedCommands>SetDeletionMark</excludedCommands>
+  <excludedCommands>Delete</excludedCommands>
   <autoUrl>true</autoUrl>
   <group>Vertical</group>
   <autoFillCheck>true</autoFillCheck>

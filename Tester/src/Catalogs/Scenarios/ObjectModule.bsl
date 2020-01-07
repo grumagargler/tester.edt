@@ -1,13 +1,12 @@
-var IsNew;
+var IsNew export;
 var OldParent;
-var OldApplication;
+var OldApplication export;
 var OldDeletionMark;
 var OldTree;
 var OldPath;
-var OldType;
 var NewPath;
 var NewParent;
-var NewApplication;
+var ReplaceApplication export;
 
 Procedure FillCheckProcessing ( Cancel, CheckedAttributes )
 	
@@ -47,8 +46,8 @@ Procedure BeforeWrite ( Cancel )
 	if ( not IsNew ) then
 		if ( NewPath
 			or ( OldTree <> Tree )
-			or ( OldType <> Type ) ) then
-			removeFromRepo ( OldPath, OldTree, OldType );
+			or ( OldApplication <> Application ) ) then
+			removeFromRepo ( OldApplication, OldPath, OldTree, option ( "AlreadyRemoved" ) );
 		endif; 
 	endif; 
 	markChanges ();
@@ -76,16 +75,23 @@ Function canEdit ()
 	
 EndFunction 
 
+Function option ( Name )
+	
+	return AdditionalProperties.Property ( Name )
+		and AdditionalProperties [ Name ];
+	
+EndFunction 
+
 Procedure stamp ()
 	
-	if ( AdditionalProperties.Property ( "Restored" )
-		and AdditionalProperties.Restored ) then
+	if ( option ( "Restored" )
+		or option ( "Loading" ) ) then
 		return;
 	endif; 
 	Changed = CurrentUniversalDate ();
 	LastCreator = SessionParameters.User;
 	
-EndProcedure 
+EndProcedure
 
 Procedure fixApplication ()
 	
@@ -114,6 +120,9 @@ EndProcedure
 
 Procedure setTree ()
 	
+	if ( option ( "Loading" ) ) then
+		return;
+	endif;
 	Tree = isFolder ( ThisObject ) or ( not IsNew and findChind ( Ref ) );
 	
 EndProcedure 
@@ -162,53 +171,48 @@ Procedure getLastProps ()
 	OldDeletionMark = Ref.DeletionMark;
 	OldTree = Ref.Tree;
 	OldPath = Ref.Path;
-	OldType = Ref.Type;
 	
 EndProcedure 
 
-Procedure removeFromRepo ( TargetPath, TargetTree, TargetType )
+Procedure removeFromRepo ( TargetApplication, TargetPath, TargetTree, AlreadyRemoved )
 	
 	SetPrivilegedMode ( true );
-	for each user in getUsers () do
-		uid = Ref.UUID ();
+	uid = Ref.UUID ();
+	for each repo in getRepos ( TargetApplication, AlreadyRemoved ) do
 		r = InformationRegisters.Removing.CreateRecordManager ();
-		r.User = user;
-		r.ID = uid;
-		r.Read ();
-		if ( r.Selected () ) then
-			continue;
-		endif; 
-		r.User = user;
+		r.Repository = repo;
 		r.ID = uid;
 		r.Path = TargetPath;
-		r.Application = Application;
 		r.Tree = TargetTree;
-		r.Type = TargetType;
 		r.Write ();
 	enddo; 
 	SetPrivilegedMode ( false );
 	
 EndProcedure 
 
-Function getUsers ()
+Function getRepos ( Application, ExceptLocal )
 	
 	s = "
-	|select Users.Ref as Ref
-	|from Catalog.Users as Users
-	|where not Users.DeletionMark
-	|and not Users.IsFolder
-	|";
+	|select Repositories.Ref as Ref
+	|from ExchangePlan.Repositories as Repositories
+	|where not Repositories.DeletionMark
+	|and not Repositories.ThisNode
+	|and Repositories.Application = &Application";
+	if ( ExceptLocal ) then
+		s = s + "
+		|and Repositories.Session <> &Session
+		|";
+	endif;
 	q = new Query ( s );
+	q.SetParameter ( "Session", SessionParameters.Session );
+	q.SetParameter ( "Application", Application );
 	return q.Execute ().Unload ().UnloadColumn ( "Ref" );
 	
 EndFunction 
 
 Procedure markChanges ()
 	
-	var exceptMe;
-	
-	AdditionalProperties.Property ( "Loading", exceptMe );
-	ExchangePlans.Changes.Mark ( ThisObject, exceptMe <> undefined and exceptMe );
+	ExchangePlans.Repositories.Mark ( ThisObject, option ( "Loading" ) );
 	
 EndProcedure 
 
@@ -257,12 +261,12 @@ Procedure OnWrite ( Cancel )
 		return;
 	endif; 
 	if ( IsNew ) then
-		InformationRegisters.Editing.Lock ( Creator, Ref );
+		InformationRegisters.Editing.Lock ( SessionParameters.User, Ref );
 	elsif ( DeletionMark <> OldDeletionMark ) then
 		markVersions ( DeletionMark );
 	endif; 
 	NewParent = OldParent <> Parent;
-	NewApplication = ( OldApplication <> Application ) and not Application.IsEmpty ();
+	ReplaceApplication = ( OldApplication <> Application ) and not Application.IsEmpty ();
 	setupLibraries ();
 	moveHierarchy ();
 	
@@ -298,6 +302,9 @@ Procedure refreshTree ( Reference )
 	if ( actual <> Reference.Tree ) then
 		obj = Reference.GetObject ();
 		obj.Tree = actual;
+		if ( option ( "Loading" ) ) then
+			obj.AdditionalProperties.Insert ( "Loading", true );
+		endif;
 		obj.Write ();
 	endif; 
 	
@@ -315,6 +322,7 @@ Function findChind ( Ancestor )
 	|select top 1 1
 	|from Catalog.Scenarios as Scenarios
 	|where Scenarios.Parent = &Ancestor
+	|and not Scenarios.DeletionMark
 	|";
 	q = new Query ( s );
 	q.SetParameter ( "Ancestor", Ancestor );
@@ -327,14 +335,14 @@ Procedure moveHierarchy ()
 	
 	changePath = NewParent or NewPath;
 	if ( changePath
-		or NewApplication ) then
+		or ReplaceApplication ) then
 	else
 		return;
 	endif;
 	children = getChildren ();
 	for each child in children do
 		obj = child.GetObject ();
-		if ( NewApplication
+		if ( ReplaceApplication
 			and not obj.Application.IsEmpty () ) then
 			obj.Application = Application;
 		endif; 
@@ -363,6 +371,6 @@ EndFunction
 
 Procedure BeforeDelete ( Cancel )
 	
-	removeFromRepo ( Path, Tree, Type );
+	removeFromRepo ( Application, Path, Tree, true );
 	
 EndProcedure

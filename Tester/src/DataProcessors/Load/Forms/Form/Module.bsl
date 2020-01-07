@@ -40,35 +40,21 @@ EndProcedure
 &AtServer
 Procedure loadRepositories ()
 	
-	s = "
-	|select allowed Applications.Ref as Application, Repositories.Folder as Folder,
+	s = "select allowed Repositories.Application as Application, Repositories.Folder as Folder,
 	|	case when Settings.Application is null then false else true end as Use
-	|from (
-	|	select value ( Catalog.Applications.EmptyRef ) as Ref
-	|	union all
-	|	select Applications.Ref
-	|	from Catalog.Applications as Applications
-	|	where not Applications.DeletionMark
-	|	and not Applications.IsFolder
-	|	) as Applications
-	|	//
-	|	// Repositories
-	|	//
-	|	left join InformationRegister.Repositories as Repositories
-	|	on Repositories.User = &User
-	|	and Repositories.Computer = &Computer
-	|	and Repositories.Application = Applications.Ref
+	|from ExchangePlan.Repositories as Repositories
 	|	//
 	|	// Settings
 	|	//
 	|	left join InformationRegister.Applications as Settings
 	|	on Settings.User = &User
-	|	and Settings.Application = Applications.Ref
-	|order by Application
-	|";
+	|	and Settings.Application = Repositories.Application
+	|where Repositories.Session = &Session
+	|and not Repositories.DeletionMark
+	|order by Application";
 	q = new Query ( s );
 	q.SetParameter ( "User", SessionParameters.User );
-	q.SetParameter ( "Computer", SessionData.Computer () );
+	q.SetParameter ( "Session", SessionParameters.Session );
 	Object.Repositories.Load ( q.Execute ().Unload () );
 	
 EndProcedure 
@@ -109,18 +95,10 @@ EndProcedure
 Procedure Load ( Command )
 	
 	if ( CheckFilling () ) then
-		savePaths ();
 		init ();
 		loadApplications ();
 	endif; 
 		
-EndProcedure
-
-&AtServer
-Procedure savePaths ()
-	
-	RepositoryForm.SavePaths ( Object );
-	
 EndProcedure
 
 &AtClient
@@ -184,41 +162,29 @@ EndProcedure
 &AtClient
 Procedure loadFiles ()
 	
-	FilesIndex = FilesIndex + 1;
-	if ( FilesIndex > FilesLastIndex ) then
-		loadApplications ();
-		return;
-	endif; 
-	CurrentFile = FilesArray [ FilesIndex ];
-	CurrentExtension = objectExtension ();
-	CurrentObjectName = FileSystem.GetBaseName ( CurrentFile.BaseName );
-	if ( validFile () ) then
-		CurrentFile.BeginGettingModificationUniversalTime ( new NotifyDescription ( "GettingModificationUniversalTime", ThisObject ) );
-	else
-		loadFiles ();
-	endif; 
+	while ( true ) do
+		FilesIndex = FilesIndex + 1;
+		if ( FilesIndex > FilesLastIndex ) then
+			loadApplications ();
+			return;
+		endif; 
+		CurrentFile = FilesArray [ FilesIndex ];
+		CurrentExtension = CurrentFile.Extension;
+		CurrentObjectName = RepositoryFiles.FileToName ( CurrentFile.Name );
+		if ( validFile () ) then
+			CurrentFile.BeginGettingModificationUniversalTime ( new NotifyDescription ( "GettingModificationUniversalTime", ThisObject ) );
+			return;
+		endif; 
+	enddo;
 	
 EndProcedure 
 
 &AtClient
-Function objectExtension ()
-	
-	ext = CurrentFile.Extension;
-	if ( ext = RepositoryFiles.BSLFile () ) then
-		return FileSystem.Extension ( CurrentFile.BaseName );
-	else
-		return ext;
-	endif; 
-	
-EndFunction 
-
-&AtClient
 Function validFile ()
 	
-	return CurrentExtension = RepositoryFiles.ScriptFile ()
-	or CurrentExtension = RepositoryFiles.LibFile ()
-	or CurrentExtension = RepositoryFiles.MethodFile ()
-	or CurrentExtension = RepositoryFiles.MXLFile ();
+	return CurrentExtension = RepositoryFiles.BSLFile ()
+	or CurrentExtension = RepositoryFiles.MXLFile ()
+	or CurrentExtension = RepositoryFiles.JSONFile ();
 	
 EndFunction 
 
@@ -234,25 +200,13 @@ EndProcedure
 Procedure enrollChanges ( UTC )
 	
 	p = new Structure ();
-	p.Insert ( "Path", buildPath () );
-	p.Insert ( "File", CurrentFile.Path + CurrentObjectName );
+	p.Insert ( "Path", RepositoryFiles.FileToPath ( CurrentFile.FullName, PathBegins ) );
+	p.Insert ( "File", FileSystem.GetBaseName ( CurrentFile.FullName ) );
 	p.Insert ( "Extension", CurrentExtension );
 	p.Insert ( "UTC", UTC );
 	ChangedScenarios.Add ( p );
 	
 EndProcedure 
-
-&AtClient
-Function buildPath ()
-	
-	parent = StrReplace ( Mid ( CurrentFile.Path, PathBegins ), Slash, "." );
-	if ( StrEndsWith ( CurrentObjectName, FolderSuffix ) ) then
-		return Mid ( parent, 1, StrLen ( parent ) - 1 );
-	else
-		return parent + CurrentObjectName;
-	endif; 
-	
-EndFunction 
 
 // *****************************************
 // *********** Table Repositories

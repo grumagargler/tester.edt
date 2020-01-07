@@ -8,6 +8,36 @@
     <key>ru</key>
     <value>Сценарии</value>
   </title>
+  <items xsi:type="form:Button">
+    <name>Restart</name>
+    <id>693</id>
+    <visible>true</visible>
+    <enabled>true</enabled>
+    <userVisible>
+      <common>true</common>
+    </userVisible>
+    <extendedTooltip>
+      <name>RestartExtendedTooltip</name>
+      <id>694</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <type>Label</type>
+      <autoMaxWidth>true</autoMaxWidth>
+      <autoMaxHeight>true</autoMaxHeight>
+      <extInfo xsi:type="form:LabelDecorationExtInfo">
+        <horizontalAlign>Left</horizontalAlign>
+      </extInfo>
+    </extendedTooltip>
+    <type>Hyperlink</type>
+    <commandName>Form.Command.Restart</commandName>
+    <representation>Auto</representation>
+    <autoMaxHeight>true</autoMaxHeight>
+    <placementArea>UserCmds</placementArea>
+    <representationInContextMenu>Auto</representationInContextMenu>
+  </items>
   <items xsi:type="form:FormGroup">
     <name>Group1</name>
     <id>412</id>
@@ -1035,6 +1065,9 @@
           <segments>List</segments>
         </dataPath>
         <titleLocation>None</titleLocation>
+        <excludedCommands>MoveItem</excludedCommands>
+        <excludedCommands>SetDeletionMark</excludedCommands>
+        <excludedCommands>Delete</excludedCommands>
         <items xsi:type="form:FormGroup">
           <name>Group4</name>
           <id>681</id>
@@ -1490,6 +1523,36 @@
           <name>ListContextMenu</name>
           <id>150</id>
           <items xsi:type="form:Button">
+            <name>ListContextMenuRun</name>
+            <id>691</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <extendedTooltip>
+              <name>ListContextMenuRunExtendedTooltip</name>
+              <id>692</id>
+              <visible>true</visible>
+              <enabled>true</enabled>
+              <userVisible>
+                <common>true</common>
+              </userVisible>
+              <type>Label</type>
+              <autoMaxWidth>true</autoMaxWidth>
+              <autoMaxHeight>true</autoMaxHeight>
+              <extInfo xsi:type="form:LabelDecorationExtInfo">
+                <horizontalAlign>Left</horizontalAlign>
+              </extInfo>
+            </extendedTooltip>
+            <commandName>Form.Command.Run</commandName>
+            <representation>Auto</representation>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <placementArea>UserCmds</placementArea>
+            <representationInContextMenu>Auto</representationInContextMenu>
+          </items>
+          <items xsi:type="form:Button">
             <name>ListCatalogScenariosSetDefault</name>
             <id>188</id>
             <visible>true</visible>
@@ -1692,6 +1755,39 @@
             <placementArea>UserCmds</placementArea>
             <representationInContextMenu>Auto</representationInContextMenu>
           </items>
+          <items xsi:type="form:Button">
+            <name>ListContextMenuCatalogScenariosOpenFolder</name>
+            <id>689</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <dataPath xsi:type="form:DataPath">
+              <segments>Items.List.CurrentData.Ref</segments>
+            </dataPath>
+            <extendedTooltip>
+              <name>ListContextMenuCatalogScenariosOpenFolderExtendedTooltip</name>
+              <id>690</id>
+              <visible>true</visible>
+              <enabled>true</enabled>
+              <userVisible>
+                <common>true</common>
+              </userVisible>
+              <type>Label</type>
+              <autoMaxWidth>true</autoMaxWidth>
+              <autoMaxHeight>true</autoMaxHeight>
+              <extInfo xsi:type="form:LabelDecorationExtInfo">
+                <horizontalAlign>Left</horizontalAlign>
+              </extInfo>
+            </extendedTooltip>
+            <commandName>Catalog.Scenarios.Command.OpenFolder</commandName>
+            <representation>Auto</representation>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <placementArea>UserCmds</placementArea>
+            <representationInContextMenu>Auto</representationInContextMenu>
+          </items>
           <items xsi:type="form:FormGroup">
             <name>ListContextMenuGroup2</name>
             <id>405</id>
@@ -1849,7 +1945,7 @@
                   <horizontalAlign>Left</horizontalAlign>
                 </extInfo>
               </extendedTooltip>
-              <commandName>Form.Item.List.StandardCommand.MoveItem</commandName>
+              <commandName>Form.Item.List.StandardCommand.ChangeHistory</commandName>
               <representation>Auto</representation>
               <autoMaxWidth>true</autoMaxWidth>
               <autoMaxHeight>true</autoMaxHeight>
@@ -2347,6 +2443,39 @@
             <representationInContextMenu>Auto</representationInContextMenu>
           </items>
           <items xsi:type="form:Button">
+            <name>ListContextMenuCatalogScenariosRemove</name>
+            <id>695</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <dataPath xsi:type="form:DataPath">
+              <segments>Items.List.CurrentData.Ref</segments>
+            </dataPath>
+            <extendedTooltip>
+              <name>ListContextMenuCatalogScenariosRemoveExtendedTooltip</name>
+              <id>696</id>
+              <visible>true</visible>
+              <enabled>true</enabled>
+              <userVisible>
+                <common>true</common>
+              </userVisible>
+              <type>Label</type>
+              <autoMaxWidth>true</autoMaxWidth>
+              <autoMaxHeight>true</autoMaxHeight>
+              <extInfo xsi:type="form:LabelDecorationExtInfo">
+                <horizontalAlign>Left</horizontalAlign>
+              </extInfo>
+            </extendedTooltip>
+            <commandName>Catalog.Scenarios.Command.Remove</commandName>
+            <representation>Auto</representation>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <placementArea>UserCmds</placementArea>
+            <representationInContextMenu>Auto</representationInContextMenu>
+          </items>
+          <items xsi:type="form:Button">
             <name>ListContextMenuRefreshList</name>
             <id>323</id>
             <visible>true</visible>
@@ -2625,6 +2754,10 @@
     <name>NewWriteProcessing</name>
   </handlers>
   <handlers>
+    <event>OnOpen</event>
+    <name>OnOpen</name>
+  </handlers>
+  <handlers>
     <event>OnCreateAtServer</event>
     <name>OnCreateAtServer</name>
   </handlers>
@@ -2632,6 +2765,9 @@
     <event>bf0ac0e1-bcbb-4dfe-8fc4-0b1923b461a6</event>
     <name>BeforeWriteAtServer</name>
   </handlers>
+  <excludedCommands>MoveItem</excludedCommands>
+  <excludedCommands>SetDeletionMark</excludedCommands>
+  <excludedCommands>Delete</excludedCommands>
   <autoUrl>true</autoUrl>
   <group>Vertical</group>
   <autoFillCheck>true</autoFillCheck>
@@ -2915,6 +3051,19 @@ from Catalog.Scenarios as Scenarios
       <common>true</common>
     </edit>
   </attributes>
+  <attributes>
+    <name>TestedMode</name>
+    <id>2</id>
+    <valueType>
+      <types>Boolean</types>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
+  </attributes>
   <formCommands>
     <name>FindMain</name>
     <title>
@@ -3010,6 +3159,75 @@ from Catalog.Scenarios as Scenarios
       </handler>
     </action>
     <representation>Picture</representation>
+    <currentRowUse>DontUse</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>Run</name>
+    <title>
+      <key>en</key>
+      <value>Run</value>
+    </title>
+    <title>
+      <key>ru</key>
+      <value>Запустить</value>
+    </title>
+    <id>1</id>
+    <toolTip>
+      <key>en</key>
+      <value>Executes default test</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Выполнить основной тест</value>
+    </toolTip>
+    <use>
+      <for>
+        <value>true</value>
+        <role>Role.Administrator</role>
+      </for>
+      <for>
+        <value>true</value>
+        <role>Role.ScenariosView</role>
+      </for>
+    </use>
+    <shortcut>F5</shortcut>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.GenerateReport</picture>
+    </picture>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler>
+        <name>RunScenario</name>
+      </handler>
+    </action>
+    <currentRowUse>Auto</currentRowUse>
+  </formCommands>
+  <formCommands>
+    <name>Restart</name>
+    <title>
+      <key>en</key>
+      <value>Your session does not Run as Test Manager. Click here to restart Application in Test Manager mode</value>
+    </title>
+    <title>
+      <key>ru</key>
+      <value>Сессия должна быть запущена в режиме Менеджер тестирования. Нажмите здесь для перезапуска приложения в требуемом режиме</value>
+    </title>
+    <id>2</id>
+    <toolTip>
+      <key>en</key>
+      <value>Restart</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Перезапуск</value>
+    </toolTip>
+    <use>
+      <common>true</common>
+    </use>
+    <action xsi:type="form:FormCommandHandlerContainer">
+      <handler>
+        <name>Restart</name>
+      </handler>
+    </action>
     <currentRowUse>DontUse</currentRowUse>
   </formCommands>
   <commandInterface>

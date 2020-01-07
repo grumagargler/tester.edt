@@ -40,7 +40,7 @@ Procedure BeforeWrite ( Cancel )
 	getCurrentName ();
 	setFullName ();
 	if ( DeletionMark ) then
-		ExchangePlans.Changes.MarkDeletion ( Ref );
+		ExchangePlans.Repositories.MarkDeletion ( Ref );
 	endif; 
 	
 EndProcedure
@@ -75,9 +75,6 @@ Procedure OnWrite ( Cancel )
 	else
 		makeAccess ();
 		makeProfile ();
-		if ( IsNew ) then
-			ExchangePlans.Changes.EnrollUser ( ThisObject );
-		endif; 
 	endif;
 	if ( LoginsSrv.LastAdministrator () ) then
 		Cancel = true;

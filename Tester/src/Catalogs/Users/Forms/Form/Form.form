@@ -2997,23 +2997,18 @@
   <commandInterface>
     <navigationPanel>
       <cmiFragmentRecord>
-        <command>0</command>
-        <userVisible/>
-      </cmiFragmentRecord>
-      <cmiFragmentRecord>
-        <command>0</command>
-        <userVisible/>
-      </cmiFragmentRecord>
-      <cmiFragmentRecord>
-        <command>0</command>
-        <userVisible/>
-      </cmiFragmentRecord>
-      <cmiFragmentRecord>
         <command>InformationRegister.ScheduledReports.StandardCommand.OpenByValue.User</command>
         <userVisible/>
       </cmiFragmentRecord>
       <cmiFragmentRecord>
         <command>InformationRegister.Sources.StandardCommand.OpenByValue.User</command>
+        <userVisible/>
+      </cmiFragmentRecord>
+      <cmiFragmentRecord>
+        <command>Catalog.Workplaces.StandardCommand.OpenByValue</command>
+        <commandParameter xsi:type="form:DataPath">
+          <segments>Object.Ref</segments>
+        </commandParameter>
         <userVisible/>
       </cmiFragmentRecord>
     </navigationPanel>

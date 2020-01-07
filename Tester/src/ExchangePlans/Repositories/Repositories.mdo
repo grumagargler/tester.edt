@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:ExchangePlan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="5cd436cf-b968-46e5-ab54-16cd6a372025" thisNode="027078c3-b797-4095-ad40-ec8221880938">
+  <producedTypes>
+    <objectType typeId="294a8020-30d9-4073-8163-d85924154fd9" valueTypeId="4d3a9177-600e-43b4-926e-f36a05cbdd66"/>
+    <refType typeId="8182aac2-bcc9-42fd-83b4-c24fed645be9" valueTypeId="4103ddc5-8067-4b19-9828-6427f9619743"/>
+    <selectionType typeId="ab70909c-a5b1-4e74-bdcc-d9108d556f80" valueTypeId="54f1b639-1900-4886-90a8-9dc36833b0f4"/>
+    <listType typeId="eaf4a828-c234-41e9-9494-772c5eae9b0d" valueTypeId="1adaf4f7-9873-402c-aec8-c55c172a3105"/>
+    <managerType typeId="e1c8ec04-d916-429d-997e-54a2a2c2f749" valueTypeId="b3944ad6-34c3-4f1b-8fc6-728333d1130f"/>
+  </producedTypes>
+  <name>Repositories</name>
+  <synonym>
+    <key>en</key>
+    <value>Repositories</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Репозитории</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>ExchangePlan.Repositories.StandardAttribute.Description</inputByString>
+  <inputByString>ExchangePlan.Repositories.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>DontUse</createOnInput>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>Local repositories for Version control systems</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Локальные репозитории для систем контроля версий</value>
+  </explanation>
+  <codeLength>9</codeLength>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <descriptionLength>150</descriptionLength>
+  <content>
+    <mdObject>Catalog.Scenarios</mdObject>
+  </content>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>ExchangePlan.Repositories.Form.Form</defaultObjectForm>
+  <defaultListForm>ExchangePlan.Repositories.Form.List</defaultListForm>
+  <attributes uuid="0f174953-207c-4902-a6fc-9175545290f4">
+    <name>Application</name>
+    <synonym>
+      <key>en</key>
+      <value>Application</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Приложение</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Applications</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Приложение</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="c9b9f009-f310-4244-bd9b-2bf88efca7d0">
+    <name>Folder</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>The path where the scenarios source code will be unloaded</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Путь к папке куда будет выгружаться исходный код сценариев</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="11325553-c238-4b9d-81ab-0488c4a703c6">
+    <name>Mapping</name>
+    <synonym>
+      <key>en</key>
+      <value>Mapping</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Синхронизация</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Map the application to a folder in the files system</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Синхронизировать изменения с папкой в файловой системе</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:BooleanValue">
+      <value>true</value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="58975196-0e50-4701-bda0-1b887a8eaf05">
+    <name>Session</name>
+    <synonym>
+      <key>en</key>
+      <value>Session</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сессия</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Sessions</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <forms uuid="e69fd88b-1e5d-4cb8-af6a-c947a73e637d">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="85a0e1e7-28fb-4ff0-b1b6-44c1524da95c">
+    <name>List</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <commands uuid="082f5bf0-c7cd-4d73-bafa-1d2d752596a6">
+    <name>Enroll</name>
+    <synonym>
+      <key>en</key>
+      <value>Enroll</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Зарегистрировать</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>ExchangePlanRef.Repositories</types>
+    </commandParameterType>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Reenroll selected node of changes</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Перерегистрировать узел накопления изменений</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="b0d314ca-6a15-4841-a7b6-bea18c2495bc">
+    <name>Open</name>
+    <synonym>
+      <key>en</key>
+      <value>Repositories</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Репозитории</value>
+    </synonym>
+    <group>FormNavigationPanelSeeAlso</group>
+    <commandParameterType>
+      <types>CatalogRef.Users</types>
+    </commandParameterType>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Local repositories for Version control systems</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Локальные репозитории для систем контроля версий</value>
+    </toolTip>
+  </commands>
+</mdclass:ExchangePlan>
