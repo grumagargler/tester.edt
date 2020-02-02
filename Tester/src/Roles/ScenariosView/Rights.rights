@@ -478,6 +478,13 @@ or T.ThisNode</condition>
 		</right>
 	</object>
 	<object>
+		<name>Catalog.Workspaces.Command.OpenStudio</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>Catalog.Versions.Attribute.Application</name>
 		<right>
 			<name>Edit</name>
@@ -542,6 +549,21 @@ or T.ThisNode</condition>
 		<right>
 			<name>Edit</name>
 			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.Areas</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InputByString</name>
+			<value>true</value>
 		</right>
 	</object>
 	<object>
@@ -803,13 +825,6 @@ and T.Application in ( #Applications ( "Application" ) )</condition>
 	</object>
 	<object>
 		<name>InformationRegister.Timelapse.Command.Open</name>
-		<right>
-			<name>View</name>
-			<value>true</value>
-		</right>
-	</object>
-	<object>
-		<name>Catalog.Workspaces.Command.OpenStudio</name>
 		<right>
 			<name>View</name>
 			<value>true</value>

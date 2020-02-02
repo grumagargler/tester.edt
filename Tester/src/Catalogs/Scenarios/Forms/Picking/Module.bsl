@@ -115,16 +115,18 @@ EndProcedure
 &AtClient
 Procedure withActiveForm ()
 	
-	if ( not Connected ) then
-		return;
-	endif;
-	search = Controls.FindRows ( new Structure ( "Type", PredefinedValue ( "Enum.Controls.Form" ) ) );
-	if ( search.Count () = 0 ) then
-		name = Parameters.FormTitle;
-	else
-		name = search [ 0 ].TitleText;
-	endif; 
-	With ( name );
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		if ( not Connected ) then
+			return;
+		endif;
+		search = Controls.FindRows ( new Structure ( "Type", PredefinedValue ( "Enum.Controls.Form" ) ) );
+		if ( search.Count () = 0 ) then
+			name = Parameters.FormTitle;
+		else
+			name = search [ 0 ].TitleText;
+		endif; 
+		With ( name );
+	#endif
 	
 EndProcedure 
 

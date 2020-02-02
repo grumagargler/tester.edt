@@ -5,7 +5,7 @@ Function GetWork () export
 	if ( job = undefined ) then
 		return undefined;
 	else
-		return new Structure ( "Job, Scenarios", job, getScenarios ( job ) );
+		return new Structure ( "Job, Parameters, Scenarios", job.Job, job.Parameters, getScenarios ( job ) );
 	endif;
 	
 EndFunction
@@ -13,7 +13,7 @@ EndFunction
 Function findJob ()
 	
 	s = "
-	|select top 1 Jobs.Job as Job
+	|select top 1 Jobs.Job as Job, Jobs.Job.Parameters as Parameters
 	|from InformationRegister.Jobs as Jobs
 	|where Jobs.Agent = &Agent
 	|and Jobs.Computer in ( value ( Catalog.Computers.EmptyRef ), &Computer )
@@ -23,7 +23,7 @@ Function findJob ()
 	q.SetParameter ( "Agent", SessionParameters.User );
 	q.SetParameter ( "Computer", SessionData.Computer () );
 	table = q.Execute ().Unload ();
-	return ? ( table.Count () = 0, undefined, table [ 0 ].Job );
+	return ? ( table.Count () = 0, undefined, table [ 0 ] );
 	
 EndFunction
 
@@ -37,7 +37,7 @@ Function getScenarios ( Job )
 	|order by Scenarios.LineNumber
 	|";
 	q = new Query ( s );
-	q.SetParameter ( "Job", Job );
+	q.SetParameter ( "Job", Job.Job );
 	return Collections.Serialize ( q.Execute ().Unload () );
 	
 EndFunction
@@ -213,9 +213,7 @@ Procedure CreateJob ( val Agent, val Scenario, val Application, val Parameters, 
 		obj.Computer = findComputer ( Computer );
 	endif;
 	obj.Creator = SessionParameters.User;
-	if ( Parameters <> undefined ) then
-		obj.Parameters = Conversion.ToJSON ( Parameters );
-	endif;
+	obj.Parameters = Conversion.ToJSON ( Parameters, false );
 	obj.Memo = Memo;
 	obj.Mode = Enums.Running.Now;
 	row = obj.Scenarios.Add ();

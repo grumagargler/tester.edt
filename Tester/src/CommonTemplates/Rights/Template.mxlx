@@ -497,6 +497,40 @@
 	<rowsItem>
 		<index>14</index>
 		<row>
+			<formatIndex>12</formatIndex>
+			<c>
+				<i>1</i>
+				<c>
+					<f>13</f>
+					<parameter>TestingReport</parameter>
+				</c>
+			</c>
+			<c>
+				<c>
+					<f>14</f>
+					<parameter>ScenariosView</parameter>
+				</c>
+			</c>
+			<c>
+				<c>
+					<f>10</f>
+					<tl>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Пользователь имеет право формирования отчета Тестирование</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>User can generate Testing report</v8:content>
+						</v8:item>
+					</tl>
+				</c>
+			</c>
+		</row>
+	</rowsItem>
+	<rowsItem>
+		<index>15</index>
+		<row>
 			<c>
 				<c>
 					<f>0</f>
@@ -515,7 +549,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>15</index>
+		<index>16</index>
 		<row>
 			<formatIndex>12</formatIndex>
 			<c>
@@ -549,7 +583,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>16</index>
+		<index>17</index>
 		<row>
 			<formatIndex>12</formatIndex>
 			<c>
@@ -582,7 +616,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>17</index>
+		<index>18</index>
 		<row>
 			<formatIndex>12</formatIndex>
 			<c>
@@ -616,8 +650,8 @@
 	</rowsItem>
 	<templateMode>true</templateMode>
 	<defaultFormatIndex>16</defaultFormatIndex>
-	<height>18</height>
-	<vgRows>18</vgRows>
+	<height>19</height>
+	<vgRows>19</vgRows>
 	<font faceName="Arial" height="8" bold="true" italic="false" underline="false" strikeout="false" kind="Absolute" scale="100"/>
 	<format>
 		<width>144</width>

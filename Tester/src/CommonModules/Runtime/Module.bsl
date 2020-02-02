@@ -1,3 +1,5 @@
+#if ( Server or ThinClient or ThickClientManagedApplication ) then
+
 &AtClient
 Function CheckSyntax(val Code, val Scenario = undefined) export
 	
@@ -47,7 +49,7 @@ Function RunScript(val Code, val Params = undefined, DebugInfo = undefined, val 
 	if (_monitoring) then
 		_level = scenarioLevel(Debug);
 		RuntimeSrv.LogRunning(_Scenario, _level, Debug.Job);
-		#if ( Client ) then
+		#if ( ThinClient or ThickClientManagedApplication ) then
 		agentStatus(PredefinedValue("Enum.AgentStatuses.Busy"));
 		#endif
 	endif;
@@ -59,14 +61,14 @@ Function RunScript(val Code, val Params = undefined, DebugInfo = undefined, val 
 		Execute(Mid(Code, _header));
 	except
 		_errorInfo = ErrorInfo();
-		#if ( Client ) then
+		#if ( ThinClient or ThickClientManagedApplication ) then
 		if (_monitoring
 				and not Debug.DebuggingStopped) then
 			RuntimeSrv.FetchServerDebug(Debug);
 		endif;
 		#endif
 	endtry;
-	#if ( Client ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 	if (_monitoring) then
 		// If scenario code /Execute ( Code )/ calls server then
 		// Debug sctructure will be re-instanced. In order to pass
@@ -82,7 +84,7 @@ Function RunScript(val Code, val Params = undefined, DebugInfo = undefined, val 
 		endif;
 		return result;
 	else
-		#if ( Client ) then
+		#if ( ThinClient or ThickClientManagedApplication ) then
 		if (_monitoring) then
 			if (PlatformFeatures.HasTimeout
 					and not Debug.Error
@@ -144,7 +146,8 @@ Procedure Debug(Value) export
 EndProcedure
 
 &AtClient
-Procedure Exec(SessionApplication = undefined, ProgramCode = undefined, ResetDebugger, Debugging = false, Offset = 0, Filming = false, NewSession = false) export
+Procedure Exec(SessionApplication = undefined, ProgramCode = undefined, ResetDebugger, Debugging = false, Offset = 0,
+	Filming = false, NewSession = false, Params = undefined) export
 	
 	Runtime.UpdateConstants();
 	Runtime.InitEnv();
@@ -160,8 +163,8 @@ Procedure Exec(SessionApplication = undefined, ProgramCode = undefined, ResetDeb
 	endif;
 	scenario = AppData.Scenario;
 	result = Compiler.Build(scenario, ProgramCode);
-	Runtime.RunScript(result.Compiled, , , scenario);
-	#if ( Client ) then
+	Runtime.RunScript(result.Compiled, Params, , scenario);
+	#if ( ThinClient or ThickClientManagedApplication ) then
 	Runtime.StopSession();
 	#endif
 	
@@ -229,7 +232,7 @@ EndProcedure
 Procedure InitDebug(SessionApplication = undefined, Offset = 0) export
 	
 	Debug = new Structure();
-	Debug.Insert("Stack", new Array(1));
+	Debug.Insert("Stack", new Array());
 	Debug.Insert("ShowProgress", true);
 	Debug.Insert("Level", 0);
 	Debug.Insert("Delay", 0);
@@ -311,7 +314,7 @@ Procedure saveError(Text, DebugInfo)
 	DebugInfo.FallenScenario = scenario;
 	error = entry.Error;
 	Output.PutMessage(error, undefined, , log, "");
-	#if ( Client ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 	if (ScenarioForm.IsOpen(scenario)) then
 		Notify(Enum.MessageActivateError(), line, scenario);
 	endif;
@@ -362,7 +365,7 @@ Procedure throwSyntaxError(Error, Scenario = undefined, Offset = 0)
 	
 	s = Output.CompilationError() + ":" + Error;
 	Output.PutMessage(s, undefined, "", Scenario, "");
-	#if ( Client ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 	if (TesterServerMode) then
 		Watcher.ThrowError(Error, Scenario, Offset);
 	endif;
@@ -563,7 +566,7 @@ EndProcedure
 
 Function IsClient() export
 	
-	#if ( Client ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 	return true;
 	#else
 	return false;
@@ -580,3 +583,5 @@ Function IsServer() export
 	#endif
 	
 EndFunction
+
+#endif

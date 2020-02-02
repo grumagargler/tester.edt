@@ -1,9 +1,15 @@
 &AtServer
-var GenerateOnOpen;
+var GenerateOnOpen export;
 &AtClient
 var SelectedVariant;
 &AtClient
-var form;
+var ChoiceForm;
+&AtClient
+var SelectedAreas;
+&AtClient
+var PreviousArea;
+&AtClient
+var PreviousSelection;
 
 // *****************************************
 // *********** Form events
@@ -11,25 +17,35 @@ var form;
 &AtServer
 Procedure OnCreateAtServer ( Cancel, StandardProcessing )
 	
-	if ( not testParameters () ) then
+	if ( not checkParameters () ) then
 		Cancel = true;
 		return;
 	endif; 
+	init ();
 	applyParams ();
-	initSettingsComposer ();
-	if ( Parameters.Command = "OpenReport" ) then
+	events = reportManager ().Events ();
+	if ( events.FullAccessRequest ) then
+		SetPrivilegedMode ( reportManager ().FullAccessRequest ( ThisObject ) );
+	endif;
+	initComposer ();
+	command = Parameters.Command;
+	if ( command = "OpenReport" ) then
 		openReport ();
-	elsif ( Parameters.Command = "DrillDown" ) then
+	elsif ( command = "DrillDown" ) then
 		drillDown ();
-	elsif ( Parameters.Command = "Detail" ) then
+	elsif ( command = "Detail" ) then
 		detail ();
-	elsif ( Parameters.Command = "NewWindow" ) then
+	elsif ( command = "NewWindow" ) then
 		openReportForNewWindow ();
 	endif; 
 	showStatus ();
 	restoreSettingsButton ();
 	WindowOptionsKey = Parameters.ReportName;
 	afterLoadSettings ();
+	if ( events.BeforeOpen
+		and command = "OpenReport" ) then
+		reportManager ().BeforeOpen ( ThisObject );
+	endif;
 	if ( GenerateOnOpen ) then
 		makeReport ();
 	endif; 
@@ -41,7 +57,7 @@ Procedure OnCreateAtServer ( Cancel, StandardProcessing )
 EndProcedure
 
 &AtServer
-Function testParameters ()
+Function checkParameters ()
 
 	if ( not Parameters.Property ( "Command" ) ) then
 		Output.CommonReportOpenError ();
@@ -52,19 +68,23 @@ Function testParameters ()
 EndFunction
 
 &AtServer
+Procedure init ()
+	
+	WebClient = EnvironmentSrv.WebClient ();
+	
+EndProcedure 
+
+&AtServer
 Procedure applyParams ()
 	
 	Object.ReportName = Parameters.ReportName;
-	class = Reports [ Parameters.ReportName ];
-	if ( class.Events ().OnDetail ) then
-		class.OnDetail ( ReportDetails, UseMainAction, DetailActions );
-	endif; 
+	OnDetailEvent = reportManager ().Events ().OnDetail;
 	meta = Metadata.Reports [ Object.ReportName ];
 	ReportPresentation = ? ( meta.ExtendedPresentation = "", meta.Presentation (), meta.ExtendentPresentation );
 	ReportRef = Catalogs.Metadata.Ref ( "Report." + Object.ReportName );
 	Parameters.Property ( "VariantPresentation", VariantPresentation );
-	Parameters.Property ( "ReportVariant", ReportVariant );
-	Parameters.Property ( "ReportSettings", ReportSettings );
+	Parameters.Property ( "Variant", ReportVariant );
+	Parameters.Property ( "Settings", ReportSettings );
 	Parameters.Property ( "GenerateOnOpen", GenerateOnOpen );
 	if ( GenerateOnOpen = undefined ) then
 		GenerateOnOpen = false;
@@ -73,7 +93,14 @@ Procedure applyParams ()
 EndProcedure
 
 &AtServer
-Procedure initSettingsComposer ()
+Function reportManager ()
+	
+	return Reports [ Object.ReportName ];
+	
+EndFunction
+
+&AtServer
+Procedure initComposer ()
 	
 	dataSchema = Reporter.GetSchema ( Object.ReportName );
 	SchemaAddress = PutToTempStorage ( dataSchema, SchemaAddress );
@@ -85,6 +112,7 @@ EndProcedure
 Procedure openReport ()
 	
 	loadVariantServer ( ReportVariant, undefined );
+	Reporter.RestorePeriod ( Object );
 	Reporter.ApplyFilters ( Object.SettingsComposer, Parameters );
 	
 EndProcedure
@@ -168,7 +196,7 @@ Procedure activateSettings ()
 EndProcedure 
 
 &AtServer
-Procedure makeReport ()
+Function makeReport ()
 	
 	report = prepareReport ();
 	p = report.Params;
@@ -176,15 +204,18 @@ Procedure makeReport ()
 		cancel = false;
 		report.OnCheck ( cancel );
 		if ( cancel ) then
-			return;
+			return false;
 		endif; 
 	endif; 
 	p.Settings = p.Composer.GetSettings ();
-	Reporter.ComposeResult ( report );
+	if ( not Reporter.ComposeResult ( report ) ) then
+		return false;
+	endif; 
 	storeDetailsData ( p );
 	enableActualState ();
+	return true;
 	
-EndProcedure
+EndFunction
 
 &AtServer
 Function prepareReport ()
@@ -230,13 +261,20 @@ EndProcedure
 Procedure BeforeClose ( Cancel, Exit, MessageText, StandardProcessing )
 	
 	if ( Exit ) then
-		Cancel = true;
 		return;
 	endif; 
+	storePeriod ();
 	if ( VariantModified ) then
 		Cancel = true;
 		Output.ReportVariantModified2 ( ThisObject, , , "SaveVariantBeforeClose" );
 	endif
+	
+EndProcedure
+
+&AtServer
+Procedure storePeriod ()
+	
+	Reporter.StorePeriod ( Object );
 	
 EndProcedure
 
@@ -267,10 +305,29 @@ EndProcedure
 &AtClient
 Procedure Make ( Command )
 	
-	makeReport ();
-	setResultCurrentItem ( ThisObject );
+	BuildReport ();
 	
 EndProcedure
+
+&AtClient
+Procedure BuildReport () export
+	
+	invalidateSelection ();
+	if ( makeReport () ) then
+		setResultCurrentItem ( ThisObject );
+	else
+		disableActualState ( Items.Result );
+	endif; 
+
+EndProcedure 
+
+&AtClient
+Procedure invalidateSelection ()
+	
+	PreviousArea = undefined;
+	PreviousSelection = 0;
+	
+EndProcedure 
 
 &AtClient
 Procedure SendReportBySchedule ( Command )
@@ -478,11 +535,18 @@ EndProcedure
 &AtServer
 Procedure loadPredefinedVariant ( Code )
 	
-	ReportVariant = Code;
-	variantName = Mid ( Code, 2 );
 	dataSchema = Reporter.GetSchema ( Object.ReportName );
-	variantReport = dataSchema.SettingVariants [ variantName ].Settings;
-	VariantPresentation = dataSchema.SettingVariants [ variantName ].Presentation;
+	variants = dataSchema.SettingVariants;
+	variantName = Mid ( Code, 2 );
+	item = variants.Find ( variantName );
+	if ( item = undefined ) then
+		item = dataSchema.SettingVariants.Default;
+		ReportVariant = "#Default";
+	else
+		ReportVariant = Code;
+	endif; 
+	variantReport = item.Settings;
+	VariantPresentation = item.Presentation;
 	Object.SettingsComposer.LoadSettings ( variantReport );
 	Object.SettingsComposer.Refresh ();
 	
@@ -615,7 +679,7 @@ Procedure BuildFilter () export
 	clearFilter ();
 	settings = Object.SettingsComposer.Settings;
 	userSettings = Object.SettingsComposer.UserSettings.Items;
-	p = settings.DataParameters.Items;
+	list = settings.DataParameters.Items;
 	availParams = settings.DataParameters.AvailableParameters;
 	filters = settings.Filter.Items;
 	availFilters = settings.Filter.FilterAvailableFields;
@@ -628,7 +692,7 @@ Procedure BuildFilter () export
 		id = item.UserSettingID;
 		itemType = TypeOf ( item );
 		if ( itemType = parameterType ) then
-			for each param in p do
+			for each param in list do
 				if ( param.UserSettingID = id
 					and param.ViewMode = quick ) then
 					label = availParams.FindParameter ( param.Parameter ).Title;
@@ -700,14 +764,40 @@ Procedure drawFilter ( Index, Label )
 	field.DataPath = "Object.SettingsComposer.UserSettings[" + i + "].Value";
 	field.Type = FormFieldType.InputField;
 	field.Title = Label;
-	field.Enabled = true;
 	field.Visible = true;
 	field.OpenButton = false;
+	field.OpenButton = false;
 	field.ClearButton = true;
+	if ( calendarFilter ( Index ) ) then
+		field.ChoiceButtonRepresentation = ChoiceButtonRepresentation.ShowInDropListAndInInputField;
+		field.CreateButton = false;
+	endif;
 	field.SetAction ( "OnChange", "FilterOnChange" );
 	field.SetAction ( "StartChoice", "FilterStartChoice" );
 	
 EndProcedure 
+
+&AtServer
+Function calendarFilter ( Index )
+	
+	parameterType = Type ( "DataCompositionSettingsParameterValue" );
+	composer = Object.SettingsComposer;
+	setting = composer.UserSettings.Items [ Index ];
+	if ( TypeOf ( setting ) <> parameterType ) then
+		return false;
+	endif;
+	parameter = setting.Parameter;
+	fixedList = composer.FixedSettings.DataParameters.Items;
+	calendarType = Type ( "CatalogRef.Calendar" );
+	for each item in fixedList do
+		if ( TypeOf ( item ) = parameterType
+			and item.Parameter = parameter ) then
+			return TypeOf ( item.Value ) = calendarType;
+		endif;
+	enddo;
+	return false;
+	
+EndFunction
 
 &AtServer
 Procedure saveSettingsState ()
@@ -730,10 +820,10 @@ Procedure changeReportVariant ()
 	p.Insert ( "Variant", Object.SettingsComposer.Settings );
 	p.Insert ( "UserSettings", Object.SettingsComposer.UserSettings );
 	p.Insert ( "VariantPresentation", VariantPresentation );
-	form = GetForm ( "Report." + Object.ReportName + ".VariantForm", p, , true );
-	form.OnCloseNotifyDescription = new NotifyDescription ( "LoadChangedVariant", ThisObject, form );
-	form.WindowOpeningMode = FormWindowOpeningMode.LockWholeInterface;
-	OpenForm ( form );
+	ChoiceForm = GetForm ( "Report." + Object.ReportName + ".VariantForm", p, , true );
+	ChoiceForm.OnCloseNotifyDescription = new NotifyDescription ( "LoadChangedVariant", ThisObject, ChoiceForm );
+	ChoiceForm.WindowOpeningMode = FormWindowOpeningMode.LockWholeInterface;
+	OpenForm ( ChoiceForm );
 	
 EndProcedure
 
@@ -741,8 +831,8 @@ EndProcedure
 Procedure LoadChangedVariant ( Result, Params ) export
 	
 	if ( Result = true ) then
-		// The expression "Settings" + "Composer" prevents EDT1.15 "Property is not writable" error
-		Object [ "Settings" + "Composer" ] = form.Report.SettingsComposer;
+		//@skip-warning
+		Object.SettingsComposer = ChoiceForm.Report.SettingsComposer;
 		#if ( not WebClient ) then
 			disableActualState ( Items.Result );
 		#endif
@@ -798,8 +888,8 @@ Function getParametersForNewWindow ()
 	
 	p = new Structure ();
 	p.Insert ( "ReportName", Object.ReportName );
-	p.Insert ( "ReportVariant", ReportVariant );
-	p.Insert ( "ReportSettings", ReportSettings );
+	p.Insert ( "Variant", ReportVariant );
+	p.Insert ( "Settings", ReportSettings );
 	p.Insert ( "VariantPresentation", VariantPresentation );
 	return p;
 	
@@ -869,10 +959,13 @@ EndProcedure
 &AtClient
 Procedure applyUserSetting ( Setting )
 	
+	updated = false;
+	ReporterForm.OnChange ( ThisObject, Setting, updated );
 	#if ( not WebClient ) then
-		disableActualState ( Items.Result );
+		if ( not updated ) then
+			disableActualState ( Items.Result );
+		endif; 
 	#endif
-	ReporterForm.OnChange ( ThisObject, Setting );
 	
 EndProcedure 
 
@@ -912,13 +1005,6 @@ Procedure FilterStartChoice ( Item, ChoiceData, StandardProcessing )
 	
 EndProcedure
 
-&AtClient
-Procedure Help ( Command )
-	
-	OpenHelp ( DF.Pick ( ReportRef, "Description" ) );
-	
-EndProcedure
-
 // *****************************************
 // *********** Result
 
@@ -926,61 +1012,46 @@ EndProcedure
 Procedure ResultDetailProcessing ( Item, Details, StandardProcessing )
 	
 	StandardProcessing = false;
+	if ( OnDetailEvent ) then
+		ReportDetails.Clear ();
+		UseMainAction = false;
+		DetailActions = undefined;
+		beforeDetailing ( Object.ReportName, ReportDetails, UseMainAction, DetailActions, DetailsAddress, SchemaAddress, Details );
+	endif;
 	doDetailProcessing ( Details, Item );
+	
+EndProcedure
+
+&AtServerNoContext
+Procedure beforeDetailing ( val ReportName, ReportDetails, UseMainAction, DetailActions, val DetailsAddress, val SchemaAddress, val Details )
+	
+	systemMenu = undefined;
+	Reports [ ReportName ].OnDetail ( ReportDetails, systemMenu, UseMainAction, getFilters ( SchemaAddress, Details, DetailsAddress ) );
+	if ( TypeOf ( systemMenu ) = Type ( "Array" ) ) then
+		DetailActions = new FixedArray ( systemMenu );
+	else
+		DetailActions = systemMenu;
+	endif;
 	
 EndProcedure
 
 &AtClient
 Procedure doDetailProcessing ( Details, Item )
 	
-	#if ( WebClient ) then
-		// Bug workaround 8.3.10.1877: web-client does not recognize ReportDetails
-		subreports = ReportDetails.Count ();
-		if ( subreports = 0 ) then
-			showMenu ( Details );
-		else
-			if ( subreports = 1 ) then
-				ApplySelectedActionWeb ( ReportDetails [ 0 ], Details );
-			else
-				ShowChooseFromMenu ( new NotifyDescription ( "ApplySelectedActionWeb", ThisObject, Details ), ReportDetails );
-			endif; 
-		endif; 
-	#else
-		showMenu ( Details );
-	#endif
-	
-EndProcedure
-
-&AtClient
-Procedure showMenu ( Details )
-	
-	actions = ? ( DetailActions = undefined, new Array (), new Array ( DetailActions ) );
+	if ( DetailActions = undefined ) then
+		actions = undefined;
+	elsif ( DetailActions = null ) then
+		actions = new Array ();
+	else
+		actions = new Array ( DetailActions );
+	endif;
 	detailsObject = new DataCompositionDetailsProcess ( DetailsAddress, new DataCompositionAvailableSettingsSource ( SchemaAddress ) );
-	// Bug workaround 8.3.10.1877: try to fix utterly wrong behaviour of system
-	if ( DetailActions = undefined
-		and ReportDetails.Count () = 0
-		and UseMainAction ) then
-		actions.Add ( DataCompositionDetailsProcessingAction.OpenValue );
-	endif; 
-	detailsObject.ShowActionChoice ( new NotifyDescription ( "ApplySelectedAction", ThisObject, Details ), Details, ? ( actions.Count () = 0 and ReportDetails.Count () = 0, undefined, actions ), ReportDetails, UseMainAction );
-	
-EndProcedure 
+	detailsObject.ShowActionChoice ( new NotifyDescription ( "ApplySelectedAction", ThisObject, Details ), Details, actions, ReportDetails,
+	// "false or UseMainAction" - Bug workaround for webclient. It doesn't get UseMainAction as a boolean value if actions = undefined
+	false or UseMainAction );
 
-&AtClient
-Procedure ApplySelectedActionWeb ( Report, Details ) export
-	
-	if ( Report = undefined ) then
-		return;
-	endif; 
-	p = ReportsSystem.GetParams ( Report.Value );
-	p.GenerateOnOpen = true;
-	p.Command = "Detail";
-	p.Parent = Object.ReportName;
-	p.Filters = getFilters ( SchemaAddress, Details, DetailsAddress );
-	OpenForm ( "Report.Common.Form", p, , true );
-	
 EndProcedure
-	
+
 &AtClient
 Procedure ApplySelectedAction ( SelectedAction, SelectedActionParameters, Details ) export
 	
@@ -997,11 +1068,18 @@ Procedure ApplySelectedAction ( SelectedAction, SelectedActionParameters, Detail
 		p.Filters = getFilters ( SchemaAddress, Details, DetailsAddress );
 		OpenForm ( "Report.Common.Form", p, , true );
 	else
-		p = getParametersForNewWindow ();
-		p.Insert ( "Command", "DrillDown" );
-		p.Insert ( "GenerateOnOpen", true );
-		p.Insert ( "DetailsDescription", new DataCompositionDetailsProcessDescription ( DetailsAddress, Details, SelectedActionParameters ) );
-		OpenForm ( "Report.Common.Form", p, , true );
+		if ( TypeOf ( SelectedAction ) = Type ( "Structure" ) ) then
+			if ( SelectedAction.Command = Enum.ReportCommandsOpenModule () ) then
+				params = SelectedAction.Parameters;
+				ScenarioForm.GotoLine ( params.Scenario, params.Line, params.Error );
+			endif;
+		else
+			p = getParametersForNewWindow ();
+			p.Insert ( "Command", "DrillDown" );
+			p.Insert ( "GenerateOnOpen", true );
+			p.Insert ( "DetailsDescription", new DataCompositionDetailsProcessDescription ( DetailsAddress, Details, SelectedActionParameters ) );
+			OpenForm ( "Report.Common.Form", p, , true );
+		endif;
 	endif; 
 	
 EndProcedure 
@@ -1128,4 +1206,277 @@ Procedure addFilters ( Filters, Composer )
 		endif;
 	enddo;
 
+EndProcedure 
+
+&AtClient
+Procedure ShowLevel ( Command )
+	
+	selectLevel ();
+	
+EndProcedure
+
+&AtClient
+Procedure selectLevel ()
+	
+	#if ( WebClient ) then
+		top = 5;
+	#else
+		top = Result.RowGroupLevelCount ();
+	#endif
+	if ( top = 1 ) then
+		return;
+	endif; 
+	menu = new ValueList ();
+	for i = 1 to top do
+		menu.Add ( i );
+	enddo; 
+	ShowChooseFromMenu ( new NotifyDescription ( "LevelSelected", ThisObject ), menu );
+	
+EndProcedure 
+
+&AtClient
+Procedure LevelSelected ( Value, Params ) export
+	
+	if ( Value = undefined ) then
+		return;
+	endif; 
+	Result.ShowRowGroupLevel ( Value.Value - 1 );
+	
+EndProcedure 
+
+&AtClient
+Procedure ShowHeaders ( Command )
+	
+	toggleHeaders ();
+	
+EndProcedure
+
+&AtClient
+Procedure toggleHeaders ()
+	
+	ShowHeaders = not ShowHeaders;
+	Items.Result.ShowHeaders = ShowHeaders;
+	Appearance.Apply ( ThisObject, "ShowHeaders" );
+
+EndProcedure
+
+&AtClient
+Procedure ShowGrid ( Command )
+	
+	toggleGrid ();
+	
+EndProcedure
+
+&AtClient
+Procedure toggleGrid ()
+	
+	ShowGrid = not ShowGrid;
+	Items.Result.ShowGrid = ShowGrid;
+	Appearance.Apply ( ThisObject, "ShowGrid" );
+
+EndProcedure 
+
+&AtClient
+Procedure CalcTotals ( Command )
+	
+	updateTotals ( false );
+	
+EndProcedure
+
+&AtClient
+Procedure updateTotals ( CheckSquire )
+	
+	SelectedAreas = defineAreas ();
+	info = areasInfo ( SelectedAreas );
+	if ( CheckSquire
+		and info.HugeSquire ) then
+		showWarning ();
+	else
+		if ( info.ManyRows ) then
+			// Updating TotalInfo textbox on the client side is very important.
+			// Do not try to move TotalInfo's updating on the server because it
+			// will lead to implicit updating and blinking spreadsheed document.
+			// As a result, selected area can lost focus.
+			heavyCalc ( SelectedAreas, TotalInfo );
+		else
+			calcSelection ( SelectedAreas, Result, TotalInfo );
+		endif; 
+	endif; 
+	
+EndProcedure 
+
+&AtClient
+Function defineAreas ()
+	
+	areas = new Array ();
+	rangeType = Type ( "SpreadsheetDocumentRange" );
+	for each area in Result.SelectedAreas do
+		if ( TypeOf ( area ) <> rangeType ) then
+			continue;
+		endif; 
+		top = area.Top;
+		if ( top = 0 ) then
+			r1 = 1;
+			r2 = Result.TableHeight;
+		else
+			r1 = top;
+			r2 = area.Bottom;
+		endif; 
+		c1 = Max ( 1, area.Left );
+		c2 = ? ( area.Right = 0, result.TableWidth, area.Right );
+		areas.Add ( new Structure ( "R1, C1, R2, C2, Calculated", r1, c1, r2, c2 ) );
+	enddo; 
+	return areas;
+	
+EndFunction 
+
+&AtClient
+Function areasInfo ( Areas )
+	
+	minRow = 0;
+	maxRow = 0;
+	squire = 0;
+	for each area in Areas do
+		r1 = area.R1;
+		r2 = area.R2;
+		c1 = area.C1;
+		c2 = area.C2;
+		squire = squire + ( r2 - r1 ) * ( c2 - c1 );
+		minRow = ? ( minRow = 0, r1, Min ( minRow, r1 ) );
+		maxRow = ? ( maxRow = 0, r2, Max ( maxRow, r2 ) );
+	enddo; 
+	manyRows = ( maxRow - minRow ) > 60;
+	hugeSquire = squire > 3000;
+	return new Structure ( "ManyRows, HugeSquire", manyRows, hugeSquire );
+
+EndFunction 
+
+&AtClient
+Procedure showWarning ()
+	
+	Items.CalcTotals.Visible = true;
+	TotalInfo = Output.CalculationAreaTooBig ();
+	
+EndProcedure 
+
+&AtServer
+Procedure heavyCalc ( val Areas, Info )
+	
+	calcSelection ( Areas, Result, Info );
+	
+EndProcedure 
+
+&AtClientAtServerNoContext
+Procedure calcSelection ( Areas, Result, TotalInfo )
+	
+	sum = 0;
+	count = 0;
+	quantity = 0;
+	taken = new Map ();
+	for each area in Areas do
+		info = calcArea ( Result, area, taken );
+		sum = sum + info.Sum;
+		quantity = quantity + info.Quantity;
+		count = count + info.Count;
+	enddo; 
+	if ( count = 0 ) then
+		TotalInfo = Output.SpreadsheedAreaNotSelected ();
+	else
+		p = new Structure ( "Count, Average, Sum", count );
+		if ( quantity = 0 ) then
+			TotalInfo = Output.SpreadsheedTotalCount ( p );
+		else
+			p.Sum = sum;
+			p.Average = Round ( sum / quantity, 9 );
+			TotalInfo = Output.SpreadsheedTotal ( p );
+		endif; 
+	endif;
+	
+EndProcedure 
+
+&AtClientAtServerNoContext
+Function calcArea ( Result, Area, Taken )
+	
+	sum = 0;
+	count = 0;
+	quantity = 0;
+	numberType = Type ( "Number" );
+	for i = Area.R1 to Area.R2 do
+		for j = Area.C1 to Area.C2 do
+			cell = Result.Area ( i, j, i, j );
+			if ( not cell.Visible ) then
+				continue;
+			endif;
+			value = undefined;
+			if ( cell.ContainsValue
+				and TypeOf ( cell.Value ) = numberType ) then
+				value = cell.Value;
+			elsif ( ValueIsFilled ( cell.Text ) ) then
+				try
+					value = Number ( cell.Text );
+				except
+				endtry;
+			else
+				continue;
+			endif;
+			cellName = cell.Name;
+			if ( Taken [ cellName ] <> undefined ) then
+				continue;
+			endif; 
+			Taken [ cellName ] = true;
+			count = count + 1;
+			if ( value <> undefined ) then
+				quantity = quantity + 1;
+				sum = sum + value;
+			endif; 
+		enddo; 
+	enddo; 
+	return new Structure ( "Count, Sum, Quantity", count, sum, quantity );
+
+EndFunction 
+
+&AtClient
+Procedure ResultOnActivateArea ( Item )
+
+	if ( drawing ()
+		or sameArea () ) then
+		return;
+	endif;
+	startCalculation ();
+	
+EndProcedure
+
+&AtClient
+Function drawing ()
+	
+	return TypeOf ( Result.CurrentArea ) <> Type ( "SpreadsheetDocumentRange" );
+	
+EndFunction 
+
+&AtClient
+Function sameArea ()
+	
+	currentName = Result.CurrentArea.Name;
+	if ( PreviousArea = currentName ) then
+		return true;
+	else
+		PreviousArea = currentName;
+		return false;
+	endif; 
+	
+EndFunction 
+
+&AtClient
+Procedure startCalculation ()
+	
+	DetachIdleHandler ( "startUpdating" );
+	AttachIdleHandler ( "startUpdating", 0.2, true );
+	
+EndProcedure 
+
+&AtClient
+Procedure startUpdating ()
+	
+	updateTotals ( true );
+	
 EndProcedure 

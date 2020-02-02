@@ -15,6 +15,20 @@
 		</right>
 	</object>
 	<object>
+		<name>DataProcessor.TranspilerTester</name>
+		<right>
+			<name>View</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>DataProcessor.Compiler</name>
+		<right>
+			<name>View</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
 		<name>Catalog.Assistant</name>
 		<right>
 			<name>InteractiveDelete</name>
@@ -169,6 +183,13 @@
 		</right>
 		<right>
 			<name>InteractiveDeletePredefinedData</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>DataProcessor.TranspilerRaw</name>
+		<right>
+			<name>View</name>
 			<value>false</value>
 		</right>
 	</object>

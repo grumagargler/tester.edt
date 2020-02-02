@@ -70,7 +70,8 @@ EndProcedure
 Procedure StackSelection ( Item, SelectedRow, Field, StandardProcessing )
 	
 	StandardProcessing = false;
-	ErrorLogForm.OpenScenario ( Item );
+	data = Item.CurrentData;
+	ScenarioForm.GotoLine ( data.Ref, data.Row, Object.Ref );
 	Close ();
 	
 EndProcedure

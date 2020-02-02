@@ -124,6 +124,7 @@
       <type>InputField</type>
       <editMode>EnterOnInput</editMode>
       <cellHyperlink>true</cellHyperlink>
+      <autoCellHeight>true</autoCellHeight>
       <showInHeader>true</showInHeader>
       <headerHorizontalAlign>Left</headerHorizontalAlign>
       <showInFooter>true</showInFooter>
@@ -138,6 +139,70 @@
           <font>Style.NormalTextFont</font>
           <faceName>Courier New</faceName>
         </font>
+        <heightControlVariant>ByContent</heightControlVariant>
+      </extInfo>
+    </items>
+    <items xsi:type="form:FormField">
+      <name>StackArea</name>
+      <id>71</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <dataPath xsi:type="form:MultiLanguageDataPath">
+        <paths xsi:type="form:DataPath">
+          <segments>Stack.Area</segments>
+        </paths>
+      </dataPath>
+      <extendedTooltip>
+        <name>StackAreaExtendedTooltip</name>
+        <id>73</id>
+        <visible>true</visible>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <contextMenu>
+        <name>StackAreaContextMenu</name>
+        <id>72</id>
+        <visible>true</visible>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <autoFill>true</autoFill>
+      </contextMenu>
+      <type>InputField</type>
+      <editMode>EnterOnInput</editMode>
+      <fixingInTable>Right</fixingInTable>
+      <autoCellHeight>true</autoCellHeight>
+      <showInHeader>true</showInHeader>
+      <headerHorizontalAlign>Left</headerHorizontalAlign>
+      <showInFooter>true</showInFooter>
+      <extInfo xsi:type="form:InputFieldExtInfo">
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <wrap>true</wrap>
+        <chooseType>true</chooseType>
+        <typeDomainEnabled>true</typeDomainEnabled>
+        <textEdit>true</textEdit>
+        <textColor xsi:type="core:ColorDef">
+          <green>128</green>
+        </textColor>
+        <font xsi:type="core:FontRef">
+          <font>Style.NormalTextFont</font>
+          <faceName>Courier New</faceName>
+          <height>8.0</height>
+        </font>
+        <heightControlVariant>ByContent</heightControlVariant>
       </extInfo>
     </items>
     <commandBarLocation>None</commandBarLocation>
@@ -304,6 +369,7 @@
     <heightInTableRows>5</heightInTableRows>
     <maxRowsCount>5</maxRowsCount>
     <selectionMode>MultiRow</selectionMode>
+    <rowSelectionMode>Row</rowSelectionMode>
     <header>true</header>
     <headerHeight>1</headerHeight>
     <footerHeight>1</footerHeight>
@@ -767,6 +833,28 @@
         <numberQualifiers>
           <precision>10</precision>
         </numberQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Area</name>
+      <title>
+        <key>en</key>
+        <value>Area</value>
+      </title>
+      <title>
+        <key>ru</key>
+        <value>Область</value>
+      </title>
+      <id>4</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers/>
       </valueType>
       <view>
         <common>true</common>

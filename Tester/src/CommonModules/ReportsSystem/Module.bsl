@@ -9,7 +9,11 @@ Procedure Form ( Source, FormType, Parameters, SelectedForm, AdditionalInformati
 			return;
 		endif; 
 		StandardProcessing = false;
-		ReportsSystem.SetParams ( Parameters, ReportName );
+		setParams ( Parameters, ReportName );
+		class = Reports [ ReportName ];
+		if ( class.Events ().OnInitDefaultParams ) then
+			class.OnInitDefaultParams ( Parameters );
+		endif; 
 		SelectedForm = Metadata.Reports.Common.Forms.Form;
 	#endif
 	
@@ -26,20 +30,22 @@ EndFunction
 
 #endif
 
-Function GetParams ( ReportName ) export
-	
-	p = new Structure ();
-	SetParams ( p, ReportName );
-	return p;
-	
-EndFunction
-
-Procedure SetParams ( Params, ReportName ) export
+Procedure setParams ( Params, ReportName )
 	
 	Params.Insert ( "ReportName", ReportName );
 	Params.Insert ( "Command", "OpenReport" );
 	Params.Insert ( "Filters" );
 	Params.Insert ( "Parent" );
+	Params.Insert ( "Variant" );
+	Params.Insert ( "Settings" );
 	Params.Insert ( "GenerateOnOpen", false );
 	
 EndProcedure
+
+Function GetParams ( ReportName ) export
+	
+	p = new Structure ();
+	setParams ( p, ReportName );
+	return p;
+	
+EndFunction

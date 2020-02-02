@@ -197,6 +197,21 @@ Procedure filterBySeverity ()
 	
 EndProcedure 
 
+&AtClient
+Procedure AreaFilterOnChange ( Item )
+	
+	filterByArea ();
+	
+EndProcedure
+
+&AtServer
+Procedure filterByArea ()
+	
+	DC.ChangeFilter ( List, "Area", AreaFilter, not AreaFilter.IsEmpty () );
+	Appearance.Apply ( ThisObject, "AreaFilter" );
+	
+EndProcedure 
+
 // *****************************************
 // *********** List
 
@@ -278,7 +293,8 @@ EndProcedure
 Procedure StackSelection ( Item, SelectedRow, Field, StandardProcessing )
 	
 	StandardProcessing = false;
-	ErrorLogForm.OpenScenario ( Item );
+	data = Item.CurrentData;
+	ScenarioForm.GotoLine ( data.Ref, data.Row, ListRow.Ref );
 	
 EndProcedure
 

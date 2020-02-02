@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Report xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="d2515a9c-54df-40d8-8716-0353cbf09831">
+  <producedTypes>
+    <objectType typeId="4bdab04d-2a21-4ecc-9491-f9c2b9826b14" valueTypeId="95671f55-f96c-40c5-b6fb-fbd5c190f28c"/>
+    <managerType typeId="f3fc337d-4858-44ae-ab0e-d5053e943af5" valueTypeId="351c8e5c-5aac-48c9-804f-1e12d06080af"/>
+  </producedTypes>
+  <name>Testing</name>
+  <synonym>
+    <key>en</key>
+    <value>Testing</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Тестирование</value>
+  </synonym>
+  <mainDataCompositionSchema>Report.Testing.Template.Schema</mainDataCompositionSchema>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <explanation>
+    <key>en</key>
+    <value>Testing results with error details and screenshots</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Просмотр прохождения тестов с выводом ошибок и скриншотов</value>
+  </explanation>
+  <templates uuid="bc1a9c8e-487a-415d-a07f-e898b2777633">
+    <name>Schema</name>
+    <templateType>DataCompositionSchema</templateType>
+  </templates>
+  <commands uuid="e3a327c8-5dd6-4444-9f29-40abe539c44e">
+    <name>OpenByJob</name>
+    <synonym>
+      <key>en</key>
+      <value>Testing</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Тестирование</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>DocumentRef.Job</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Testing results with error details and screenshots</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Просмотр прохождения тестов с выводом ошибок и скриншотов</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="3085f9a4-f6cb-4f42-9ca2-ea6e2df5df82">
+    <name>Show</name>
+    <synonym>
+      <key>en</key>
+      <value>Testing</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Тестирование</value>
+    </synonym>
+    <group>ActionsPanelReports</group>
+    <commandParameterType/>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Testing results with error details and screenshots</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Просмотр прохождения тестов с выводом ошибок и скриншотов</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:Report>

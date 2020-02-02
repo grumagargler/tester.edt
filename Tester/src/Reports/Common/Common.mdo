@@ -31,6 +31,30 @@
     <key>en</key>
     <value>Report based on data composition system</value>
   </explanation>
+  <attributes uuid="11273451-25a4-4d21-9c1b-30fbd26536fc">
+    <name>Priviledged</name>
+    <synonym>
+      <key>en</key>
+      <value>Privileged Mode</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Привилегированный режим</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Execute report in privileged mode</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Выполнить отчет в привилегированном режиме</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </attributes>
   <attributes uuid="9177a556-2ce8-426e-95e6-8befd335f3e3">
     <name>ReportName</name>
     <synonym>

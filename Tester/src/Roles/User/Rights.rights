@@ -104,6 +104,13 @@
 		</right>
 	</object>
 	<object>
+		<name>SessionParameter.Connection</name>
+		<right>
+			<name>Get</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>InformationRegister.ScheduledReports.StandardAttribute.Active</name>
 		<right>
 			<name>View</name>
@@ -319,6 +326,21 @@
 		</right>
 	</object>
 	<object>
+		<name>Catalog.Connections</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InputByString</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>CommonCommand.CurrentApplication</name>
 		<right>
 			<name>View</name>
@@ -454,6 +476,21 @@
 	</object>
 	<object>
 		<name>Catalog.UserGroups</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InputByString</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.Calendar</name>
 		<right>
 			<name>Read</name>
 			<value>true</value>

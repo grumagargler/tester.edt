@@ -1,3 +1,4 @@
+#if ( ThinClient or ThickClientManagedApplication ) then
 
 Procedure CloseWindows () export
 	
@@ -333,3 +334,5 @@ Procedure ToggleWindow ( Pattern, Maximize ) export
 	endif;
 	 
 EndProcedure
+
+#endif 

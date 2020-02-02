@@ -116,7 +116,7 @@ Function flushString ( String, Count, Symbol = "0" )
 	
 EndFunction 
 
-#if ( not WebClient ) then
+#if ( Server or ThinClient or ThickClientManagedApplication ) then
 	
 Function FromJSON ( JSON ) export
 	

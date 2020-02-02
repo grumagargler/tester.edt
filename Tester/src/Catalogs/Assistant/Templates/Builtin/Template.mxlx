@@ -3717,6 +3717,7 @@
 	<templateMode>true</templateMode>
 	<defaultFormatIndex>4</defaultFormatIndex>
 	<height>56</height>
+	<vgRows>56</vgRows>
 	<format>
 		<width>369</width>
 	</format>

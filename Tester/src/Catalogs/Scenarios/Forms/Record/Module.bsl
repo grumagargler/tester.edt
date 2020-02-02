@@ -115,12 +115,14 @@ EndProcedure
 &AtClient
 Procedure detach ()
 	
-	if ( Connected ) then
-		if ( Status <> "" ) then
-			App.CancelUILogRecording ();
-		endif;
-		Disconnect ();
-	endif; 
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		if ( Connected ) then
+			if ( Status <> "" ) then
+				App.CancelUILogRecording ();
+			endif;
+			Disconnect ();
+		endif; 
+	#endif
 	
 EndProcedure 
 
@@ -176,9 +178,11 @@ EndProcedure
 &AtClient
 Procedure DisconnectClient ( Command )
 	
-	App.CancelUILogRecording ();
-	Disconnect ();
-	flagConnected ();
-	setStatus ( "" );
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		App.CancelUILogRecording ();
+		Disconnect ();
+		flagConnected ();
+		setStatus ( "" );
+	#endif
 	
 EndProcedure

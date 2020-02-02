@@ -1217,6 +1217,14 @@ Function WebClientDoesNotSupport () export
 	
 EndFunction
 
+&AtClient
+Function ClientDoesNotSupport () export
+	
+	text = NStr ( "en = 'This application does not support this functionality'; ru = 'Это приложение не поддерживает данную функциональность'" );
+	return text;
+	
+EndFunction
+
 &AtServer
 Function WatcherRenamingError ( Params ) export
 
@@ -1396,3 +1404,40 @@ Procedure ShowError ( Module = undefined, CallbackParams = undefined, Params = u
 	openMessageBox ( text, Params, ProcName, Module, CallbackParams, 0, title );
 	
 EndProcedure
+
+Function SpreadsheedTotalCount ( Params ) export
+
+	text = NStr ( "en='Count: %Count'; ru='Кол-во: %Count'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+Function SpreadsheedTotal ( Params ) export
+
+	text = NStr ( "en='Avg: %Average   Count: %Count   Sum: %Sum'; ru='Среднее: %Average   Кол-во: %Count   Сумма: %Sum'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtClient
+Function CalculationAreaTooBig () export
+
+	text = NStr ( "en='The selected area is too large. Click on the button on the right for manual calculation'; ru='Выделена большая область. Нажмите кнопку справа для расчета'" );
+	return text;
+
+EndFunction
+
+Function SpreadsheedAreaNotSelected () export
+
+	text = NStr ( "en='Area not defined'; ru='Область не задана'" );
+	return text;
+
+EndFunction
+
+&AtServer
+Function DataSetColumnNotFound ( Params ) export
+
+	text = "Field not found, DataPath: %Path. Might be the field no longer exists in the source report or Mobile application (or mobile reports) is not up to date";
+	return Sformat ( text, Params );
+
+EndFunction

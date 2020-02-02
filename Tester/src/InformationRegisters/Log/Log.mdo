@@ -110,6 +110,33 @@
     <fillValue xsi:type="core:UndefinedValue"/>
     <indexing>Index</indexing>
   </resources>
+  <resources uuid="73d2873d-e8d1-4d08-a0df-d86e3a430584">
+    <name>Area</name>
+    <synonym>
+      <key>en</key>
+      <value>Area</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Область</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Areas</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Fall area</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Область падения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
   <resources uuid="b9596eed-9dce-428c-8e46-ab922c8a0150">
     <name>Duration</name>
     <synonym>

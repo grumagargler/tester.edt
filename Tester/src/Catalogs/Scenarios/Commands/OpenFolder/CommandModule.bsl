@@ -14,8 +14,8 @@ Procedure runExplorer ( Scenario )
 	if ( file = undefined ) then
 		Message ( error );
 	else
-		#if ( WebClient ) then
-			Output.WebClientDoesNotSupport ();
+		#if ( WebClient or MobileClient ) then
+			Output.ClientDoesNotSupport ();
 		#else
 			RunApp ( FileSystem.GetParent ( file ) );
 		#endif

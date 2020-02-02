@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:FunctionalOption xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="023138db-d931-4419-b6aa-cb95edde3566">
+  <name>ThickClient</name>
+  <location>Catalog.Connections.Attribute.ThickClient</location>
+  <privilegedGetMode>true</privilegedGetMode>
+  <content>ExchangePlan.Repositories</content>
+  <content>CommonForm.Debugger</content>
+  <content>CommonCommand.DownloadMeta</content>
+  <content>CommonCommand.DownloadWorker</content>
+  <content>CommonCommand.Restart</content>
+  <content>Catalog.Workspaces</content>
+</mdclass:FunctionalOption>

@@ -1,28 +1,30 @@
 Procedure Create ( Reference ) export
 	
-	workspace = WorkspaceFormSrv.GetFolders ( Reference );
-	folders = new Array ();
-	for each folder in Collections.DeserializeTable ( workspace.Folders ) do
-		folders.Add ( new Structure ( "name, path", folder.Name, folder.Folder ) );
-	enddo;
-	exclusion = new Map ();
-	exclusion [ "**/*.json" ] = new Structure ( "when", "$(basename)" + RepositoryFiles.BSLFile () );
-	exclusion [ "**/.tester" ] = true;
-	exclusion [ "**/.gitignore" ] = true;
-	exclusion [ "**/" + TesterWatcherBSLServerSettings ] = true;
-	settings = new Map ();
-	settings [ "files.exclude" ] = exclusion;
-	files = "[" + Mid ( RepositoryFiles.BSLFile (), 2 ) + "]";
-	fileSettings = new Map ();
-	fileSettings [ "editor.formatOnSave" ] = false;
-	settings [ files ] = fileSettings; 
-	body = new Structure ();
-	body.Insert ( "folders", folders );
-	body.Insert ( "settings", settings );
-	doc = new TextDocument ();
-	doc.SetText ( Conversion.ToJSON ( body ) );
-	path = workspace.Path;
-	doc.BeginWriting ( new NotifyDescription ( "WorkspaceCreated", ThisObject, path ), path );
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		workspace = WorkspaceFormSrv.GetFolders ( Reference );
+		folders = new Array ();
+		for each folder in Collections.DeserializeTable ( workspace.Folders ) do
+			folders.Add ( new Structure ( "name, path", folder.Name, folder.Folder ) );
+		enddo;
+		exclusion = new Map ();
+		exclusion [ "**/*.json" ] = new Structure ( "when", "$(basename)" + RepositoryFiles.BSLFile () );
+		exclusion [ "**/.tester" ] = true;
+		exclusion [ "**/.gitignore" ] = true;
+		exclusion [ "**/" + TesterWatcherBSLServerSettings ] = true;
+		settings = new Map ();
+		settings [ "files.exclude" ] = exclusion;
+		files = "[" + Mid ( RepositoryFiles.BSLFile (), 2 ) + "]";
+		fileSettings = new Map ();
+		fileSettings [ "editor.formatOnSave" ] = false;
+		settings [ files ] = fileSettings; 
+		body = new Structure ();
+		body.Insert ( "folders", folders );
+		body.Insert ( "settings", settings );
+		doc = new TextDocument ();
+		doc.SetText ( Conversion.ToJSON ( body ) );
+		path = workspace.Path;
+		doc.BeginWriting ( new NotifyDescription ( "WorkspaceCreated", ThisObject, path ), path );
+	#endif
 
 EndProcedure
 
@@ -36,8 +38,8 @@ EndProcedure
 
 Procedure RunStudio ( Reference ) export
 	
-	#if ( WebClient ) then
-		Output.WebClientDoesNotSupport ();
+	#if ( WebClient or MobileClient ) then
+		Output.ClientDoesNotSupport ();
 	#else
 		if ( TypeOf ( Reference ) = Type ( "CatalogRef.Scenarios" ) ) then
 			error = "";
@@ -100,18 +102,20 @@ EndProcedure
 
 Procedure executeStudio ( VSCode, Workspace, File = undefined )
 
-	if ( VSCode = "" ) then
-		launcher = """" + SystemVariable ( "userprofile" ) + "\AppData\Local\Programs\Microsoft VS Code\Code.exe""";
-	else
-		launcher = VSCode;
-	endif;
-	cmd = new Array ();
-	cmd.Add ( launcher );
-	cmd.Add ( """" + Workspace + """" );
-	if ( File <> undefined ) then
-		cmd.Add ( """" + File + """" );
-	endif;
-	BeginRunningApplication ( new NotifyDescription ( "StudioLaunched", ThisObject ), StrConcat ( cmd, " " ) );
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		if ( VSCode = "" ) then
+			launcher = """" + SystemVariable ( "userprofile" ) + "\AppData\Local\Programs\Microsoft VS Code\Code.exe""";
+		else
+			launcher = VSCode;
+		endif;
+		cmd = new Array ();
+		cmd.Add ( launcher );
+		cmd.Add ( """" + Workspace + """" );
+		if ( File <> undefined ) then
+			cmd.Add ( """" + File + """" );
+		endif;
+		BeginRunningApplication ( new NotifyDescription ( "StudioLaunched", ThisObject ), StrConcat ( cmd, " " ) );
+	#endif
 
 EndProcedure
 

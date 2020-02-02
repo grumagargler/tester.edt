@@ -1,10 +1,13 @@
-Function Get () export
+Function InitSession ( val Computer, val WebClient, val MobileClient, val ThinClient, val ThickClient ) export
 	
-	data = new Structure ( "User, Scenario, Application" );
+	EnvironmentSrv.SetSession ( Computer );
+	EnvironmentSrv.SetConnection ( WebClient, MobileClient, ThinClient, ThickClient );
+	data = new Structure ( "User, Scenario, Application, Connection" );
 	user = SessionParameters.User;
 	data.User = "" + user;
 	data.Scenario = InformationRegisters.Scenarios.Get ( new Structure ( "User", user ) ).Scenario;
 	data.Application = EnvironmentSrv.GetApplication ();
+	data.Connection = SessionParameters.Connection;
 	return data;
 	
 EndFunction 
@@ -66,7 +69,7 @@ Procedure ChangeScenario ( val Scenario, NewApplication ) export
 	
 EndProcedure 
 
-Procedure SetSession ( val Computer ) export
+Procedure SetSession ( Computer ) export
 	
 	SetPrivilegedMode ( true );
 	host = getComputer ( Computer );
@@ -115,6 +118,51 @@ Function createSession ( Host )
 	obj.Computer = Host;
 	obj.User = SessionParameters.User;
 	obj.Description = Host;
+	obj.Write ();
+	return obj.Ref;
+	
+EndFunction 
+
+Procedure SetConnection ( WebClient, MobileClient, ThinClient, ThickClient ) export
+	
+	SetPrivilegedMode ( true );
+	connection = findConnection ( WebClient, MobileClient, ThinClient, ThickClient );
+	if ( connection = undefined ) then
+		connection = createConnection ( WebClient, MobileClient, ThinClient, ThickClient );
+	endif; 
+	SessionParameters.Connection = connection;
+	SetPrivilegedMode ( false );
+	
+EndProcedure 
+
+Function findConnection ( WebClient, MobileClient, ThinClient, ThickClient )
+	
+	s = "
+	|select top 1 Connections.Ref as Ref
+	|from Catalog.Connections as Connections
+	|where not Connections.DeletionMark
+	|and Connections.WebClient = &WebClient
+	|and Connections.MobileClient = &MobileClient
+	|and Connections.ThinClient = &ThinClient
+	|and Connections.ThickClient = &ThickClient
+	|";
+	q = new Query ( s );
+	q.SetParameter ( "WebClient", WebClient );
+	q.SetParameter ( "MobileClient", MobileClient );
+	q.SetParameter ( "ThinClient", ThinClient );
+	q.SetParameter ( "ThickClient", ThickClient );
+	table = q.Execute ().Unload ();
+	return ? ( table.Count () = 0, undefined, table [ 0 ].Ref );
+	
+EndFunction 
+
+Function createConnection ( WebClient, MobileClient, ThinClient, ThickClient )
+	
+	obj = Catalogs.Connections.CreateItem ();
+	obj.WebClient = WebClient;
+	obj.MobileClient = MobileClient;
+	obj.ThinClient = ThinClient;
+	obj.ThickClient = ThickClient;
 	obj.Write ();
 	return obj.Ref;
 	
@@ -196,5 +244,23 @@ Function StartAgent () export
 		TesterAgent.AgentStatus ( Enums.AgentStatuses.Available );
 	endif;
 	return agent;
+	
+EndFunction
+
+Function MobileClient () export
+	
+	return isClient ( "MobileClient" );
+	
+EndFunction
+
+Function isClient ( Type )
+	
+	return GetFunctionalOption ( Type, new Structure ( "Connection", SessionParameters.Connection ) );
+	
+EndFunction
+
+Function WebClient () export
+	
+	return isClient ( "WebClient" );
 	
 EndFunction

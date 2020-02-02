@@ -220,25 +220,25 @@ EndProcedure
 
 Function readFile(File, Extension)
 
-	#if ( WebClient ) then
-	raise Output.WebClientDoesNotSupport();
+	#if ( WebClient or MobileClient ) then
+		raise Output.ClientDoesNotSupport();
 	#else
-	timeout = CurrentDate() + 7;
-	while (true) do
-		try
-			if (Extension = RepositoryFiles.MXLFile()) then
-				return new BinaryData(File);
-			else
-				text = new TextReader(File, TextEncoding.UTF8, , , true);
-				data = text.Read();
-				return ?(data = undefined, "", data);
-			endif;
-		except
-			if (CurrentDate() > timeout) then
-				raise Output.FileReadingError(new Structure("File", File));
-			endif;
-		endtry;
-	enddo;
+		timeout = CurrentDate() + 7;
+		while (true) do
+			try
+				if (Extension = RepositoryFiles.MXLFile()) then
+					return new BinaryData(File);
+				else
+					text = new TextReader(File, TextEncoding.UTF8, , , true);
+					data = text.Read();
+					return ?(data = undefined, "", data);
+				endif;
+			except
+				if (CurrentDate() > timeout) then
+					raise Output.FileReadingError(new Structure("File", File));
+				endif;
+			endtry;
+		enddo;
 	#endif
 
 EndFunction

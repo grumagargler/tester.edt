@@ -11,8 +11,10 @@
 &НаКлиенте
 Процедура ИзменитьРасписаниеНажатие ( Элемент )
 	
-	dialog = new ScheduledJobDialog ( Расписание );
-	dialog.Show ( new NotifyDescription ( "selectSchedule", ThisObject, ) );	
+	#if ( WebClient or ThinClient or ThickClientManagedApplication ) then
+		dialog = new ScheduledJobDialog ( Расписание );
+		dialog.Show ( new NotifyDescription ( "selectSchedule", ThisObject, ) );
+	#endif
 	
 КонецПроцедуры
 

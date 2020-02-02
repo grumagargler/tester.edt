@@ -6,16 +6,51 @@ Procedure StartChoice ( Form, Setting, Item, StandardProcessing ) export
 	
 EndProcedure
 
+Function findValue ( Composer, Name )
+	
+	value = undefined;
+	item = DC.FindFilter ( Composer, Name, false );
+	if ( item = undefined ) then
+		item = DC.FindParameter ( Composer, Name );
+		if ( item <> undefined
+			and item.Use ) then
+			value = item.Value;
+		endif; 
+	else
+		if ( item.Use
+			and item.ComparisonType = DataCompositionComparisonType.Equal ) then
+			value = item.RightValue;
+		endif;
+	endif;
+	return value;
+	
+EndFunction 
+
 &AtClient
-Procedure OnChange ( Form, Setting ) export
+Procedure OnChange ( Form, Setting, Updated ) export
 	
 	object = Form.Object;
 	report = object.ReportName;
 	composer = object.SettingsComposer;
 	ReporterForm.ApplySetting ( report, composer, Setting );
 	ReporterForm.SetTitle ( Form );
+	if ( simpleReport ( report ) ) then
+		Form.BuildReport ();
+		Updated = true;
+	else
+		Updated = false;
+	endif; 
 	
 EndProcedure
+
+&AtClient
+Function simpleReport ( Report )
+	
+	return Report = "Testing"
+	or Report = "Protocol"
+	or Report = "Scenarios";
+		
+EndFunction 
 
 &AtClient
 Procedure ApplySetting ( Report, Composer, Setting ) export
@@ -47,26 +82,6 @@ Procedure addPart ( Parts, Composer, Fields )
 	
 EndProcedure 
 
-Function findValue ( Composer, Name )
-	
-	value = undefined;
-	item = DC.FindFilter ( Composer, Name, false );
-	if ( item = undefined ) then
-		item = DC.FindParameter ( Composer, Name );
-		if ( item <> undefined
-			and item.Use ) then
-			value = item.Value;
-		endif; 
-	else
-		if ( item.Use
-			and item.ComparisonType = DataCompositionComparisonType.Equal ) then
-			value = item.RightValue;
-		endif;
-	endif;
-	return value;
-	
-EndFunction 
-
 &AtServer
 Procedure AfterLoadSettings ( Form ) export
 	
@@ -76,18 +91,6 @@ Procedure AfterLoadSettings ( Form ) export
 		Form.BuildFilter ();
 	endif; 
 	
-EndProcedure 
-
-&AtServer
-Procedure filterByUser ( Composer )
-	
-	setting = findSetting ( Composer, "User" );
-	if ( setting = undefined
-		or setting.Use ) then
-		return;
-	endif; 
-	setValue ( setting, SessionParameters.User );
-
 EndProcedure 
 
 &AtServer
@@ -111,4 +114,16 @@ Procedure setValue ( Setting, Value )
 		Setting.RightValue = Value;
 	endif; 
 	
+EndProcedure 
+
+&AtServer
+Procedure filterByUser ( Composer )
+	
+	setting = findSetting ( Composer, "User" );
+	if ( setting = undefined
+		or setting.Use ) then
+		return;
+	endif; 
+	setValue ( setting, SessionParameters.User );
+
 EndProcedure 

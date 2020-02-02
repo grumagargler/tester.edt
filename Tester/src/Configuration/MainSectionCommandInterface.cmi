@@ -101,6 +101,13 @@
       <commands>Catalog.Workplaces.StandardCommand.OpenList</commands>
     </orderFragments>
     <orderFragments>
+      <group>ActionsPanelReports</group>
+      <commands>Report.Testing.Command.Show</commands>
+      <commands>Report.Protocol.Command.Show</commands>
+      <commands>Report.Summary.Command.Show</commands>
+      <commands>Report.Scenarios.Command.Show</commands>
+    </orderFragments>
+    <orderFragments>
       <group>ActionsPanelTools</group>
       <commands>CommonForm.Settings.StandardCommand.Open</commands>
       <commands>DataProcessor.Unload.Command.Show</commands>

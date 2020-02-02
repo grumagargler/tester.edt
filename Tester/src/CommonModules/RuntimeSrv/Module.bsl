@@ -119,14 +119,11 @@ EndFunction
 Function LogError ( val Debug, val Error, val Screenshot ) export
 	
 	SetPrivilegedMode ( true );
-	stack = stack ( Debug );
-	msg = completeError ( stack, Error );
-	log = addError ( stack, msg, Debug.Level, Screenshot, Debug.Job );
-	return new Structure ( "Log, Error, Scenario, Line", log, msg.Long, stack.Scenario, stack.Line );
+	return Catalogs.ErrorLog.Add ( Debug, Error, Screenshot );
 
 EndFunction
 
-Function stack ( Debug )
+Function Stack ( Debug ) export
 	
 	stack = Debug.Stack;
 	s = new Array ();
@@ -163,86 +160,22 @@ Function getModule ( Stack )
 
 EndFunction 
 
-Function completeError ( Stack, Error )
-	
-	p = new Structure ();
-	p.Insert ( "Message", Error );
-	p.Insert ( "Line", stack.Line );
-	p.Insert ( "Stack", stack.Source );
-	prefix = Output.RuntimeMessagePrefix ( p );
-	body = Output.RuntimeMessage ( p );
-	long = prefix + body;
-	//@skip-warning
-	max = Metadata.Catalogs.ErrorLog.StandardAttributes.Description.Type.StringQualifiers.Length;
-	tooLong = StrLen ( long ) > max;
-	if ( tooLong ) then
-		cutPrefix = Output.RuntimeMessageCutPrefix ();
-		rest = max - StrLen ( prefix ) - StrLen ( cutPrefix );
-		short = prefix + cutPrefix + Right ( long, rest );
-	else
-		short = long;
-	endif;
-	return new Structure ( "Long, Short", long, short );
-	
-EndFunction 
-
-Function addError ( Stack, Error, Level, Screenshot, Job )
-	
-	obj = Catalogs.ErrorLog.CreateItem ();
-	obj.SetNewObjectRef ( Catalogs.ErrorLog.GetRef ( new UUID () ) );
-	if ( Screenshot <> undefined ) then
-		obj.Screenshot = new ValueStorage ( Screenshot );
-		obj.ScreenshotExists = true;
-	endif; 
-	ref = obj.GetNewObjectRef ();
-	scenario = stack.Scenario;
-	source = getSource ( scenario );
-	date = CurrentSessionDate ();
-	writeError ( source, scenario, date, ref, Level, Job );
-	obj.Description = Error.Short;
-	obj.FullText = Error.Long;
-	obj.Session = SessionParameters.Session;
-	obj.Scenario = scenario;
-	obj.Line = stack.Line;
-	obj.User = SessionParameters.User;
-	obj.Date = date;
-	obj.Source = source.Scenario;
-	obj.Application = source.Application;
-	assignJob ( obj, Job );
-	table = obj.Stack;
-	maxSeverity = undefined;
-	for each call in stack.Calls do
-		row = table.Insert ( 0 );
-		row.Row = call.Row;
-		scenario = call.Scenario;
-		row.Scenario = scenario;
-		severity = DF.Pick ( scenario, "Severity" );
-		if ( severityLevel ( severity ) > severityLevel ( maxSeverity ) ) then
-			maxSeverity = severity;
-		endif;
-	enddo; 
-	obj.Severity = maxSeverity;
-	obj.Write ();
-	return ref;
-	
-EndFunction 
-
-Function getSource ( Scenario )
+Function GetSource ( Scenario ) export
 	
 	result = new Structure ( "Application, Scenario" );
 	if ( TypeOf ( Scenario ) = Type ( "CatalogRef.Versions" ) ) then
 		data = DF.Values ( Scenario, "Application, Scenario" );
-		result.Application = data.Application;
 		result.Scenario = data.Scenario;
+		result.Application = data.Application;
 	else
-		result.Application = DF.Pick ( Scenario, "Application" );
 		result.Scenario = Scenario;
+		result.Scenario = DF.Pick ( Scenario, "Application" );
 	endif;
 	return result;
 	
 EndFunction
 
-Procedure writeError ( Source, Scenario, Date, Error, Level, Job )
+Procedure WriteError ( Source, Scenario, Date, Error, Level, Job ) export
 	
 	SetPrivilegedMode ( true );
 	r = InformationRegisters.Log.CreateRecordManager ();
@@ -254,11 +187,19 @@ Procedure writeError ( Source, Scenario, Date, Error, Level, Job )
 	r.Error = Error;
 	r.Source = Source.Scenario;
 	r.Application = Source.Application;
-	assignJob ( r, Job );
+	r.Area = errorArea ( Error, Level );
+	RuntimeSrv.AssignJob ( r, Job );
 	completeRunning ( r );
 	r.Write ();
 	
 EndProcedure
+
+Function errorArea ( Error, Level )
+	
+	stack = Error.Stack; // Error object had been created and cached
+	return stack [ Max ( 0, stack.Count () - ( Level + 1 ) ) ].Area;
+	
+EndFunction
 
 Procedure completeRunning ( Record )
 	
@@ -279,7 +220,7 @@ Procedure completeRunning ( Record )
 	
 EndProcedure 
 
-Procedure assignJob ( Record, Job )
+Procedure AssignJob ( Record, Job ) export
 	
 	if ( Job <> undefined ) then
 		Record.Job = Job.Job;
@@ -287,20 +228,6 @@ Procedure assignJob ( Record, Job )
 	endif;
 	
 EndProcedure
-
-Function severityLevel ( Severity )
-	
-	if ( severity = Enums.Severity.Critical ) then
-		return 3;
-	elsif ( severity = Enums.Severity.Normal ) then
-		return 2;
-	elsif ( severity = Enums.Severity.Low ) then
-		return 1;
-	else
-		return 0;
-	endif;
-	
-EndFunction
 
 Procedure LogRunning ( val Scenario, val Level, val Job ) export
 	
@@ -312,10 +239,10 @@ Procedure LogRunning ( val Scenario, val Level, val Job ) export
 	r.Level = Level;
 	r.Status = Enums.Statuses.Running;
 	r.Started = CurrentUniversalDateInMilliseconds ();
-	source = getSource ( Scenario );
+	source = RuntimeSrv.GetSource ( Scenario );
 	r.Source = source.Scenario;
 	r.Application = source.Application;
-	assignJob ( r, Job );
+	RuntimeSrv.AssignJob ( r, Job );
 	r.Write ();
 	
 EndProcedure 
@@ -329,10 +256,10 @@ Procedure LogSuccess ( val Scenario, val Level, val Job ) export
 	r.Scenario = Scenario;
 	r.Level = Level;
 	r.Status = Enums.Statuses.Passed;
-	source = getSource ( Scenario );
+	source = RuntimeSrv.GetSource ( Scenario );
 	r.Source = source.Scenario;
 	r.Application = source.Application;
-	assignJob ( r, Job );
+	RuntimeSrv.AssignJob ( r, Job );
 	completeRunning ( r );
 	r.Write ();
 	
@@ -346,8 +273,8 @@ Procedure LogFailing ( val Debug ) export
 	if ( scenario = Debug.FallenScenario ) then
 		return;
 	endif; 
-	source = getSource ( scenario );
-	writeError ( source, scenario, CurrentSessionDate (), Debug.ErrorLog, Debug.Level, Debug.Job );
+	source = RuntimeSrv.GetSource ( scenario );
+	RuntimeSrv.WriteError ( source, scenario, CurrentSessionDate (), Debug.ErrorLog, Debug.Level, Debug.Job );
 	
 EndProcedure
 

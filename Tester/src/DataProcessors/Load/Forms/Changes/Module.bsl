@@ -1,3 +1,5 @@
+#if ( Server or ThinClient or ThickClientManagedApplication ) then
+
 &AtServer
 var Tree;
 &AtServer
@@ -650,3 +652,5 @@ Procedure ChangesTreeBeforeDeleteRow ( Item, Cancel )
 	Cancel = true;
 	
 EndProcedure
+
+#endif

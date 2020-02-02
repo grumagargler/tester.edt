@@ -20,7 +20,7 @@
   <usePurposes>PersonalComputer</usePurposes>
   <defaultRoles>Role.User</defaultRoles>
   <vendor>Reshitko Dmitry</vendor>
-  <version>1.3.5.1</version>
+  <version>1.3.5.3</version>
   <includeHelpInContents>true</includeHelpInContents>
   <help>
     <pages>
@@ -162,6 +162,7 @@
   <commonPictures>CommonPicture.WarningBig</commonPictures>
   <sessionParameters>SessionParameter.ApplicationsAccess</sessionParameters>
   <sessionParameters>SessionParameter.ApplicationsList</sessionParameters>
+  <sessionParameters>SessionParameter.Connection</sessionParameters>
   <sessionParameters>SessionParameter.Session</sessionParameters>
   <sessionParameters>SessionParameter.User</sessionParameters>
   <roles>Role.Administrator</roles>
@@ -178,6 +179,7 @@
   <roles>Role.SummaryReport</roles>
   <roles>Role.TagsEdit</roles>
   <roles>Role.TesterDeveloper</roles>
+  <roles>Role.TestingReport</roles>
   <roles>Role.User</roles>
   <commonTemplates>CommonTemplate.ExternalLibrary</commonTemplates>
   <commonTemplates>CommonTemplate.Meta</commonTemplates>
@@ -186,6 +188,7 @@
   <commonTemplates>CommonTemplate.Worker</commonTemplates>
   <commonModules>CommonModule.Appearance</commonModules>
   <commonModules>CommonModule.AppearanceSrv</commonModules>
+  <commonModules>CommonModule.CachedCalls</commonModules>
   <commonModules>CommonModule.Cloud</commonModules>
   <commonModules>CommonModule.Collections</commonModules>
   <commonModules>CommonModule.CommonEvents</commonModules>
@@ -209,6 +212,7 @@
   <commonModules>CommonModule.Framework</commonModules>
   <commonModules>CommonModule.FullSearch</commonModules>
   <commonModules>CommonModule.Jobs</commonModules>
+  <commonModules>CommonModule.Lexer</commonModules>
   <commonModules>CommonModule.LocalFiles</commonModules>
   <commonModules>CommonModule.LockingForm</commonModules>
   <commonModules>CommonModule.Logins</commonModules>
@@ -253,6 +257,10 @@
   <scheduledJobs>ScheduledJob.SearchUpdate</scheduledJobs>
   <scheduledJobs>ScheduledJob.SendingReports</scheduledJobs>
   <scheduledJobs>ScheduledJob.Testing</scheduledJobs>
+  <functionalOptions>FunctionalOption.MobileClient</functionalOptions>
+  <functionalOptions>FunctionalOption.ThickClient</functionalOptions>
+  <functionalOptions>FunctionalOption.ThinClient</functionalOptions>
+  <functionalOptions>FunctionalOption.WebClient</functionalOptions>
   <definedTypes>DefinedType.LineNumber</definedTypes>
   <definedTypes>DefinedType.Pointer</definedTypes>
   <definedTypes>DefinedType.ScenarioPath</definedTypes>
@@ -278,8 +286,11 @@
   <commonForms>CommonForm.SyntaxPassed</commonForms>
   <catalogs>Catalog.Applications</catalogs>
   <catalogs>Catalog.ApplicationVersions</catalogs>
+  <catalogs>Catalog.Areas</catalogs>
   <catalogs>Catalog.Assistant</catalogs>
+  <catalogs>Catalog.Calendar</catalogs>
   <catalogs>Catalog.Computers</catalogs>
+  <catalogs>Catalog.Connections</catalogs>
   <catalogs>Catalog.ErrorLog</catalogs>
   <catalogs>Catalog.Metadata</catalogs>
   <catalogs>Catalog.Modules</catalogs>
@@ -299,6 +310,7 @@
   <enums>Enum.AgentStatuses</enums>
   <enums>Enum.Controls</enums>
   <enums>Enum.JobStatuses</enums>
+  <enums>Enum.Module</enums>
   <enums>Enum.Periodicity</enums>
   <enums>Enum.Recording</enums>
   <enums>Enum.Running</enums>
@@ -311,6 +323,7 @@
   <reports>Report.Protocol</reports>
   <reports>Report.Scenarios</reports>
   <reports>Report.Summary</reports>
+  <reports>Report.Testing</reports>
   <dataProcessors>DataProcessor.Assertions</dataProcessors>
   <dataProcessors>DataProcessor.Compiler</dataProcessors>
   <dataProcessors>DataProcessor.JobConsole</dataProcessors>

@@ -812,7 +812,7 @@
               <common>true</common>
             </userVisible>
             <dataPath xsi:type="form:DataPath">
-              <segments>Элементы.Workspaces.ТекущиеДанные.Ссылка</segments>
+              <segments>Items.Workspaces.CurrentData.Ref</segments>
             </dataPath>
             <extendedTooltip>
               <name>OpenStudioExtendedTooltip</name>

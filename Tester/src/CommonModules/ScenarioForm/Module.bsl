@@ -401,9 +401,11 @@ Procedure CopyMoveConfirmation ( Answer, Context ) export
 EndProcedure
 
 &AtClient
-Procedure GotoLine ( Scenario, Line ) export
+Procedure GotoLine ( Scenario, Line, Error ) export
 	
-	ShowValue ( , Scenario );
+	form = GetForm ( "Catalog.Scenarios.ObjectForm", new Structure ( "Key", Scenario ) );
+	form.Open ();
+	Output.PutMessage ( Error , undefined, undefined, Error, , form.UUID );
 	Notify ( Enum.MessageActivateError (), Line, Scenario );
 	
 EndProcedure

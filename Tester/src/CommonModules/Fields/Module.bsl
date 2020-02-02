@@ -105,7 +105,7 @@ EndFunction
 
 Procedure locateRow(Table, Row)
 	
-	#if ( not WebClient ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 	Table.Activate();
 	try
 		// This navigation is "just in case".

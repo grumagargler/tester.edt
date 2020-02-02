@@ -225,5 +225,6 @@
       <key>ru</key>
       <value>Локальные репозитории для систем контроля версий</value>
     </toolTip>
+    <shortcut></shortcut>
   </commands>
 </mdclass:ExchangePlan>

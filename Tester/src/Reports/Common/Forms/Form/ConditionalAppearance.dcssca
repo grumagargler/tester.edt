@@ -3,6 +3,54 @@
 	<item>
 		<selection>
 			<item>
+				<field>UserSettingsValue</field>
+			</item>
+			<item>
+				<field>UserSettingsComparisonType</field>
+			</item>
+		</selection>
+		<filter>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">Object.SettingsComposer.UserSettings.Use</left>
+				<comparisonType>Equal</comparisonType>
+				<right xsi:type="xs:boolean">false</right>
+			</item>
+		</filter>
+		<appearance>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>TextColor</dcscor:parameter>
+				<dcscor:value xsi:type="v8ui:Color">#808080</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</item>
+	<item>
+		<selection>
+			<item>
+				<field>UserSettingsSetting</field>
+			</item>
+		</selection>
+		<filter>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">Object.SettingsComposer.UserSettings.Use</left>
+				<comparisonType>Equal</comparisonType>
+				<right xsi:type="xs:boolean">true</right>
+			</item>
+		</filter>
+		<appearance>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>TextColor</dcscor:parameter>
+				<dcscor:value xsi:type="v8ui:Color">web:MediumBlue</dcscor:value>
+			</dcscor:item>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:use>false</dcscor:use>
+				<dcscor:parameter>Font</dcscor:parameter>
+				<dcscor:value xsi:type="v8ui:Font" bold="false" italic="false" underline="false" strikeout="false" kind="Absolute" scale="100"/>
+			</dcscor:item>
+		</appearance>
+	</item>
+	<item>
+		<selection>
+			<item>
 				<field>GroupUserSettings</field>
 			</item>
 		</selection>
@@ -63,53 +111,63 @@
 	<item>
 		<selection>
 			<item>
-				<field>UserSettingsValue</field>
-			</item>
-			<item>
-				<field>UserSettingsComparisonType</field>
+				<field>ShowGrid</field>
 			</item>
 		</selection>
 		<filter>
 			<item xsi:type="FilterItemComparison">
-				<left xsi:type="dcscor:Field">Object.SettingsComposer.UserSettings.Use</left>
-				<comparisonType>Equal</comparisonType>
-				<right xsi:type="xs:boolean">false</right>
-			</item>
-		</filter>
-		<appearance>
-			<dcscor:item xsi:type="SettingsParameterValue">
-				<dcscor:parameter>TextColor</dcscor:parameter>
-				<dcscor:value xsi:type="v8ui:Color">#808080</dcscor:value>
-			</dcscor:item>
-		</appearance>
-	</item>
-	<item>
-		<selection>
-			<item>
-				<field>UserSettingsSetting</field>
-			</item>
-		</selection>
-		<filter>
-			<item xsi:type="FilterItemComparison">
-				<left xsi:type="dcscor:Field">Object.SettingsComposer.UserSettings.Use</left>
+				<left xsi:type="dcscor:Field">ShowGrid</left>
 				<comparisonType>Equal</comparisonType>
 				<right xsi:type="xs:boolean">true</right>
 			</item>
 		</filter>
 		<appearance>
 			<dcscor:item xsi:type="SettingsParameterValue">
-				<dcscor:use>false</dcscor:use>
-				<dcscor:parameter>BackColor</dcscor:parameter>
-				<dcscor:value xsi:type="v8ui:Color">auto</dcscor:value>
+				<dcscor:parameter>MarkIncomplete</dcscor:parameter>
+				<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
 			</dcscor:item>
+		</appearance>
+	</item>
+	<item>
+		<selection>
+			<item>
+				<field>ShowHeaders</field>
+			</item>
+		</selection>
+		<filter>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">ShowHeaders</left>
+				<comparisonType>Equal</comparisonType>
+				<right xsi:type="xs:boolean">true</right>
+			</item>
+		</filter>
+		<appearance>
 			<dcscor:item xsi:type="SettingsParameterValue">
-				<dcscor:parameter>TextColor</dcscor:parameter>
-				<dcscor:value xsi:type="v8ui:Color">web:MediumBlue</dcscor:value>
+				<dcscor:parameter>MarkIncomplete</dcscor:parameter>
+				<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
 			</dcscor:item>
+		</appearance>
+	</item>
+	<item>
+		<selection>
+			<item>
+				<field>ShowGrid</field>
+			</item>
+			<item>
+				<field>ShowHeaders</field>
+			</item>
+		</selection>
+		<filter>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">WebClient</left>
+				<comparisonType>Equal</comparisonType>
+				<right xsi:type="xs:boolean">false</right>
+			</item>
+		</filter>
+		<appearance>
 			<dcscor:item xsi:type="SettingsParameterValue">
-				<dcscor:use>false</dcscor:use>
-				<dcscor:parameter>Font</dcscor:parameter>
-				<dcscor:value xsi:type="v8ui:Font" kind="AutoFont"/>
+				<dcscor:parameter>Visible</dcscor:parameter>
+				<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
 			</dcscor:item>
 		</appearance>
 	</item>

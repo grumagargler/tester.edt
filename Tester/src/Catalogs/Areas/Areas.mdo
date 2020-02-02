@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="8781c7b1-c73f-468c-b86b-673391ed241a">
+  <producedTypes>
+    <objectType typeId="0359085f-fc99-4dc7-ac45-94ad7ff11480" valueTypeId="91d70264-8a04-45aa-91a2-6a6f95269fb8"/>
+    <refType typeId="94cd6df1-be5f-447f-9c6e-ba3b9ffbec4f" valueTypeId="7fb821a0-6255-4f6c-bd12-8fc7cc1414f6"/>
+    <selectionType typeId="ec9eafa3-647a-44f0-822a-538e3c95aa39" valueTypeId="87e9b22f-52be-40e2-a5cb-196a1c6b8d8d"/>
+    <listType typeId="c7f650f7-96e4-4364-8550-fdb8b761eec6" valueTypeId="ed6c73f7-5d5f-4445-bb24-5ac00ebabd54"/>
+    <managerType typeId="d187bdff-712b-432a-9a48-62f3f40fb03e" valueTypeId="c74bac55-aa96-42a4-94ee-b6e005b44a32"/>
+  </producedTypes>
+  <name>Areas</name>
+  <synonym>
+    <key>en</key>
+    <value>Areas</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Области</value>
+  </synonym>
+  <inputByString>Catalog.Areas.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Areas.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>Testing areas</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Области тестирования</value>
+  </explanation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <descriptionLength>150</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+</mdclass:Catalog>

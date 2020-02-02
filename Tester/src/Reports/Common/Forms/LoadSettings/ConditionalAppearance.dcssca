@@ -22,7 +22,7 @@
 		<appearance>
 			<dcscor:item xsi:type="SettingsParameterValue">
 				<dcscor:parameter>Font</dcscor:parameter>
-				<dcscor:value xsi:type="v8ui:Font" ref="sys:DefaultGUIFont" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+				<dcscor:value xsi:type="v8ui:Font" ref="sys:DefaultGUIFont" bold="true" kind="WindowsFont"/>
 			</dcscor:item>
 		</appearance>
 	</item>
@@ -36,10 +36,18 @@
 			</item>
 		</selection>
 		<filter>
-			<item xsi:type="FilterItemComparison">
-				<left xsi:type="dcscor:Field">SettingsTable.Code</left>
-				<comparisonType>BeginsWith</comparisonType>
-				<right xsi:type="xs:string">#Mobile</right>
+			<item xsi:type="FilterItemGroup">
+				<groupType>OrGroup</groupType>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">SettingsTable.Code</left>
+					<comparisonType>BeginsWith</comparisonType>
+					<right xsi:type="xs:string">##Mobile</right>
+				</item>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">SettingsTable.Code</left>
+					<comparisonType>BeginsWith</comparisonType>
+					<right xsi:type="xs:string">##Fill</right>
+				</item>
 			</item>
 		</filter>
 		<appearance>
@@ -50,7 +58,7 @@
 			<dcscor:item xsi:type="SettingsParameterValue">
 				<dcscor:use>false</dcscor:use>
 				<dcscor:parameter>Font</dcscor:parameter>
-				<dcscor:value xsi:type="v8ui:Font" ref="sys:DefaultGUIFont" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+				<dcscor:value xsi:type="v8ui:Font" ref="sys:DefaultGUIFont" bold="true" kind="WindowsFont"/>
 			</dcscor:item>
 		</appearance>
 	</item>

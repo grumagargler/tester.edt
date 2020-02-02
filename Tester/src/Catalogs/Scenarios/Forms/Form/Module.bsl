@@ -868,7 +868,7 @@ Procedure removeComments()
 	rows = new Array();
 	for i = SelectionStart to SelectionEnd do
 		row = StrGetLine(text, i);
-		if (StrStartsWith(row, "//")) then
+		if (Lexer.IsComment(row)) then
 			rows.Add(Mid(row, 3));
 		else
 			rows.Add(row);
@@ -1828,15 +1828,17 @@ EndProcedure
 &AtClient
 Procedure withActiveForm()
 
-	form = PredefinedValue("Enum.Controls.Form");
-	row = FieldsRow;
-	while (row <> undefined) do
-		if (row.Type = form) then
-			With(row.TitleText);
-			return;
-		endif;
-		row = row.GetParent();
-	enddo;
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		form = PredefinedValue("Enum.Controls.Form");
+		row = FieldsRow;
+		while (row <> undefined) do
+			if (row.Type = form) then
+				With(row.TitleText);
+				return;
+			endif;
+			row = row.GetParent();
+		enddo;
+	#endif
 
 EndProcedure
 

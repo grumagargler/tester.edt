@@ -124,6 +124,65 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
+      <name>AreaFilter</name>
+      <id>116</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <dataPath xsi:type="form:MultiLanguageDataPath">
+        <paths xsi:type="form:DataPath">
+          <segments>AreaFilter</segments>
+        </paths>
+      </dataPath>
+      <skipOnInput>true</skipOnInput>
+      <handlers>
+        <event>OnChange</event>
+        <name>AreaFilterOnChange</name>
+      </handlers>
+      <extendedTooltip>
+        <name>AreaFilterExtendedTooltip</name>
+        <id>118</id>
+        <visible>true</visible>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <contextMenu>
+        <name>AreaFilterContextMenu</name>
+        <id>117</id>
+        <visible>true</visible>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <autoFill>true</autoFill>
+      </contextMenu>
+      <type>InputField</type>
+      <editMode>Enter</editMode>
+      <showInHeader>true</showInHeader>
+      <headerHorizontalAlign>Left</headerHorizontalAlign>
+      <showInFooter>true</showInFooter>
+      <extInfo xsi:type="form:InputFieldExtInfo">
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <wrap>true</wrap>
+        <clearButton>true</clearButton>
+        <openButton>false</openButton>
+        <chooseType>true</chooseType>
+        <typeDomainEnabled>true</typeDomainEnabled>
+        <textEdit>true</textEdit>
+      </extInfo>
+    </items>
+    <items xsi:type="form:FormField">
       <name>ScenarioFilter</name>
       <id>50</id>
       <visible>true</visible>
@@ -318,6 +377,54 @@
     <titleLocation>None</titleLocation>
     <excludedCommands>Copy</excludedCommands>
     <excludedCommands>Create</excludedCommands>
+    <items xsi:type="form:FormField">
+      <name>Area</name>
+      <id>119</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <dataPath xsi:type="form:MultiLanguageDataPath">
+        <paths xsi:type="form:DataPath">
+          <segments>List.Area</segments>
+        </paths>
+      </dataPath>
+      <extendedTooltip>
+        <name>AreaExtendedTooltip</name>
+        <id>121</id>
+        <visible>true</visible>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <contextMenu>
+        <name>AreaContextMenu</name>
+        <id>120</id>
+        <visible>true</visible>
+        <enabled>true</enabled>
+        <userVisible>
+          <common>true</common>
+        </userVisible>
+        <autoFill>true</autoFill>
+      </contextMenu>
+      <type>LabelField</type>
+      <editMode>Enter</editMode>
+      <showInHeader>true</showInHeader>
+      <headerHorizontalAlign>Left</headerHorizontalAlign>
+      <showInFooter>true</showInFooter>
+      <extInfo xsi:type="form:LabelFieldExtInfo">
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+      </extInfo>
+    </items>
     <items xsi:type="form:FormField">
       <name>Description</name>
       <id>16</id>
@@ -581,6 +688,14 @@
     <items xsi:type="form:FormField">
       <name>Severity</name>
       <id>93</id>
+      <title>
+        <key>en</key>
+        <value>Severity</value>
+      </title>
+      <title>
+        <key>ru</key>
+        <value>Важность</value>
+      </title>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
@@ -1443,6 +1558,7 @@
           <type>InputField</type>
           <editMode>EnterOnInput</editMode>
           <cellHyperlink>true</cellHyperlink>
+          <autoCellHeight>true</autoCellHeight>
           <showInHeader>true</showInHeader>
           <headerHorizontalAlign>Left</headerHorizontalAlign>
           <showInFooter>true</showInFooter>
@@ -1457,6 +1573,71 @@
               <font>Style.NormalTextFont</font>
               <faceName>Courier New</faceName>
             </font>
+            <heightControlVariant>ByContent</heightControlVariant>
+          </extInfo>
+        </items>
+        <items xsi:type="form:FormField">
+          <name>StackArea</name>
+          <id>113</id>
+          <visible>true</visible>
+          <enabled>true</enabled>
+          <userVisible>
+            <common>true</common>
+          </userVisible>
+          <dataPath xsi:type="form:MultiLanguageDataPath">
+            <paths xsi:type="form:DataPath">
+              <segments>Stack.Area</segments>
+            </paths>
+          </dataPath>
+          <extendedTooltip>
+            <name>StackAreaExtendedTooltip</name>
+            <id>115</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <type>Label</type>
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <extInfo xsi:type="form:LabelDecorationExtInfo">
+              <horizontalAlign>Left</horizontalAlign>
+            </extInfo>
+          </extendedTooltip>
+          <contextMenu>
+            <name>StackAreaContextMenu</name>
+            <id>114</id>
+            <visible>true</visible>
+            <enabled>true</enabled>
+            <userVisible>
+              <common>true</common>
+            </userVisible>
+            <autoFill>true</autoFill>
+          </contextMenu>
+          <type>InputField</type>
+          <editMode>EnterOnInput</editMode>
+          <fixingInTable>Right</fixingInTable>
+          <autoCellHeight>true</autoCellHeight>
+          <showInHeader>true</showInHeader>
+          <headerHorizontalAlign>Left</headerHorizontalAlign>
+          <showInFooter>true</showInFooter>
+          <extInfo xsi:type="form:InputFieldExtInfo">
+            <autoMaxWidth>true</autoMaxWidth>
+            <autoMaxHeight>true</autoMaxHeight>
+            <wrap>true</wrap>
+            <chooseType>true</chooseType>
+            <typeDomainEnabled>true</typeDomainEnabled>
+            <textEdit>true</textEdit>
+            <textColor xsi:type="core:ColorDef">
+              <green>128</green>
+            </textColor>
+            <font xsi:type="core:FontRef">
+              <font>Style.NormalTextFont</font>
+              <faceName>Courier New</faceName>
+              <height>8.0</height>
+              <scale>100</scale>
+            </font>
+            <heightControlVariant>ByContent</heightControlVariant>
           </extInfo>
         </items>
         <commandBarLocation>None</commandBarLocation>
@@ -1621,6 +1802,7 @@
         <autoMaxHeight>true</autoMaxHeight>
         <autoMaxRowsCount>true</autoMaxRowsCount>
         <selectionMode>MultiRow</selectionMode>
+        <rowSelectionMode>Row</rowSelectionMode>
         <header>true</header>
         <headerHeight>1</headerHeight>
         <footerHeight>1</footerHeight>
@@ -1880,8 +2062,9 @@
     </notDefaultUseAlwaysAttributes>
     <main>true</main>
     <extInfo xsi:type="form:DynamicListExtInfo">
-      <queryText>select Log.Ref, Log.DeletionMark, Log.Code, Log.Description, Log.Date, Log.Line, Log.Scenario, Log.Severity as Severity,
-	Log.User, Log.Predefined, Log.PredefinedDataName, Log.Job as Job, Log.FullText as FullText
+      <queryText>select Log.Ref, Log.DeletionMark, Log.Code, Log.Description, Log.Date, Log.Line, Log.Scenario,
+	Log.Scenario.Severity as Severity, Log.User, Log.Predefined, Log.PredefinedDataName,
+	Log.Job as Job, Log.FullText as FullText, Log.Area as Area
 from Catalog.ErrorLog as Log
 {where Log.Ref in (
 		select Log.Ref as Ref
@@ -1966,6 +2149,28 @@ from Catalog.ErrorLog as Log
         <numberQualifiers>
           <precision>10</precision>
         </numberQualifiers>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
+    <columns>
+      <name>Area</name>
+      <title>
+        <key>en</key>
+        <value>Area</value>
+      </title>
+      <title>
+        <key>ru</key>
+        <value>Область</value>
+      </title>
+      <id>4</id>
+      <valueType>
+        <types>String</types>
+        <stringQualifiers/>
       </valueType>
       <view>
         <common>true</common>
@@ -2097,6 +2302,27 @@ from Catalog.ErrorLog as Log
     <id>9</id>
     <valueType>
       <types>EnumRef.Severity</types>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
+  </attributes>
+  <attributes>
+    <name>AreaFilter</name>
+    <title>
+      <key>en</key>
+      <value>Area</value>
+    </title>
+    <title>
+      <key>ru</key>
+      <value>Область</value>
+    </title>
+    <id>10</id>
+    <valueType>
+      <types>CatalogRef.Areas</types>
     </valueType>
     <view>
       <common>true</common>

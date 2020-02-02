@@ -20,7 +20,7 @@ Function Line ( Chronograph, DebugInfo, Module, Row, IsVersion, Scenario = undef
 	noerrors ( DebugInfo );
 	logging ( Chronograph, DebugInfo, Module, Row, IsVersion );
 	checkCancelation ( DebugInfo );
-	#if ( Client ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 		UserInterruptProcessing ();
 		if ( DebugInfo.Debugging
 			and not DebugInfo.Running ) then
@@ -36,7 +36,7 @@ Function Line ( Chronograph, DebugInfo, Module, Row, IsVersion, Scenario = undef
 		stack.Add ();
 	endif;
 	stack [ level ] = new Structure ( "Module, Row, IsVersion", Module, Row, IsVersion );
-	#if ( Client ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 		delay ();
 	#endif
 	DebugInfo.Pointer = DebugInfo.Pointer + 1;
@@ -48,7 +48,7 @@ Procedure ShowProgress ( DebugInfo, Scenario, Progress ) export
 	
 	// Do not exclude the procedure from server
 	// because it is used in compilation module
-	#if ( Client ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 		if ( Progress <> undefined
 			and DebugInfo.ShowProgress ) then
 			Status ( Scenario, Progress );
@@ -79,7 +79,7 @@ Procedure logging ( Chronograph, DebugInfo, Module, Row, IsVersion )
 	p.Module = Chronograph.Module;
 	p.Row = Row;
 	p.Pointer = DebugInfo.Pointer;
-	#if ( Client ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 		p.Screenshot = Screenshot ();
 	#endif
 	RuntimeSrv.Recording ( p );
@@ -233,7 +233,7 @@ Procedure ErrorCheck ( DebugInfo ) export
 	// For example: try-catch hooks errors. If we don't suppress error then
 	// that old error will cause problems again
 	noerrors ( DebugInfo );
-	#if ( Client ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 		if ( IgnoreErrors
 			or ИгнорироватьОшибки ) then
 			return;

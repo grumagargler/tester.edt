@@ -62,9 +62,7 @@ EndProcedure
 &AtServer
 Function isSystemVariant ( Variant )
 	
-	name = Variant.Name;
-	return ( StrFind ( name, "Mobile" ) = 1 )
-	or ( Left ( name, 1 ) = "#" );
+	return StrStartsWith ( Variant.Name, "#" );
 	
 EndFunction
 

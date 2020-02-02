@@ -381,6 +381,13 @@ and T.Application in ( #Applications ( "Application" ) )</condition>
 		</right>
 	</object>
 	<object>
+		<name>Catalog.Scenarios.Command.Remove</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>Catalog.Scenarios.Command.OpenStudio</name>
 		<right>
 			<name>View</name>
@@ -854,13 +861,6 @@ and T.Application in ( #Applications ( "Application" ) )</condition>
 	</object>
 	<object>
 		<name>Catalog.Scenarios.Command.Store</name>
-		<right>
-			<name>View</name>
-			<value>true</value>
-		</right>
-	</object>
-	<object>
-		<name>Catalog.Scenarios.Command.Remove</name>
 		<right>
 			<name>View</name>
 			<value>true</value>

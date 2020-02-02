@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:FunctionalOption xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="084e7bf6-82c2-4cc1-accf-0588629c383f">
+  <name>ThinClient</name>
+  <location>Catalog.Connections.Attribute.ThinClient</location>
+  <privilegedGetMode>true</privilegedGetMode>
+  <content>ExchangePlan.Repositories</content>
+  <content>CommonForm.Debugger</content>
+  <content>CommonCommand.DownloadMeta</content>
+  <content>CommonCommand.DownloadWorker</content>
+  <content>CommonCommand.Restart</content>
+  <content>Catalog.Workspaces</content>
+</mdclass:FunctionalOption>

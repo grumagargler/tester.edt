@@ -348,3 +348,13 @@ Function OthersVersionPrefix () export
 EndFunction
 
 #endregion
+
+#region ReportCommands
+
+Function ReportCommandsOpenModule () export
+	
+	return "ReportCommandsOpenModule";
+	
+EndFunction
+
+#endregion

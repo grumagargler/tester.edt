@@ -1,10 +1,11 @@
 
-Procedure Exec ( Scenario, Application = undefined, ProgramCode = undefined, Debugging = false, Offset = 0, Filming = false ) export
+Procedure Exec ( Scenario, Application = undefined, ProgramCode = undefined, Debugging = false, Offset = 0,
+	Filming = false, Params = undefined ) export
 	
 	data = Test.FindScenario ( Scenario, Application );
 	Test.AttachApplication ( data.Scenario );
 	program = ? ( data.Application.IsEmpty (), SessionApplication, data.Application );
-	Runtime.Exec ( program, ProgramCode, true, Debugging, Offset, Filming );
+	Runtime.Exec ( program, ProgramCode, true, Debugging, Offset, Filming, , Params );
 	
 EndProcedure
 
@@ -73,21 +74,23 @@ EndFunction
 
 Procedure ConnectClient ( ClearErrors = true, Port = undefined, Computer = undefined ) export
 	
-	try
-		tryConnect ( ClearErrors, Port, Computer );
-	except
+	#if ( ThinClient or ThickClientManagedApplication ) then
 		try
-			Disconnect ();
+			tryConnect ( ClearErrors, Port, Computer );
 		except
+			try
+				Disconnect ();
+			except
+			endtry;
+			tryConnect ( ClearErrors, Port, Computer );
 		endtry;
-		tryConnect ( ClearErrors, Port, Computer );
-	endtry;
+	#endif
 
 EndProcedure 
 
 Procedure tryConnect ( ClearErrors, Port, Computer )
 	
-	#if ( not WebClient ) then
+	#if ( ThinClient or ThickClientManagedApplication ) then
 		host = ? ( Computer = undefined, AppData.Computer, Computer );
 		hostPort = ? ( Port = undefined, AppData.Port, Port );
 		AppData.ConnectedHost = host;

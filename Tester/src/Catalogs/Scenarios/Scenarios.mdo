@@ -380,6 +380,14 @@
       <types>String</types>
       <stringQualifiers/>
     </type>
+    <toolTip>
+      <key>en</key>
+      <value>Script</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Скрипт</value>
+    </toolTip>
     <multiLine>true</multiLine>
     <extendedEdit>true</extendedEdit>
     <minValue xsi:type="core:UndefinedValue"/>

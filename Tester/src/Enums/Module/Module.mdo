@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="8f4897e8-8d66-4fee-866c-f7f8d5dce8b1">
+  <producedTypes>
+    <refType typeId="b455a517-8223-4811-a8d4-daa58a1dc193" valueTypeId="88115054-a1cd-497a-b141-21e5eb73fda3"/>
+    <listType typeId="41aeeb48-2ed4-4008-a31e-2706dd5569a4" valueTypeId="6e944f24-7e95-4f17-946c-76ea5da45b21"/>
+    <managerType typeId="c08f27b8-e0b3-4d7c-8d0e-897c057823da" valueTypeId="9fa521aa-a5b5-48ad-be6e-1c49a67652ca"/>
+  </producedTypes>
+  <name>Module</name>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <enumValues uuid="f8e9caa1-0416-4053-8b05-ee966d3652bc">
+    <name>Code</name>
+  </enumValues>
+  <enumValues uuid="d7088014-9f6e-4e6b-ad24-93608ceba490">
+    <name>Comment</name>
+  </enumValues>
+  <enumValues uuid="e598e822-6efc-4de4-ba07-0c30cd5a3fb6">
+    <name>EndProcedure</name>
+  </enumValues>
+  <enumValues uuid="9ad9dc98-43f0-427d-83ea-d45173fe306a">
+    <name>EndRegion</name>
+  </enumValues>
+  <enumValues uuid="01f940c4-8004-41b3-a5d9-dd3d9f17e0f7">
+    <name>Error</name>
+  </enumValues>
+  <enumValues uuid="5bae7d0c-2562-4520-a62d-31ea9dd4b737">
+    <name>Procedure</name>
+  </enumValues>
+  <enumValues uuid="dafded2b-2622-4f2d-a80d-1b239f8df2f9">
+    <name>Region</name>
+  </enumValues>
+  <enumValues uuid="c9054065-ab8c-4b2b-8f40-a1b8df1be60c">
+    <name>Valve</name>
+  </enumValues>
+</mdclass:Enum>

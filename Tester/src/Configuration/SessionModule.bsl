@@ -9,6 +9,8 @@ Procedure SessionParametersSetting ( Params )
 			setUser ();
 		elsif ( parameter = "Session" ) then
 			setSession ();
+		elsif ( parameter = "Connection" ) then
+			setConnection ();
 		elsif ( parameter = "ApplicationsAccess" ) then
 			setApplicationsAccess ();
 		elsif ( parameter = "ApplicationsList" ) then
@@ -28,6 +30,12 @@ EndProcedure
 Procedure setSession ()
 	
 	EnvironmentSrv.SetSession ( ComputerName () );
+	
+EndProcedure 
+
+Procedure setConnection ()
+	
+	EnvironmentSrv.SetConnection ( false, false, false, false );
 	
 EndProcedure 
 

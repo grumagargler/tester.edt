@@ -92,12 +92,12 @@
         </paths>
       </dataPath>
       <toolTip>
-        <key>ru</key>
-        <value>Дата последнего сохранения варианта отчета</value>
+        <key>en</key>
+        <value>Last save date of this version of the report </value>
       </toolTip>
       <toolTip>
-        <key>en</key>
-        <value>Report's version last save date</value>
+        <key>ru</key>
+        <value>Дата последнего сохранения варианта отчета</value>
       </toolTip>
       <extendedTooltip>
         <name>SettingsTableLastUpdateDateExtendedTooltip</name>
@@ -326,12 +326,12 @@
       <name>FormChoose</name>
       <id>12</id>
       <title>
-        <key>ru</key>
-        <value>Загрузить</value>
-      </title>
-      <title>
         <key>en</key>
         <value>Load</value>
+      </title>
+      <title>
+        <key>ru</key>
+        <value>Загрузить</value>
       </title>
       <visible>true</visible>
       <enabled>true</enabled>
@@ -428,12 +428,12 @@
     <columns>
       <name>Code</name>
       <title>
-        <key>ru</key>
-        <value>Код</value>
-      </title>
-      <title>
         <key>en</key>
         <value>Code</value>
+      </title>
+      <title>
+        <key>ru</key>
+        <value>Код</value>
       </title>
       <id>1</id>
       <valueType>
@@ -450,12 +450,12 @@
     <columns>
       <name>Description</name>
       <title>
-        <key>ru</key>
-        <value>Описание</value>
-      </title>
-      <title>
         <key>en</key>
         <value>Description</value>
+      </title>
+      <title>
+        <key>ru</key>
+        <value>Описание</value>
       </title>
       <id>2</id>
       <valueType>
@@ -472,12 +472,12 @@
     <columns>
       <name>LastUpdateDate</name>
       <title>
-        <key>ru</key>
-        <value>Дата</value>
-      </title>
-      <title>
         <key>en</key>
         <value>Date</value>
+      </title>
+      <title>
+        <key>ru</key>
+        <value>Дата</value>
       </title>
       <id>3</id>
       <valueType>
@@ -496,12 +496,12 @@
     <columns>
       <name>Ref</name>
       <title>
-        <key>ru</key>
-        <value>Ссылка</value>
-      </title>
-      <title>
         <key>en</key>
         <value>Reference</value>
+      </title>
+      <title>
+        <key>ru</key>
+        <value>Ссылка</value>
       </title>
       <id>4</id>
       <valueType>

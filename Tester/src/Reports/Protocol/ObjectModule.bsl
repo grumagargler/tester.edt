@@ -19,5 +19,10 @@ Procedure adjustFilter ()
 		user.Use = false;
 		DC.FindFilter ( Params.Composer, "User" ).Use = false;
 	endif;
+	filter = DC.FindParameter ( settings, "Period" );
+	if ( filter.Use ) then
+		filter.Use = false;
+		DC.FindParameter ( Params.Composer, "Period" ).Use = false;
+	endif;
 	
 EndProcedure

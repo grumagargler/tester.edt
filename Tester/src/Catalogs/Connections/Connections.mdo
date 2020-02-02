@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="59e67961-d520-4aff-848c-3f9eed6eed12">
+  <producedTypes>
+    <objectType typeId="d1dc0028-dd79-4836-829f-73b2bdd2c51b" valueTypeId="e95874a9-6179-4aa1-a09b-deb9683a0085"/>
+    <refType typeId="d9b748c9-9ee2-40bb-b124-499180c7df24" valueTypeId="59688b82-d065-4b5b-8f7a-4fadb305af76"/>
+    <selectionType typeId="31d9061d-e01d-45c4-a80a-f930a1ca6e06" valueTypeId="ff4ab580-8f68-4704-9507-88db3758c1c3"/>
+    <listType typeId="8c7b492e-d8f5-40fc-8eac-b9f9f6597443" valueTypeId="a78181f4-6a98-4eb4-80c3-eae4aa1a2258"/>
+    <managerType typeId="cd3561d1-37ac-4841-8c2c-9c1ef1043b09" valueTypeId="bd764eb5-9bdc-4eef-a97e-f5ce3c4c8dbe"/>
+  </producedTypes>
+  <name>Connections</name>
+  <synonym>
+    <key>en</key>
+    <value>Connections</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Соединения</value>
+  </synonym>
+  <inputByString>Catalog.Connections.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>Connection types</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Типы соединений</value>
+  </explanation>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="66147fd7-49b9-490f-979b-c40525656de7">
+    <name>MobileClient</name>
+    <synonym>
+      <key>en</key>
+      <value>Mobile Client</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Мобильный клиент</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Mobile Client</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Мобильный клиент</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="cfae67ae-d8e9-4308-8d0f-7101d6c6250b">
+    <name>ThickClient</name>
+    <synonym>
+      <key>en</key>
+      <value>Thick Client</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Толстый клиент</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Thick Client</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Толстый клиент</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="0dd7e71f-52f8-42d5-96a1-0b55ecefdff9">
+    <name>ThinClient</name>
+    <synonym>
+      <key>en</key>
+      <value>Thin Client</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Тонкий клиент</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Thin Client</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Тонкий клиент</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="8bb8fcc3-d980-4cf7-bf99-f4a6f8105e11">
+    <name>WebClient</name>
+    <synonym>
+      <key>en</key>
+      <value>Web Client</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Веб-клиент</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Web Client</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Веб-клиент</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+</mdclass:Catalog>

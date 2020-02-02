@@ -91,12 +91,13 @@ Procedure BeforeStart ( Cancel )
 	else
 		defineTestManager ();
 	endif; 
+	initSession ();
 	
 EndProcedure
 
 Procedure defineTestManager ()
 	
-	#if ( WebClient ) then
+	#if ( WebClient or MobileClient ) then
 		TestManager = false;
 	#else
 		try
@@ -105,6 +106,39 @@ Procedure defineTestManager ()
 			TestManager = false;
 		endtry;
 	#endif
+	
+EndProcedure 
+
+Procedure initSession ()
+	
+	#if ( WebClient ) then
+		computer = "WebClient";
+		webClient = true;
+	#else
+		webClient = false;
+		computer = ComputerName ();
+	#endif
+	#if ( MobileClient ) then
+		mobileClient = true;
+	#else
+		mobileClient = false;
+	#endif
+	#if ( ThinClient ) then
+		thinClient = true;
+	#else
+		thinClient = false;
+	#endif
+	#if ( ThickClientManagedApplication ) then
+		thickClient = true;
+	#else
+		thickClient = false;
+	#endif
+	data = EnvironmentSrv.InitSession ( computer, webClient, mobileClient, thinClient, thickClient );
+	SessionUser = data.User;
+	SessionScenario = data.Scenario;
+	SessionApplication = data.Application;
+	set = new Structure ( "Connection", data.Connection );
+	SetInterfaceFunctionalOptionParameters ( set );
 	
 EndProcedure 
 
@@ -136,7 +170,6 @@ Procedure init ()
 	TesterWatcherBSLServerSettings = RepositoryFiles.BSLServerSettings ();
 	TesterServerMode = false;
 	RunningDelegatedJob = false;
-	initSession ();
 	initFeatures ();
 	initSpecialFields ();
 	initExtender ();
@@ -144,18 +177,6 @@ Procedure init ()
 	ScenariosPanel.Init ();
 
 EndProcedure
-
-Procedure initSession ()
-	
-	data = EnvironmentSrv.Get ();
-	SessionUser = data.User;
-	SessionScenario = data.Scenario;
-	SessionApplication = data.Application;
-	#if ( not WebClient ) then
-		EnvironmentSrv.SetSession ( ComputerName () );
-	#endif
-	
-EndProcedure 
 
 Procedure initFeatures ()
 	
@@ -179,7 +200,7 @@ EndProcedure
 
 Procedure initExtender ()
 	
-	#if ( WebClient ) then
+	#if ( WebClient or MobileClient ) then
 		return;
 	#endif
 	info = new SystemInfo ();
@@ -247,41 +268,44 @@ Procedure startAgent ()
 	
 	IAmAgent = EnvironmentSrv.StartAgent ();
 	ЯАгент = IAmAgent;
-	#if ( not WebClient ) then
-		if ( IAmAgent ) then
-			runListener ();
-		endif;
-	#endif
+	runListener ();
 	
 EndProcedure
 
 Procedure runListener ()
 	
-	AttachIdleHandler ( "agentListener", 5, true );
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		if ( IAmAgent ) then
+			AttachIdleHandler ( "agentListener", 5, true );
+		endif;
+	#endif
 	
 EndProcedure
 
 Procedure agentListener () export
 	
-	work = TesterAgent.GetWork ();
-	if ( work <> undefined ) then
-		job = work.Job;
-		startServing ( job );
-		table = Collections.DeserializeTable ( work.Scenarios );
-		for each row in table do
-			ln = row.LineNumber;
-			CurrentDelegatedJob.Row = ln;
-			TesterAgent.StartScenario ( job, ln );
-			try
-				Test.Exec ( row.Scenario, row.Application );
-			except
-				Disconnect ();
-			endtry;
-			TesterAgent.FinishScenario( job, ln );
-		enddo;
-		stopServing ();
-	endif;
-	runListener ();
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		work = TesterAgent.GetWork ();
+		if ( work <> undefined ) then
+			job = work.Job;
+			params = ? ( work.Parameters = "", "", Conversion.FromJSON ( work.Parameters ) ); 
+			startServing ( job );
+			table = Collections.DeserializeTable ( work.Scenarios );
+			for each row in table do
+				ln = row.LineNumber;
+				CurrentDelegatedJob.Row = ln;
+				TesterAgent.StartScenario ( job, ln );
+				try
+					Test.Exec ( row.Scenario, row.Application, , , , , params );
+				except
+					Disconnect ();
+				endtry;
+				TesterAgent.FinishScenario( job, ln );
+			enddo;
+			stopServing ();
+		endif;
+		runListener ();
+	#endif
 	
 EndProcedure
 
@@ -345,6 +369,7 @@ EndProcedure
 Procedure ExternEventProcessing ( Source, Event, Data )
 	
 	if ( Source = "Watcher" ) then
+		stopListener ();
 		DetachIdleHandler ( "WatcherStartSyncing" );
 		TesterWatcherBuffer.Add ( new Structure ( "Event, Data", Event, Data ) );
 		if ( TesterWatcherBuffer.UBound () > TesterWatcherIndicationThreshold ) then
@@ -355,14 +380,19 @@ Procedure ExternEventProcessing ( Source, Event, Data )
 
 EndProcedure
 
+Procedure stopListener ()
+	
+	if ( IAmAgent ) then
+		DetachIdleHandler ( "agentListener" );
+	endif;
+	
+EndProcedure
+
 Procedure WatcherStartSyncing () export
 	
 	total = TesterWatcherBuffer.UBound ();
 	index = 0;
 	indication = total > TesterWatcherIndicationThreshold;
-	if ( indication ) then
-		
-	endif;
 	for each event in TesterWatcherBuffer do
 		if ( indication ) then
 			Status ( TesterWatcherSyncingMessage, index * 100 / total );
@@ -371,7 +401,8 @@ Procedure WatcherStartSyncing () export
 		index = index + 1;
 	enddo;
 	TesterWatcherBuffer.Clear ();
-
+	runListener ();
+	
 EndProcedure
 
 Procedure TesterRunsMainScenario () export
@@ -387,6 +418,7 @@ Procedure TesterRunsMainScenario () export
 EndProcedure
 
 Procedure TesterRunsSelectedScript () export
+	
 	
 	TesterServerMode = true;
 	data = TesterExternalRequestObject.Data;

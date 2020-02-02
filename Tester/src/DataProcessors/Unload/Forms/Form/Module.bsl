@@ -514,12 +514,14 @@ EndProcedure
 &AtClient
 Procedure createScript ( Params )
 	
-	data = Params.Data;
-	file = Params.BaseName + RepositoryFiles.BSLFile ();
-	p = new Structure ( "File, Params", file, Params );
-	doc = new TextDocument ();
-	doc.SetText ( data.Script );
-	doc.BeginWriting ( new NotifyDescription ( "ScriptCreated", ThisObject, p ), file );
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		data = Params.Data;
+		file = Params.BaseName + RepositoryFiles.BSLFile ();
+		p = new Structure ( "File, Params", file, Params );
+		doc = new TextDocument ();
+		doc.SetText ( data.Script );
+		doc.BeginWriting ( new NotifyDescription ( "ScriptCreated", ThisObject, p ), file );
+	#endif
 		
 EndProcedure 
 
@@ -543,21 +545,23 @@ EndProcedure
 &AtClient
 Procedure createPropeties ( Params )
 	
-	data = Params.Data;
-	file = Params.BaseName + JSONExtension;
-	p = new Structure ( "File, Params", file, Params );
-	doc = new TextDocument ();
-	properties = new Structure ( "Version, Type, Tree, Severity, Creator, LastCreator, Memo, Tags" );
-	properties.Version = data.Version;
-	properties.Type = data.TypeID;
-	properties.Tree = data.Tree;
-	properties.Severity = ? ( data.Severity = undefined, "", data.Severity );
-	properties.Creator = data.Creator;
-	properties.LastCreator = data.LastCreator;
-	properties.Memo = data.Memo;
-	properties.Tags = data.Tags;
-	doc.SetText ( Conversion.ToJSON ( properties ) );
-	doc.BeginWriting ( new NotifyDescription ( "PropertiesCreated", ThisObject, p ), file );
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		data = Params.Data;
+		file = Params.BaseName + JSONExtension;
+		p = new Structure ( "File, Params", file, Params );
+		doc = new TextDocument ();
+		properties = new Structure ( "Version, Type, Tree, Severity, Creator, LastCreator, Memo, Tags" );
+		properties.Version = data.Version;
+		properties.Type = data.TypeID;
+		properties.Tree = data.Tree;
+		properties.Severity = ? ( data.Severity = undefined, "", data.Severity );
+		properties.Creator = data.Creator;
+		properties.LastCreator = data.LastCreator;
+		properties.Memo = data.Memo;
+		properties.Tags = data.Tags;
+		doc.SetText ( Conversion.ToJSON ( properties ) );
+		doc.BeginWriting ( new NotifyDescription ( "PropertiesCreated", ThisObject, p ), file );
+	#endif
 		
 EndProcedure 
 

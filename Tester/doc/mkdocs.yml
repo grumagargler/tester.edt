@@ -1,0 +1,41 @@
+site_name: Тестер
+theme:
+  name: readthedocs
+  custom_dir: custom_theme
+markdown_extensions:
+  - footnotes
+  - pyembed.markdown
+  - markdown_checklist.extension
+  - admonition
+  - toc:
+      permalink: true
+  - mdx_include:
+      base_path: './docs'
+  - markdown_blockdiag:
+      format: svg
+      fontpath: 'C:/Windows/Fonts/arial.ttf'
+plugins:
+  - search:
+      lang: [ 'en', 'ru' ]
+nav:
+- О программе: index.md
+- Философия: philosophy.md
+- Быстрый старт: start.md
+- Внедрение: implementation.md
+- Проверка бизнес-логики: businesslogic.md
+- Скриншоты: screenshots.md
+- Хронограф: chrono.md
+- Разветвленная разработка, git: git.md
+- Visual Studio Code: vscode.md
+- Механизм заданий: jobs.md
+- Тестирование веб-клиента: webclient.md
+- Частые вопросы:
+  - Тестирование: faqtesting.md
+  - Работа в среде: faqinterface.md
+  - Автоматизация: faqcicd.md
+  - Концептуальные: faqtheory.md
+- API: api.md
+- Интерфейс:
+  - Справочник Сценарии: scenarios.md
+  - Справочник Приложения: applications.md
+- Релизы : releases.md

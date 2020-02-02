@@ -83,6 +83,7 @@
             <key>ru</key>
             <value>&lt;Общее></value>
           </presentation>
+          <value xsi:type="core:UndefinedValue"/>
         </choiceList>
         <choiceHistoryOnInput>DontUse</choiceHistoryOnInput>
       </extInfo>
@@ -756,12 +757,12 @@
   </commandInterface>
   <extInfo xsi:type="form:CatalogFormExtInfo">
     <handlers>
-      <event>BeforeWriteAtServer</event>
-      <name>BeforeWriteAtServer</name>
-    </handlers>
-    <handlers>
       <event>AfterWrite</event>
       <name>AfterWrite</name>
+    </handlers>
+    <handlers>
+      <event>BeforeWriteAtServer</event>
+      <name>BeforeWriteAtServer</name>
     </handlers>
   </extInfo>
 </form:Form>

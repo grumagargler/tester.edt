@@ -2,6 +2,9 @@
 Function Events () export
 	
 	p = new Structure ();
+	p.Insert ( "FullAccessRequest", false );
+	p.Insert ( "OnInitDefaultParams", false );
+	p.Insert ( "BeforeOpen", false );
 	p.Insert ( "OnDetail", false );
 	p.Insert ( "OnCheck", false );
 	p.Insert ( "OnScheduling", false );
@@ -82,8 +85,10 @@ Procedure ApplyFilters ( Composer, Params ) export
 				endtry;
 				continue;
 			endif;
-			FillPropertyValues ( item, filter, "ComparisonType, RightValue, Use, ViewMode" );
+			FillPropertyValues ( item, filter, "ComparisonType, Use, ViewMode" );
+			loadRightValue ( item, filter );
 		endif; 
+		fixComparison ( item );
 	enddo; 
 	
 EndProcedure
@@ -92,13 +97,15 @@ Function Prepare ( Report ) export
 	
 	p = getParams ( Report );
 	obj = undefined;
-	for each item in p.Events do
-		if ( item.Value ) then
-			obj = Reports [ Report ].Create ();
-			obj.Params = p;
-			break;
-		endif; 
-	enddo; 
+	events = p.Events;
+	if ( events.OnCheck
+		or events.OnCompose
+		or events.OnPrepare
+		or events.AfterOutput ) then
+		SetPrivilegedMode ( true );
+		obj = Reports [ Report ].Create ();
+		obj.Params = p;
+	endif; 
 	if ( obj = undefined ) then
 		obj = Reports.Common.Create ();
 	endif; 
@@ -124,6 +131,7 @@ Function getParams ( Report )
 	p.Insert ( "Events", Reports [ Report ].Events () );
 	p.Insert ( "Columns" );
 	p.Insert ( "GenerateOnOpen", false );
+	p.Insert ( "CheckAccess", true );
 	return p;
 	
 EndFunction 
@@ -214,28 +222,47 @@ EndProcedure
 Function showTitle ( Params )
 	
 	p = Params.Settings.OutputParameters.FindParameterValue ( new DataCompositionParameter ( "TitleOutput" ) );
-	p1 = Params.Settings.OutputParameters.FindParameterValue ( new DataCompositionParameter ( "Title" ) );
-	empty = not p1.Use or ( p1.Value = "" );
-	return showParameter ( p, empty );
+	if ( p.Use ) then
+		if ( p.Value = DataCompositionTextOutputType.DontOutput ) then
+			return false;
+		elsif ( p.Value = DataCompositionTextOutputType.Output ) then
+			return true;
+		endif;
+	endif;
+	p = Params.Settings.OutputParameters.FindParameterValue ( new DataCompositionParameter ( "Title" ) );
+	return p.Use and ( p.Value <> "" );
 	
 EndFunction 
 
 Function showInfo ( Params, Parameter )
 	
-	p = Params.Settings.OutputParameters.FindParameterValue ( new DataCompositionParameter ( Parameter ) );
+	settings = Params.Settings;
+	p = settings.OutputParameters.FindParameterValue ( new DataCompositionParameter ( Parameter ) );
+	if ( p.Use ) then
+		if ( p.Value = DataCompositionTextOutputType.DontOutput ) then
+			return false;
+		elsif ( p.Value = DataCompositionTextOutputType.Output ) then
+			return true;
+		endif;
+	endif;
 	if ( Parameter = "DataParametersOutput" ) then
-		items = Params.Settings.DataParameters.Items;
+		items = settings.DataParameters.AvailableParameters;
+		for each item in settings.DataParameters.Items do
+			if ( item.Use ) then
+				p = items.FindParameter ( item.Parameter );
+				if ( p.Visible ) then
+					return true;
+				endif;
+			endif; 
+		enddo; 
 	elsif ( Parameter = "FilterOutput" ) then
-		items = Params.Settings.Filter.Items;
+		for each item in Params.Settings.Filter.Items do
+			if ( item.Use ) then
+				return true;
+			endif; 
+		enddo; 
 	endif; 
-	empty = true;
-	for each item in items do
-		if ( item.Use ) then
-			empty = false;
-			break;
-		endif; 
-	enddo; 
-	return showParameter ( p, empty );
+	return false;
 	
 EndFunction 
 
@@ -257,18 +284,18 @@ EndProcedure
 Function executeComposer ( Composer, Params, Details )
 	
 	try
-		template = Composer.Execute ( Params.Schema, Params.Settings, Details );
+		template = buildTemplate ( Params, Composer, Details );
 	except
 		decodeParams ( Params );
 		if ( Params.GenerateOnOpen ) then
 			try
-				Composer.Execute ( Params.Schema, Params.Settings, Details );
+				buildTemplate ( Params, Composer, Details );
 			except
 				Message ( BriefErrorDescription ( ErrorInfo () ) );
 				return undefined;
 			endtry;
 		else
-			Composer.Execute ( Params.Schema, Params.Settings, Details );
+			buildTemplate ( Params, Composer, Details );
 		endif; 
 	endtry;
 	if ( Params.Interactive ) then
@@ -293,7 +320,7 @@ Procedure hideParams ( Params, DataTemplate )
 			stop = false;
 			for each cell in row.Cells do
 				for each field in cell.Items do
-					if ( StrFind ( field.Value, id ) = 1 ) then
+					if ( StrStartsWith ( field.Value, id ) ) then
 						template.Delete ( i );
 						stop = true;
 						break;
@@ -430,8 +457,9 @@ EndProcedure
 
 Procedure headerFooter ( Params )
 	
-	Params.Result.Footer.Enabled = true;
-	Params.Result.Footer.RightText = Output.PageFooter ();
+	footer = Params.Result.Footer;
+	footer.Enabled = true;
+	footer.RightText = Output.PageFooter ();
 	
 EndProcedure
 
@@ -639,7 +667,13 @@ Procedure ReplaceExpression ( Definition, Expression, NewExpression ) export
 		endif; 
 	enddo; 
 	
-EndProcedure 
+EndProcedure
+
+Procedure DisableMenu ( Menu ) export
+	
+	Menu = null;
+	
+EndProcedure
 
 #region Details
 
@@ -727,9 +761,87 @@ Procedure AddReport ( List, Name ) export
 	
 EndProcedure 
 
+Procedure AddCommand ( List, Name, Parameters ) export
+	
+	List.Add ( new Structure ( "Command, Parameters", Name, Parameters ) );
+	
+EndProcedure 
+
+Procedure DateToPeriod ( Composer, Filter ) export
+	
+	periodItem = DC.FindParameter ( Composer, "Period" );
+	periodItem.Use = true;
+	period = periodItem.Value;
+	period.Variant = StandardPeriodVariant.Custom;
+	value = Filter.Item.Value;
+	if ( TypeOf ( value ) = Type ( "CatalogRef.Calendar" ) ) then
+		endDate = DF.Pick ( value, "Date" );
+	else
+		endDate = value;
+	endif;
+	period.StartDate = BegOfYear ( endDate );
+	period.EndDate = EndOfDay ( endDate );
+	Filter.StandardProcessing = false;
+	
+EndProcedure 
+
 #endregion
 
-Procedure ComposeResult ( Report ) export
+Function IsFilling ( Variant ) export
+	
+	return StrStartsWith ( Variant, "#Fill" );
+
+EndFunction 
+
+Function ColumnStruct ( Path, MaximumWidth ) export
+	
+	return new Structure ( "Path, MaximumWidth", Path, MaximumWidth );
+	
+EndFunction 
+
+Procedure loadRightValue ( Item, Filter )
+	
+	value = Filter.RightValue;
+	if ( TypeOf ( value ) = Type ( "Array" ) ) then
+		list = new ValueList ();
+		list.LoadValues ( value );
+		Item.RightValue = list;
+	else
+		Item.RightValue = value;
+	endif;
+	
+EndProcedure
+
+Procedure fixComparison ( Filter )
+	
+	parameter = TypeOf ( Filter ) = Type ( "DataCompositionSettingsParameterValue" );
+	if ( parameter ) then
+		candidate = DataCompositionComparisonType.InHierarchy;
+		value = Filter.Value;
+	else
+		comparison = Filter.ComparisonType;
+		if ( comparison = DataCompositionComparisonType.Equal ) then
+			candidate = DataCompositionComparisonType.InHierarchy;
+		elsif ( comparison = DataCompositionComparisonType.NotEqual ) then
+			candidate = DataCompositionComparisonType.NotInHierarchy;
+		else
+			return;
+		endif; 
+		value = Filter.RightValue;
+	endif; 
+	meta = Metadata.FindByType ( TypeOf ( value ) );
+	folder = meta <> undefined
+	and Metadata.Catalogs.Contains ( meta )
+	and meta.Hierarchical
+	and meta.HierarchyType = Metadata.ObjectProperties.HierarchyType.HierarchyFoldersAndItems
+	and DF.Pick ( value, "IsFolder", false );
+	if ( folder ) then
+		Filter.ComparisonType = candidate;
+	endif; 
+	
+EndProcedure 
+
+Function ComposeResult ( Report ) export
 	
 	p = Report.Params;
 	setupPage ( p );
@@ -737,35 +849,42 @@ Procedure ComposeResult ( Report ) export
 	if ( p.Events.OnCompose ) then
 		Report.OnCompose ();
 	endif; 
-	putReport ( Report );
+	ok = putReport ( Report );
 	if ( reportIsEmpty ( p ) ) then
 		showEmpty ( p );
 	else
 		headerFooter ( p );
 	endif; 
+	return ok;
 
-EndProcedure
+EndFunction
 
-Procedure putReport ( Report )
+Function putReport ( Report )
 	
 	p = Report.Params;
+	manager = Reports [ p.Name ];
 	events = p.Events;
+	if ( events.FullAccessRequest ) then
+		SetPrivilegedMode ( manager.FullAccessRequest ( p ) );
+	endif;
 	if ( events.OnGetColumns
 		and p.Columns = undefined ) then
-		Reports [ p.Name ].OnGetColumns ( p.Variant, p.Columns );
+		manager.OnGetColumns ( p.Variant, p.Columns );
 	endif; 
+	setupColumns ( p );
 	getOutputParams ( p );
 	encodeParams ( p );
 	composer = new DataCompositionTemplateComposer ();
 	details = ? ( p.Interactive, p.Details, undefined );
 	template = executeComposer ( composer, p, details );
 	if ( template = undefined ) then
-		return;
+		return false;
 	endif; 
 	hideParams ( p, template );
 	adjustHeader ( p, template );
 	groupHeader ( p, template );
 	decodeParams ( p, template );
+	applyDirectives ( template );
 	if ( events.OnPrepare ) then
 		Report.OnPrepare ( template );
 	endif; 
@@ -778,21 +897,158 @@ Procedure putReport ( Report )
 	if ( events.AfterOutput ) then
 		Report.AfterOutput ();
 	endif;
+	return true;
 
-EndProcedure
+EndFunction
 
-Function showParameter ( Parameter, Empty )
+Procedure setupColumns ( Params )
 	
-	if ( Parameter.Use ) then
-		if ( Parameter.Value = DataCompositionTextOutputType.DontOutput ) then
-			return false;
-		elsif ( Parameter.Value = DataCompositionTextOutputType.Output ) then
-			return true;
-		else
-			return not Empty;
-		endif; 
-	else
-		return not Empty;
+	if ( Params.Columns = undefined ) then
+		return;
 	endif; 
+	schema = Params.Schema;
+	for each column in Params.Columns do
+		path = column.Path;
+		field = Reporter.FindField ( path, schema );
+		if ( field = undefined ) then
+			eventName = Metadata.Reports.Common.FullName () + ".setupColumns";
+			WriteLogEvent ( eventName, EventLogLevel.Error,
+			Metadata.Reports [ Params.Name ], , Output.DataSetColumnNotFound ( new Structure ( "Path", path ) ) );
+		else
+			properties = field.Appearance;
+			properties.SetParameterValue ( "MaximumWidth", column.MaximumWidth );
+		endif; 
+	enddo; 
+	
+EndProcedure 
+
+Function buildTemplate ( Params, Composer, Details )
+	
+	return Composer.Execute ( Params.Schema, Params.Settings, Details, , , Params.CheckAccess );
 	
 EndFunction 
+
+Procedure applyDirectives ( DataTemplate )
+	
+	area = Type ( "DataCompositionAreaTemplate" );
+	for each item in DataTemplate.Templates do
+		if ( TypeOf ( item.Template ) = area ) then
+			template = item.Template;
+			changedRows = new Array ();
+			for rowIndex = 0 to template.Count () - 1 do
+				row = template [ rowIndex ];
+				lastColumn = row.Cells.Count () - 1;
+				skipRow = false;
+				cleanup = false;
+				for columnIndex = 0 to lastColumn do
+					cell = row.Cells [ columnIndex ];
+					for each field in cell.Items do
+						value = field.Value;
+						if ( StrStartsWith ( value, "#hideRow" ) ) then
+							for fieldIndex = columnIndex to lastColumn do
+								cleanCell ( row.Cells [ fieldIndex ] );
+							enddo; 
+							skipRow = true;
+							cleanup = true;
+							break;
+						elsif ( StrStartsWith ( value, "#hideCell" ) ) then
+							cleanCell ( cell );
+							cleanup = true;
+							break;
+						endif;
+					enddo;
+					if ( skipRow ) then
+						break;
+					endif; 
+				enddo; 
+				if ( cleanup ) then
+					changedRows.Insert ( 0, rowIndex );
+				endif; 
+			enddo; 
+			cleanTemplate ( template, changedRows );
+		endif; 
+	enddo;
+
+EndProcedure 
+
+Procedure cleanCell ( Cells )
+	
+	Cells.Appearance.SetParameterValue ( "VerticalMerge", true );
+	Cells.Items.Clear ();
+	
+EndProcedure 
+
+Procedure cleanTemplate ( Template, Rows )
+	
+	for each rowIndex in Rows do
+		row = Template [ rowIndex ];
+		if ( rowEmpty ( row ) ) then
+			Template.Delete ( rowIndex );
+		endif; 
+	enddo; 
+	
+EndProcedure 
+
+Function rowEmpty ( Row )
+	
+	cells = Row.Cells;
+	lastColumn = cells.Count () - 1;
+	for column = 0 to lastColumn do
+		cell = cells [ column ];
+		for each field in cell.Items do
+			if ( field.Value <> "" ) then
+				return false;
+			endif; 
+		enddo;
+	enddo; 
+	return true;
+	
+EndFunction 
+
+Procedure RestorePeriod ( Object ) export
+	
+	value = CommonSettingsStorage.Load ( periodSetting ( Object ) );
+	if ( value = undefined ) then
+		return;
+	endif;
+	parameter = getPeriod ( Object );
+	if ( parameter = undefined ) then
+		return;
+	endif;
+	parameter.Value = value;
+	
+EndProcedure
+
+Function periodSetting ( Object )
+	
+	return "ReportPeriod/" + Object.ReportName;
+	
+EndFunction
+
+Function getPeriod ( Object )
+	
+	variants = new Array ();
+	variants.Add ( "Period" );
+	variants.Add ( "AsOf" );
+	variants.Add ( "ReportDate" );
+	composer = Object.SettingsComposer;
+	for each item in variants do
+		parameter = DC.FindParameter ( composer, item );
+		if ( parameter <> undefined
+			and parameter.UserSettingID <> "" ) then
+			return parameter;
+		endif;
+	enddo;
+	return undefined;
+	
+EndFunction
+
+Procedure StorePeriod ( Object ) export
+	
+	parameter = getPeriod ( Object );
+	if ( parameter = undefined ) then
+		return;
+	endif;
+	LoginsSrv.SaveSettings ( periodSetting ( Object ), , parameter.Value );
+	
+EndProcedure

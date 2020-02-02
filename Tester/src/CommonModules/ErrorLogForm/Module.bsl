@@ -1,4 +1,3 @@
-&AtServer
 Procedure UpdateStack ( Error, Stack ) export
 	
 	Stack.Clear ();
@@ -8,15 +7,16 @@ Procedure UpdateStack ( Error, Stack ) export
 		newRow.Scenario = row.Scenario + " [" + Format ( row.Row, "NG=" ) + "]";
 		newRow.Ref = row.Ref;
 		newRow.Row = row.Row;
+		newRow.Area = row.Area;
 	enddo; 
 	
 EndProcedure
 
-&AtServer
 Function getStack ( Error )
 	
 	s = "
-	|select Stack.Row as Row, Stack.Scenario as Ref, presentation ( Stack.Scenario ) as Scenario
+	|select Stack.Row as Row, Stack.Scenario as Ref, presentation ( Stack.Scenario ) as Scenario,
+	|	presentation ( Stack.Area ) as Area
 	|from Catalog.ErrorLog.Stack as Stack
 	|where Stack.Ref = &Ref
 	|order by Stack.LineNumber
@@ -26,11 +26,3 @@ Function getStack ( Error )
 	return q.Execute ().Unload ();
 	
 EndFunction
-
-&AtClient
-Procedure OpenScenario ( Stack ) export
-	
-	data = Stack.CurrentData;
-	ScenarioForm.GotoLine ( data.Ref, data.Row );
-	
-EndProcedure

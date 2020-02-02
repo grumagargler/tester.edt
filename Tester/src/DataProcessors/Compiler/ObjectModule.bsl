@@ -329,7 +329,10 @@ Procedure extractProcedures(Scope, SyntaxOnly)
 			continue;
 		endif;
 		if (begin) then
-			end = procedureFinishes(details, i);
+			end = Lexer.DeclarationEnds(Exp, ProcedureEnds, CurrentRow);
+			if ( end ) then
+				details.End = i;
+			endif;
 		else
 			details = procedureBegins(Scope, i, directive);
 			if (details <> undefined) then
@@ -386,7 +389,7 @@ EndFunction
 
 Function procedureBegins(Scope, Line, Directive)
 	
-	descriptor = procDeclaration();
+	descriptor = Lexer.Declaration ( ProcedureStarts, CurrentRow );
 	if (descriptor = undefined) then
 		return undefined;
 	endif;
@@ -396,21 +399,6 @@ Function procedureBegins(Scope, Line, Directive)
 	endif;
 	params = procParams(Scope, name);
 	return new Structure("Name, Function, Params, Script, Directive, Start, End", name, descriptor.Function, params, new Array(), Directive, Line, Line);
-	
-EndFunction
-
-Function procDeclaration()
-	
-	for each item in ProcedureStarts do
-		if (StrStartsWith(CurrentRow, item.Key)) then
-			descriptor = item.Value;
-			next = Mid(CurrentRow, descriptor.Len, 1);
-			if (next = ""
-					or next = " ") then
-				return descriptor;
-			endif;
-		endif;
-	enddo;
 	
 EndFunction
 
@@ -504,19 +492,6 @@ Procedure declareParams(Scope, Line, Params)
 	enddo;
 	
 EndProcedure
-
-Function procedureFinishes(Details, Line)
-	
-	for each item in ProcedureEnds do
-		Exp.Pattern = item + "($|\t| |\n)";
-		if (Exp.Test(CurrentRow)) then
-			Details.End = Line;
-			return true;
-		endif;
-	enddo;
-	return false;
-	
-EndFunction
 
 Function getDirective()
 	
@@ -652,17 +627,7 @@ EndProcedure
 // *****************************************
 // *********** Variables Initialization
 
-ProcedureStarts = new Map();
-ProcedureStarts["процедура"] = new Structure("Len, Function", 10, false);
-ProcedureStarts["procedure"] = new Structure("Len, Function", 10, false);
-ProcedureStarts["функция"] = new Structure("Len, Function", 8, true);
-ProcedureStarts["function"] = new Structure("Len, Function", 9, true);
-
-ProcedureEnds = new Array();
-ProcedureEnds.Add("конецпроцедуры");
-ProcedureEnds.Add("endprocedure");
-ProcedureEnds.Add("конецфункции");
-ProcedureEnds.Add("endfunction");
+Lexer.ProcedureDescriptors ( ProcedureStarts, ProcedureEnds );
 
 AtDefault = 0;
 AtClient = 1;
@@ -676,7 +641,7 @@ Directives["&насервере"] = AtServer;
 
 Clauses = new Structure();
 Clauses.Insert("IfServer", "#if ( Server ) then");
-Clauses.Insert("IfClient", "#if ( Client ) then");
+Clauses.Insert("IfClient", "#if ( ThinClient or ThickClientManagedApplication ) then");
 Clauses.Insert("IfNotServer", "#if ( not Server ) then");
 Clauses.Insert("IfNotClient", "#if ( not Client ) then");
 Clauses.Insert("IfEnd", "#endif");

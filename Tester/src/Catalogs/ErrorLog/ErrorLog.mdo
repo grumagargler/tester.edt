@@ -81,6 +81,33 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <attributes uuid="125845ef-71d2-41c3-a872-e4582b81f774">
+    <name>Area</name>
+    <synonym>
+      <key>en</key>
+      <value>Area</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Область</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Areas</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Fall area</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Область падения</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
   <attributes uuid="363d330a-2fec-4c14-ac42-ae1a678fd1c3">
     <name>Date</name>
     <synonym>
@@ -331,33 +358,6 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
-  <attributes uuid="a4def51e-9c32-4e07-aafc-dd8566e1c731">
-    <name>Severity</name>
-    <synonym>
-      <key>en</key>
-      <value>Severity</value>
-    </synonym>
-    <synonym>
-      <key>ru</key>
-      <value>Важность</value>
-    </synonym>
-    <type>
-      <types>EnumRef.Severity</types>
-    </type>
-    <toolTip>
-      <key>en</key>
-      <value>Severity of error</value>
-    </toolTip>
-    <toolTip>
-      <key>ru</key>
-      <value>Класс важности ошибки</value>
-    </toolTip>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:UndefinedValue"/>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
   <attributes uuid="6c112148-bd36-4fd1-b396-754809b836e8">
     <name>Source</name>
     <synonym>
@@ -413,6 +413,196 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <tabularSections uuid="594901ae-f522-4cef-825c-16cf04e4ba30">
+    <producedTypes>
+      <objectType typeId="2ce8d83a-13f3-468f-87d4-33bf346b7bf5" valueTypeId="03e09948-5a4a-454b-9405-92ad357fd50a"/>
+      <rowType typeId="8a5661f5-6ba1-4c02-9281-43fe639e0305" valueTypeId="1e400453-08c5-417b-868c-afe03b48d5b0"/>
+    </producedTypes>
+    <name>Module</name>
+    <synonym>
+      <key>en</key>
+      <value>Module</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Модуль</value>
+    </synonym>
+    <toolTip>
+      <key>en</key>
+      <value>Scenario program code</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Программный код сценария</value>
+    </toolTip>
+    <attributes uuid="bb928be3-43b2-4550-963e-8f0eb5cfe946">
+      <name>Calling</name>
+      <synonym>
+        <key>en</key>
+        <value>Calling</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Вызов</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Versions</types>
+        <types>CatalogRef.Scenarios</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Calling scenario</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Вызываемый сценарий</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="ea926845-4ecc-4bc9-b81a-9dddd974131f">
+      <name>Level</name>
+      <synonym>
+        <key>en</key>
+        <value>Level</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Уровень</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>3</precision>
+          <nonNegative>true</nonNegative>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Stack level</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Уровень в стеке вызовов</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="0e75bdd1-5d47-417c-8198-1250a65c5e0b">
+      <name>Line</name>
+      <synonym>
+        <key>en</key>
+        <value>#</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>№</value>
+      </synonym>
+      <type>
+        <types>Number</types>
+        <numberQualifiers>
+          <precision>10</precision>
+          <nonNegative>true</nonNegative>
+        </numberQualifiers>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Line number</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Номер строки</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="89465fae-debb-4dc2-97f8-becb1f9680b1">
+      <name>Row</name>
+      <synonym>
+        <key>en</key>
+        <value>Row</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Строка</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers/>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Scenario row</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Строка сценария</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="7c48d830-2af0-4746-9737-60e09545235d">
+      <name>Scenario</name>
+      <synonym>
+        <key>en</key>
+        <value>Scenario</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Сценарий</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Versions</types>
+        <types>CatalogRef.Scenarios</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Scenario</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Сценарий</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="411ffa85-c15a-47e8-b3a8-819895b9730b">
+      <name>Type</name>
+      <synonym>
+        <key>en</key>
+        <value>Type of Row</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Тип строки</value>
+      </synonym>
+      <type>
+        <types>EnumRef.Module</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Row type</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Тип строки</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
   <tabularSections uuid="bb55880e-ac46-4091-b5c3-608d864bf9d2">
     <producedTypes>
       <objectType typeId="916a0397-4319-443f-9f34-5d252c77a5dc" valueTypeId="465a11d2-53d9-464f-b21b-a47b905abb82"/>
@@ -427,6 +617,32 @@
       <key>ru</key>
       <value>Стек</value>
     </synonym>
+    <attributes uuid="42b85752-2782-4179-a510-7c783e15dbc3">
+      <name>Area</name>
+      <synonym>
+        <key>en</key>
+        <value>Area</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Область</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Areas</types>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Fall area</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Область падения</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
     <attributes uuid="bd5ee804-c919-41b8-817d-710ac149e59b">
       <name>Row</name>
       <synonym>

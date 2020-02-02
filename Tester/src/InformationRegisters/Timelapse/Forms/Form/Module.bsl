@@ -482,7 +482,7 @@ Procedure editScenario ()
 	else
 		target = Scenario;
 	endif;
-	ScenarioForm.GotoLine ( target, ScriptRow.Number );
+	ScenarioForm.GotoLine ( target, ScriptRow.Number, ScriptRow.Error );
 	
 EndProcedure
 
