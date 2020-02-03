@@ -20,11 +20,11 @@ jobs:
       with:
         repository: 1c-syntax/bsl-language-server
         tag: latest
-        file: bsl-language-server-0.12.3.jar
+        file: bsl-language-server-0.13.3.jar
     - name: Setup SonarQube scanner
       uses: warchant/setup-sonar-scanner@v1
     - name: Run BSL LS
-      run: java -jar bsl-language-server-0.12.3.jar --analyze --srcDir ./Tester --reporter json -c ./.bsl-language-server.json
+      run: java -jar bsl-language-server-0.13.3.jar --analyze --srcDir ./Tester --reporter json -c ./.bsl-language-server.json
     - name: Run SonarQube on push
       if: github.event_name == 'push'
       run: sonar-scanner
