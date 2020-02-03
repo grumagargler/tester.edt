@@ -36,7 +36,7 @@ jobs:
         -Dsonar.host.url=https://sonar.openbsl.ru
         -Dsonar.branch.name=${GITHUB_REF#refs/heads/}
         -Dsonar.bsl.languageserver.enabled=false
-        -Dsonar.bsl.languageserver.reportPaths=./bsl-json.json
+        -Dsonar.bsl.languageserver.reportPaths=../bsl-json.json
     - name: Run SonarQube on pull request
       if: github.event_name == 'pull_request'
       run: sonar-scanner
@@ -47,4 +47,4 @@ jobs:
         -Dsonar.pullrequest.branch=${{ github.event.pull_request.head.ref }}
         -Dsonar.pullrequest.base=${{ github.event.pull_request.base.ref }}
         -Dsonar.bsl.languageserver.enabled=false
-        -Dsonar.bsl.languageserver.reportPaths=./bsl-json.json
+        -Dsonar.bsl.languageserver.reportPaths=../bsl-json.json
