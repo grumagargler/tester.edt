@@ -5,7 +5,7 @@ Procedure Go ( Scenario, Debugging ) export
 		if ( Scenario = undefined ) then
 			Output.UndefinedMainScenario ();
 		else
-			Output.SetupMainScenario ( ThisObject, new Structure ( "Scenario, Debugging", Scenario ) );
+			Output.SetupMainScenario ( ThisObject, new Structure ( "Scenario, Debugging", Scenario, Debugging ) );
 		endif;
 	else
 		runScenario ( Debugging );

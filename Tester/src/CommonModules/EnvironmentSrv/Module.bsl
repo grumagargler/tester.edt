@@ -1,5 +1,6 @@
 Function InitSession ( val Computer, val WebClient, val MobileClient, val ThinClient, val ThickClient ) export
 	
+	SetPrivilegedMode ( true );
 	EnvironmentSrv.SetSession ( Computer );
 	EnvironmentSrv.SetConnection ( WebClient, MobileClient, ThinClient, ThickClient );
 	data = new Structure ( "User, Scenario, Application, Connection" );
