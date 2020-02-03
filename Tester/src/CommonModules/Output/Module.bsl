@@ -272,7 +272,7 @@ EndFunction
 Procedure MainScenarioUndefined ( Module = undefined, CallbackParams = undefined, Params = undefined, ProcName = "MainScenarioUndefined" ) export
 	
 	text = NStr ( "en='Main Scenario is not yet defined';ru='Основной сценарий еще не определен'" );
-	title = NStr ( "en=''" );
+	title = NStr ( "en=''; ru=''" );
 	openMessageBox ( text, Params, ProcName, Module, CallbackParams, 0, title );
 	
 EndProcedure
@@ -317,7 +317,7 @@ Procedure RightsConfirmation ( Module = undefined, CallbackParams = undefined, P
 "Please review changes, then Accept or Cancel them';ru='Выбранное право имеет зависимости от других прав системы."
 "Они должны быть добавлены или удалены соответственно."
 "Пожалуйста, просмотрите изменения и примите или отмените их'" );
-	title = NStr ( "en=''" );
+	title = NStr ( "en=''; ru=''" );
 	openMessageBox ( text, Params, ProcName, Module, CallbackParams, 0, title );
 	
 EndProcedure
@@ -326,7 +326,7 @@ EndProcedure
 Procedure ClearLogConfirmation ( Module, CallbackParams = undefined, Params = undefined, ProcName = "ClearLogConfirmation" ) export
 	
 	text = NStr ( "en='Do you want to remove all records?';ru='Удалить все записи?'" );
-	title = NStr ( "en=''" );
+	title = NStr ( "en=''; ru=''" );
 	openQueryBox ( text, Params, ProcName, Module, CallbackParams, QuestionDialogMode.YesNo, 0, DialogReturnCode.No, title );
 	
 EndProcedure
@@ -343,7 +343,7 @@ EndProcedure
 Procedure AccessDenied ( Module = undefined, CallbackParams = undefined, Params = undefined, ProcName = "AccessDenied" ) export
 	
 	text = NStr ( "en='Access denied';ru='Доступ запрещен'" );
-	title = NStr ( "en=''" );
+	title = NStr ( "en=''; ru=''" );
 	openMessageBox ( text, Params, ProcName, Module, CallbackParams, 0, title );
 	
 EndProcedure
@@ -367,7 +367,7 @@ EndFunction
 Procedure DownloadCompleted ( Module = undefined, CallbackParams = undefined, Params = undefined, ProcName = "DownloadCompleted" ) export
 	
 	text = NStr ( "en='Download completed!';ru='Загрузка завершена!'" );
-	title = NStr ( "en=''" );
+	title = NStr ( "en=''; ru=''" );
 	openMessageBox ( text, Params, ProcName, Module, CallbackParams, 0, title );
 	
 EndProcedure
@@ -416,7 +416,7 @@ Procedure UnlockConfirmation ( Module, CallbackParams = undefined, Params = unde
 	text = NStr ( "en = 'Selected scenarios will be replaced on the previous versions!
                   |Do you want to continue?'; ru = 'Выбранные сценарии будут заменены на предыдущие версии!
                   |Продолжить операцию?'" );
-	title = NStr ( "en=''" );
+	title = NStr ( "en=''; ru=''" );
 	openQueryBox ( text, Params, ProcName, Module, CallbackParams, QuestionDialogMode.YesNo, 0, DialogReturnCode.No, title );
 	
 EndProcedure
@@ -533,7 +533,7 @@ Procedure SetupMainScenario ( Module, CallbackParams = undefined, Params = undef
 	text = NStr ( "en = 'Main Scenario is not yet defined.
                   |Would you like to install current scenario as main?'; ru = 'Основной сценарий еще не определен.
                   |Установить запускаемый сценарий как основной?'" );
-	title = NStr ( "en=''" );
+	title = NStr ( "en=''; ru=''" );
 	openQueryBox ( text, Params, ProcName, Module, CallbackParams, QuestionDialogMode.YesNo, 0, DialogReturnCode.Yes, title );
 	
 EndProcedure
@@ -541,7 +541,7 @@ EndProcedure
 &AtClient
 Procedure UndefinedMainScenario ( Module = undefined, CallbackParams = undefined, Params = undefined, ProcName = "UndefinedMainScenario" ) export
 	
-	title = NStr ( "en=''" );
+	title = NStr ( "en=''; ru=''" );
 	text = NStr ( "en = 'Main scenario is undefined'; ru = 'Основной сценарий не определен'" );
 	openMessageBox ( text, Params, ProcName, Module, CallbackParams, 0, title );
 	
