@@ -183,9 +183,9 @@ Procedure callMethod ()
 	if ( Node = "gotoRow" ) then
 		applyGotoRow ();
 	elsif ( Node = "expand" ) then
-		applyRowTree ( true );
+		applyExpand ( true );
 	elsif ( Node = "collapse" ) then
-		applyRowTree ( false );
+		applyExpand ( false );
 	else
 		if ( NodeComplete ) then
 			return;
@@ -495,19 +495,25 @@ Procedure applyClick ()
 
 EndProcedure
 
-Procedure applyRowTree ( Expand )
+Procedure applyExpand ( Expand )
 	
-	if ( NodeComplete ) then
-		if ( Node = LastNode ) then
-			rollback ();
-			search = undefined;
-		else
-			search = translate ( "search" ); 
+	if ( TopDescriptor.Name = "FormGroup" ) then
+		if ( NodeComplete ) then
+			addCall ( buildmethod () );
 		endif;
-		addCall ( getTable ().Attributes [ "name" ] + "." + translate ( Node ), search );
 	else
-		fetchSearch ();
-	endif; 
+		if ( NodeComplete ) then
+			if ( Node = LastNode ) then
+				rollback ();
+				search = undefined;
+			else
+				search = translate ( "search" ); 
+			endif;
+			addCall ( getTable ().Attributes [ "name" ] + "." + translate ( Node ), search );
+		else
+			fetchSearch ();
+		endif; 
+	endif;
 	
 EndProcedure
 
