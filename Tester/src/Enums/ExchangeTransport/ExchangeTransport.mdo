@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="17961aa3-afa7-430f-a387-465473d929e9">
+  <producedTypes>
+    <refType typeId="79fef7e6-992a-4ff2-823f-27b5f314d9e6" valueTypeId="d613a642-91bb-4a2d-97d3-4c7ec30ce667"/>
+    <listType typeId="e568ab18-a084-45a1-830b-ff2848ebc30e" valueTypeId="cb6166cc-0de8-498b-a993-12fc9a71fd20"/>
+    <managerType typeId="39da736c-0940-44ce-84ec-e9bdf9cf6571" valueTypeId="bbb2f2de-2be4-46e3-bd27-6769d5b581a0"/>
+  </producedTypes>
+  <name>ExchangeTransport</name>
+  <synonym>
+    <key>ru</key>
+    <value>Способ передачи</value>
+  </synonym>
+  <synonym>
+    <key>ro</key>
+    <value>Tip de schimb de date</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Order</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <explanation>
+    <key>ru</key>
+    <value>Содержит виды передачи файла обмена данными</value>
+  </explanation>
+  <explanation>
+    <key>ro</key>
+    <value>Conține tipurile de transmisie ale fișierului de comunicare</value>
+  </explanation>
+  <enumValues uuid="1a550202-a619-40d8-b842-92a59533a8d2">
+    <name>Email</name>
+    <synonym>
+      <key>en</key>
+      <value>Email</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Email</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="17d6d1df-57cc-4b0e-a1dd-5fbce762295d">
+    <name>FTP</name>
+    <synonym>
+      <key>en</key>
+      <value>FTP</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>FTP</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="9db5c9b6-7333-4f6e-9261-a6d0d8920a32">
+    <name>NetworkDisk</name>
+    <synonym>
+      <key>en</key>
+      <value>Network disk</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сетевой диск</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="f2460178-aef4-4b60-b112-a7423474d7c6">
+    <name>WebService</name>
+    <synonym>
+      <key>en</key>
+      <value>Web service</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Веб-сервис</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

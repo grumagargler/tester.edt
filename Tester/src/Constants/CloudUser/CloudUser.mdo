@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="5262ad14-f5bd-4cee-a9bd-7913ffcde221">
+  <producedTypes>
+    <managerType typeId="f75df778-acc4-4369-a794-2168af8b9b20" valueTypeId="29f6c571-fd76-4c03-9869-90c69b53678d"/>
+    <valueManagerType typeId="ff715493-cc6d-45e7-93de-d52f490c01c4" valueTypeId="d5290439-f274-4dc4-944b-8830f1c5cc41"/>
+    <valueKeyType typeId="96b25ffa-9a78-57a4-a871-634a487111d5" valueTypeId="0ec3f6c9-d68d-52bc-a5d6-5d2fb20da10a"/>
+  </producedTypes>
+  <name>CloudUser</name>
+  <synonym>
+    <key>en</key>
+    <value>Cloud User</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Администратор облака</value>
+  </synonym>
+  <type>
+    <types>String</types>
+    <stringQualifiers>
+      <length>150</length>
+    </stringQualifiers>
+  </type>
+  <explanation>
+    <key>ru</key>
+    <value>Имя пользователя администратора кластера</value>
+  </explanation>
+  <explanation>
+    <key>en</key>
+    <value>Username of cluster administrator</value>
+  </explanation>
+  <explanation>
+    <key>ro</key>
+    <value>Numele de utilizator al administratorului de cluster</value>
+  </explanation>
+  <toolTip>
+    <key>ru</key>
+    <value>Имя пользователя администратора кластера</value>
+  </toolTip>
+  <toolTip>
+    <key>en</key>
+    <value>Username of cluster administrator</value>
+  </toolTip>
+  <toolTip>
+    <key>ro</key>
+    <value>Numele de utilizator al administratorului de cluster</value>
+  </toolTip>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>

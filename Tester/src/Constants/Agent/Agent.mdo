@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="777edadb-e853-464f-b28e-8ed90edd4738">
+  <producedTypes>
+    <managerType typeId="768f4e03-e2b4-433c-828a-5561ad5d7354" valueTypeId="e76b4aec-d454-4613-80b6-1059809ff0fc"/>
+    <valueManagerType typeId="53ec815d-10f8-49c1-83a9-174c10440e90" valueTypeId="12f28e7a-f629-4092-8328-811b34591453"/>
+    <valueKeyType typeId="e399641d-0aa3-5afc-ad89-720e46427103" valueTypeId="55ae0e90-0295-5b5b-9b78-c5bb2f9182d4"/>
+  </producedTypes>
+  <name>Agent</name>
+  <synonym>
+    <key>en</key>
+    <value>Agent</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Агент</value>
+  </synonym>
+  <synonym>
+    <key>ro</key>
+    <value>Agent</value>
+  </synonym>
+  <type>
+    <types>String</types>
+    <stringQualifiers/>
+  </type>
+  <explanation>
+    <key>en</key>
+    <value>Address of server agent, for example: localhost:1540</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Адрес агента сервера, например: localhost:1540</value>
+  </explanation>
+  <explanation>
+    <key>ro</key>
+    <value>Adresa agentului de server, de exemplu: localhost: 1540</value>
+  </explanation>
+  <toolTip>
+    <key>en</key>
+    <value>Address of server agent, for example: localhost:1540</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Адрес агента сервера, например: localhost:1540</value>
+  </toolTip>
+  <toolTip>
+    <key>ro</key>
+    <value>Adresa agentului de server, de exemplu: localhost: 1540</value>
+  </toolTip>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>

@@ -124,65 +124,6 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>AreaFilter</name>
-      <id>72</id>
-      <visible>true</visible>
-      <enabled>true</enabled>
-      <userVisible>
-        <common>true</common>
-      </userVisible>
-      <dataPath xsi:type="form:MultiLanguageDataPath">
-        <paths xsi:type="form:DataPath">
-          <segments>AreaFilter</segments>
-        </paths>
-      </dataPath>
-      <skipOnInput>true</skipOnInput>
-      <handlers>
-        <event>OnChange</event>
-        <name>AreaFilterOnChange</name>
-      </handlers>
-      <extendedTooltip>
-        <name>AreaFilterExtendedTooltip</name>
-        <id>74</id>
-        <visible>true</visible>
-        <enabled>true</enabled>
-        <userVisible>
-          <common>true</common>
-        </userVisible>
-        <type>Label</type>
-        <autoMaxWidth>true</autoMaxWidth>
-        <autoMaxHeight>true</autoMaxHeight>
-        <extInfo xsi:type="form:LabelDecorationExtInfo">
-          <horizontalAlign>Left</horizontalAlign>
-        </extInfo>
-      </extendedTooltip>
-      <contextMenu>
-        <name>AreaFilterContextMenu</name>
-        <id>73</id>
-        <visible>true</visible>
-        <enabled>true</enabled>
-        <userVisible>
-          <common>true</common>
-        </userVisible>
-        <autoFill>true</autoFill>
-      </contextMenu>
-      <type>InputField</type>
-      <editMode>Enter</editMode>
-      <showInHeader>true</showInHeader>
-      <headerHorizontalAlign>Left</headerHorizontalAlign>
-      <showInFooter>true</showInFooter>
-      <extInfo xsi:type="form:InputFieldExtInfo">
-        <autoMaxWidth>true</autoMaxWidth>
-        <autoMaxHeight>true</autoMaxHeight>
-        <wrap>true</wrap>
-        <clearButton>true</clearButton>
-        <openButton>false</openButton>
-        <chooseType>true</chooseType>
-        <typeDomainEnabled>true</typeDomainEnabled>
-        <textEdit>true</textEdit>
-      </extInfo>
-    </items>
-    <items xsi:type="form:FormField">
       <name>ScenarioFilter</name>
       <id>37</id>
       <visible>true</visible>
@@ -730,54 +671,6 @@
       </extInfo>
     </items>
     <items xsi:type="form:FormField">
-      <name>Area</name>
-      <id>75</id>
-      <visible>true</visible>
-      <enabled>true</enabled>
-      <userVisible>
-        <common>true</common>
-      </userVisible>
-      <dataPath xsi:type="form:MultiLanguageDataPath">
-        <paths xsi:type="form:DataPath">
-          <segments>List.Area</segments>
-        </paths>
-      </dataPath>
-      <extendedTooltip>
-        <name>AreaExtendedTooltip</name>
-        <id>77</id>
-        <visible>true</visible>
-        <enabled>true</enabled>
-        <userVisible>
-          <common>true</common>
-        </userVisible>
-        <type>Label</type>
-        <autoMaxWidth>true</autoMaxWidth>
-        <autoMaxHeight>true</autoMaxHeight>
-        <extInfo xsi:type="form:LabelDecorationExtInfo">
-          <horizontalAlign>Left</horizontalAlign>
-        </extInfo>
-      </extendedTooltip>
-      <contextMenu>
-        <name>AreaContextMenu</name>
-        <id>76</id>
-        <visible>true</visible>
-        <enabled>true</enabled>
-        <userVisible>
-          <common>true</common>
-        </userVisible>
-        <autoFill>true</autoFill>
-      </contextMenu>
-      <type>LabelField</type>
-      <editMode>Enter</editMode>
-      <showInHeader>true</showInHeader>
-      <headerHorizontalAlign>Left</headerHorizontalAlign>
-      <showInFooter>true</showInFooter>
-      <extInfo xsi:type="form:LabelFieldExtInfo">
-        <autoMaxWidth>true</autoMaxWidth>
-        <autoMaxHeight>true</autoMaxHeight>
-      </extInfo>
-    </items>
-    <items xsi:type="form:FormField">
       <name>Level</name>
       <id>31</id>
       <visible>true</visible>
@@ -1277,9 +1170,10 @@
     <extInfo xsi:type="form:DynamicListExtInfo">
       <queryText>select Log.Period as Period, Log.Started as Started, Log.Session as Session, Log.Scenario as Scenario,
 	Log.Duration as Duration, Log.Error as Error, Log.Level as Level, Log.Status as Status,
-	Log.Session.User as User, Log.Job as Job, Log.Scenario.Severity as Severity, Log.Area as Area
+	Log.Session.User as User, Log.Job as Job, Log.Scenario.Severity as Severity
 from InformationRegister.Log as Log</queryText>
       <mainTable>InformationRegister.Log</mainTable>
+      <dynamicDataRead>true</dynamicDataRead>
       <autoFillAvailableFields>true</autoFillAvailableFields>
       <customQuery>true</customQuery>
       <autoSaveUserSettings>true</autoSaveUserSettings>
@@ -1381,27 +1275,6 @@ from InformationRegister.Log as Log</queryText>
     <id>6</id>
     <valueType>
       <types>EnumRef.Severity</types>
-    </valueType>
-    <view>
-      <common>true</common>
-    </view>
-    <edit>
-      <common>true</common>
-    </edit>
-  </attributes>
-  <attributes>
-    <name>AreaFilter</name>
-    <title>
-      <key>en</key>
-      <value>Area</value>
-    </title>
-    <title>
-      <key>ru</key>
-      <value>Область</value>
-    </title>
-    <id>7</id>
-    <valueType>
-      <types>CatalogRef.Areas</types>
     </valueType>
     <view>
       <common>true</common>

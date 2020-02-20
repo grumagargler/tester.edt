@@ -99,21 +99,6 @@ Procedure filterBySeverity ()
 EndProcedure 
 
 &AtClient
-Procedure AreaFilterOnChange ( Item )
-	
-	filterByArea ();
-	
-EndProcedure
-
-&AtServer
-Procedure filterByArea ()
-	
-	DC.ChangeFilter ( List, "Area", AreaFilter, not AreaFilter.IsEmpty () );
-	Appearance.Apply ( ThisObject, "AreaFilter" );
-	
-EndProcedure 
-
-&AtClient
 Procedure ScenarioFilterOnChange ( Item )
 	
 	filterByScenario ();

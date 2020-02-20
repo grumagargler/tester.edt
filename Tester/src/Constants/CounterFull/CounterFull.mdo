@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="47f67c47-0a1b-412a-84ab-01cf6366ab75">
+  <producedTypes>
+    <managerType typeId="337b9ec3-21fe-4cf7-b63a-0cfd3ac16919" valueTypeId="1190d839-bb5a-4f07-9c9c-269e3c7b74c6"/>
+    <valueManagerType typeId="93d3c4fa-1c74-4acd-95fe-078e75da348d" valueTypeId="a78c0d17-cb49-4386-ba33-3c06e6e59b0b"/>
+    <valueKeyType typeId="95ae902c-c4b5-557e-8a5e-71325a50a606" valueTypeId="68cfbdb6-ed49-58bc-90c6-9a933962f0c9"/>
+  </producedTypes>
+  <name>CounterFull</name>
+  <type>
+    <types>String</types>
+    <stringQualifiers>
+      <length>10</length>
+    </stringQualifiers>
+  </type>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>

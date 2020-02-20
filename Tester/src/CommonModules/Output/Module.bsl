@@ -128,6 +128,560 @@ Function getTable ( Field )
 	
 EndFunction 
 
+#region ExchangeData
+
+&AtClient
+Procedure MasterNode ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Main node selected. Data exchange must be made from subordinate nodes!';ru='Выбран главный узел. Обмен данными должен производиться из подчиненных узлов!'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ExchangeDataItemAlreadyExist ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Element with node code: %Code already exists! To modify or add node data, you must open an existing directory item.';ru='Элемент с кодом узла: %Code уже существует! Для изменения или добавления данных узла необходимо открыть уже существующий элемент справочника.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtClient
+Procedure ChangePrefixFileName ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='The prefix of the data exchange file name has been changed! This operation must be performed carefully! For further correct work of data exchange, it is necessary to make similar changes in the corresponding nodes of the distributed information base.';ru='Был изменён префикс имени файла обмена данными! Данную операцию необходимо выполнять осмотрительно! Для дальнейшей корректной работы обмена данными, необходимо произвести подобные изменения в соответствующих узлах распределённой информационной базы.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure AlreadyRunExchangeFull ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Background job ""Exchange"" is currently running. Please try again later.';ru='Фоновое задание ""Exchange"" в данный момент запущено. Повторите попытку позже.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtClient
+Procedure LoadingCompleteNotification ( Params = undefined, NavigationLink = undefined, Picture = undefined ) export
+	
+	text = NStr ( "en='Load data';ru='Загрузка данных'" );
+	explanation = NStr ( "en = 'Loading is complete!'; ru = 'Загрузка завершена!'" );
+	putUserNotification ( text, Params, NavigationLink, explanation, PictureLib.Exchange );
+	
+EndProcedure
+
+&AtClient
+Procedure UnloadingCompleteNotification ( Params = undefined, NavigationLink = undefined, Picture = undefined ) export
+	
+	text = NStr ( "en='Unload data';ru='Выгрузка данных'" );
+	explanation = NStr ( "en = 'Unloading is complete!'; ru = 'Выгрузка завершена!'" );
+	putUserNotification ( text, Params, NavigationLink, explanation, PictureLib.Exchange );
+	
+EndProcedure
+
+&AtServer
+Function NotDefineThisNode () export
+	
+	p = new Structure ();
+	p.Insert ( "Node", ExchangePlans.Full.ThisNode () );
+	s = NStr ( "en = 'No setting created for exchange data for node - ""%Node"".'; ru = 'Не создана настройка обмена данными для узла - ""%Node"".'" );
+	return Sformat ( s, p );
+	
+EndFunction
+
+&AtServer
+Procedure WritingChanges ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	text = NStr ( "en='... write data to file.';ru='... запись данных в файл.'" );
+	putMessage ( text, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure WritingChangesComplete ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='... data successfully written to file.';ru='... данные успешно записаны в файл.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ConnectToWS ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+	
+	s = NStr ( "en='... connecting to a web service';ru='... подключение к веб-сервису'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ReadWS ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='... receiving data through a web service';ru='... получение данных через веб-сервис'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure WriteWS ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='... data recording via web service';ru='... запись данных через веб-сервис'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure CheckPreviousFileExchange ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Search for an existing exchange file.';ru='Поиск существующего файла обмена.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ItWasFoundFileExchange ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='An unread exchange file was found for the %Node node (the file name is %File). Node will not be unloaded for %Node.';ru='Для узла %Node был обнаружен непрочитанный файл обмена (имя файла - %File). Для узла %Node не будет произведена выгрузка.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure FTPConnectionError ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='There were errors connecting to the FTP server! Error description - ""%Error"".';ru='Возникли ошибки при соединении с FTP сервером! Описание ошибки - ""%Error"".'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure WillBeRunRereadFileExchange ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='The exchange file will be read again after updating the configuration.';ru='Файл обмена будет прочитан повторно, после обновления конфигурации.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ExchangeReceivedFromNode ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Exchange data from host ""%Node "" accepted!';ru='Данные обмена от узла ""%Node"" приняты!'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ErrorReceivingData ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Error getting exchange data! %Error. Exchange file %FileXml..';ru='Ошибка при получении данных обмена! %Error. Файл обмена %FileXml.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure LockBase ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Infobase locked for configuration update.';ru='Информационная база заблокирована для обновления конфигурации.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure UnlockBase ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='The base lock is removed. Time - %Date.';ru='Снята блокировка базы. Время - %Date.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure FinishedRereadFileExchange ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Finishing reading the exchange file after updating the configuration.';ru='Завершение дочитывания файла обмена после обновления конфигурации.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure LoadDataFromNode ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Retrieving data from node ""%Node"" ...';ru='Получение данных от узла ""%Node"" ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure UnloadBegin ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Unload data for node ""%Node"" ...';ru='Выгрузка данных для узла ""%Node"" ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure UnloadFinish ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='... unload data for node ""%Node"" completed.';ru='... выгрузка данных для узла ""%Node"" завершена.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure LoadDataFromNodeOver ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='... receiving data from node ""%Node"" completed.';ru='... получение данных от узла ""%Node"" завершено.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure LoadFromEmail ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Load from email ...';ru='Загрузка данных из электронной почты ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure LoadFromFTP ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Load from ftp ...';ru='Загрузка данных с ftp ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure LoadFromWS ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Load data from web service ...';ru='Загрузка данных через веб-сервис ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure UnLoadToEmail ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Unload data to email ...';ru='Выгрузка данных на электронную почту ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure UnLoadToFTP ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Unload data to ftp ...';ru='Выгрузка данных на ftp ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure UnloadToDisk ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Unload data to disk ...';ru='Выгрузка данных на диск ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure UnloadToWebService ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ("en='Unload data through web service ...';ru='Выгрузка данных через веб-сервис ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure LogonToServerMail ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Connection to the mail server ...';ru='Соединение с почтовым сервером ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+Procedure LogonSuccess ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='... connection to the server is established.';ru='... соединение с сервером установлено.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+Procedure ErrorConnectEmailProfile ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Error connecting to mail profile! Exchange failed! Error Description:%Error';ru='Ошибка при подключении к почтовому профилю! Обмен не выполнен! Описание ошибки: %Error'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure MailReceived ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Message is received.';ru='Сообщение получено.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure SendingMail ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Sending email ...';ru='Отправка эл. почты ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure MessageSent ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Exchange message for node ""%Node"" sent successfully';ru='Сообщение обмена для узла ""%Node"" успешно отправлено.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure NoNewExchangeFiles ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='No new messages!';ru='Отсутствуют новые сообщения!'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ErrorLogonInternetMail ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ("en='Error connecting to internet mail. Error description - %ErrorDescription.';ru='Ошибка при подключении к интернет-почте. Описание ошибки - %ErrorDescription.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure FileDeletionError ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ("en='Error deleting file (%File)! %Error';ru='Ошибка при удалении файла (%File)! %Error'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure UnLoadFromWS ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ("en='... started uploading data through a web service';ru='... стартовала выгрузка данных через веб-сервис'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure LoadFromNetworkDisk ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ("en='... started loading data from a network drive';ru='... стартовала загрузка данных с сетевого диска'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ReadingChanges ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ("en='... reading data from file.';ru='... чтение данных из файла.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ReadingChangesComplete ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='... data from node ""%Node"" was successfully read from the file.';ru='... данные от узла ""%Node"" успешно прочитаны из файла.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ReceivedFromNode ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ("en='Exchange data from host ""%Node"" accepted!';ru='Данные обмена от узла ""%Node"" приняты!'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ReadChangesConfiguration ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ("en='Changes that contain configuration changes were read. The configuration will be updated.';ru='Были прочитаны изменения, которые содержат изменения в конфигурации. Конфигурация будет обновлена.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Function SubjectErrorReport ( Params ) export
+
+	s = NStr ("en='Errors while loading data from exchange node ""%Node"". The data load date is %CurrentDate.';ru='Ошибки при загрузке данных от узла-обмена ""%Node"". Дата загрузки данных - %CurrentDate.'" );
+	return Sformat ( s, Params );
+
+EndFunction
+
+&AtServer
+Function TextMessageEmailErrorReport ( Params ) export 
+
+	s = NStr ( "en='Exchange data with node ""%Node""."
+	"Exceeded the maximum number of errors while loading data from the file-sharing."
+	"The number of allowed errors is %MaximumErrors."
+	"The date of the last failed download is %CurrentDate."
+	"Error Description - %Error."
+	"You need to resolve the cause of the error for further successful data exchange.';ru='Обмен данными с узлом ""%Node""."
+	"Превышено максимальное количество ошибок при загрузке данных из файла-обмена."
+	"Количество допустимых ошибок - %MaximumErrors."
+	"Дата последней неудачной загрузки - %CurrentDate."
+	"Описание ошибки - %Error."
+	"Необходимо устранить причину ошибку для дальнейшего успешного обмена данными.'" );
+	return Sformat ( s, Params );
+
+EndFunction
+
+&AtServer
+Function TextMessageEmailErrorReportNoNewExchangeFiles ( Params ) export
+
+	s = NStr ( "en='Exchange data with node ""%Node""."
+	"Exceeded the maximum number of errors while loading data from the file-sharing."
+	"The number of allowed errors is %MaximumErrors."
+	"The date of the last failed download is %CurrentDate."
+	"The cause of the problem is the lack of file-sharing."
+	"The cause of the error must be eliminated for further successful data exchange.';ru='Обмен данными с узлом ""%Node""."
+	"Превышено максимальное количество ошибок при загрузке данных из файла-обмена."
+	"Количество допустимых ошибок - %MaximumErrors."
+	"Дата последней неудачной загрузки - %CurrentDate."
+	"Причина проблемы - отсутствие файлов-обмена."
+	"Необходимо устранить причину ошибку для дальнейшего успешного обмена данными.'" );
+	return Sformat ( s, Params );
+
+EndFunction
+
+&AtClient
+Procedure ThisNode ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+	
+	s = NStr ( "en='The data exchange node corresponding to this information base has been selected. You must select a node to exchange data.';ru='Выбран узел обмена данными, соответствующей данной информационной базе. Необходимо выбрать узел для обмена данными.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure IncorrectRecipients ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Exchange with the node - ""%Node"". Failed to send email mail ""%EMailUnLoad""! Error - ""%Error""!';ru='Обмен с узлом - ""%Node"". Не удалось отправить письмо на эл. почту ""%EMailUnLoad""! Описание ошибки - ""%Error""!'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure IncorrectReportRecipients ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Send error report. Failed to send email mail ""%EMailUnLoad""! Error - ""%Error""!';ru='Отправка уведомления об ошибках обмена. Не удалось отправить письмо на эл. почту ""%EMailUnLoad""! Описание ошибки - ""%Error""!'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtClient
+Procedure SelectThisNode ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+	
+	s = NStr ( "en='This node is selected. Settings for this node are not specified.';ru='Выбран этот узел. Настройки для этого узла не указываются.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Function ExchangeReadDataError ( Params ) export
+
+	s = NStr ( "en='User %User does not have permissions to exchange data.';ru='У пользователя %User нет прав на обмен данными.'" );
+	return Sformat ( s, Params );
+
+EndFunction
+
+&AtServer
+Function UnknownNode ( Params ) export
+
+	s = NStr ( "en='No node found. Node Code - %Code.';ru='Не найден узел. Код узла - %Code.'" );
+	return Sformat ( s, Params );
+
+EndFunction
+
+&AtServer
+Procedure StartUpdateScriptProcedure ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Start procedure for updating the configuration';ru='Старт процедуры по обновлению конфигурации.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure NotFoundExecuteFile1C ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='The executable file 1cv8.exe was not found!';ru='Не найден исполняемый файл 1cv8.exe!'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Function InfobaseUpdateMessage ( Params ) export
+
+	s = NStr ( "en='The infobase was blocked for %Period min starting with %Date.';ru='Информационная база была заблокирована на %Period мин начиная с %Date.'" );
+	return Sformat ( s, Params );
+
+EndFunction
+
+&AtServer
+Procedure StartReReadData ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Processing reading file.';ru='Стартовала процедура дочитывания файла обмена.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ExchangeLoadingAgain ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='The exchange data will be read again from the %Node node (ID = %ID).';ru='Будет произведено повторное чтение данных обмена из узла %Node (ID = %ID).'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ReReadLoad ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Data loading started after update.';ru='Началась загрузка данных после обновления.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure ReReadUnLoad ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Unloading of data after updating has begun.';ru='Началась выгрузка данных после обновления.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure CloseCurrentSession ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Ending the current session (processing reading data after update) ...';ru='Завершение текущего сеанса (дочитывание данных после обновления конфигурации) ...'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure SaveRereadExchange ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='Saved file processing read file exchange. The file is %File.';ru='Сохранили файл обработки дочитывания файла обмена. Файл - %File.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+&AtServer
+Procedure NotDefineLanguageForUser ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	s = NStr ( "en='For user %User is not set to the default language.';ru='Для пользователя %User не установлен язык по умолчанию.'" );
+	putMessage ( s, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+#endregion
+
 &AtServer
 Function RuntimeMessage ( Params = undefined ) export
 
@@ -1234,6 +1788,22 @@ Function WatcherRenamingError ( Params ) export
 EndFunction
 
 &AtServer
+Function WatcherRenamingChildrenError ( Params ) export
+
+	text = NStr ( "en = 'Error on changing the path of subordinate scenarios for the %Scenario';ru = 'Ошибка при изменении пути подчиненных сценариев для %Scenario'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Function WatcherDeletingChildrenError ( Params ) export
+
+	text = NStr ( "en = 'Error on deleting subordinate scripts in %Scenario group';ru = 'Ошибка при изменении пути подчиненных сценариев для %Scenario'" );
+	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
 Function WatcherUpdatingError ( Params ) export
 
 	text = NStr ( "en = 'Scenario updating error: %Scenario. %Error'; ru = 'Ошибка обновления сценария: %Scenario. %Error'" );
@@ -1439,5 +2009,21 @@ Function DataSetColumnNotFound ( Params ) export
 
 	text = "Field not found, DataPath: %Path. Might be the field no longer exists in the source report or Mobile application (or mobile reports) is not up to date";
 	return Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Procedure SyncingBackRequred ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+	
+	text = NStr ( "en = 'Common scenario <%Folder> has been changed. Syncing back is required for the following applications: %Apps';ru = 'Был изменен общий сценарий <%Folder>, требуется обратная синхронизация изменений для приложений: %Apps'" );
+	putMessage ( text, Params, Field, DataKey, DataPath );
+	
+EndProcedure
+
+&AtServer
+Function LoadingError () export
+
+	text = NStr ( "en = 'Data loading error occurred';ru = 'Произошла ошибка во время загрузки данных'" );
+	return text;
 
 EndFunction

@@ -169,6 +169,33 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <attributes uuid="a893ff90-2634-4203-9d22-c64b86495d19">
+    <name>User</name>
+    <synonym>
+      <key>en</key>
+      <value>User</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Users</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>User</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
   <attributes uuid="684671f8-9bf8-4431-9ef2-0005643e9012">
     <name>Version</name>
     <synonym>
@@ -198,33 +225,6 @@
     <fillValue xsi:type="core:StringValue">
       <value></value>
     </fillValue>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
-  <attributes uuid="a893ff90-2634-4203-9d22-c64b86495d19">
-    <name>User</name>
-    <synonym>
-      <key>en</key>
-      <value>User</value>
-    </synonym>
-    <synonym>
-      <key>ru</key>
-      <value>Пользователь</value>
-    </synonym>
-    <type>
-      <types>CatalogRef.Users</types>
-    </type>
-    <toolTip>
-      <key>en</key>
-      <value>User</value>
-    </toolTip>
-    <toolTip>
-      <key>ru</key>
-      <value>Пользователь</value>
-    </toolTip>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:UndefinedValue"/>
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>

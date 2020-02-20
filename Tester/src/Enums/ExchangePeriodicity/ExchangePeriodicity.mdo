@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Enum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="dac09952-e6f2-4bc9-b86b-ee35be6462f3">
+  <producedTypes>
+    <refType typeId="f848d9d8-3a76-427b-87ff-66aee7d6e4c7" valueTypeId="eca6d085-d6cc-4ad7-a4e0-2a272a0f3bfe"/>
+    <listType typeId="0cc3134a-b9f8-4749-9fdc-1be195c8c77c" valueTypeId="6bcdc93b-be2c-4d8e-858f-0781ba7343a9"/>
+    <managerType typeId="551ddbb1-f278-4ebd-be6f-95971fb21dee" valueTypeId="5ff65b39-08c2-4fe2-95b3-893a66c8ef29"/>
+  </producedTypes>
+  <name>ExchangePeriodicity</name>
+  <synonym>
+    <key>ru</key>
+    <value>Периодичность обмена данными</value>
+  </synonym>
+  <synonym>
+    <key>ro</key>
+    <value>Intervalul de schimb de date</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Order</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <quickChoice>true</quickChoice>
+  <choiceMode>BothWays</choiceMode>
+  <explanation>
+    <key>ru</key>
+    <value>Периодичность обмена данными</value>
+  </explanation>
+  <explanation>
+    <key>ro</key>
+    <value>Intervalul de schimb de date</value>
+  </explanation>
+  <enumValues uuid="dfee39c3-5c08-40b4-97c1-37ba849ebc92">
+    <name>Daily</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ежедневно</value>
+    </synonym>
+    <synonym>
+      <key>ro</key>
+      <value>Zilnic</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="d9169899-6578-4b9c-b10d-4416f5a41e53">
+    <name>Weekly</name>
+    <synonym>
+      <key>ru</key>
+      <value>Еженедельно</value>
+    </synonym>
+    <synonym>
+      <key>ro</key>
+      <value>Săptămânal</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="0ba3bfa3-da58-467c-af7e-928f893b6f84">
+    <name>Monthly</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ежемесячно</value>
+    </synonym>
+    <synonym>
+      <key>ro</key>
+      <value>Lunar</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="e0208eae-dda4-4d54-9fd5-78342d21c448">
+    <name>Quarterly</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ежеквартально</value>
+    </synonym>
+    <synonym>
+      <key>ro</key>
+      <value>Trimestrial</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="6528cd79-cecd-4e18-99d5-5aaef0445861">
+    <name>Yearly</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ежегодно</value>
+    </synonym>
+    <synonym>
+      <key>ro</key>
+      <value>Anual</value>
+    </synonym>
+  </enumValues>
+  <enumValues uuid="49abeb07-d7ea-48df-98f7-f49f5b4e3fe6">
+    <name>Constant</name>
+    <synonym>
+      <key>ru</key>
+      <value>Постоянно</value>
+    </synonym>
+    <synonym>
+      <key>ro</key>
+      <value>Constant</value>
+    </synonym>
+  </enumValues>
+</mdclass:Enum>

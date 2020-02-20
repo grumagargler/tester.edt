@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="7965246d-7f77-4be8-9967-3b91082374ba">
+  <producedTypes>
+    <managerType typeId="ede6279c-0c0f-4a4d-9e6b-bc957047e6c9" valueTypeId="182f72ee-d178-4e4b-89fd-e9429c3bba0a"/>
+    <valueManagerType typeId="ed1241ec-bb08-421f-b1f9-0acce2084c6f" valueTypeId="4869ae08-3031-48f9-93f3-2af319b17321"/>
+    <valueKeyType typeId="f6c48cb0-d1c9-5912-aa63-2cd41bda9805" valueTypeId="2fa5141e-0f5c-5c95-8f00-03a186c0b3b1"/>
+  </producedTypes>
+  <name>ServerAdministrator</name>
+  <synonym>
+    <key>en</key>
+    <value>Server Administrator</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Администратор сервера</value>
+  </synonym>
+  <type>
+    <types>String</types>
+    <stringQualifiers>
+      <length>150</length>
+    </stringQualifiers>
+  </type>
+  <explanation>
+    <key>ru</key>
+    <value>Имя пользователя администратора сервера</value>
+  </explanation>
+  <explanation>
+    <key>en</key>
+    <value>Username of server administrator</value>
+  </explanation>
+  <explanation>
+    <key>ro</key>
+    <value>Numele de utilizator al administratorului de server</value>
+  </explanation>
+  <toolTip>
+    <key>ru</key>
+    <value>Имя пользователя администратора сервера</value>
+  </toolTip>
+  <toolTip>
+    <key>en</key>
+    <value>Username of server administrator</value>
+  </toolTip>
+  <toolTip>
+    <key>ro</key>
+    <value>Numele de utilizator al administratorului de server</value>
+  </toolTip>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>

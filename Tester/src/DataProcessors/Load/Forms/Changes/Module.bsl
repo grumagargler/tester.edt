@@ -440,9 +440,14 @@ Procedure loadFiles ()
 	FileIndex = FileIndex + 1;
 	if ( FileIndex > LastFile ) then
 		remove = not CurrentData.Found and not CurrentData.New;
-		isCommon = CurrentData.Extensions = "";
+		application = CurrentData.Application;
+		if ( CurrentData.Extensions = "" ) then
+			isCommon = application.IsEmpty () or not remove;
+		else
+			isCommon = false;
+		endif;
 		parent = CurrentData.GetParent ().Scenario;
-		CurrentData.Scenario = updateScenario ( CurrentData.Application, isCommon, parent, CurrentData.Path, FilesContent, CurrentData.Type, remove );
+		CurrentData.Scenario = updateScenario ( application, isCommon, parent, CurrentData.Path, FilesContent, CurrentData.Type, remove );
 		RenewList.Add ( CurrentData.Scenario );
 		startLoading ();
 		return;
@@ -501,23 +506,21 @@ Function updateScenario ( val Application, val IsCommon, val Parent, val Path, v
 	if ( Remove ) then
 		if ( scenario <> undefined
 			and not wasDeleted ) then
-			markDeletion ( scenario, true );
+			deleteScenario ( scenario );
 		endif; 
 		return undefined;
 	endif;
-	if ( scenario = undefined ) then
+	isNew = scenario = undefined;
+	if ( isNew ) then
 		obj = Catalogs.Scenarios.CreateItem ();
 		loadFields ( obj, Path, Parent );
 	else
-		if ( wasDeleted ) then
-			markDeletion ( scenario, false );
+		if ( Catalogs.Scenarios.Locked ( scenario ) ) then
+			raise Output.LoadingError ();
 		endif;
 		Catalogs.Versions.Create ( scenario, Output.LoadingProcessVersionMemo () );
-		if ( IsCommon ) then
-			return scenario;
-		else
-			obj = scenario.GetObject ();
-		endif;
+		obj = scenario.GetObject ();
+		obj.DeletionMark = false;
 	endif;
 	obj.Application = targetApplication;
 	obj.Type = Type;
@@ -526,9 +529,19 @@ Function updateScenario ( val Application, val IsCommon, val Parent, val Path, v
 		loadScript ( obj, Content );
 		loadTemplate ( obj, Content );
 	endif;
-	enableLoading ( obj );
+	Catalogs.Scenarios.SetSorting ( obj );
+	obj.DataExchange.Load = true;
+	if ( not Catalogs.Scenarios.CheckDoubles ( obj ) ) then
+		raise Output.LoadingError ();
+	endif; 
 	obj.Write ();
-	return obj.Ref;
+	obj.FullExchange ();
+	ref = obj.Ref;
+	ExchangePlans.Repositories.Sync ( ref, targetApplication, true );
+	if ( isNew ) then
+		InformationRegisters.Editing.Lock ( SessionParameters.User, ref );
+	endif;
+	return ref;
 	
 EndFunction
 
@@ -550,24 +563,38 @@ Function getScenario ( Path, Application )
 EndFunction
 
 &AtServerNoContext
-Procedure markDeletion ( Scenario, Mark )
+Procedure deleteScenario ( Scenario )
 	
+	if ( Catalogs.Scenarios.Locked ( Scenario ) ) then
+		raise Output.LoadingError ();
+	endif;
 	obj = Scenario.GetObject ();
-	enableLoading ( obj );
-	obj.SetDeletionMark ( Mark );
-	
-EndProcedure
+	obj.DataExchange.Load = true;
+	obj.DeletionMark = true;
+	obj.Write ();
+	obj.FullExchange ();
+	application = obj.Application;
+	ExchangePlans.Repositories.Sync ( Scenario, application, true );
+	if ( not obj.Tree ) then
+		return;
+	endif;
+	if ( application.IsEmpty () ) then
+		for each reference in Catalogs.Scenarios.ApplicationsInside ( Scenario, application ) do
+			alreadyHappened = reference = application;
+			ExchangePlans.Repositories.Sync ( Scenario, reference, alreadyHappened );
+			Catalogs.Scenarios.RemoveFile ( Scenario, reference, undefined, true, alreadyHappened );
+		enddo;
+	endif;
+	if ( not Catalogs.Scenarios.DeleteChildren ( Scenario, application ) ) then
+		Output.LoadingError ();
+	endif;
 
-&AtServerNoContext
-Procedure enableLoading ( Scenario )
-	
-	Scenario.AdditionalProperties.Insert ( "Loading", true );
-	
 EndProcedure
 
 &AtServerNoContext
 Procedure loadFields ( Obj, Path, Parent )
 	
+	Obj.SetNewCode ();
 	Obj.Creator = SessionParameters.User;
 	Obj.Path = Path;
 	parts = StrSplit ( Path, "." );

@@ -76,23 +76,4 @@
 			</dcscor:item>
 		</appearance>
 	</item>
-	<item>
-		<selection>
-			<item>
-				<field>Area</field>
-			</item>
-		</selection>
-		<filter>
-			<item xsi:type="FilterItemComparison">
-				<left xsi:type="dcscor:Field">AreaFilter</left>
-				<comparisonType>NotFilled</comparisonType>
-			</item>
-		</filter>
-		<appearance>
-			<dcscor:item xsi:type="SettingsParameterValue">
-				<dcscor:parameter>Visible</dcscor:parameter>
-				<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
-			</dcscor:item>
-		</appearance>
-	</item>
 </ConditionalAppearance>

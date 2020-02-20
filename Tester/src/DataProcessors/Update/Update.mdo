@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="f99ab48e-cf22-420a-a4cc-f6ad976d4273">
+  <producedTypes>
+    <objectType typeId="77ee479c-af3e-4c55-ae35-c33770935900" valueTypeId="b2ba18ce-00ad-43d0-bc12-bbc5f3284d06"/>
+    <managerType typeId="04ff3676-3899-44f8-b2d4-7a9b41fb864f" valueTypeId="88b012ce-a8e6-4ad2-9d33-202b54c6b465"/>
+  </producedTypes>
+  <name>Update</name>
+  <synonym>
+    <key>ru</key>
+    <value>Update</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <templates uuid="0f138439-343d-4859-a3ad-d2ca6c95ce11">
+    <name>Updater_1_1</name>
+    <comment>Zipped 1Cv8.1CD</comment>
+    <templateType>BinaryData</templateType>
+  </templates>
+</mdclass:DataProcessor>

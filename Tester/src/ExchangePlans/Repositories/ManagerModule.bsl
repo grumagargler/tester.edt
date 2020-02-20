@@ -9,24 +9,22 @@ Procedure Reset ( Node ) export
 	
 EndProcedure 
 
-Procedure Mark ( Scenario, ExceptMe ) export
-	
+Procedure Sync ( Scenario, Application, SavedLocally ) export
+
 	SetPrivilegedMode ( true );
-	destination = Scenario.DataExchange.Recipients;
-	for each node in applicationNodes ( Scenario, ExceptMe ) do
-		destination.Add ( node );
-	enddo; 
+	nodes = getNodes ( Application, SavedLocally );
+	ExchangePlans.RecordChanges ( nodes, Scenario );
 	SetPrivilegedMode ( false );
-	
+
 EndProcedure 
 
-Function applicationNodes ( Scenario, ExceptMe )
+Function getNodes ( Application, ExceptMe )
 	
 	s = "
 	|select Repositories.Ref as Ref
 	|from ExchangePlan.Repositories as Repositories
 	|where not Repositories.DeletionMark
-	|and Repositories.Application in ( &Applications )
+	|and Repositories.Application = &Application
 	|and not Repositories.ThisNode
 	|";
 	if ( ExceptMe ) then
@@ -35,18 +33,11 @@ Function applicationNodes ( Scenario, ExceptMe )
 		|";
 	endif; 
 	q = new Query ( s );
-	applications = new Array ();
-	application = Scenario.Application;
-	applications.Add ( application );
-	oldApplication = Scenario.OldApplication;
-	if ( not Scenario.IsNew and ( application <> oldApplication ) ) then
-		applications.Add ( oldApplication );
-	endif;
-	q.SetParameter ( "Applications", applications );
+	q.SetParameter ( "Application", Application );
 	q.SetParameter ( "Session", SessionParameters.Session );
 	return q.Execute ().Unload ().UnloadColumn ( "Ref" );
 	
-EndFunction 
+EndFunction
 
 Procedure MarkDeletion ( User ) export
 	

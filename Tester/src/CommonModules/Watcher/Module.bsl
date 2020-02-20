@@ -503,9 +503,11 @@ Procedure proceedRenaming(NewFile, IsFolder)
 	if (not checkName(NewFile)) then
 		return;
 	endif;
-	if (renamingFolderFile()) then
+	if (renamingDirFile()) then
 		error = Output.WatcherRenamingFolderError(new Structure("File", oldFile));
 		syncingResponse(error);
+		return;
+	elsif ( renamingDependencies ( IsFolder, NewFile ) ) then
 		return;
 	endif;
 	error = undefined;
@@ -520,7 +522,7 @@ Procedure proceedRenaming(NewFile, IsFolder)
 
 EndProcedure
 
-Function renamingFolderFile()
+Function renamingDirFile()
 
 	oldFile = TesterExternalRequestsRenaming;
 	renameFolder = StrFind(oldFile, RepositoryFiles.FolderSuffix());
@@ -533,6 +535,12 @@ Function renamingFolderFile()
 	endif;
 	return false;
 
+EndFunction
+
+Function renamingDependencies ( IsFolder, NewFile )
+	
+	return not IsFolder and StrFind ( NewFile, RepositoryFiles.FolderSuffix () )
+	
 EndFunction
 
 Procedure syncRenaming(NewFile, IsFolder)

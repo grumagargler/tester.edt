@@ -358,3 +358,35 @@ Function ReportCommandsOpenModule () export
 EndFunction
 
 #endregion
+
+#region FSUserActions
+
+&AtServer
+Function FSUserActionsCreate () export
+	
+	return 1;
+	
+EndFunction
+
+&AtServer
+Function FSUserActionsChange () export
+	
+	return 2;
+	
+EndFunction
+
+&AtServer
+Function FSUserActionsRename () export
+	
+	return 3;
+	
+EndFunction
+
+&AtServer
+Function FSUserActionsDelete () export
+	
+	return 4;
+	
+EndFunction
+
+#endregion

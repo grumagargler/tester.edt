@@ -1003,6 +1003,11 @@
         <fileDragMode>AsFileRef</fileDragMode>
         <extInfo xsi:type="form:DynamicListTableExtInfo">
           <autoRefreshPeriod>60</autoRefreshPeriod>
+          <period>
+            <startDate>0001-01-01T00:00:00</startDate>
+            <endDate>0001-01-01T00:00:00</endDate>
+          </period>
+          <topLevelParent xsi:type="core:UndefinedValue"/>
           <showRoot>true</showRoot>
         </extInfo>
       </items>

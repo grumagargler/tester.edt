@@ -1065,9 +1065,9 @@
           <segments>List</segments>
         </dataPath>
         <titleLocation>None</titleLocation>
+        <excludedCommands>Delete</excludedCommands>
         <excludedCommands>MoveItem</excludedCommands>
         <excludedCommands>SetDeletionMark</excludedCommands>
-        <excludedCommands>Delete</excludedCommands>
         <items xsi:type="form:FormGroup">
           <name>Group4</name>
           <id>681</id>
@@ -2765,9 +2765,9 @@
     <event>bf0ac0e1-bcbb-4dfe-8fc4-0b1923b461a6</event>
     <name>BeforeWriteAtServer</name>
   </handlers>
+  <excludedCommands>Delete</excludedCommands>
   <excludedCommands>MoveItem</excludedCommands>
   <excludedCommands>SetDeletionMark</excludedCommands>
-  <excludedCommands>Delete</excludedCommands>
   <autoUrl>true</autoUrl>
   <group>Vertical</group>
   <autoFillCheck>true</autoFillCheck>

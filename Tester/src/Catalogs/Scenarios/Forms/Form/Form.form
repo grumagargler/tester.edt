@@ -4291,6 +4291,52 @@
               </extInfo>
             </items>
             <items xsi:type="form:FormField">
+              <name>Local</name>
+              <id>704</id>
+              <visible>true</visible>
+              <enabled>true</enabled>
+              <userVisible>
+                <common>true</common>
+              </userVisible>
+              <dataPath xsi:type="form:MultiLanguageDataPath">
+                <paths xsi:type="form:DataPath">
+                  <segments>Object.Local</segments>
+                </paths>
+              </dataPath>
+              <toolTipRepresentation>Button</toolTipRepresentation>
+              <extendedTooltip>
+                <name>LocalExtendedTooltip</name>
+                <id>706</id>
+                <visible>true</visible>
+                <enabled>true</enabled>
+                <userVisible>
+                  <common>true</common>
+                </userVisible>
+                <type>Label</type>
+                <autoMaxWidth>true</autoMaxWidth>
+                <autoMaxHeight>true</autoMaxHeight>
+                <extInfo xsi:type="form:LabelDecorationExtInfo">
+                  <horizontalAlign>Left</horizontalAlign>
+                </extInfo>
+              </extendedTooltip>
+              <contextMenu>
+                <name>LocalContextMenu</name>
+                <id>705</id>
+                <visible>true</visible>
+                <enabled>true</enabled>
+                <userVisible>
+                  <common>true</common>
+                </userVisible>
+                <autoFill>true</autoFill>
+              </contextMenu>
+              <type>CheckBoxField</type>
+              <editMode>Enter</editMode>
+              <showInHeader>true</showInHeader>
+              <headerHorizontalAlign>Left</headerHorizontalAlign>
+              <showInFooter>true</showInFooter>
+              <extInfo xsi:type="form:CheckBoxFieldExtInfo"/>
+            </items>
+            <items xsi:type="form:FormField">
               <name>Memo</name>
               <id>25</id>
               <visible>true</visible>
@@ -5463,8 +5509,8 @@
                 <segments>List</segments>
               </dataPath>
               <titleLocation>None</titleLocation>
-              <excludedCommands>MoveItem</excludedCommands>
               <excludedCommands>Delete</excludedCommands>
+              <excludedCommands>MoveItem</excludedCommands>
               <excludedCommands>SetDeletionMark</excludedCommands>
               <items xsi:type="form:FormGroup">
                 <name>ListGroup2</name>
@@ -8073,8 +8119,8 @@
     <event>FillCheckProcessingAtServer</event>
     <name>FillCheckProcessingAtServer</name>
   </handlers>
-  <excludedCommands>SetDeletionMark</excludedCommands>
   <excludedCommands>Delete</excludedCommands>
+  <excludedCommands>SetDeletionMark</excludedCommands>
   <autoUrl>true</autoUrl>
   <group>Vertical</group>
   <autoFillCheck>true</autoFillCheck>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="5e2ec9be-513b-4ba3-862b-90d46095750c">
+  <producedTypes>
+    <managerType typeId="8be00b03-e41a-4d47-b45a-4ec98ff5d7f7" valueTypeId="03152c25-05c0-401a-a552-e6bafb8c7533"/>
+    <valueManagerType typeId="31bc250b-05b9-49ad-bdf7-6da0be64a08b" valueTypeId="4e36657d-8f09-4c96-a296-798fc910c8bf"/>
+    <valueKeyType typeId="52319404-7e2f-5df3-97a0-d4e09aa5b1c4" valueTypeId="51aa77fd-c0a8-5584-baeb-58834b714d30"/>
+  </producedTypes>
+  <name>ServerCode</name>
+  <synonym>
+    <key>en</key>
+    <value>Permission Code</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Код разрешения</value>
+  </synonym>
+  <type>
+    <types>String</types>
+    <stringQualifiers>
+      <length>30</length>
+    </stringQualifiers>
+  </type>
+  <explanation>
+    <key>en</key>
+    <value>User's permission code. Used during application update</value>
+  </explanation>
+  <explanation>
+    <key>ro</key>
+    <value>Codul ce permite utilizatorului să intre în baza de date. Este folosit în timpul actualizării aplicației</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Код разрешения входа пользователя в базу. Используется при обновлении конфигурации</value>
+  </explanation>
+  <toolTip>
+    <key>en</key>
+    <value>User's permission code. Used during application update</value>
+  </toolTip>
+  <toolTip>
+    <key>ro</key>
+    <value>Codul ce permite utilizatorului să intre în baza de date. Este folosit în timpul actualizării aplicației</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Код разрешения входа пользователя в базу. Используется при обновлении конфигурации</value>
+  </toolTip>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+</mdclass:Constant>

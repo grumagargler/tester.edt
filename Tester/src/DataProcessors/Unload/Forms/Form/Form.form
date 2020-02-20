@@ -800,7 +800,7 @@
     </edit>
   </attributes>
   <attributes>
-    <name>AllScenarios</name>
+    <name>ChangedScenarios</name>
     <id>2</id>
     <valueType>
       <types>ValueTable</types>

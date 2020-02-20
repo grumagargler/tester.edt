@@ -82,7 +82,8 @@ Function updateScenario ( Scenario, Data, Context, Error )
 		obj.Script = Data;
 	endif;
 	obj.Changed = Max ( Context.Changed, obj.Changed );
-	excludeMe ( obj );
+	Catalogs.Scenarios.SetSorting ( obj );
+	obj.DataExchange.Load = true;
 	try
 		obj.Write ();
 	except
@@ -90,13 +91,34 @@ Function updateScenario ( Scenario, Data, Context, Error )
 		Error = Output.WatcherUpdatingError ( new Structure ( "Error, Scenario", why, Scenario ) );
 		return false;
 	endtry;
+	enrollChanges ( obj, Context.Application, Enum.FSUserActionsChange () );
 	return true;
 		
 EndFunction
 
-Procedure excludeMe ( Object )
-	
-	Object.AdditionalProperties.Insert ( "Loading", true );
+Procedure enrollChanges ( Object, RepoApplication, Action, OldPath = undefined )
+
+	Object.FullExchange ();
+	scenario = Object.Ref;
+	application = Object.Application;
+	ExchangePlans.Repositories.Sync ( scenario, application, application = RepoApplication );
+	if ( Action = Enum.FSUserActionsRename ()
+		or Action = Enum.FSUserActionsDelete () ) then
+		commonFolder = Object.Tree and application.IsEmpty (); 
+		if ( commonFolder ) then
+			syncingBack = new Array ();
+			for each reference in Catalogs.Scenarios.ApplicationsInside ( scenario, RepoApplication ) do
+				alreadyHappened = reference = RepoApplication;
+				ExchangePlans.Repositories.Sync ( scenario, reference, alreadyHappened );
+				Catalogs.Scenarios.RemoveFile ( scenario, reference, OldPath, true, alreadyHappened );
+				syncingBack.Add ( ? ( reference.IsEmpty (), Output.CommonApplicationName (), reference ) );
+			enddo;
+			if ( syncingBack.Count () > 0 ) then
+				msg = new Structure ( "Folder, Apps", Object.Path, StrConcat ( syncingBack, ", " ) );
+				Output.SyncingBackRequred ( msg );
+			endif;
+		endif;
+	endif;
 
 EndProcedure
 
@@ -111,6 +133,7 @@ Function Create ( val Context, val IsFolder, Error ) export
 		return undefined;
 	endif;
 	if ( initScenario ( parent, scenario, Context, IsFolder, Error ) ) then
+		InformationRegisters.Editing.Lock ( SessionParameters.User, scenario );
 		if ( not IsFolder ) then
 			changes = new Array ();
 			if ( parent <> undefined ) then
@@ -163,12 +186,15 @@ EndFunction
 
 Function initScenario ( Parent, Scenario, Context, IsFolder, Error )
 	
+	application = Context.Application;
 	if ( Scenario = undefined ) then
 		obj = Catalogs.Scenarios.CreateItem ();
+		obj.SetNewCode ();
 		obj.Description = RepositoryFiles.FileToName ( Context.File );
 		obj.Parent = Parent;
+		Catalogs.Scenarios.SetPath ( obj );
 		obj.Script = "";
-		obj.Application = Context.Application;
+		obj.Application = application;
 		obj.Creator = SessionParameters.User;
 		obj.Users.Clear ();
 		DataProcessors.Load.ResetTemplate ( obj );
@@ -179,7 +205,8 @@ Function initScenario ( Parent, Scenario, Context, IsFolder, Error )
 			obj.Type = Enums.Scenarios.Scenario;
 		endif;
 		obj.Changed = Context.Changed;
-		excludeMe ( obj );
+		obj.DataExchange.Load = true;
+		Catalogs.Scenarios.SetSorting ( obj );
 		try
 			obj.Write ();
 		except
@@ -187,20 +214,21 @@ Function initScenario ( Parent, Scenario, Context, IsFolder, Error )
 			Error = Output.WatcherCreatingError ( new Structure ( "Error, Parent, File", why, Parent, Context.File ) );
 			return false;
 		endtry;
-	else
-		if ( DF.Pick ( Scenario, "DeletionMark" ) ) then
-			obj = Scenario.GetObject ();
-			excludeMe ( obj );
-			try
-				obj.SetDeletionMark ( false );
-				obj.Changed = Context.Changed;
-				obj.Write ();
-			except
-				why = ErrorDescription ();
-				Error = Output.WatcherRestorationError ( new Structure ( "Error, Scenario, File", why, scenario, Context.File ) );
-				return false;
-			endtry;
-		endif;
+		enrollChanges ( obj, application, Enum.FSUserActionsCreate () );
+		Scenario = obj.Ref;
+	elsif ( DF.Pick ( Scenario, "DeletionMark" ) ) then
+		obj = Scenario.GetObject ();
+		obj.DataExchange.Load = true;
+		obj.DeletionMark = false;
+		obj.Changed = Context.Changed;
+		try
+			obj.Write ();
+		except
+			why = ErrorDescription ();
+			Error = Output.WatcherRestorationError ( new Structure ( "Error, Scenario, File", why, scenario, Context.File ) );
+			return false;
+		endtry;
+		enrollChanges ( obj, application, Enum.FSUserActionsCreate () );
 	endif;
 	return true;
 	
@@ -250,7 +278,7 @@ Function Rename ( val Context, val NewFile, val NewPath, val IsFolder, Error ) e
 		scenario = RuntimeSrv.FindScenario ( NewPath, Context.Application, undefined, undefined, true );
 		alreadyRenamed = scenario <> undefined; 
 		if ( alreadyRenamed ) then
-			return scenario;
+			return scenario; 
 		else
 			Error = Output.UndefinedScenario(new Structure("File", Context.File));
 			return undefined;
@@ -261,25 +289,37 @@ Function Rename ( val Context, val NewFile, val NewPath, val IsFolder, Error ) e
 		Output.LockingError ( errors [ 0 ] );
 		return undefined;
 	endif;
-	if ( renameScenario ( scenario, NewFile, IsFolder, Error ) ) then
+	if ( renameScenario ( scenario, Context.Application, NewFile, IsFolder, Error ) ) then
 		return scenario;
 	endif;
 
 EndFunction
 
-Function renameScenario ( Scenario, NewFile, IsFolder, Error )
+Function renameScenario ( Scenario, Application, NewFile, IsFolder, Error )
 	
+	BeginTransaction ();
 	obj = Scenario.GetObject ();
-	obj.AdditionalProperties.Insert ( "AlreadyRemoved", true );
+	oldPath = obj.Path;
 	obj.Description = RepositoryFiles.FileToName ( NewFile );
-	excludeMe ( obj );
+	Catalogs.Scenarios.SetPath ( obj );
+	obj.DataExchange.Load = true;
 	try
 		obj.Write ();
 	except
 		why = ErrorDescription ();
 		Error = Output.WatcherRenamingError ( new Structure ( "Error, Scenario, File", why, Scenario, NewFile ) );
+		RollbackTransaction ();
 		return false;
 	endtry;
+	enrollChanges ( obj, Application, Enum.FSUserActionsRename (), oldPath );
+	if ( IsFolder ) then
+		if ( not Catalogs.Scenarios.ChangeChildren ( Scenario, oldPath, obj.Path, Application, Application, true ) ) then
+			Error = Output.WatcherRenamingChildrenError ( new Structure ( "Scenario", Scenario ) );
+			RollbackTransaction ();
+			return false;
+		endif;
+	endif;
+	CommitTransaction ();
 	return true;
 		
 EndFunction
@@ -309,9 +349,9 @@ EndFunction
 Function removeScenario ( Scenario, Context, Error )
 	
 	obj = Scenario.GetObject ();
-	obj.AdditionalProperties.Insert ( "AlreadyRemoved", true );
-	excludeMe ( obj );
+	obj.DataExchange.Load = true;
 	extension = Context.Extension;
+	application = Context.Application;
 	if ( extension = RepositoryFiles.MXLFile () ) then
 		DataProcessors.Load.ResetTemplate ( obj );
 		try
@@ -321,6 +361,7 @@ Function removeScenario ( Scenario, Context, Error )
 			Error = Output.WatcherTemplateRemovingError ( new Structure ( "Error, Scenario", why, Scenario ) );
 			return false;
 		endtry;
+		enrollChanges ( obj, application, Enum.FSUserActionsChange () );
 	elsif ( extension = RepositoryFiles.BSLFile () ) then
 		obj.Script = "";
 		try
@@ -330,14 +371,26 @@ Function removeScenario ( Scenario, Context, Error )
 			Error = Output.WatcherScriptRemovingError ( new Structure ( "Error, Scenario", why, Scenario ) );
 			return false;
 		endtry;
+		enrollChanges ( obj, application, Enum.FSUserActionsChange () );
 	elsif ( not obj.DeletionMark ) then
-		try
-			obj.SetDeletionMark ( true );
-		except
-			why = ErrorDescription ();
-			Error = Output.WatcherRemovingError ( new Structure ( "Error, Scenario", why, Scenario ) );
-			return false;
-		endtry;
+		if ( obj.Application = application ) then
+			obj.DeletionMark = true;
+			try
+				obj.Write ();
+			except
+				why = ErrorDescription ();
+				Error = Output.WatcherRemovingError ( new Structure ( "Error, Scenario", why, Scenario ) );
+				return false;
+			endtry;
+			enrollChanges ( obj, application, Enum.FSUserActionsDelete () );
+		endif;
+		if ( obj.Tree ) then
+			if ( not Catalogs.Scenarios.DeleteChildren ( Scenario, application ) ) then
+				Error = Output.WatcherRenamingChildrenError ( new Structure ( "Scenario", Scenario ) );
+				RollbackTransaction ();
+				return false;
+			endif;
+		endif;
 	endif;
 	return true;
 		

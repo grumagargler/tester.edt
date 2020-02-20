@@ -196,6 +196,57 @@
     </extInfo>
   </items>
   <items xsi:type="form:FormField">
+    <name>InitFolder</name>
+    <id>34</id>
+    <visible>true</visible>
+    <enabled>true</enabled>
+    <userVisible>
+      <common>true</common>
+    </userVisible>
+    <dataPath xsi:type="form:DataPath">
+      <segments>InitFolder</segments>
+    </dataPath>
+    <toolTip>
+      <key>en</key>
+      <value>Initialize the folder with configuration files</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Проинициализировать каталог конфигурационными файлами</value>
+    </toolTip>
+    <extendedTooltip>
+      <name>ExtendedTooltip</name>
+      <id>36</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <type>Label</type>
+      <autoMaxWidth>true</autoMaxWidth>
+      <autoMaxHeight>true</autoMaxHeight>
+      <extInfo xsi:type="form:LabelDecorationExtInfo">
+        <horizontalAlign>Left</horizontalAlign>
+      </extInfo>
+    </extendedTooltip>
+    <contextMenu>
+      <name>ContextMenu</name>
+      <id>35</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <autoFill>true</autoFill>
+    </contextMenu>
+    <type>CheckBoxField</type>
+    <editMode>Enter</editMode>
+    <showInHeader>true</showInHeader>
+    <headerHorizontalAlign>Left</headerHorizontalAlign>
+    <showInFooter>true</showInFooter>
+    <extInfo xsi:type="form:CheckBoxFieldExtInfo"/>
+  </items>
+  <items xsi:type="form:FormField">
     <name>Mapping</name>
     <id>10</id>
     <visible>true</visible>
@@ -489,6 +540,28 @@
       <common>true</common>
     </edit>
     <main>true</main>
+    <savedData>true</savedData>
+  </attributes>
+  <attributes>
+    <name>InitFolder</name>
+    <title>
+      <key>en</key>
+      <value>Initialize</value>
+    </title>
+    <title>
+      <key>ru</key>
+      <value>Проинициализировать</value>
+    </title>
+    <id>2</id>
+    <valueType>
+      <types>Boolean</types>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
     <savedData>true</savedData>
   </attributes>
   <commandInterface>

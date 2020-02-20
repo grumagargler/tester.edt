@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:WebService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="d456293b-7961-4b64-a050-f6eca7ed7029">
+  <name>Exchange</name>
+  <namespace>http://localhost/wsExchange</namespace>
+  <xdtoPackages xsi:type="core:ReferenceValue"/>
+  <xdtoPackages xsi:type="core:StringValue">
+    <value>http://v8.1c.ru/8.1/data-composition-system/details</value>
+  </xdtoPackages>
+  <xdtoPackages xsi:type="core:StringValue">
+    <value>http://v8.1c.ru/8.1/data/core</value>
+  </xdtoPackages>
+  <xdtoPackages xsi:type="core:StringValue">
+    <value>http://v8.1c.ru/8.1/data/enterprise/current-config</value>
+  </xdtoPackages>
+  <descriptorFileName>wsExchange.1cws</descriptorFileName>
+  <sessionMaxAge>20</sessionMaxAge>
+  <operations uuid="8c4bc009-ce40-4089-8fa8-cdef8ef062c3">
+    <name>Begin</name>
+    <xdtoReturningValueType>
+      <name>boolean</name>
+      <nsUri>http://www.w3.org/2001/XMLSchema</nsUri>
+    </xdtoReturningValueType>
+    <procedureName>Begin</procedureName>
+    <dataLockControlMode>Managed</dataLockControlMode>
+    <parameters uuid="e1b183e2-063e-48b1-ad13-270c91ee5c84">
+      <name>Node</name>
+      <xdtoValueType>
+        <name>string</name>
+        <nsUri>http://www.w3.org/2001/XMLSchema</nsUri>
+      </xdtoValueType>
+    </parameters>
+    <parameters uuid="ad8f0608-3e5f-4aaa-a642-927212e909db">
+      <name>Device</name>
+      <xdtoValueType>
+        <name>string</name>
+        <nsUri>http://www.w3.org/2001/XMLSchema</nsUri>
+      </xdtoValueType>
+      <nillable>true</nillable>
+    </parameters>
+    <parameters uuid="24ca17ba-2de7-4d0c-9a46-8ad21920a812">
+      <name>Incoming</name>
+      <xdtoValueType>
+        <name>decimal</name>
+        <nsUri>http://www.w3.org/2001/XMLSchema</nsUri>
+      </xdtoValueType>
+      <nillable>true</nillable>
+    </parameters>
+    <parameters uuid="3b92e1a9-fddc-48b5-933b-046e31d8893c">
+      <name>Outgoing</name>
+      <xdtoValueType>
+        <name>decimal</name>
+        <nsUri>http://www.w3.org/2001/XMLSchema</nsUri>
+      </xdtoValueType>
+      <nillable>true</nillable>
+    </parameters>
+  </operations>
+  <operations uuid="2382c539-4217-4752-9651-9c2f72834dc5">
+    <name>Read</name>
+    <xdtoReturningValueType>
+      <name>ValueStorage</name>
+      <nsUri>http://v8.1c.ru/8.1/data/core</nsUri>
+    </xdtoReturningValueType>
+    <procedureName>Read</procedureName>
+    <dataLockControlMode>Managed</dataLockControlMode>
+    <parameters uuid="928a0471-9e4d-4071-bb08-6e5b11e9d09b">
+      <name>Node</name>
+      <xdtoValueType>
+        <name>string</name>
+        <nsUri>http://www.w3.org/2001/XMLSchema</nsUri>
+      </xdtoValueType>
+    </parameters>
+  </operations>
+  <operations uuid="a278a575-cfff-45db-b7d7-4c16ff051d6c">
+    <name>Write</name>
+    <xdtoReturningValueType>
+      <name>ValueStorage</name>
+      <nsUri>http://v8.1c.ru/8.1/data/core</nsUri>
+    </xdtoReturningValueType>
+    <nillable>true</nillable>
+    <procedureName>Write</procedureName>
+    <dataLockControlMode>Managed</dataLockControlMode>
+    <parameters uuid="93bbcb43-f04e-48b0-9602-77baf8180e8a">
+      <name>Node</name>
+      <xdtoValueType>
+        <name>string</name>
+        <nsUri>http://www.w3.org/2001/XMLSchema</nsUri>
+      </xdtoValueType>
+    </parameters>
+    <parameters uuid="f3fb1c81-1130-4900-aba1-e80459036850">
+      <name>Data</name>
+      <xdtoValueType>
+        <name>ValueStorage</name>
+        <nsUri>http://v8.1c.ru/8.1/data/core</nsUri>
+      </xdtoValueType>
+    </parameters>
+    <parameters uuid="1df1dfaf-4dab-4c92-815a-49ac5ff06638">
+      <name>File</name>
+      <xdtoValueType>
+        <name>string</name>
+        <nsUri>http://www.w3.org/2001/XMLSchema</nsUri>
+      </xdtoValueType>
+    </parameters>
+  </operations>
+</mdclass:WebService>

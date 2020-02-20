@@ -117,6 +117,7 @@
   <commonPictures>CommonPicture.Disconnect</commonPictures>
   <commonPictures>CommonPicture.Email</commonPictures>
   <commonPictures>CommonPicture.Eval</commonPictures>
+  <commonPictures>CommonPicture.Exchange</commonPictures>
   <commonPictures>CommonPicture.Fields</commonPictures>
   <commonPictures>CommonPicture.GoIn</commonPictures>
   <commonPictures>CommonPicture.GoOut</commonPictures>
@@ -193,6 +194,7 @@
   <commonModules>CommonModule.Collections</commonModules>
   <commonModules>CommonModule.CommonEvents</commonModules>
   <commonModules>CommonModule.Compiler</commonModules>
+  <commonModules>CommonModule.Connections</commonModules>
   <commonModules>CommonModule.Conversion</commonModules>
   <commonModules>CommonModule.DC</commonModules>
   <commonModules>CommonModule.Debugger</commonModules>
@@ -204,6 +206,7 @@
   <commonModules>CommonModule.Environment</commonModules>
   <commonModules>CommonModule.EnvironmentSrv</commonModules>
   <commonModules>CommonModule.ErrorLogForm</commonModules>
+  <commonModules>CommonModule.Exchange</commonModules>
   <commonModules>CommonModule.Extender</commonModules>
   <commonModules>CommonModule.ExtenderSrv</commonModules>
   <commonModules>CommonModule.Fields</commonModules>
@@ -247,11 +250,14 @@
   <commonModules>CommonModule.Webhook</commonModules>
   <commonModules>CommonModule.WorkspaceForm</commonModules>
   <commonModules>CommonModule.WorkspaceFormSrv</commonModules>
+  <exchangePlans>ExchangePlan.Full</exchangePlans>
   <exchangePlans>ExchangePlan.Repositories</exchangePlans>
+  <webServices>WebService.Exchange</webServices>
   <httpServices>HTTPService.Job</httpServices>
   <httpServices>HTTPService.Hook</httpServices>
   <eventSubscriptions>EventSubscription.CheckDoubles</eventSubscriptions>
   <eventSubscriptions>EventSubscription.GetReportForm</eventSubscriptions>
+  <scheduledJobs>ScheduledJob.Exchange</scheduledJobs>
   <scheduledJobs>ScheduledJob.GeneratingReports</scheduledJobs>
   <scheduledJobs>ScheduledJob.SearchMerge</scheduledJobs>
   <scheduledJobs>ScheduledJob.SearchUpdate</scheduledJobs>
@@ -271,8 +277,17 @@
   <commonCommands>CommonCommand.DownloadWorker</commonCommands>
   <commonCommands>CommonCommand.Help</commonCommands>
   <commonCommands>CommonCommand.Restart</commonCommands>
+  <constants>Constant.Agent</constants>
   <constants>Constant.ApplicationURL</constants>
+  <constants>Constant.CloudPassword</constants>
+  <constants>Constant.CloudUser</constants>
+  <constants>Constant.ClusterAdministrator</constants>
+  <constants>Constant.ClusterPassword</constants>
+  <constants>Constant.CounterFull</constants>
   <constants>Constant.InfoEmail</constants>
+  <constants>Constant.ServerAdministrator</constants>
+  <constants>Constant.ServerCode</constants>
+  <constants>Constant.ServerPassword</constants>
   <constants>Constant.SMTPPassword</constants>
   <constants>Constant.SMTPPort</constants>
   <constants>Constant.SMTPServer</constants>
@@ -292,6 +307,7 @@
   <catalogs>Catalog.Computers</catalogs>
   <catalogs>Catalog.Connections</catalogs>
   <catalogs>Catalog.ErrorLog</catalogs>
+  <catalogs>Catalog.Exchange</catalogs>
   <catalogs>Catalog.Metadata</catalogs>
   <catalogs>Catalog.Modules</catalogs>
   <catalogs>Catalog.OnExit</catalogs>
@@ -309,9 +325,12 @@
   <enums>Enum.Access</enums>
   <enums>Enum.AgentStatuses</enums>
   <enums>Enum.Controls</enums>
+  <enums>Enum.ExchangePeriodicity</enums>
+  <enums>Enum.ExchangeTransport</enums>
   <enums>Enum.JobStatuses</enums>
   <enums>Enum.Module</enums>
   <enums>Enum.Periodicity</enums>
+  <enums>Enum.Protocols</enums>
   <enums>Enum.Recording</enums>
   <enums>Enum.Running</enums>
   <enums>Enum.Scenarios</enums>
@@ -326,12 +345,14 @@
   <reports>Report.Testing</reports>
   <dataProcessors>DataProcessor.Assertions</dataProcessors>
   <dataProcessors>DataProcessor.Compiler</dataProcessors>
+  <dataProcessors>DataProcessor.ExchangeData</dataProcessors>
   <dataProcessors>DataProcessor.JobConsole</dataProcessors>
   <dataProcessors>DataProcessor.Load</dataProcessors>
   <dataProcessors>DataProcessor.Tables</dataProcessors>
   <dataProcessors>DataProcessor.TranspilerRaw</dataProcessors>
   <dataProcessors>DataProcessor.TranspilerTester</dataProcessors>
   <dataProcessors>DataProcessor.Unload</dataProcessors>
+  <dataProcessors>DataProcessor.Update</dataProcessors>
   <informationRegisters>InformationRegister.AgentJobs</informationRegisters>
   <informationRegisters>InformationRegister.AgentScenarios</informationRegisters>
   <informationRegisters>InformationRegister.AgentStatuses</informationRegisters>

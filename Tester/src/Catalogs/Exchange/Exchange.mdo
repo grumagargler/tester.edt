@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="e0d5dccb-7872-49a8-87fb-2c362d770c06">
+  <producedTypes>
+    <objectType typeId="d48e8749-2430-4064-a3a5-3ec36d53fdd5" valueTypeId="291d177a-60cb-4e9c-b362-251bbbe251f6"/>
+    <refType typeId="64af9001-b5f9-4d65-a3aa-9267b545315a" valueTypeId="ef83ac17-020e-46fe-86e4-a365588a5cbb"/>
+    <selectionType typeId="246a5313-c115-49b7-891e-3b3c85f1c7c2" valueTypeId="55cd141c-4c5f-4bee-ad94-af21535d581c"/>
+    <listType typeId="98cce5a0-996a-4b24-b9ba-a05d9598e235" valueTypeId="16d2a935-f58b-4f14-be94-08d896d3b86f"/>
+    <managerType typeId="1e9049ae-f91f-49ad-b987-afff0b8a42c7" valueTypeId="236b6d85-45d7-4f4a-bd3d-97761f40d72b"/>
+  </producedTypes>
+  <name>Exchange</name>
+  <synonym>
+    <key>en</key>
+    <value>Exchange settings</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Настройки обмена</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.Exchange.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.Exchange.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>PredefinedDataName</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Predefined</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Ref</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>DeletionMark</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>IsFolder</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Owner</name>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Parent</name>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Description</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <standardAttributes>
+    <dataHistory>Use</dataHistory>
+    <name>Code</name>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+  </standardAttributes>
+  <createOnInput>Use</createOnInput>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <fullTextSearch>Use</fullTextSearch>
+  <explanation>
+    <key>en</key>
+    <value>Contains settings for data exchange nodes</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Содержит настройки узлов обмена данными</value>
+  </explanation>
+  <hierarchical>true</hierarchical>
+  <limitLevelCount>true</limitLevelCount>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>3</codeLength>
+  <descriptionLength>150</descriptionLength>
+  <codeType>String</codeType>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <defaultObjectForm>Catalog.Exchange.Form.Form</defaultObjectForm>
+  <defaultListForm>Catalog.Exchange.Form.List</defaultListForm>
+  <defaultChoiceForm>Catalog.Exchange.Form.Choice</defaultChoiceForm>
+  <attributes uuid="fdc03866-8390-4299-8bf1-071882657518">
+    <name>DateLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Date (load)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Дата (загрузка)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="300cd05b-9dd8-470e-bceb-964b9e79425e">
+    <name>DateUnload</name>
+    <synonym>
+      <key>en</key>
+      <value>Date (unload)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Дата (выгрузка)</value>
+    </synonym>
+    <type>
+      <types>Date</types>
+      <dateQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="4742e8d1-b944-44dc-b65a-fed0ed9db220">
+    <name>EMailLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Email (load data)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Email (загрузка данных)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>250</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Adresa de e-mail pentru importul datelor</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Адрес электронной почты для загрузки данных</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="5b697745-5ff8-4137-8a12-f918bc2cb91d">
+    <name>EMailUnLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Email (unload data)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Email (выгрузка данных)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>250</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Adresa de e-mail pentru exportul datelor</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Адрес электронной почты для выгрузки данных</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="d549f804-a355-4545-b11b-3fb2b1e50121">
+    <name>ExchangeTransport</name>
+    <synonym>
+      <key>en</key>
+      <value>Exchange transport</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Способ передачи</value>
+    </synonym>
+    <type>
+      <types>EnumRef.ExchangeTransport</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="237cc46d-c0ba-4d40-8cf7-5864d865b7a8">
+    <name>FileMessage</name>
+    <synonym>
+      <key>ro</key>
+      <value>Locația fișierului de schimb</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Расположение файла обмена</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="b75c556a-0bb8-43ae-9a60-49e3bc014b82">
+    <name>FolderDiskLoadHandle</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder (load data, manual mode)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка (загрузка данных, ручной режим)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Каталог для загрузки данных (ручной режим загрузки)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="7c68cd3b-83c2-4adf-bb87-e975c33f084b">
+    <name>FolderDiskLoadJob</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder (load data, scheduled job)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка (загрузка данных, фоновое задание)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Mapa pentru importul datelor (sarcină de bază)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Каталог для загрузки данных (фоновое задание)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="cfc7acd6-b94f-4bf8-ab57-9faf81755355">
+    <name>FolderDiskUnLoadHandle</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder (unload data, manual mode)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка (выгрузка данных, ручной режим)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ru</key>
+      <value>Каталог для загрузки данных (ручной режим загрузки)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="d808d116-19d1-44b8-acc7-d316f9063d6e">
+    <name>FolderDiskUnLoadJob</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder (unload data, scheduled job)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка (выгрузка данных, фоновое задание)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Mapa pentru exportul datelor (sarcină de bază)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Каталог для выгрузки данных (фоновое задание)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="0a458afa-cb2c-4be4-8dbc-b990df8e440a">
+    <name>FolderFTPLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder FTP (load data)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка FTP (загрузка данных)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>255</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Director de schimb pentru FTP (import de date)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Каталог обмена на FTP (загрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="8404ff54-d3bb-4887-8b2a-a4f9ef34332a">
+    <name>FolderFTPUnLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Folder FTP (unload data)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Папка FTP (выгрузка данных)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>255</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Director de schimb pentru FTP (export de date)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Каталог обмена на FTP (выгрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="0876554d-59eb-489b-a7c6-de2f2bac611e">
+    <name>MaximumErrors</name>
+    <synonym>
+      <key>en</key>
+      <value>Number of errors for sending an error report</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Кол-во ошибок для отправки отчета об ошибках</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="539c27a4-25c9-41a8-a508-0d0a5a38535f">
+    <name>Node</name>
+    <synonym>
+      <key>en</key>
+      <value>Node</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Узел</value>
+    </synonym>
+    <type>
+      <types>ExchangePlanRef.Full</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillChecking>ShowError</fillChecking>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="6aab54d3-9925-458e-81ba-d5d2eabae0c7">
+    <name>NumbersOfErrors</name>
+    <synonym>
+      <key>en</key>
+      <value>Number of current errors</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Количество текущих ошибок</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="0259ea13-d3bb-41de-b05d-c049ade55a0f">
+    <name>PassiveModeFTP</name>
+    <synonym>
+      <key>en</key>
+      <value>Passive mode</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пассивный режим</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="760f4178-15a1-465c-b51c-1f97539f0921">
+    <name>PasswordEmail</name>
+    <synonym>
+      <key>en</key>
+      <value>Password email (load)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пароль email (загрузка)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>30</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="bc4ec434-a506-4343-99c0-5ec1c341aed1">
+    <name>PasswordFTPLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Password FTP (load)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пароль FTP (загрузка)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>30</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Parola de utilizator FTP (importul datelor)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пароль пользователя FTP (загрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="77500b4f-9311-4728-90c4-c3a7c2e501d0">
+    <name>PasswordFTPUnLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Password FTP (unload)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пароль FTP (выгрузка)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>30</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Parola de utilizator FTP (exportul datelor)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пароль пользователя FTP (выгрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="514d9103-b05b-4112-922d-0097044a191d">
+    <name>PasswordWebService</name>
+    <synonym>
+      <key>en</key>
+      <value>Password web service</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пароль веб сервис</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>30</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="31ee81fa-a3a1-4fb7-aa1f-42947d78ed5c">
+    <name>Periodicity</name>
+    <synonym>
+      <key>en</key>
+      <value>Periodicity</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Периодичность</value>
+    </synonym>
+    <type>
+      <types>EnumRef.ExchangePeriodicity</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="1407e617-105f-4980-824d-448678864ca9">
+    <name>PortFTPLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Port FTP (load)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Порт FTP  (загрузка)</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>4</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Port FTP (import de date)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Порт FTP  (загрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="cfc1265b-0996-4c4c-ba02-5f472ab3efd6">
+    <name>PortFTPUnLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Port FTP (unload)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Порт FTP  (выгрузка)</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>4</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Port FTP (export de date)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Порт FTP  (выгрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="797d0d04-6785-4b65-8865-1d9f63eedffd">
+    <name>PortIncoming</name>
+    <synonym>
+      <key>en</key>
+      <value>Port (incoming)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Порт (вход.)</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>4</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Port POP3 pentru importul datelor</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Порт РОР3 для загрузки данных</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="9e4e93b0-9d0f-4bf0-a314-2661146eb92f">
+    <name>PortOutgoing</name>
+    <synonym>
+      <key>en</key>
+      <value>Port SMTP (outgoing)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Порт (исх.)</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>4</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Port SMTP pentru importul datelor</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Порт SMTP для загрузки данных</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="83b93bb7-8d58-4d34-b704-a6086a7510d4">
+    <name>PrefixFileName</name>
+    <synonym>
+      <key>en</key>
+      <value>Prefix</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Префикс</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>10</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="dcd34759-de96-4752-bd1a-81efca0d1b57">
+    <name>Protocol</name>
+    <synonym>
+      <key>en</key>
+      <value>Protocol</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Протокол</value>
+    </synonym>
+    <type>
+      <types>EnumRef.Protocols</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="9afffb02-9cd3-4fb8-8db2-540456b8a799">
+    <name>SendedEMailError</name>
+    <synonym>
+      <key>en</key>
+      <value>Sended report</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Отправлен отчет</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="554bce69-1a77-4769-8b77-7f98c9f5952f">
+    <name>SendEMailErrors</name>
+    <synonym>
+      <key>en</key>
+      <value>Notify of exchange errors by email</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Уведомлять об ошибках обмена по email</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="0a06bc17-d079-4281-9ddd-ce843d725db5">
+    <name>ServerFTPLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Server FTP (load)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сервер FTP (загрузка)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>255</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Server FTP (import de date)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сервер FTP (загрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="22221861-a6ec-42d0-888b-8c385cc419c6">
+    <name>ServerFTPUnLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>Server FTP (unload)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сервер FTP (выгрузка)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>255</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Server FTP (export de date)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сервер FTP (выгрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="7c2bf406-1dd7-44ad-84ad-ff2eed64e81a">
+    <name>ServerIncoming</name>
+    <synonym>
+      <key>en</key>
+      <value>Server (incoming)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сервер (вх. почта)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>50</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Server POP3 pentru importul datelor</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сервер РОР3 для загрузки данных</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="fd094937-c1ea-4003-bdde-e58510a5fd1b">
+    <name>ServerOutgoing</name>
+    <synonym>
+      <key>en</key>
+      <value>Server (outgoing)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сервер (исх. почта)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>50</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Server SMTP pentru importul datelor</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Сервер SMTP для загрузки данных</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="257ffa15-6164-48f1-aad1-6074611aabe4">
+    <name>ServerTimeOut</name>
+    <synonym>
+      <key>en</key>
+      <value>Time out</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Время ожидания сервера</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>3</precision>
+      </numberQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Timeout server (import de date)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Время ожидания сервера (загрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="53e4dfb7-2410-46a0-b57d-88a72bc0655f">
+    <name>Update</name>
+    <synonym>
+      <key>en</key>
+      <value>Configuration changes received</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Получены изменения конфигурации</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="56f36f5f-3857-4ecb-96b7-b91c4d4b2214">
+    <name>UseAutomatic</name>
+    <synonym>
+      <key>en</key>
+      <value>Auto (scheduled)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Авто (по расписанию)</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="ce3e1bd7-6d40-40f4-ba10-0f2e30002f98">
+    <name>UserEmail</name>
+    <synonym>
+      <key>en</key>
+      <value>Login email (load)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Логин email (загрузка)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>250</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="625fef9b-3b8d-4b61-af58-6486038615af">
+    <name>UserFTPLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>User FTP (load)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь FTP (загрузка)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>50</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Utilizator de server FTP (import de date)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь FTP сервера (загрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="7c84280c-848a-4af5-ac37-e248b7f9a7c0">
+    <name>UserFTPUnLoad</name>
+    <synonym>
+      <key>en</key>
+      <value>User FTP (unload)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь FTP (выгрузка)</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>50</length>
+      </stringQualifiers>
+    </type>
+    <toolTip>
+      <key>ro</key>
+      <value>Utilizator de server FTP (export de date)</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Пользователь FTP сервера (выгрузка данных)</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="a1140037-9964-4adf-964e-25fb87d45beb">
+    <name>UserWebService</name>
+    <synonym>
+      <key>en</key>
+      <value>User web service</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Пользователь веб сервис</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>25</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="805c91e2-189f-4f1e-be1c-0eb5211e945d">
+    <name>UseSSLIncoming</name>
+    <synonym>
+      <key>en</key>
+      <value>Use SSL (incoming)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Использовать SSL (вход.)</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="43cbc735-8ff1-4a58-bdb1-f1b383e5f5f7">
+    <name>UseSSLOutgoing</name>
+    <synonym>
+      <key>en</key>
+      <value>Use SSL (оutgoing)</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Использовать SSL (исх.)</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="3cb69471-ec18-4fb9-8981-79a28703a621">
+    <name>UseStandartFTPClient</name>
+    <synonym>
+      <key>en</key>
+      <value>Use Windows FTP Client</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Использовать Windows FTP клиент</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="278bf995-d4bf-4e18-97e0-b025a9289c92">
+    <name>WebService</name>
+    <synonym>
+      <key>en</key>
+      <value>Web service</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Веб-сервис</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <tabularSections uuid="2b8857cf-9858-451e-bd2e-00275db26909">
+    <producedTypes>
+      <objectType typeId="b2357577-1d43-456b-91e3-aafa109e645d" valueTypeId="d3edda1a-7453-4f8b-81f4-35d62fe9cbd7"/>
+      <rowType typeId="224aba1b-cd14-4164-a240-7badd19cba6e" valueTypeId="1293df84-e730-4793-bae6-fec29ad4ad59"/>
+    </producedTypes>
+    <name>Receivers</name>
+    <synonym>
+      <key>en</key>
+      <value>Email for send an error report</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Email для отправки отчета об ошибках</value>
+    </synonym>
+    <standardAttributes>
+      <dataHistory>Use</dataHistory>
+      <name>LineNumber</name>
+      <fillValue xsi:type="core:UndefinedValue"/>
+      <fullTextSearch>Use</fullTextSearch>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+    </standardAttributes>
+    <attributes uuid="2f49f23c-8f5c-4a25-a80b-ea54bc4776ac">
+      <name>User</name>
+      <synonym>
+        <key>en</key>
+        <value>User</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Пользователь</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Users</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
+  <forms uuid="7268fafa-807d-4f7f-b3a4-14cada2d0463">
+    <name>Form</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="13147d09-9d1f-4a05-ac21-2ab5450f2073">
+    <name>List</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="4554ecc5-ca20-4474-a9eb-91400a3c3ba6">
+    <name>Choice</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <forms uuid="b2886338-f514-4392-9d89-48aba76c059f">
+    <name>Settings</name>
+    <synonym>
+      <key>en</key>
+      <value>Settings</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Настройки</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+  <commands uuid="e3c1eca6-cfc3-4d85-aceb-2b913b36f6e6">
+    <name>LoadData</name>
+    <synonym>
+      <key>en</key>
+      <value>Load</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Загрузить</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Exchange</types>
+    </commandParameterType>
+    <representation>PictureAndText</representation>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.ReadChanges</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="49b90008-49cf-4386-b834-41f83a567fd7">
+    <name>UnloadData</name>
+    <synonym>
+      <key>en</key>
+      <value>Unload</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Выгрузить</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Exchange</types>
+    </commandParameterType>
+    <representation>PictureAndText</representation>
+    <picture xsi:type="core:PictureRef">
+      <picture>StdPicture.WriteChanges</picture>
+    </picture>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:Catalog>

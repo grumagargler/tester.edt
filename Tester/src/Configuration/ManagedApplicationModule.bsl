@@ -109,6 +109,53 @@ Procedure defineTestManager ()
 	
 EndProcedure 
 
+Procedure OnStart ()
+	
+	if ( not Starting.Allowed () ) then
+		return;
+	endif;
+	rereadData = defingeExchange ();
+	if ( rereadData ) then
+		Exchange.RereadData ();
+		return;
+	endif;
+	init ();
+	Environment.DisplayCaption ();
+	openScenario ();
+	startAgent ();
+	applyParameters ();
+	
+EndProcedure
+
+Function defingeExchange ()
+
+	return ( StrFind ( LaunchParameter, "READ_EXCHANGE_DATA" ) > 0 );
+	
+EndFunction
+
+Procedure init ()
+
+	si = new SystemInfo ();
+	FrameworkVersion = si.AppVersion;
+	TesterSystemFolder = RepositoryFiles.SystemFolder (); 
+	folder = TesterSystemFolder + GetPathSeparator ();
+	TesterExternalRequests = folder + "request";
+	TesterExternalResponses = folder + "response";
+	TesterWatcherBuffer = new Array ();
+	TesterWatcherListeningMessage = Output.WatcherListeningEvents ();
+	TesterWatcherSyncingMessage = Output.WatcherSyncingMessage ();
+	TesterWatcherIndicationThreshold = 10;
+	TesterWatcherBSLServerSettings = RepositoryFiles.BSLServerSettings ();
+	TesterServerMode = false;
+	RunningDelegatedJob = false;
+	initFeatures ();
+	initSpecialFields ();
+	initExtender ();
+	Watcher.Init ();
+	ScenariosPanel.Init ();
+
+EndProcedure
+
 Procedure initSession ()
 	
 	#if ( WebClient ) then
@@ -141,42 +188,6 @@ Procedure initSession ()
 	SetInterfaceFunctionalOptionParameters ( set );
 	
 EndProcedure 
-
-Procedure OnStart ()
-	
-	if ( not Starting.Allowed () ) then
-		return;
-	endif;
-	init ();
-	Environment.DisplayCaption ();
-	openScenario ();
-	startAgent ();
-	applyParameters ();
-	
-EndProcedure
-
-Procedure init ()
-
-	si = new SystemInfo ();
-	FrameworkVersion = si.AppVersion;
-	TesterSystemFolder = RepositoryFiles.SystemFolder (); 
-	folder = TesterSystemFolder + GetPathSeparator ();
-	TesterExternalRequests = folder + "request";
-	TesterExternalResponses = folder + "response";
-	TesterWatcherBuffer = new Array ();
-	TesterWatcherListeningMessage = Output.WatcherListeningEvents ();
-	TesterWatcherSyncingMessage = Output.WatcherSyncingMessage ();
-	TesterWatcherIndicationThreshold = 10;
-	TesterWatcherBSLServerSettings = RepositoryFiles.BSLServerSettings ();
-	TesterServerMode = false;
-	RunningDelegatedJob = false;
-	initFeatures ();
-	initSpecialFields ();
-	initExtender ();
-	Watcher.Init ();
-	ScenariosPanel.Init ();
-
-EndProcedure
 
 Procedure initFeatures ()
 	
@@ -380,14 +391,6 @@ Procedure ExternEventProcessing ( Source, Event, Data )
 
 EndProcedure
 
-Procedure stopListener ()
-	
-	if ( IAmAgent ) then
-		DetachIdleHandler ( "agentListener" );
-	endif;
-	
-EndProcedure
-
 Procedure WatcherStartSyncing () export
 	
 	total = TesterWatcherBuffer.UBound ();
@@ -418,8 +421,7 @@ Procedure TesterRunsMainScenario () export
 EndProcedure
 
 Procedure TesterRunsSelectedScript () export
-	
-	
+
 	TesterServerMode = true;
 	data = TesterExternalRequestObject.Data;
 	try
@@ -449,6 +451,14 @@ Procedure BeforeExit ( Cancel, MessageText )
 	if ( IAmAgent ) then
 		//@skip-warning
 		enforceServerCall = String ( PredefinedValue ( "Catalog.OnExit.DisconnectAgent" ) );
+	endif;
+	
+EndProcedure
+
+Procedure stopListener ()
+	
+	if ( IAmAgent ) then
+		DetachIdleHandler ( "agentListener" );
 	endif;
 	
 EndProcedure

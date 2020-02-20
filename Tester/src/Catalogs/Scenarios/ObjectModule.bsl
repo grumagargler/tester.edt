@@ -1,12 +1,9 @@
-var IsNew export;
+var IsNew;
 var OldParent;
-var OldApplication export;
+var OldApplication;
 var OldDeletionMark;
 var OldTree;
 var OldPath;
-var NewPath;
-var NewParent;
-var ReplaceApplication export;
 
 Procedure FillCheckProcessing ( Cancel, CheckedAttributes )
 	
@@ -28,66 +25,65 @@ Procedure BeforeWrite ( Cancel )
 		return;
 	endif; 
 	IsNew = IsNew ();
-	if ( not canEdit () ) then
+	if ( not IsNew and Catalogs.Scenarios.Locked ( Ref ) ) then
+		Cancel = true;
+		return;
+	endif;
+	Catalogs.Scenarios.SetPath ( ThisObject );
+	if ( not option ( "Restored" ) ) then
+		stamp ();
+		fixApplication ();
+	endif;
+	if ( not Catalogs.Scenarios.CheckDoubles ( ThisObject ) ) then
 		Cancel = true;
 		return;
 	endif; 
-	stamp ();
-	fixApplication ();
-	setPath ( ThisObject );
 	setTree ();
 	fixType ();
-	if ( not checkDoubles () ) then
+	Catalogs.Scenarios.SetSorting ( ThisObject );
+	getLastProps ();
+	if ( not changeParents () ) then
 		Cancel = true;
 		return;
+	endif;
+	if ( IsNew ) then
+		return;
+	endif;
+	if ( Tree ) then
+		Catalogs.Scenarios.ChangeChildren ( Ref, OldPath, Path, OldApplication, Application, false );
+	endif;
+	deleteFile = OldPath <> Path or OldTree <> Tree or OldApplication <> Application; 
+	if ( deleteFile ) then
+		removeFiles ();
 	endif; 
-	getLastProps ();
-	NewPath = OldPath <> Path;
-	if ( not IsNew ) then
-		if ( NewPath
-			or ( OldTree <> Tree )
-			or ( OldApplication <> Application ) ) then
-			removeFromRepo ( OldApplication, OldPath, OldTree, option ( "AlreadyRemoved" ) );
-		endif; 
-	endif; 
-	markChanges ();
-	setSorting ();
 	if ( DeletionMark ) then
-		removeAsMain ();
+		Catalogs.Scenarios.RemoveAsMain ( Ref );
 	endif; 
 	
 EndProcedure
 
-Function canEdit ()
+Procedure removeFiles ()
 	
-	if ( IsNew ) then
-		return true;
-	endif; 
-	user = InformationRegisters.Editing.Get ( new Structure ( "Scenario", Ref ) ).User;
-	if ( user = SessionParameters.User ) then
-		return true;
-	elsif ( user.IsEmpty () ) then
-		Output.ScenarioNotLocked ( new Structure ( "Scenario", Ref ), , Ref );
-	else
-		Output.LockError ( new Structure ( "Scenario, User", Ref, user ), , Ref );
-	endif; 
-	return false;
+	Catalogs.Scenarios.RemoveFile ( Ref, OldApplication, OldPath, OldTree, false );
+	renamedCommonFolder = Tree and Application.IsEmpty (); 
+	if ( renamedCommonFolder ) then
+		for each reference in Catalogs.Scenarios.ApplicationsInside ( Ref, Application ) do
+			ExchangePlans.Repositories.Sync ( Ref, reference, false );
+			Catalogs.Scenarios.RemoveFile ( Ref, reference, OldPath, true, false );
+		enddo;
+	endif;
 	
-EndFunction 
+EndProcedure
 
 Function option ( Name )
 	
 	return AdditionalProperties.Property ( Name )
-		and AdditionalProperties [ Name ];
+	and AdditionalProperties [ Name ];
 	
 EndFunction 
 
 Procedure stamp ()
 	
-	if ( option ( "Restored" )
-		or option ( "Loading" ) ) then
-		return;
-	endif; 
 	Changed = CurrentUniversalDate ();
 	LastCreator = SessionParameters.User;
 	
@@ -107,25 +103,28 @@ Procedure fixApplication ()
 	
 EndProcedure 
 
-Procedure setPath ( Object )
+Procedure setTree ()
 	
-	ancestor = Object.Parent;
-	if ( ancestor.IsEmpty () ) then
-		Object.Path = Object.Description;
-	else
-		Object.Path = DF.Pick ( ancestor, "Path" ) + "." + Object.Description;
-	endif; 
+	Tree = ( Type = Enums.Scenarios.Folder ) or ( not IsNew and hasChildren ( Ref ) );
 	
 EndProcedure 
 
-Procedure setTree ()
+Function hasChildren ( Scenario )
 	
-	if ( option ( "Loading" ) ) then
-		return;
-	endif;
-	Tree = isFolder ( ThisObject ) or ( not IsNew and findChind ( Ref ) );
+	s = "
+	|select top 1 1
+	|from Catalog.Scenarios as Scenarios
+	|where Scenarios.Parent = &Parent
+	|and Scenarios.Ref <> &Ref
+	|and not Scenarios.DeletionMark
+	|";
+	q = new Query ( s );
+	q.SetParameter ( "Parent", Scenario );
+	q.SetParameter ( "Ref", Ref );
+	SetPrivilegedMode ( true );
+	return not q.Execute ().IsEmpty ();
 	
-EndProcedure 
+EndFunction 
 
 Procedure fixType ()
 	
@@ -136,34 +135,6 @@ Procedure fixType ()
 	
 EndProcedure 
 
-Function checkDoubles ()
-	
-	if ( doubleExists () ) then
-		Output.ScenarioAlreadyExists ( new Structure ( "Name", Path ), "Description", Ref );
-		return false;
-	else
-		return true;
-	endif; 
-	
-EndFunction 
-
-Function doubleExists ()
-	
-	s = "
-	|select top 1 1
-	|from Catalog.Scenarios as Scenarios
-	|where Scenarios.Ref <> &Ref
-	|and Scenarios.Application in ( &Application, value ( Catalog.Applications.EmptyRef ) )
-	|and Scenarios.Path = &Path
-	|";
-	q = new Query ( s );
-	q.SetParameter ( "Ref", Ref );
-	q.SetParameter ( "Application", Application );
-	q.SetParameter ( "Path", Path );
-	return not q.Execute ().IsEmpty ();
-	
-EndFunction 
-
 Procedure getLastProps ()
 	
 	OldParent = Ref.Parent;
@@ -172,86 +143,56 @@ Procedure getLastProps ()
 	OldTree = Ref.Tree;
 	OldPath = Ref.Path;
 	
-EndProcedure 
+EndProcedure
 
-Procedure removeFromRepo ( TargetApplication, TargetPath, TargetTree, AlreadyRemoved )
+Function changeParents ()
 	
-	SetPrivilegedMode ( true );
-	uid = Ref.UUID ();
-	for each repo in getRepos ( TargetApplication, AlreadyRemoved ) do
-		r = InformationRegisters.Removing.CreateRecordManager ();
-		r.Repository = repo;
-		r.ID = uid;
-		r.Path = TargetPath;
-		r.Tree = TargetTree;
-		r.Write ();
-	enddo; 
-	SetPrivilegedMode ( false );
-	
-EndProcedure 
-
-Function getRepos ( Application, ExceptLocal )
-	
-	s = "
-	|select Repositories.Ref as Ref
-	|from ExchangePlan.Repositories as Repositories
-	|where not Repositories.DeletionMark
-	|and not Repositories.ThisNode
-	|and Repositories.Application = &Application";
-	if ( ExceptLocal ) then
-		s = s + "
-		|and Repositories.Session <> &Session
-		|";
+	if ( Parent = OldParent ) then
+		return true;
 	endif;
-	q = new Query ( s );
-	q.SetParameter ( "Session", SessionParameters.Session );
-	q.SetParameter ( "Application", Application );
-	return q.Execute ().Unload ().UnloadColumn ( "Ref" );
+	stillParent = OldParent.IsEmpty () or isFolder ( OldParent ) or hasChildren ( OldParent );
+	if ( not stillParent ) then
+		if ( not makeScenario ( OldParent, false ) ) then
+			return false;
+		endif;
+	endif;
+	isParent = Parent.IsEmpty () or DF.Pick ( Parent, "Tree" );
+	if ( not isParent ) then
+		if ( not makeScenario ( Parent, true ) ) then
+			return false;
+		endif;
+	endif; 
+	return true;
 	
 EndFunction 
 
-Procedure markChanges ()
+Function isFolder ( Scenario )
 	
-	ExchangePlans.Repositories.Mark ( ThisObject, option ( "Loading" ) );
+	scenarioType = DF.Pick ( Scenario, "Type" );
+	return scenarioType = Enums.Scenarios.Folder
+	or scenarioType = Enums.Scenarios.Library;
 	
-EndProcedure 
+EndFunction
 
-Procedure setSorting ()
+Function makeScenario ( Scenario, AsParent )
 	
-	if ( Type = Enums.Scenarios.Library ) then
-		Sorting = 0;
-	elsif ( Type = Enums.Scenarios.Folder ) then
-		Sorting = 1;
-	elsif ( Type = Enums.Scenarios.Scenario ) then
-		Sorting = 2;
-	elsif ( Type = Enums.Scenarios.Method ) then
-		Sorting = 3;
+	if ( Catalogs.Scenarios.Locked ( Scenario ) ) then
+		return false;
 	endif;
-	
-EndProcedure 
-
-Procedure removeAsMain ()
-	
-	SetPrivilegedMode ( true );
-	for each user in getScenarioUsers () do
-		r = InformationRegisters.Scenarios.CreateRecordManager ();
-		r.User = user;
-		r.Delete ();
-	enddo; 
-	SetPrivilegedMode ( false );
-	
-EndProcedure 
-
-Function getScenarioUsers ()
-	
-	s = "
-	|select Scenarios.User as User
-	|from InformationRegister.Scenarios as Scenarios
-	|where Scenarios.Scenario = &Scenario
-	|";
-	q = new Query ( s );
-	q.SetParameter ( "Scenario", Ref );
-	return q.Execute ().Unload ().UnloadColumn ( "User" );
+	obj = Scenario.GetObject ();
+	parentApp = obj.Application; 
+	Catalogs.Scenarios.RemoveFile ( Scenario, parentApp, obj.Path, obj.Tree, false );
+	obj.Tree = AsParent;
+	if ( AsParent
+		and obj.Type = Enums.Scenarios.Scenario ) then
+		obj.Type = Enums.Scenarios.Folder;
+		Catalogs.Scenarios.SetSorting ( obj );
+	endif;
+	obj.DataExchange.Load = true;
+	obj.Write ();
+	obj.FullExchange ();
+	ExchangePlans.Repositories.Sync ( Scenario, parentApp, false );
+	return true;
 	
 EndFunction 
 
@@ -259,17 +200,28 @@ Procedure OnWrite ( Cancel )
 	
 	if ( DataExchange.Load ) then
 		return;
-	endif; 
+	endif;
+	FullExchange ();
+	ExchangePlans.Repositories.Sync ( Ref, Application, false );
 	if ( IsNew ) then
 		InformationRegisters.Editing.Lock ( SessionParameters.User, Ref );
-	elsif ( DeletionMark <> OldDeletionMark ) then
-		markVersions ( DeletionMark );
-	endif; 
-	NewParent = OldParent <> Parent;
-	ReplaceApplication = ( OldApplication <> Application ) and not Application.IsEmpty ();
-	setupLibraries ();
-	moveHierarchy ();
+	else
+		if ( Application <> OldApplication ) then
+			ExchangePlans.Repositories.Sync ( Ref, OldApplication, false );
+		endif;
+		if ( DeletionMark <> OldDeletionMark ) then
+			markVersions ( DeletionMark );
+		endif;
+	endif;
 	
+EndProcedure
+
+Procedure FullExchange () export
+
+	if ( not Local ) then
+		Exchange.RecordChanges ( Ref );	
+	endif; 
+
 EndProcedure
 
 Procedure markVersions ( Delete )
@@ -282,95 +234,8 @@ Procedure markVersions ( Delete )
 	
 EndProcedure 
 
-Procedure setupLibraries ()
-	
-	if ( not NewParent ) then
-		return;
-	endif;
-	if ( not OldParent.IsEmpty () ) then
-		refreshTree ( OldParent );
-	endif; 
-	if ( not Parent.IsEmpty () ) then
-		refreshTree ( Parent );
-	endif; 
-	
-EndProcedure 
-
-Procedure refreshTree ( Reference )
-	
-	actual = isFolder ( Reference ) or findChind ( Reference );
-	if ( actual <> Reference.Tree ) then
-		obj = Reference.GetObject ();
-		obj.Tree = actual;
-		if ( option ( "Loading" ) ) then
-			obj.AdditionalProperties.Insert ( "Loading", true );
-		endif;
-		obj.Write ();
-	endif; 
-	
-EndProcedure 
-
-Function isFolder ( Object )
-	
-	return Object.Type = Enums.Scenarios.Folder;
-	
-EndFunction 
-
-Function findChind ( Ancestor )
-	
-	s = "
-	|select top 1 1
-	|from Catalog.Scenarios as Scenarios
-	|where Scenarios.Parent = &Ancestor
-	|and not Scenarios.DeletionMark
-	|";
-	q = new Query ( s );
-	q.SetParameter ( "Ancestor", Ancestor );
-	SetPrivilegedMode ( true );
-	return not q.Execute ().IsEmpty ();
-	
-EndFunction 
-
-Procedure moveHierarchy ()
-	
-	changePath = NewParent or NewPath;
-	if ( changePath
-		or ReplaceApplication ) then
-	else
-		return;
-	endif;
-	children = getChildren ();
-	for each child in children do
-		obj = child.GetObject ();
-		if ( ReplaceApplication
-			and not obj.Application.IsEmpty () ) then
-			obj.Application = Application;
-		endif; 
-		if ( changePath ) then
-			setPath ( obj );
-		endif; 
-		obj.Write ();
-	enddo; 
-
-EndProcedure 
-
-Function getChildren ()
-	
-	s = "
-	|select Scenarios.Ref as Child, Scenarios.Application as Application
-	|from Catalog.Scenarios as Scenarios
-	|where Scenarios.Ref in hierarchy ( &Scenario )
-	|and Scenarios.Ref <> &Scenario
-	|order by Child hierarchy
-	|";
-	q = new Query ( s );
-	q.SetParameter ( "Scenario", Ref );
-	return q.Execute ().Unload ().UnloadColumn ( "Child" );
-	
-EndFunction 
-
 Procedure BeforeDelete ( Cancel )
 	
-	removeFromRepo ( Application, Path, Tree, true );
+	Catalogs.Scenarios.RemoveFile ( Ref, Application, Path, Tree, true );
 	
 EndProcedure

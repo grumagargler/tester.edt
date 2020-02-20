@@ -13,6 +13,8 @@ var DataType;
 &AtServer
 var PathFinder;
 &AtServer
+var ChildHunter;
+&AtServer
 var RemovingSet;
 &AtClient
 var FolderSuffix;
@@ -134,6 +136,7 @@ Procedure init ()
 	
 	DeletionType = Type ( "ObjectDeletion" );
 	PathFinder = getPathFinder ();
+	ChildHunter = getChildHunter ();
 	
 EndProcedure 
 
@@ -153,11 +156,24 @@ Function getPathFinder ()
 EndFunction 
 
 &AtServer
+Function getChildHunter ()
+
+	s = "
+	|select top 1 1
+	|from Catalog.Scenarios as Scenarios
+	|where not Scenarios.DeletionMark
+	|and Scenarios.Parent = &Ref
+	|and Scenarios.Application = &Application";
+	return new Query ( s );
+
+EndFunction
+
+&AtServer
 Procedure fillScenarios ()
 	
 	ScenariosCounter = 0;
 	RemovingSet = new Array ();
-	AllScenarios.Clear ();
+	ChangedScenarios.Clear ();
 	for each repository in Object.Repositories do
 		if ( not repository.Use ) then
 			continue;
@@ -183,7 +199,7 @@ Procedure fillScenarios ()
 			endif; 
 		enddo;
 	enddo;
-	AllScenarios.Sort ( "Application, Delete desc" );
+	ChangedScenarios.Sort ( "Application, Delete desc" );
 	RemovingIDs = new FixedArray ( RemovingSet );
 
 EndProcedure 
@@ -217,7 +233,7 @@ Procedure addDeletion ()
 	if ( scenarioRecreated ( path, tree ) ) then
 		return;
 	endif; 
-	row = AllScenarios.Add ();
+	row = ChangedScenarios.Add ();
 	row.Application = CurrentApplication;
 	row.Delete = deletedFile ( path );
 	ScenariosCounter = ScenariosCounter + 1;
@@ -251,18 +267,42 @@ Procedure addRenaming ()
 	if ( path = ""
 		or scenarioRecreated ( path, tree ) ) then
 		return;
-	endif; 
-	row = AllScenarios.Add ();
+	endif;
+	row = ChangedScenarios.Add ();
 	row.Application = CurrentApplication;
-	row.Delete = deletedFile ( path );
+	scenarioBecameCommon = ( path = CurrentData.Path )
+	and CurrentData.Application.IsEmpty ()
+	and not CurrentApplication.IsEmpty ();
+	if ( scenarioBecameCommon
+		and hasChildren () ) then
+		row.Delete = unbindFolder ( path );
+	else
+		row.Delete = deletedFile ( path );
+	endif;
 	RemovingSet.Add ( new Structure ( "ID, Repository", id, Node ) );
 		
-EndProcedure 
+EndProcedure
+
+&AtServer
+Function hasChildren ()
+	
+	ChildHunter.SetParameter ( "Ref", CurrentData.Ref );
+	ChildHunter.SetParameter ( "Application", CurrentApplication );
+	return not ChildHunter.Execute ().IsEmpty ();
+	
+EndFunction 
+
+&AtServer
+Function unbindFolder ( Path )
+	
+	return StrReplace ( Path, ".", Slash ) + Slash + "*.dir.*";
+	
+EndFunction 
 
 &AtServer
 Procedure addScenario ()
 	
-	row = AllScenarios.Add ();
+	row = ChangedScenarios.Add ();
 	row.Application = CurrentApplication;
 	row.Scenario = CurrentData.Ref;
 	ScenariosCounter = ScenariosCounter + 1;
@@ -273,7 +313,7 @@ EndProcedure
 Procedure prepareCounters ()
 	
 	CurrentIndex = -1;
-	LastIndex = AllScenarios.Count () - 1;
+	LastIndex = ChangedScenarios.Count () - 1;
 	initProgress ();
 	ContinueUnloading = new NotifyDescription ( "ContinueUnloading", ThisObject );
 	
@@ -356,7 +396,7 @@ Procedure unloadScenarios ()
 		showInfo ();
 		return;
 	endif; 
-	row = AllScenarios [ CurrentIndex ];
+	row = ChangedScenarios [ CurrentIndex ];
 	root = Roots [ row.Application ];
 	if ( row.Delete = "" ) then
 		data = scenarioData ( row.Scenario );

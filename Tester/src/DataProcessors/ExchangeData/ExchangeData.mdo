@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="103f6ca2-cbd7-417c-8e8a-65b04f2633c2">
+  <producedTypes>
+    <objectType typeId="5147681f-c554-4d4b-99ef-78dcee63e5b7" valueTypeId="c2dc247b-bb27-45ec-a260-a70f8d52b989"/>
+    <managerType typeId="77772cb3-494f-464c-83dc-b64fd674b861" valueTypeId="dce196e8-b7ba-455d-afd5-945074641957"/>
+  </producedTypes>
+  <name>ExchangeData</name>
+  <synonym>
+    <key>en</key>
+    <value>Exchange data</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Обмен данными</value>
+  </synonym>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+</mdclass:DataProcessor>
