@@ -363,7 +363,6 @@ Function DeepFunction ( This, Chronograph, Debug, val _Procedures, _Name, _P1 = 
 	initDebugStorage ();
 	_script = _Procedures [ _Name ];
 	#region ScenarioContext
-	this = This;
 	//@skip-warning
 	тут = This;
 	//@skip-warning
@@ -401,7 +400,6 @@ Procedure DeepProcedure ( This, Chronograph, Debug, val _Procedures, _Name, _P1 
 	initDebugStorage ();
 	_script = _Procedures [ _Name ];
 	#region ScenarioContext
-	this = This;
 	//@skip-warning
 	тут = This;
 	//@skip-warning

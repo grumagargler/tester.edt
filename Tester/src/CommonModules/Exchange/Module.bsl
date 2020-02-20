@@ -110,9 +110,9 @@ EndProcedure
 Function getProxy ( Params )
 	
 	address = Params.WebService + "/ws/wsExchange.1cws?wsdl";
-	definitions = new WSDefinitions ( address, Params.User, Params.Password );
+	definitions = new WSDefinitions ( address, Params.User, Params.Password, , 30 );
 	uri = wsExchange ();
-	proxy = new WSProxy ( definitions, URI, "Exchange", "ExchangeSoap" );
+	proxy = new WSProxy ( definitions, URI, "Exchange", "ExchangeSoap", , 30 );
 	proxy.User = Params.User;
 	proxy.Password = Params.Password;
 	return proxy;

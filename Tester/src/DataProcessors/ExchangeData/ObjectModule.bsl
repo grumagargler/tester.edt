@@ -279,7 +279,10 @@ EndFunction
 Function getFTPClient ( Data )
 	
 	try
-		ftp = new FTPConnection ( Data.ServerFTPLoad, Data.PortFTPLoad, Data.UserFTPLoad, Data.PasswordFTPLoad, , Data.PassiveModeFTP );
+		ftp = new FTPConnection (
+			Data.ServerFTPLoad, Data.PortFTPLoad, Data.UserFTPLoad,
+			Data.PasswordFTPLoad, , Data.PassiveModeFTP, 30
+		);
 	except
 		ftp = Undefined;
 		Output.FTPConnectionError ( new Structure ( "Error", ErrorDescription () ) );
