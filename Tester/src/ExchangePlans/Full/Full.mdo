@@ -293,21 +293,9 @@
   <editType>InDialog</editType>
   <choiceMode>BothWays</choiceMode>
   <defaultObjectForm>ExchangePlan.Full.Form.Form</defaultObjectForm>
-  <defaultListForm>ExchangePlan.Full.Form.List</defaultListForm>
-  <defaultChoiceForm>ExchangePlan.Full.Form.Choice</defaultChoiceForm>
   <distributedInfoBase>true</distributedInfoBase>
   <forms uuid="60ab3221-d4c7-4e37-be4d-a70ba2e8f288">
     <name>Form</name>
-    <usePurposes>PersonalComputer</usePurposes>
-    <usePurposes>MobileDevice</usePurposes>
-  </forms>
-  <forms uuid="70fced9c-2eec-4efb-8651-a4b293f0dd03">
-    <name>List</name>
-    <usePurposes>PersonalComputer</usePurposes>
-    <usePurposes>MobileDevice</usePurposes>
-  </forms>
-  <forms uuid="429f2bd0-0de3-400f-ad0c-6658f59a44a0">
-    <name>Choice</name>
     <usePurposes>PersonalComputer</usePurposes>
     <usePurposes>MobileDevice</usePurposes>
   </forms>

@@ -312,6 +312,7 @@ Procedure agentListener () export
 					Disconnect ();
 				endtry;
 				TesterAgent.FinishScenario( job, ln );
+				splitSessions ();
 			enddo;
 			stopServing ();
 		endif;
@@ -327,6 +328,16 @@ Procedure startServing ( Job )
 	CurrentDelegatedJob = new Structure ( "Job, Row", Job );
 	TesterAgent.Start ( Job );
 		
+EndProcedure
+
+Procedure splitSessions ()
+	
+	if ( ExternalLibrary = undefined ) then
+		return;
+	endif;
+	oneDotOneSecond = 1100;
+	ExternalLibrary.Pause ( oneDotOneSecond );
+	
 EndProcedure
 
 Procedure stopServing ()

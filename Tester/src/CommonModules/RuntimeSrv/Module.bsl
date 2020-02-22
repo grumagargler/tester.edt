@@ -169,7 +169,7 @@ Function GetSource ( Scenario ) export
 		result.Application = data.Application;
 	else
 		result.Scenario = Scenario;
-		result.Scenario = DF.Pick ( Scenario, "Application" );
+		result.Application = DF.Pick ( Scenario, "Application" );
 	endif;
 	return result;
 	
