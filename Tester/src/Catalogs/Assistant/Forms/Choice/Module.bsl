@@ -6,6 +6,8 @@ var ReferenceCode;
 var Buitin;
 &AtClient
 var AssistantRow;
+&AtClient
+var NavigationLink;
 
 // *****************************************
 // *********** Form events
@@ -215,14 +217,14 @@ EndProcedure
 Procedure helpOnline ()
 	
 	Items.HelpPages.CurrentPage = Items.BuiltinHelpPage;
-	HTML = OnlineHelp.Href ( getLink (), false );
+	HTML = OnlineHelp.Href ( getLink () );
 				
-EndProcedure 
+EndProcedure
 
 &AtClient
 Function getLink ()
 	
-	return "Functions." + AssistantRow.Help;
+	return Lower ( AssistantRow.Help );
 	
 EndFunction 
 
@@ -340,3 +342,21 @@ Procedure notifySelection ()
 	notifyOwner ( value );
 		
 EndProcedure 
+
+// *****************************************
+// *********** HTML
+
+&AtClient
+Procedure HTMLDocumentComplete ( Item )
+	
+	if ( Framework.VersionLess ( "8.3.14" ) ) then
+		return;
+	endif;
+	newLink = getLink ();
+	if ( newLink = NavigationLink ) then
+		return;
+	endif;
+	NavigationLink = newLink;
+	Item.Document.location.hash = "#" + newLink;
+
+EndProcedure

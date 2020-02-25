@@ -167,12 +167,7 @@ EndProcedure
 Procedure RecordChanges ( Ref ) export
 	
 	SetPrivilegedMode ( true );
-	type = TypeOf ( Ref ); 
-	if ( type = Type ( "CatalogRef.Scenarios" ) ) then
-		registerScenario ( Ref );
-	elsif ( type = Type ( "CatalogRef.Versions" ) ) then
-		registerVersion ( Ref );
-	endif;	
+	registerScenario ( Ref );
 	
 EndProcedure
 
@@ -197,49 +192,6 @@ Function getNodes ( Ref )
 	q = new Query ( s );
 	result = q.Execute ();
 	return result.Unload ().UnloadColumn ( "Node" ); 
-	
-EndFunction
-
-Procedure registerVersion ( Verion )
-	
-	data = getDataVersion ( Verion );
-	if ( data.Local ) then
-		return;
-	endif;
-	ExchangePlans.RecordChanges ( data.Nodes, Verion );
-	
-EndProcedure
-
-Function getDataVersion ( Ref )
-	
-	s = "
-	|select
-	|	Scenarios.Local as Local
-	|from
-	|	Catalog.Versions as Versions
-	|	inner join Catalog.Scenarios as Scenarios 
-	|	on Versions.Ref = &Ref
-	|	   and Versions.Scenario = Scenarios.Ref
-	|where
-	|	Versions.Ref = &Ref
-	|;
-	|select
-	|	Ref as Node
-	|from
-	|	ExchangePlan.Full
-	|where
-	|	not ThisNode
-	|	and not DeletionMark
-	|"; 
-	q = new Query ( s );
-	q.SetParameter ( "Ref", Ref );		
-	result = q.ExecuteBatch ();
-	selection = result [ 0 ].Select ();
-	selection.Next ();
-	p = new Structure ();
-	p.Insert ( "Local", selection.Local );
-	p.Insert ( "Nodes", result [ 1 ].Unload ().UnloadColumn ( "Node" ) );
-	return p; 
 	
 EndFunction
 

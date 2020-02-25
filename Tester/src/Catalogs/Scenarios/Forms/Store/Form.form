@@ -671,6 +671,10 @@
     <event>OnCreateAtServer</event>
     <name>OnCreateAtServer</name>
   </handlers>
+  <handlers>
+    <event>OnOpen</event>
+    <name>OnOpen</name>
+  </handlers>
   <windowOpeningMode>LockWholeInterface</windowOpeningMode>
   <enterKeyBehavior>DefaultButton</enterKeyBehavior>
   <autoTitle>true</autoTitle>
@@ -886,6 +890,20 @@
     <name>JobPreparing</name>
     <valueType>
       <types>Boolean</types>
+    </valueType>
+  </parameters>
+  <parameters>
+    <name>Silent</name>
+    <valueType>
+      <types>Boolean</types>
+    </valueType>
+    <keyParameter>true</keyParameter>
+  </parameters>
+  <parameters>
+    <name>Memo</name>
+    <valueType>
+      <types>String</types>
+      <stringQualifiers/>
     </valueType>
   </parameters>
   <commandInterface>

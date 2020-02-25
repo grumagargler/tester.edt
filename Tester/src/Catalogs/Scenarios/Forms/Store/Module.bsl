@@ -18,6 +18,7 @@ EndProcedure
 Procedure loadParams ()
 	
 	JobPreparing = Parameters.JobPreparing;
+	Memo = Parameters.Memo;
 	
 EndProcedure
 
@@ -25,16 +26,34 @@ EndProcedure
 // *********** Group Form
 
 &AtClient
-Procedure OK ( Command )
+Procedure OnOpen ( Cancel )
+	
+	if ( silentMode () ) then
+		Cancel = true;
+		beginStoring ();
+	endif;
+	
+EndProcedure
+
+&AtClient
+Function silentMode ()
+	
+	return Parameters.Silent;
+	
+EndFunction
+
+&AtClient
+Procedure beginStoring ()
 	
 	AllScenarios = fetchScenarios ();
 	Notify ( Enum.MessageSave (), AllScenarios );
-	if ( checkSyntax () ) then
+	if ( silentMode ()
+		or checkSyntax () ) then
 		startStoring ();
 	else
 		Output.ContinueStoring ( ThisObject );
 	endif;
-	
+
 EndProcedure
 
 &AtServer
@@ -140,6 +159,13 @@ Procedure broadcast ( Scenarios )
 	NotifyChanged ( Type ( "CatalogRef.Scenarios" ) );
 	
 EndProcedure 
+
+&AtClient
+Procedure OK ( Command )
+	
+	beginStoring ();
+	
+EndProcedure
 
 &AtClient
 Procedure ContinueStoring ( Answer, Params ) export

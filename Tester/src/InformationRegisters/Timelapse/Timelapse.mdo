@@ -223,6 +223,7 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
     <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
   </dimensions>
   <forms uuid="37e0d3fc-f164-4f81-9873-37ccdc669bb6">
     <name>Form</name>

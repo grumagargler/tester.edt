@@ -2,6 +2,8 @@
 var Exp;
 &AtServer
 var NameDefined;
+&AtClient
+var NavigationComplete;
 
 // *****************************************
 // *********** Form events
@@ -22,9 +24,9 @@ EndProcedure
 Procedure loadParams ()
 	
 	Picking = Parameters.Picking;
-	Help = OnlineHelp.Href ( Parameters.Help, false );
+	Help = OnlineHelp.Href ( Parameters.Help );
 	
-EndProcedure 
+EndProcedure
 
 &AtServer
 Procedure applyParams ()
@@ -218,3 +220,19 @@ Function buildParams ( Form )
 	return StrConcat ( params, ", " );
 	
 EndFunction 
+
+// *****************************************
+// *********** Help
+
+&AtClient
+Procedure HelpDocumentComplete ( Item )
+	
+	if ( Framework.VersionLess ( "8.3.14" ) ) then
+		return;
+	endif;
+	if ( NavigationComplete = undefined ) then
+		NavigationComplete = true;
+		Item.Document.location.hash = "#" + Parameters.Help;
+	endif;
+
+EndProcedure

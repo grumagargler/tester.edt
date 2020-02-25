@@ -49,6 +49,7 @@
       </code>
     </items>
   </predefined>
+  <predefinedDataUpdate>AutoUpdate</predefinedDataUpdate>
   <editType>InDialog</editType>
   <choiceMode>BothWays</choiceMode>
 </mdclass:Catalog>

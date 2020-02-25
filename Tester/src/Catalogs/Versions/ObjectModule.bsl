@@ -1,6 +1,11 @@
 
 Procedure OnWrite ( Cancel )
 	
-	Exchange.RecordChanges ( Ref );
+	if ( DataExchange.Load ) then
+		return;
+	endif;
+	if ( not Local ) then
+		Exchange.RecordChanges ( Ref );	
+	endif; 
 	
 EndProcedure

@@ -79,6 +79,13 @@ Procedure loadRepositories ()
 	
 EndProcedure 
 
+&AtClientAtServerNoContext
+Function silentMode ( Parameters )
+	
+	return Parameters.Silent;
+	
+EndFunction
+
 &AtClient
 Procedure OnOpen ( Cancel )
 	
@@ -103,13 +110,6 @@ Procedure setConstants ()
 	JSONExtension = RepositoryFiles.JSONFile ();
 	
 EndProcedure 
-
-&AtClientAtServerNoContext
-Function silentMode ( Parameters )
-	
-	return Parameters.Silent;
-	
-EndFunction
 
 &AtClient
 Procedure startUnloading ()

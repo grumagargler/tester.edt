@@ -536,6 +536,10 @@
         <headerHorizontalAlign>Left</headerHorizontalAlign>
         <showInFooter>true</showInFooter>
         <extInfo xsi:type="form:HtmlFieldExtInfo">
+          <handlers>
+            <event>DocumentComplete</event>
+            <name>HelpDocumentComplete</name>
+          </handlers>
           <width>50</width>
           <autoMaxWidth>true</autoMaxWidth>
           <height>10</height>
@@ -1170,6 +1174,7 @@
       <types>String</types>
       <stringQualifiers/>
     </valueType>
+    <keyParameter>true</keyParameter>
   </parameters>
   <commandInterface>
     <navigationPanel/>

@@ -817,3 +817,32 @@ Procedure МинимизироватьОкно ( Pattern = "" ) export
 	MinimizeWindow ( Pattern );
 	
 EndProcedure
+
+&AtClient
+Procedure StoreScenarios ( Memo = "" ) export
+
+	p = new Structure ( "Silent, Memo", true, Memo );
+	OpenForm ( "Catalog.Scenarios.Form.Store", p, , true );
+
+EndProcedure
+
+&AtClient
+Procedure ПоместитьСценарии ( Memo = "" ) export
+
+	StoreScenarios ( Memo );
+
+EndProcedure
+
+&AtClient
+Procedure RunTest ( Scenario, Application = undefined, IgnoreLocking = false ) export
+	
+	Test.Start( Scenario, Application, IgnoreLocking );
+	
+EndProcedure
+
+&AtClient
+Procedure ЗапуститьТест ( Scenario, Application = undefined, IgnoreLocking = false ) export
+	
+	RunTest ( Scenario, Application, IgnoreLocking );
+	
+EndProcedure

@@ -1,6 +1,9 @@
 
 Function GetWork () export
 	
+	if ( Jobs.GetBackground ( "Exchange" ) <> undefined ) then
+		return undefined;
+	endif;
 	job = findJob ();
 	if ( job = undefined ) then
 		return undefined;

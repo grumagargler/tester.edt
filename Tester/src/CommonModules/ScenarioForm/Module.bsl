@@ -403,7 +403,12 @@ EndProcedure
 &AtClient
 Procedure GotoLine ( Scenario, Line, Error ) export
 	
-	form = GetForm ( "Catalog.Scenarios.ObjectForm", new Structure ( "Key", Scenario ) );
+	p = new Structure ( "Key", Scenario );
+	if ( TypeOf ( Scenario ) = Type ( "CatalogRef.Versions" ) ) then
+		form = GetForm ( "Catalog.Versions.ObjectForm", p );
+	else
+		form = GetForm ( "Catalog.Scenarios.ObjectForm", p );
+	endif;
 	form.Open ();
 	Output.PutMessage ( Error, undefined, undefined, Error, , form.UUID );
 	Notify ( Enum.MessageActivateError (), Line, Scenario );

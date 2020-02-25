@@ -1,5 +1,7 @@
 site_name: Тестер
-google_analytics: {['UA-158340881-2', 'test1c.com'], ['UA-158340881-2', 'test1c.com']}
+google_analytics:
+  - ['UA-158340881-1', 'www.test1c.com']
+  - ['UA-158340881-2', 'test1c.com']
 theme:
   name: readthedocs
   custom_dir: custom_theme

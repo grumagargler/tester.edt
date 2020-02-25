@@ -27,8 +27,26 @@ Function getScenarios ( Form )
 	|order by Scenarios.Path
 	|";
 	q = new Query ( s );
-	q.SetParameter ( "List", Form.Parameters.Scenarios );
+	if ( Form.FormName = "Catalog.Scenarios.Form.Store"
+		and Form.Parameters.Silent ) then
+		q.SetParameter ( "List", lockedScenarios () );
+	else
+		q.SetParameter ( "List", Form.Parameters.Scenarios );
+	endif;
 	return q.Execute ().Unload ();
+	
+EndFunction
+
+&AtServer
+Function lockedScenarios ()
+	
+	s = "
+	|select Editing.Scenario as Scenario
+	|from InformationRegister.Editing as Editing
+	|where Editing.User = &Me";
+	q = new Query ( s );
+	q.SetParameter ( "Me", SessionParameters.User );
+	return q.Execute ().Unload ().UnloadColumn ( "Scenario" );
 	
 EndFunction
 

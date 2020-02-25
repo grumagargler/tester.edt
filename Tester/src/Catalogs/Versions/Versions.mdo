@@ -335,6 +335,33 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <attributes uuid="dae91352-a2c9-4ada-a926-8dbe77690230">
+    <name>Local</name>
+    <synonym>
+      <key>en</key>
+      <value>Local</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Локальный</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Local test will be excluded from exchange data processes. Enable this option to prevent secret data being copied to other computers</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Локальный тест не будет мигрировать на другие компьютеры при обмене данными. Имеет смысл задавать для сценариев, содержащих секретные данные</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
   <attributes uuid="7eced185-a467-41ee-b7a8-0a2845c1f7f8">
     <name>Memo</name>
     <synonym>

@@ -9,20 +9,20 @@ Procedure Exec ( Scenario, Application = undefined, ProgramCode = undefined, Deb
 	
 EndProcedure
 
-Function FindScenario ( Scenario, Application = undefined ) export
+Function FindScenario ( Scenario, Application = undefined, IgnoreLocking = false ) export
 	
 	if ( TypeOf ( Scenario ) = Type ( "String" ) ) then
 		if ( Application = undefined ) then
 			default = EnvironmentSrv.GetApplication ();
 		endif; 
-		value = RuntimeSrv.FindScenario ( Scenario, default, Application, undefined );
+		value = RuntimeSrv.FindScenario ( Scenario, default, Application, undefined, IgnoreLocking );
 		if ( value = undefined ) then
 			raise Output.ScenarioNotFound ( new Structure ( "Name", Scenario ) );
 		else
 			ref = value;
 		endif; 
 	else
-		ref = RuntimeSrv.ActualScenario ( Scenario );
+		ref = ? ( IgnoreLocking, Scenario, RuntimeSrv.ActualScenario ( Scenario ) );
 	endif; 
 	result = new Structure ();
 	result.Insert ( "Scenario", ref );
@@ -205,7 +205,7 @@ Procedure CheckSyntax ( ProgramCode ) export
 	
 EndProcedure 
 
-Procedure Start ( Scenario, Application = undefined ) export
+Procedure Start ( Scenario, Application = undefined, IgnoreLocking = false ) export
 	
 	data = Test.FindScenario ( Scenario, Application );
 	Test.AttachApplication ( data.Scenario );
