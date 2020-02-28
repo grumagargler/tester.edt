@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="e5d82ee3-9cb9-4265-b765-9e6bdbad522a">
+  <producedTypes>
+    <managerType typeId="3a8dc481-d6b7-4495-b148-4766130543f9" valueTypeId="e1cdac1b-437d-4422-aae6-a44e1effea32"/>
+    <valueManagerType typeId="94c2471a-5f2c-4db2-bf97-74df32f196fa" valueTypeId="c61c5fd1-d2d5-4fdf-899f-a6bfb621a6c5"/>
+    <valueKeyType typeId="2353540d-5ebf-43d8-ab11-3b0bc403af75" valueTypeId="f7b9ecea-ca43-4cb3-a42c-fe1aaf4d6d8a"/>
+  </producedTypes>
+  <name>Exchange</name>
+  <type>
+    <types>Boolean</types>
+  </type>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>

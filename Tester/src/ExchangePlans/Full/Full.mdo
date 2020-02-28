@@ -143,10 +143,6 @@
     <autoRecord>Allow</autoRecord>
   </content>
   <content>
-    <mdObject>Constant.ApplicationURL</mdObject>
-    <autoRecord>Allow</autoRecord>
-  </content>
-  <content>
     <mdObject>InformationRegister.Usage</mdObject>
     <autoRecord>Allow</autoRecord>
   </content>
@@ -287,6 +283,14 @@
   </content>
   <content>
     <mdObject>Catalog.Users</mdObject>
+    <autoRecord>Allow</autoRecord>
+  </content>
+  <content>
+    <mdObject>Catalog.Areas</mdObject>
+    <autoRecord>Allow</autoRecord>
+  </content>
+  <content>
+    <mdObject>Constant.ApplicationURL</mdObject>
     <autoRecord>Allow</autoRecord>
   </content>
   <defaultPresentation>AsDescription</defaultPresentation>

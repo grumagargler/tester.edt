@@ -66,10 +66,15 @@ Procedure AgentStatus ( val Status ) export
 	
 	SetPrivilegedMode ( true );
 	r = InformationRegisters.AgentStatuses.CreateRecordManager ();
-	r.Session = SessionParameters.Session;
+	session = SessionParameters.Session;
+	r.Session = session;
+	r.Read ();
+	if ( r.Status = Status ) then
+		return;
+	endif;
+	r.Session = session;
 	r.Status = Status;
-	r.Write ();
-	SetPrivilegedMode ( false );
+	ExchangeKillers.Write ( r );
 	
 EndProcedure
 

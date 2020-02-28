@@ -6,7 +6,7 @@ Function StartSession ( val Application, val Job ) export
 	r.Started = started;
 	r.Application = Application;
 	r.Job = Job;
-	r.Write ();
+	ExchangeKillers.Write ( r );
 	return started;
 	
 EndFunction 
@@ -18,7 +18,7 @@ Procedure StopSession ( val Started ) export
 	r.Started = Started;
 	r.Read ();
 	r.Finished = CurrentSessionDate ();
-	r.Write ();
+	ExchangeKillers.Write ( r );
 	
 EndProcedure 
 
@@ -189,8 +189,10 @@ Procedure WriteError ( Source, Scenario, Date, Error, Level, Job ) export
 	r.Application = Source.Application;
 	r.Area = errorArea ( Error, Level );
 	RuntimeSrv.AssignJob ( r, Job );
+	BeginTransaction ();
 	completeRunning ( r );
-	r.Write ();
+	ExchangeKillers.Write ( r );
+	CommitTransaction ();
 	
 EndProcedure
 
@@ -211,7 +213,7 @@ Procedure completeRunning ( Record )
 		if ( log.Status = Enums.Statuses.Running ) then
 			r = InformationRegisters.Log.CreateRecordManager ();
 			FillPropertyValues ( r, log, "Period, Scenario, Session" );
-			r.Delete ();
+			ExchangeKillers.Delete ( r );
 			started = log.Started;
 			Record.Started = started;
 			Record.Duration = completed - started;
@@ -243,7 +245,7 @@ Procedure LogRunning ( val Scenario, val Level, val Job ) export
 	r.Source = source.Scenario;
 	r.Application = source.Application;
 	RuntimeSrv.AssignJob ( r, Job );
-	r.Write ();
+	ExchangeKillers.Write ( r );
 	
 EndProcedure 
 
@@ -260,8 +262,10 @@ Procedure LogSuccess ( val Scenario, val Level, val Job ) export
 	r.Source = source.Scenario;
 	r.Application = source.Application;
 	RuntimeSrv.AssignJob ( r, Job );
+	BeginTransaction ();
 	completeRunning ( r );
-	r.Write ();
+	ExchangeKillers.Write ( r );
+	CommitTransaction ();
 	
 EndProcedure 
 

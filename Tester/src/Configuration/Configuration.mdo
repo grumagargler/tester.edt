@@ -20,7 +20,7 @@
   <usePurposes>PersonalComputer</usePurposes>
   <defaultRoles>Role.User</defaultRoles>
   <vendor>Reshitko Dmitry</vendor>
-  <version>1.3.5.4</version>
+  <version>1.3.5.5</version>
   <includeHelpInContents>true</includeHelpInContents>
   <help>
     <pages>
@@ -207,6 +207,7 @@
   <commonModules>CommonModule.EnvironmentSrv</commonModules>
   <commonModules>CommonModule.ErrorLogForm</commonModules>
   <commonModules>CommonModule.Exchange</commonModules>
+  <commonModules>CommonModule.ExchangeKillers</commonModules>
   <commonModules>CommonModule.Extender</commonModules>
   <commonModules>CommonModule.ExtenderSrv</commonModules>
   <commonModules>CommonModule.Fields</commonModules>
@@ -284,6 +285,7 @@
   <constants>Constant.ClusterAdministrator</constants>
   <constants>Constant.ClusterPassword</constants>
   <constants>Constant.CounterFull</constants>
+  <constants>Constant.Exchange</constants>
   <constants>Constant.InfoEmail</constants>
   <constants>Constant.ServerAdministrator</constants>
   <constants>Constant.ServerCode</constants>

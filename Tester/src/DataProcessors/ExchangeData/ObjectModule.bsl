@@ -12,7 +12,7 @@ var ThisNode;
 Procedure Unload ( Params ) export 
 	
 	init ( Params );
-	fillDataNodes ( "Unload", Params.Node );
+	fillDataNodes ( "Unload", Params );
 	for each item in DataNodes do
 		node = item.Key;
 		data = item.Value;
@@ -40,7 +40,7 @@ Procedure Load ( Params ) export
 		updateConfiguration ( Params );
 	else			
 		ReadChangesConfiguration = false;
-		fillDataNodes ( "Load", Params.Node );
+		fillDataNodes ( "Load", Params );
 		for each item in DataNodes do
 			node = item.Key;
 			data = item.Value;
@@ -338,9 +338,12 @@ Function writeChanges ( Name, Node )
 	writerXML.OpenFile ( xml );
 	writer = ExchangePlans.CreateMessageWriter ();
 	Output.WritingChanges ();
-	writer.BeginWrite ( writerXML, Node );                                  
+	BeginTransaction ();
+	ExchangeKillers.Wait ();
+	writer.BeginWrite ( writerXML, Node );
 	ExchangePlans.WriteChanges ( writer );
 	writer.EndWrite ();
+	CommitTransaction ();                                  
 	Output.WritingChangesComplete ();
 	writerXML.Close ();
 	zip = TempDirectory + Name + ".zip";
