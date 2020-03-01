@@ -190,6 +190,7 @@ Procedure WriteError ( Source, Scenario, Date, Error, Level, Job ) export
 	r.Area = errorArea ( Error, Level );
 	RuntimeSrv.AssignJob ( r, Job );
 	BeginTransaction ();
+	ExchangeKillers.Wait ();
 	completeRunning ( r );
 	ExchangeKillers.Write ( r );
 	CommitTransaction ();
@@ -263,6 +264,7 @@ Procedure LogSuccess ( val Scenario, val Level, val Job ) export
 	r.Application = source.Application;
 	RuntimeSrv.AssignJob ( r, Job );
 	BeginTransaction ();
+	ExchangeKillers.Wait ();
 	completeRunning ( r );
 	ExchangeKillers.Write ( r );
 	CommitTransaction ();

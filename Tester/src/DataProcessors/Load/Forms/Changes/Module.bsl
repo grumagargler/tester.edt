@@ -447,7 +447,8 @@ Procedure loadFiles ()
 			isCommon = false;
 		endif;
 		parent = CurrentData.GetParent ().Scenario;
-		CurrentData.Scenario = updateScenario ( application, isCommon, parent, CurrentData.Path, FilesContent, CurrentData.Type, remove );
+		CurrentData.Scenario = updateScenario ( application, isCommon, parent, CurrentData.Path, FilesContent,
+			CurrentData.Type, remove, CurrentData.UTC );
 		RenewList.Add ( CurrentData.Scenario );
 		startLoading ();
 		return;
@@ -498,7 +499,7 @@ Procedure ReadingComplete ( Document ) export
 EndProcedure 
 
 &AtServerNoContext
-Function updateScenario ( val Application, val IsCommon, val Parent, val Path, val Content, val Type, val Remove )
+Function updateScenario ( val Application, val IsCommon, val Parent, val Path, val Content, val Type, val Remove, val UTC )
 	
 	targetApplication = ? ( IsCommon, Catalogs.Applications.EmptyRef (), Application );
 	scenario = getScenario ( Path, targetApplication );
@@ -533,7 +534,8 @@ Function updateScenario ( val Application, val IsCommon, val Parent, val Path, v
 	obj.DataExchange.Load = true;
 	if ( not Catalogs.Scenarios.CheckDoubles ( obj ) ) then
 		raise Output.LoadingError ();
-	endif; 
+	endif;
+	obj.Changed = UTC;
 	obj.Write ();
 	obj.FullExchange ();
 	ref = obj.Ref;

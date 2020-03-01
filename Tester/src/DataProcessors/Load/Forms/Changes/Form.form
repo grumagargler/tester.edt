@@ -943,6 +943,20 @@
         <common>true</common>
       </edit>
     </columns>
+    <columns>
+      <name>UTC</name>
+      <id>20</id>
+      <valueType>
+        <types>Date</types>
+        <dateQualifiers/>
+      </valueType>
+      <view>
+        <common>true</common>
+      </view>
+      <edit>
+        <common>true</common>
+      </edit>
+    </columns>
   </attributes>
   <attributes>
     <name>ProgressBar</name>
