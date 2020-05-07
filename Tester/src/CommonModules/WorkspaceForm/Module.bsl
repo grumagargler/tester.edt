@@ -10,6 +10,7 @@ Procedure Create ( Reference ) export
 		exclusion [ "**/*.json" ] = new Structure ( "when", "$(basename)" + RepositoryFiles.BSLFile () );
 		exclusion [ "**/.tester" ] = true;
 		exclusion [ "**/.gitignore" ] = true;
+		exclusion [ "**/.vscode" ] = true;
 		exclusion [ "**/" + TesterWatcherBSLServerSettings ] = true;
 		settings = new Map ();
 		settings [ "files.exclude" ] = exclusion;
