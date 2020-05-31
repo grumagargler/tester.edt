@@ -76,7 +76,7 @@ EndFunction
 
 Function decompose ( Expression )
 	
-	exp = Regexp.Get ();
+	exp = Regexp.Create ();
 	exp.Pattern = "([^<>=]+)(>|<|=|<>|>=|<=)([^<>=]+)"; // "Application = 1.2.3.4"
 	matches = Exp.Execute ( Expression );
 	if ( matches.Count = 0 ) then
@@ -133,7 +133,7 @@ EndFunction
 
 Function filterByVersion ( Q, Operation )
 	
-	exp = Regexp.Get ();
+	exp = Regexp.Create ();
 	exp.Pattern = "\d+";
 	parts = StrSplit ( Operation.Version, "." );
 	i = 0;

@@ -21,24 +21,24 @@
     </stringQualifiers>
   </type>
   <explanation>
-    <key>ru</key>
-    <value>Имя пользователя администратора сервера</value>
-  </explanation>
-  <explanation>
     <key>en</key>
     <value>Username of server administrator</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Имя пользователя администратора сервера</value>
   </explanation>
   <explanation>
     <key>ro</key>
     <value>Numele de utilizator al administratorului de server</value>
   </explanation>
   <toolTip>
-    <key>ru</key>
-    <value>Имя пользователя администратора сервера</value>
-  </toolTip>
-  <toolTip>
     <key>en</key>
     <value>Username of server administrator</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Имя пользователя администратора сервера</value>
   </toolTip>
   <toolTip>
     <key>ro</key>

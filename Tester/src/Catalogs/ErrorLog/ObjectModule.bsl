@@ -197,4 +197,4 @@ EndProcedure
 
 Lexer.ProcedureDescriptors ( ProcedureStarts, ProcedureEnds );
 Lexer.RegionDescriptors ( RegionStarts, RegionEnds );
-Exp = Regexp.Get ();
+Exp = Regexp.Create ();

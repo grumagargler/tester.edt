@@ -2027,3 +2027,119 @@ Function LoadingError () export
 	return text;
 
 EndFunction
+
+Function TableValuesDifferent ( Params ) export
+
+	text = NStr ( "en = 'In the row %Row of %Table table, in the %Column column, the value should be ""%Standard"", not ""%Tested""'; ru = 'В строке %Row таблицы %Table, в колонке %Column должно быть ""%Standard"", а не ""%Tested""'" );
+	return Output.Sformat ( text, Params );
+
+EndFunction
+
+Function TableFormatErrorStandard () export
+
+	text = NStr ( "en = 'Standard Table'; ru = 'Эталонная таблица'" );
+	return text;
+
+EndFunction
+
+Function TableFormatErrorTesting () export
+
+	text = NStr ( "en = 'Testing Table'; ru = 'Тестируемая таблица'" );
+	return text;
+
+EndFunction
+
+Function TableFormatErrorFormatting () export
+
+	text = NStr ( "en = 'Formatting Table'; ru = 'Форматируемая таблица'" );
+	return text;
+
+EndFunction
+
+Function TableFormatErrorColumns ( Params ) export
+
+	text = NStr ( "en = '%Table Format Error: incorrect number of colums in the row #%Row'; ru = 'Ошибка формата, %Table: неверное количество колонок в строке #%Row'" );
+	return Output.Sformat ( text, Params );
+
+EndFunction
+
+Function TableFormatErrorName ( Params ) export
+
+	text = NStr ( "en = '%Table Format Error: table name is not defined'; ru = 'Ошибка формата, %Table: не определено имя таблицы'" );
+	return Output.Sformat ( text, Params );
+
+EndFunction
+
+Function TableFormatErrorHeader ( Params ) export
+
+	text = NStr ( "en = '%Table Format Error: table columns are not defined'; ru = 'Ошибка формата, %Table: не заданы колонки'" );
+	return Output.Sformat ( text, Params );
+
+EndFunction
+
+Function TableColumnNotFound ( Params ) export
+
+	text = NStr ( "en = 'There''s no <%Column> column in the %Table table, but the standard has'; ru = 'В таблице %Table нет колонки <%Column>, а в эталоне есть'" );
+	return Output.Sformat ( text, Params );
+
+EndFunction
+
+Function TableHasManyColumns ( Params ) export
+
+	text = NStr ( "en = '%Table table has more columns than standard'; ru = 'В таблице %Table больше колонок чем в эталоне'" );
+	return Output.Sformat ( text, Params );
+
+EndFunction
+
+Function TableHasFewerColumns ( Params ) export
+
+	text = NStr ( "en = '%Table table has fewer columns than standard'; ru = 'В таблице %Table меньше колонок чем в эталоне'" );
+	return Output.Sformat ( text, Params );
+
+EndFunction
+
+Function TableHasManyRows ( Params ) export
+
+	text = NStr ( "en = '%Table table has more rows than standard (%TestedRows > %StandardRows)'; ru = 'В таблице %Table больше строк чем в эталоне (%TestedRows > %StandardRows)'" );
+	return Output.Sformat ( text, Params );
+
+EndFunction
+
+Function TableHasFewerRows ( Params ) export
+
+	text = NStr ( "en = '%Table table has fewer rows than standard (%TestedRows < %StandardRows)'; ru = 'В таблице %Table меньше строк чем в эталоне (%TestedRows < %StandardRows)'" );
+	return Output.Sformat ( text, Params );
+
+EndFunction
+
+&AtServer
+Procedure ColumnsNotSelected ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+	
+	text = NStr ( "en = 'Select testing columns please'; ru = 'Выберите пожалуйста тестируемые колонки'" );
+	putMessage ( text, Params, Field, DataKey, DataPath );
+	
+EndProcedure
+
+&AtClient
+Function ErrorObtainingTableParameters () export
+
+	text = NStr ( "en = 'An error occurred in obtaining the table parameters';ru = 'Произошла ошибка получения параметров таблицы'" );
+	return text;
+
+EndFunction
+
+&AtClient
+Function Standard () export
+
+	text = NStr ( "en = 'standard';ru = 'эталон'" );
+	return text;
+
+EndFunction
+
+&AtClient
+Function TableDefinitionNotFound () export
+
+	text = NStr ( "en = 'Table Definition Not Found';ru = 'Не удалось найти определение таблицы'" );
+	return text;
+
+EndFunction

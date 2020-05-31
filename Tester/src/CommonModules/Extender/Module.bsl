@@ -276,6 +276,21 @@ Procedure Проверить ( Name, Value, Source = undefined, Type = undefined
 EndProcedure 
 
 &AtClient
+Procedure CheckTable ( Table, Params = undefined, Options = undefined, Source = undefined ) export
+	
+	Test.CheckConnection ();
+	Fields.CheckTableContent ( Table, Params, Options, Forms.FindSource ( Source ) );
+	
+EndProcedure 
+
+&AtClient
+Procedure ПроверитьТаблицу ( Table, Params = undefined, Options = undefined, Source = undefined ) export
+	
+	CheckTable ( Table, Params, Options, Source );
+	
+EndProcedure 
+
+&AtClient
 Procedure CheckState ( Name, Value, Flag = true, Source = undefined, Type = undefined ) export
 	
 	Test.CheckConnection ();

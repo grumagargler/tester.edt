@@ -157,11 +157,14 @@ Function debugging ( Module, Row, IsVersion )
 	
 EndFunction 
 
+//@skip-warning
 &AtClient
 Function askUser ( Module, Row, IsVersion )
 	
-	p = new Structure ( "Module, Row, IsVersion", Module, Row, IsVersion );
-	return OpenFormModal ( "CommonForm.Debugger", p );
+	#if ( not WebClient ) then
+		p = new Structure ( "Module, Row, IsVersion", Module, Row, IsVersion );
+		return OpenFormModal ( "CommonForm.Debugger", p );
+	#endif
 	
 EndFunction 
 

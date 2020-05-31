@@ -14,12 +14,12 @@
     <titleLocation>None</titleLocation>
     <excludedCommands>Copy</excludedCommands>
     <excludedCommands>EndEdit</excludedCommands>
-    <excludedCommands>ShowRowRearrangement</excludedCommands>
-    <excludedCommands>ShowMultipleSelection</excludedCommands>
+    <excludedCommands>OutputList</excludedCommands>
     <excludedCommands>SelectAll</excludedCommands>
+    <excludedCommands>ShowMultipleSelection</excludedCommands>
+    <excludedCommands>ShowRowRearrangement</excludedCommands>
     <excludedCommands>SortListAsc</excludedCommands>
     <excludedCommands>SortListDesc</excludedCommands>
-    <excludedCommands>OutputList</excludedCommands>
     <items xsi:type="form:FormField">
       <name>ApplicationsApplication</name>
       <id>64</id>
@@ -29,9 +29,6 @@
         <common>true</common>
       </userVisible>
       <dataPath xsi:type="form:MultiLanguageDataPath">
-        <paths xsi:type="form:DataPath">
-          <segments>Object.Applications.Application</segments>
-        </paths>
         <paths xsi:type="form:DataPath">
           <segments>Object.Applications.Application</segments>
         </paths>
@@ -116,11 +113,11 @@
         </extendedTooltip>
         <commandName>Form.Item.Applications.StandardCommand.Add</commandName>
         <representation>Auto</representation>
-        <onlyInAllActions>false</onlyInAllActions>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <placementArea>UserCmds</placementArea>
         <representationInContextMenu>Auto</representationInContextMenu>
+        <locationInCommandBar>InCommandBarAndInAdditionalSubmenu</locationInCommandBar>
       </items>
       <items xsi:type="form:Button">
         <name>ApplicationsDelete</name>
@@ -147,11 +144,11 @@
         </extendedTooltip>
         <commandName>Form.Item.Applications.StandardCommand.Delete</commandName>
         <representation>Auto</representation>
-        <onlyInAllActions>false</onlyInAllActions>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <placementArea>UserCmds</placementArea>
         <representationInContextMenu>Auto</representationInContextMenu>
+        <locationInCommandBar>InCommandBarAndInAdditionalSubmenu</locationInCommandBar>
       </items>
       <items xsi:type="form:Button">
         <name>ApplicationsMoveUp</name>
@@ -178,11 +175,11 @@
         </extendedTooltip>
         <commandName>Form.Item.Applications.StandardCommand.MoveUp</commandName>
         <representation>Auto</representation>
-        <onlyInAllActions>false</onlyInAllActions>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <placementArea>UserCmds</placementArea>
         <representationInContextMenu>Auto</representationInContextMenu>
+        <locationInCommandBar>InCommandBarAndInAdditionalSubmenu</locationInCommandBar>
       </items>
       <items xsi:type="form:Button">
         <name>ApplicationsMoveDown</name>
@@ -209,11 +206,11 @@
         </extendedTooltip>
         <commandName>Form.Item.Applications.StandardCommand.MoveDown</commandName>
         <representation>Auto</representation>
-        <onlyInAllActions>false</onlyInAllActions>
         <autoMaxWidth>true</autoMaxWidth>
         <autoMaxHeight>true</autoMaxHeight>
         <placementArea>UserCmds</placementArea>
         <representationInContextMenu>Auto</representationInContextMenu>
+        <locationInCommandBar>InCommandBarAndInAdditionalSubmenu</locationInCommandBar>
       </items>
       <visible>true</visible>
       <enabled>true</enabled>

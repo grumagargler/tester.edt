@@ -31,7 +31,7 @@ Function checkLocalhost ()
 	if ( not Proxy ) then
 		return true;
 	endif;
-	exp = Regexp.Get ();
+	exp = Regexp.Create ();
 	exp.Pattern = "\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b";
 	if ( exp.Test ( Localhost ) ) then
 		return true;

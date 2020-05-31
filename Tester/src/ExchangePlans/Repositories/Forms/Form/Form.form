@@ -203,8 +203,10 @@
     <userVisible>
       <common>true</common>
     </userVisible>
-    <dataPath xsi:type="form:DataPath">
-      <segments>InitFolder</segments>
+    <dataPath xsi:type="form:MultiLanguageDataPath">
+      <paths xsi:type="form:DataPath">
+        <segments>InitFolder</segments>
+      </paths>
     </dataPath>
     <toolTip>
       <key>en</key>
@@ -568,7 +570,7 @@
     <navigationPanel/>
     <commandBar/>
   </commandInterface>
-  <extInfo xsi:type="form:InformationRegisterManagerFormExtInfo">
+  <extInfo xsi:type="form:ObjectFormExtInfo">
     <handlers>
       <event>AfterWrite</event>
       <name>AfterWrite</name>

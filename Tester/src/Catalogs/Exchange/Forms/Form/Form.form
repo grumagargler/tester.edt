@@ -1601,6 +1601,14 @@
               <name>LabelWarning</name>
               <id>167</id>
               <title>
+                <key>en</key>
+                <value>For the correct operation of data exchange through a network resource (network drive), you must:
+1. Specify the address in the format: \\ IP (network drive address) \ drive name + $ \ download folder. 
+    For example: \\1.1.1.1 \ c $ \ ExchangeData \ MainNode.
+2. It is necessary to configure access rights for the directories for uploading and downloading exchange files. 
+    And it is worth paying special attention to setting access rights for accounts under which data is exchanged.</value>
+              </title>
+              <title>
                 <key>ru</key>
                 <value>Для корректной работы обмена данными через сетевой ресурс (сетевой диск), необходимо: 
 1. Указывать адрес в формате: \\ IP (адрес сетевого диска) \ имя диска + $ \ папка загрузки. 
@@ -1614,14 +1622,6 @@
                 <value>Pentru funcționarea corectă a schimbului de date printr-o resursă de rețea (unitate de rețea), trebuie să:
 1. Specificați adresa în format: \\ IP (adresa unității de rețea) \ drive name + $ \ folderul de descărcare. De exemplu: \\ 192.168.192.3 \ c $ \ Exchange_Data \ ERB
 2. Trebuie să configurați drepturile de acces pentru directoarele de descărcare / încărcare ale fișierelor de schimb. Și merită acordată o atenție deosebită stabilirii drepturilor de acces pentru conturile în care se schimbă datele.</value>
-              </title>
-              <title>
-                <key>en</key>
-                <value>For the correct operation of data exchange through a network resource (network drive), you must:
-1. Specify the address in the format: \\ IP (network drive address) \ drive name + $ \ download folder. 
-    For example: \\1.1.1.1 \ c $ \ ExchangeData \ MainNode.
-2. It is necessary to configure access rights for the directories for uploading and downloading exchange files. 
-    And it is worth paying special attention to setting access rights for accounts under which data is exchanged.</value>
               </title>
               <visible>true</visible>
               <enabled>true</enabled>

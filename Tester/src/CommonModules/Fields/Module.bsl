@@ -234,7 +234,7 @@ Procedure CheckValue(Field, Value, Source = undefined, Type = undefined) export
 		endtry;
 	endif;
 	result = Fields.FetchValue(Field, Source, Type);
-	if (resultIsEqual(result, Value)) then
+	if (TableProcessor.ValuesEqual(result, Value)) then
 		return;
 	endif;
 	p = new Structure();
@@ -255,30 +255,11 @@ Procedure CheckValue(Field, Value, Source = undefined, Type = undefined) export
 	
 EndProcedure
 
-Function resultIsEqual(Result, Value)
+Procedure CheckTableContent ( Table, Params, Options, Source ) export
 	
-	type = TypeOf(Value);
-	if (type = Type("Number")) then
-		try
-			value1 = ?(Result = "", 0, Number(Result));
-			value2 = Number(Value);
-		except
-			return false;
-		endtry;
-		return value1 = value2;
-	elsif (type = Type("Date")) then
-		try
-			value1 = Date(Result);
-			value2 = Date(Value);
-		except
-			return false;
-		endtry;
-		return value1 = value2;
-	else
-		return Result = Value;
-	endif;
+	TableProcessor.CompareFieldAndTable ( Table, Params, Options, Source );
 	
-EndFunction
+EndProcedure
 
 Procedure CheckAppearance(Name, Value, Flag = true, Source = undefined, Type = undefined) export
 	

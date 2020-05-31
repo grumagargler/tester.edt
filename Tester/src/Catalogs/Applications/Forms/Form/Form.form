@@ -531,11 +531,11 @@
                 </extendedTooltip>
                 <commandName>Form.Item.Ports.StandardCommand.Create</commandName>
                 <representation>Auto</representation>
-                <onlyInAllActions>false</onlyInAllActions>
                 <autoMaxWidth>true</autoMaxWidth>
                 <autoMaxHeight>true</autoMaxHeight>
                 <placementArea>UserCmds</placementArea>
                 <representationInContextMenu>Auto</representationInContextMenu>
+                <locationInCommandBar>InCommandBarAndInAdditionalSubmenu</locationInCommandBar>
               </items>
               <items xsi:type="form:Button">
                 <name>PortsChange</name>
@@ -562,11 +562,11 @@
                 </extendedTooltip>
                 <commandName>Form.Item.Ports.StandardCommand.Change</commandName>
                 <representation>Auto</representation>
-                <onlyInAllActions>false</onlyInAllActions>
                 <autoMaxWidth>true</autoMaxWidth>
                 <autoMaxHeight>true</autoMaxHeight>
                 <placementArea>UserCmds</placementArea>
                 <representationInContextMenu>Auto</representationInContextMenu>
+                <locationInCommandBar>InCommandBarAndInAdditionalSubmenu</locationInCommandBar>
               </items>
               <visible>true</visible>
               <enabled>true</enabled>
@@ -1927,8 +1927,7 @@ from Catalog.ApplicationVersions as Versions
     </edit>
   </attributes>
   <commandInterface>
-    <navigationPanel>
-    </navigationPanel>
+    <navigationPanel/>
     <commandBar/>
   </commandInterface>
   <extInfo xsi:type="form:CatalogFormExtInfo">

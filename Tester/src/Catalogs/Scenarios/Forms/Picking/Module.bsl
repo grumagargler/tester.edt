@@ -14,7 +14,6 @@ Procedure OnCreateAtServer ( Cancel, StandardProcessing )
 	initList ();
 	ScenarioForm.InitPort ( Items.Port );
 	filterByMetadata ();
-	setRetrieving ();
 	AppearanceSrv.Read ( ThisObject );
 	Appearance.Apply ( ThisObject );
 	
@@ -53,24 +52,6 @@ Procedure filterByMetadata ()
 EndProcedure 
 
 &AtServer
-Procedure setRetrieving ()
-	
-	s = "
-	|select top 1 1
-	|from InformationRegister.Controls as Controls
-	|where Controls.User = &User
-	|and Controls.Application = &Application
-	|and Controls.Metadata = &Metadata
-	|";
-	q = new Query ( s );
-	q.SetParameter ( "User", SessionParameters.User );
-	q.SetParameter ( "Application", Parameters.Application );
-	q.SetParameter ( "Metadata", MetadataFilter );
-	RetrieveControls = q.Execute ().IsEmpty ();
-
-EndProcedure 
-
-&AtServer
 Procedure OnLoadDataFromSettingsAtServer ( Settings )
 	
 	filterByType ();
@@ -88,11 +69,7 @@ EndProcedure
 Procedure OnOpen ( Cancel )
 	
 	init ();
-	if ( RetrieveControls ) then
-		fill ();
-	else
-		withActiveForm ();
-	endif;
+	syncItem ();
 	
 EndProcedure
 
@@ -113,22 +90,37 @@ Procedure flagConnected ()
 EndProcedure
 
 &AtClient
-Procedure withActiveForm ()
+Procedure syncItem ()
 	
-	#if ( ThinClient or ThickClientManagedApplication ) then
-		if ( not Connected ) then
-			return;
-		endif;
-		search = Controls.FindRows ( new Structure ( "Type", PredefinedValue ( "Enum.Controls.Form" ) ) );
-		if ( search.Count () = 0 ) then
-			name = Parameters.FormTitle;
-		else
-			name = search [ 0 ].TitleText;
+	if ( FieldsMap = undefined ) then
+		fill ();
+	endif; 
+	try
+		item = CurrentSource.GetCurrentItem ();
+	except
+		return;
+	endtry;
+	for each field in FieldsMap do
+		if ( field.Value = item ) then
+			//@skip-warning
+			Items.List.CurrentRow = positionKey ( field.Key, SessionApplication, MetadataFilter );
+			break;
 		endif; 
-		With ( name );
-	#endif
+	enddo; 
 	
 EndProcedure 
+
+&AtServerNoContext
+Function positionKey ( val Position, val Application, val Meta )
+	
+	p = new Structure ( "User, Application, Metadata, Position" );
+	p.User = SessionParameters.User;
+	p.Application = Application;
+	p.Metadata = Meta;
+	p.Position = Position;
+	return InformationRegisters.Controls.CreateRecordKey ( p );
+	
+EndFunction 
 
 // *****************************************
 // *********** Group Form
@@ -250,9 +242,12 @@ Procedure addControl ( Field )
 	if ( row.Name = "" ) then
 		row.Name = "<" + ? ( row.FormName = "", type, row.FormName ) + ">";
 	endif;
-	if ( type = PredefinedValue ( "Enum.Controls.Form" )
-		and row.FormName = "" ) then
-		row.FormName = "SystemDialog_" + row.TitleText;
+	if ( type = PredefinedValue ( "Enum.Controls.Form" ) ) then
+		caption = row.TitleText;
+		SelectedForm = caption;
+		if ( row.FormName = "" ) then
+			row.FormName = "SystemDialog_" + caption;
+		endif;
 	endif; 
 	FieldsMap [ ControlPosition ] = Field; // TestedField cannot be used as a key
 	ControlPosition = ControlPosition + 1;
@@ -324,6 +319,24 @@ Function newRecordset ( Meta )
 EndFunction
 
 &AtClient
+Procedure withActiveForm ()
+	
+	#if ( ThinClient or ThickClientManagedApplication ) then
+		if ( not Connected ) then
+			return;
+		endif;
+		search = Controls.FindRows ( new Structure ( "Type", PredefinedValue ( "Enum.Controls.Form" ) ) );
+		if ( search.Count () = 0 ) then
+			name = Parameters.FormTitle;
+		else
+			name = search [ 0 ].TitleText;
+		endif; 
+		With ( name );
+	#endif
+	
+EndProcedure 
+
+&AtClient
 Procedure CompleteSelection ( Command )
 	
 	completePicking ();
@@ -368,39 +381,6 @@ Procedure Sync ( Command )
 EndProcedure
 
 &AtClient
-Procedure syncItem ()
-	
-	if ( FieldsMap = undefined ) then
-		fill ();
-	endif; 
-	try
-		item = CurrentSource.GetCurrentItem ();
-	except
-		return;
-	endtry;
-	for each field in FieldsMap do
-		if ( field.Value = item ) then
-			//@skip-warning
-			Items.List.CurrentRow = positionKey ( field.Key, SessionApplication, MetadataFilter );
-			break;
-		endif; 
-	enddo; 
-	
-EndProcedure 
-
-&AtServerNoContext
-Function positionKey ( val Position, val Application, val Meta )
-	
-	p = new Structure ( "User, Application, Metadata, Position" );
-	p.User = SessionParameters.User;
-	p.Application = Application;
-	p.Metadata = Meta;
-	p.Position = Position;
-	return InformationRegisters.Controls.CreateRecordKey ( p );
-	
-EndFunction 
-
-&AtClient
 Procedure ConnectClient ( Command )
 	
 	attach ( Port, false );
@@ -428,7 +408,7 @@ Procedure ListSelection ( Item, SelectedRow, Field, StandardProcessing )
 	if ( Parameters.SelectOnly ) then
 		completePicking ();
 	else
-		ScenarioForm.OpenAssistant ( Items.List, Items.ListName, true );
+		ScenarioForm.OpenAssistant ( Items.List, Items.ListName, true, SelectedForm, Parameters.Application );
 	endif; 
 	
 EndProcedure
@@ -444,10 +424,14 @@ EndProcedure
 &AtClient
 Procedure applyAction ( Action )
 	
-	error = not ScenarioForm.ApplyAction ( Action );
-	if ( error ) then
-		Script = Script + "//";
-	endif; 
-	Script = Script + Action.Expression + Chars.LF;
+	if ( TypeOf ( Action ) = Type ( "String" ) ) then
+		Script = Script + Action + Chars.LF;
+	else
+		error = not ScenarioForm.ApplyAction ( Action );
+		if ( error ) then
+			Script = Script + "//";
+		endif; 
+		Script = Script + Action.Expression + Chars.LF;
+	endif;
 	
 EndProcedure 

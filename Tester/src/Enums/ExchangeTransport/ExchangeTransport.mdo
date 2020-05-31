@@ -7,12 +7,12 @@
   </producedTypes>
   <name>ExchangeTransport</name>
   <synonym>
-    <key>ru</key>
-    <value>Способ передачи</value>
-  </synonym>
-  <synonym>
     <key>ro</key>
     <value>Tip de schimb de date</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Способ передачи</value>
   </synonym>
   <useStandardCommands>true</useStandardCommands>
   <standardAttributes>
@@ -34,12 +34,12 @@
   <quickChoice>true</quickChoice>
   <choiceMode>BothWays</choiceMode>
   <explanation>
-    <key>ru</key>
-    <value>Содержит виды передачи файла обмена данными</value>
-  </explanation>
-  <explanation>
     <key>ro</key>
     <value>Conține tipurile de transmisie ale fișierului de comunicare</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Содержит виды передачи файла обмена данными</value>
   </explanation>
   <enumValues uuid="1a550202-a619-40d8-b842-92a59533a8d2">
     <name>Email</name>

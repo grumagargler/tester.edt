@@ -116,6 +116,19 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <forms uuid="197e6d15-6387-4240-bba7-0a45df0d52ad">
+    <name>CheckTable</name>
+    <synonym>
+      <key>en</key>
+      <value>Check Table</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Проверить таблицу</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
   <forms uuid="669e3e24-a518-47d0-b893-7c3129acd8d5">
     <name>Choice</name>
     <usePurposes>PersonalComputer</usePurposes>

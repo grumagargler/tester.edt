@@ -81,7 +81,7 @@ Procedure setQuery ()
 	|";
 	List.QueryText = s;
 	DC.SetParameter ( List, "User", SessionParameters.User );
-	DC.SetParameter ( List, "Application", EnvironmentSrv.GetApplication () );
+	DC.SetParameter ( List, "Application", Parameters.Application );
 	
 EndProcedure 
 
@@ -296,8 +296,15 @@ EndProcedure
 Procedure openParams ()
 	
 	data = Items.List.CurrentData;
-	p = new Structure ( "Method, ControlName, Picking, Help", data.Description, ControlName, Picking, getLink () );
-	OpenForm ( "Catalog.Assistant.Form.Params", p, ThisObject, , , , new NotifyDescription ( "AssistantParams", ThisObject ) );
+	if ( data.Help = "CheckTable"
+		and ControlName <> "" ) then
+		p = new Structure ( "Method, Table, Form", data.Description, ControlName, Parameters.Form );
+		form = "Catalog.Assistant.Form.CheckTable"
+	else
+		p = new Structure ( "Method, ControlName, Picking, Help", data.Description, ControlName, Picking, getLink () );
+		form = "Catalog.Assistant.Form.Params";
+	endif;
+	OpenForm ( form, p, ThisObject, , , , new NotifyDescription ( "AssistantParams", ThisObject ) );
 
 EndProcedure 
 

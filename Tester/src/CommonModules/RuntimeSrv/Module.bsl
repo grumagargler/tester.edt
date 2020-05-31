@@ -335,7 +335,7 @@ EndFunction
 
 Function FindErrors ( val Template, val Messages ) export
 	
-	exp = Regexp.Get ();
+	exp = Regexp.Create ();
 	exp.Pattern = prepareTemplate ( Template );
 	result = new Array ();
 	for each msg in Messages do

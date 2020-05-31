@@ -15,7 +15,7 @@
   <containedObjects classId="9de14907-ec23-4a07-96f0-85521cb6b53b" objectId="08d7fa4b-1b0d-490a-b863-9f6a8a9d0e76"/>
   <containedObjects classId="51f2d5d8-ea4d-4064-8892-82951750031e" objectId="874ae187-f5c5-4671-82b4-69df2788b03e"/>
   <containedObjects classId="e68182ea-4237-4383-967f-90c1e3370bc7" objectId="33b8bdc1-cff3-4b3e-87ee-0dd98f902e3a"/>
-  <configurationExtensionCompatibilityMode>8.3.14</configurationExtensionCompatibilityMode>
+  <configurationExtensionCompatibilityMode>8.3.15</configurationExtensionCompatibilityMode>
   <defaultRunMode>ManagedApplication</defaultRunMode>
   <usePurposes>PersonalComputer</usePurposes>
   <defaultRoles>Role.User</defaultRoles>
@@ -155,6 +155,7 @@
   <commonPictures>CommonPicture.String</commonPictures>
   <commonPictures>CommonPicture.Studio</commonPictures>
   <commonPictures>CommonPicture.Subsystem</commonPictures>
+  <commonPictures>CommonPicture.Table</commonPictures>
   <commonPictures>CommonPicture.Tag</commonPictures>
   <commonPictures>CommonPicture.Uncomment</commonPictures>
   <commonPictures>CommonPicture.Undefined</commonPictures>
@@ -242,6 +243,7 @@
   <commonModules>CommonModule.ScheduledReports</commonModules>
   <commonModules>CommonModule.SessionData</commonModules>
   <commonModules>CommonModule.Starting</commonModules>
+  <commonModules>CommonModule.TableProcessor</commonModules>
   <commonModules>CommonModule.Test</commonModules>
   <commonModules>CommonModule.TesterAgent</commonModules>
   <commonModules>CommonModule.TestSrv</commonModules>

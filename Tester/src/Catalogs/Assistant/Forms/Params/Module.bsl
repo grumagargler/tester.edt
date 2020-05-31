@@ -31,7 +31,7 @@ EndProcedure
 &AtServer
 Procedure applyParams ()
 	
-	Exp = Regexp.Get ();
+	Exp = Regexp.Create ();
 	Running = Picking;
 	params = putMethod ();
 	if ( params <> undefined ) then

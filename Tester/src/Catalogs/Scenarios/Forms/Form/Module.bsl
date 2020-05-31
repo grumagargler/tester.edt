@@ -77,11 +77,11 @@ Function readTags()
 		return undefined;
 	endif;
 	s = "
-		|select Tags.Tag.Description as Tag
-		|from Catalog.TagKeys.Tags as Tags
-		|where Tags.Ref = &Key
-		|and not Tags.Tag.DeletionMark
-		|";
+	|select Tags.Tag.Description as Tag
+	|from Catalog.TagKeys.Tags as Tags
+	|where Tags.Ref = &Key
+	|and not Tags.Tag.DeletionMark
+	|";
 	q = new Query(s);
 	q.SetParameter("Key", tag);
 	return q.Execute().Unload().UnloadColumn("Tag");
@@ -953,7 +953,7 @@ EndFunction
 &AtServerNoContext
 Function getParams(Functions, Row)
 
-	exp = Regexp.Get();
+	exp = Regexp.Create();
 	exp.Pattern = "(" + Functions + ")(\(| +\()(.+)\)";
 	matches = exp.Execute(Row);
 	if (matches.Count = 0) then
@@ -1050,9 +1050,17 @@ EndProcedure
 &AtClient
 Procedure Assist(Command)
 
-	OpenForm("Catalog.Assistant.ChoiceForm", , ThisObject);
+	openAssistant ();
 
 EndProcedure
+
+&AtClient
+Procedure openAssistant ()
+	
+	Test.AttachApplication ( Object.Ref );
+	OpenForm ( "Catalog.Assistant.ChoiceForm", , ThisObject );
+	
+EndProcedure 
 
 &AtClient
 Procedure DescriptionOnChange(Item)
@@ -1114,7 +1122,7 @@ EndProcedure
 &AtClient
 Procedure openRecording()
 
-	OpenForm("Catalog.Scenarios.Form.Record", , , , , , new NotifyDescription("Converting", ThisObject));
+	OpenForm("Catalog.Scenarios.Form.Record", , ThisObject, , , , new NotifyDescription("Converting", ThisObject));
 
 EndProcedure
 
@@ -1144,7 +1152,7 @@ EndFunction
 &AtServerNoContext
 Function findConnect(Script)
 
-	exp = Regexp.Get();
+	exp = Regexp.Create();
 	exp.Pattern = "(^|\s+)(connect\W|подключить\W)";
 	return exp.Test(Script);
 
@@ -1156,6 +1164,121 @@ Procedure PickAction(Command)
 	ScenarioForm.Picking(ThisObject, false);
 
 EndProcedure
+
+&AtClient
+Procedure FormatTable ( Command )
+	
+	getSelection ();
+	evalRange = SelectionStart = SelectionEnd;
+	table = extractSelection ( evalRange );
+	text = TableProcessor.Formatting ( table.Text, table.Indent );
+	control = Items.Script;
+	if ( evalRange ) then
+		control.SetTextSelectionBounds ( table.Start, 1, table.Finish + 1, 1 );
+		control.SelectedText = text + Chars.LF;
+		restoreSelection ();
+	else
+		control.SelectedText = text + ? ( ColumnEnd = 1, Chars.LF, "" );
+	endif;
+
+EndProcedure
+
+&AtClient
+Function extractSelection ( EvalRange )
+	
+	rows = new Array ();
+	indent = undefined;
+	if ( EvalRange ) then
+		start = evalTableStart ();
+		finish = evalTableEnd ();
+	else
+		start = SelectionStart;
+		finish = SelectionEnd;
+	endif;
+	script = Object.Script;
+	for i = start to finish do
+		s = StrGetLine ( script, i );
+		data = extractTablePart ( s, 2 );
+		if ( data = undefined ) then
+			continue;
+		endif;
+		indent = data.Indent;
+		rows.Add ( data.Text );
+	enddo;
+	return new Structure ( "Text, Indent, Start, Finish", StrConcat ( rows, Chars.LF ), indent, start, finish );
+	
+EndFunction
+
+&AtClient
+Function evalTableStart ()
+	
+	script = Object.Script;
+	i = SelectionStart;
+	while ( i > 0 ) do
+		s = StrGetLine ( script, i );
+		if ( extractTablePart ( s, 1 ) ) then
+			return i + 1;
+		elsif ( extractTablePart ( s, 2 ) = undefined
+			and not extractTablePart ( s, 3 ) ) then
+			break;
+		endif;
+		i = i - 1;
+	enddo;
+	raise Output.TableDefinitionNotFound ();
+
+EndFunction
+
+&AtClient
+Function extractTablePart ( Row, Part )
+	
+	rex = Regexp.Create ();
+	result = new Structure ( "Indent, Text" );
+	if ( Part = 1 ) then
+		// Definition begins
+		// = "text
+		// ( "text
+		rex.Pattern = "((=(\s+)?"")|(\((\s+)?""))(.+)?";
+		return rex.Test ( Row );
+	elsif ( Part = 2 ) then
+		// Header or Row
+		// | text
+		rex.Pattern = "^(\s+)?\|(.+)?";
+		matches = rex.Execute ( Row );
+		if ( matches.Count = 0 ) then
+			return undefined;
+		else
+			set = matches.Item ( 0 );
+			result.Indent = set.Submatches ( 0 );
+			result.Text = set.Submatches ( 1 );
+		endif; 
+	else
+		// Definition ends
+		// | text";
+		// | text" )
+		rex.Pattern = "(^(\s+)?\|)(.+)?""(\s+)?(\)|;)";
+		return rex.Test ( Row );
+	endif;
+	return result;
+	
+EndFunction
+
+&AtClient
+Function evalTableEnd ()
+	
+	script = Object.Script;
+	eof = StrLineCount ( script );
+	for i = SelectionStart to eof do
+		s = StrGetLine ( script, i );
+		if ( extractTablePart ( s, 3 ) ) then
+			return i - 1;
+		elsif ( not extractTablePart ( s, 1 )
+			and extractTablePart ( s, 2 ) = undefined ) then
+			break;
+		endif;
+	enddo;
+	raise Output.TableDefinitionNotFound ();
+	
+EndFunction
 
 &AtClient
 Procedure AddBreakpoint(Command)
@@ -1804,9 +1927,26 @@ EndProcedure
 Procedure FieldsTableSelection(Item, SelectedRow, Field, StandardProcessing)
 
 	StandardProcessing = false;
-	ScenarioForm.OpenAssistant(Items.FieldsTable, Items.FieldsTableName, true);
+	ScenarioForm.OpenAssistant(Items.FieldsTable, Items.FieldsTableName, true,
+		tableForm(), Object.Application);
 
 EndProcedure
+
+&AtClient
+Function tableForm()
+	
+	row = FieldsRow;
+	form = PredefinedValue ( "Enum.Controls.Form" );
+	while (true) do
+		row = row.GetParent();
+		if (row = undefined) then
+			return "";
+		elsif (row.Type = form) then
+			return row.TitleText;
+		endif;
+	enddo;
+	
+EndFunction
 
 &AtClient
 Procedure FieldsTableChoiceProcessing(Item, SelectedValue, StandardProcessing)
@@ -1820,8 +1960,12 @@ EndProcedure
 Procedure applyAction(Action)
 
 	withActiveForm();
-	error = not ScenarioForm.ApplyAction(Action);
-	applyAssistant(Action.Expression, true, error);
+	if (TypeOf(Action) = Type("String")) then
+		applyAssistant(Action, true, false);
+	else
+		error = not ScenarioForm.ApplyAction(Action);
+		applyAssistant(Action.Expression, true, error);
+	endif;
 
 EndProcedure
 
@@ -2203,4 +2347,3 @@ Procedure defaultAccess()
 	endif;
 
 EndProcedure
-

@@ -7,12 +7,12 @@
   </producedTypes>
   <name>Protocols</name>
   <synonym>
-    <key>ru</key>
-    <value>Почтовые протоколы</value>
-  </synonym>
-  <synonym>
     <key>ro</key>
     <value>Protocoale Poștale</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Почтовые протоколы</value>
   </synonym>
   <standardAttributes>
     <dataHistory>Use</dataHistory>
@@ -33,12 +33,12 @@
   <quickChoice>true</quickChoice>
   <choiceMode>BothWays</choiceMode>
   <explanation>
-    <key>ru</key>
-    <value>Перечисление почтовых протоколов</value>
-  </explanation>
-  <explanation>
     <key>ro</key>
     <value>Enumerarea protocoalelor de poștă electronică</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Перечисление почтовых протоколов</value>
   </explanation>
   <enumValues uuid="5419ac8d-7895-404f-b6f2-3cd3b9b22eaa">
     <name>POP3</name>

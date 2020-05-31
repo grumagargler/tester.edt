@@ -47,7 +47,7 @@ EndProcedure
 
 Procedure initExp()
 	
-	Exp = Regexp.Get();
+	Exp = Regexp.Create();
 	
 EndProcedure
 

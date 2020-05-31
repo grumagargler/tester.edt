@@ -211,27 +211,26 @@ EndProcedure
 
 Procedure initExtender ()
 	
-	#if ( WebClient or MobileClient ) then
-		return;
+	#if ( not WebClient and not MobileClient ) then
+		info = new SystemInfo ();
+		type = info.PlatformType;
+		if ( type <> PlatformType.Windows_x86
+			and type <> PlatformType.Windows_x86_64 ) then
+			raise Output.OSNotSupported ();
+		endif;
+		if ( attachLibrary () ) then
+			if ( lastVersion () ) then
+				createExtender ();
+				return;
+			endif;
+		endif;
+		InstallAddIn ( "CommonTemplate.ExternalLibrary" );
+		if ( attachLibrary () ) then
+			if ( lastVersion () ) then
+				createExtender ();
+			endif;
+		endif;
 	#endif
-	info = new SystemInfo ();
-	type = info.PlatformType;
-	if ( type <> PlatformType.Windows_x86
-		and type <> PlatformType.Windows_x86_64 ) then
-		raise Output.OSNotSupported ();
-	endif;
-	if ( attachLibrary () ) then
-		if ( lastVersion () ) then
-			createExtender ();
-			return;
-		endif;
-	endif;
-	InstallAddIn ( "CommonTemplate.ExternalLibrary" );
-	if ( attachLibrary () ) then
-		if ( lastVersion () ) then
-			createExtender ();
-		endif;
-	endif;
 
 EndProcedure 
 

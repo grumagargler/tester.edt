@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://v8.1c.ru/8.2/data/spreadsheet" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<languageSettings>
-		<currentLanguage>en</currentLanguage>
+		<currentLanguage>ru</currentLanguage>
 		<defaultLanguage>ru</defaultLanguage>
 		<languageInfo>
 			<id>en</id>
@@ -1632,6 +1632,75 @@
 					<tl>
 						<v8:item>
 							<v8:lang>en</v8:lang>
+							<v8:content>CheckTable ( Table, Params = undefined, Options = undefined, Source = undefined );</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ПроверитьТаблицу ( Таблица, Параметры = неопределено, Опции = неопределено, Источник = неопределено );</v8:content>
+						</v8:item>
+					</tl>
+				</c>
+			</c>
+			<c>
+				<i>2</i>
+				<c>
+					<f>3</f>
+				</c>
+			</c>
+			<c>
+				<c>
+					<f>3</f>
+					<tl>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>CheckTable</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>CheckTable</v8:content>
+						</v8:item>
+					</tl>
+				</c>
+			</c>
+			<c>
+				<c>
+					<f>8</f>
+					<tl>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>b18_1</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>b18_1</v8:content>
+						</v8:item>
+					</tl>
+				</c>
+			</c>
+			<c>
+				<i>10</i>
+				<c>
+					<f>0</f>
+				</c>
+			</c>
+			<c>
+				<i>15</i>
+				<c>
+					<f>9</f>
+					<parameter>1</parameter>
+				</c>
+			</c>
+		</row>
+	</rowsItem>
+	<rowsItem>
+		<index>21</index>
+		<row>
+			<c>
+				<c>
+					<f>5</f>
+					<tl>
+						<v8:item>
+							<v8:lang>en</v8:lang>
 							<v8:content>CheckTemplate ( Name, Source = undefined, Type = undefined, Template = undefined );</v8:content>
 						</v8:item>
 						<v8:item>
@@ -1687,7 +1756,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>21</index>
+		<index>22</index>
 		<row>
 			<c>
 				<c>
@@ -1743,7 +1812,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>22</index>
+		<index>23</index>
 		<row>
 			<c>
 				<c>
@@ -1799,7 +1868,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>23</index>
+		<index>24</index>
 		<row>
 			<c>
 				<c>
@@ -1855,7 +1924,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>24</index>
+		<index>25</index>
 		<row>
 			<c>
 				<c>
@@ -1911,7 +1980,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>25</index>
+		<index>26</index>
 		<row>
 			<c>
 				<c>
@@ -1981,7 +2050,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>26</index>
+		<index>27</index>
 		<row>
 			<c>
 				<c>
@@ -2051,7 +2120,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>27</index>
+		<index>28</index>
 		<row>
 			<c>
 				<c>
@@ -2114,7 +2183,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>28</index>
+		<index>29</index>
 		<row>
 			<c>
 				<c>
@@ -2170,7 +2239,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>29</index>
+		<index>30</index>
 		<row>
 			<c>
 				<c>
@@ -2233,7 +2302,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>30</index>
+		<index>31</index>
 		<row>
 			<c>
 				<c>
@@ -2289,7 +2358,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>31</index>
+		<index>32</index>
 		<row>
 			<c>
 				<c>
@@ -2352,7 +2421,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>32</index>
+		<index>33</index>
 		<row>
 			<c>
 				<c>
@@ -2420,7 +2489,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>33</index>
+		<index>34</index>
 		<row>
 			<c>
 				<c>
@@ -2483,7 +2552,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>34</index>
+		<index>35</index>
 		<row>
 			<c>
 				<c>
@@ -2539,7 +2608,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>35</index>
+		<index>36</index>
 		<row>
 			<c>
 				<c>
@@ -2595,7 +2664,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>36</index>
+		<index>37</index>
 		<row>
 			<c>
 				<c>
@@ -2651,7 +2720,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>37</index>
+		<index>38</index>
 		<row>
 			<c>
 				<c>
@@ -2707,7 +2776,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>38</index>
+		<index>39</index>
 		<row>
 			<c>
 				<c>
@@ -2763,7 +2832,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>39</index>
+		<index>40</index>
 		<row>
 			<c>
 				<c>
@@ -2819,7 +2888,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>40</index>
+		<index>41</index>
 		<row>
 			<c>
 				<c>
@@ -2875,7 +2944,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>41</index>
+		<index>42</index>
 		<row>
 			<c>
 				<c>
@@ -2931,7 +3000,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>42</index>
+		<index>43</index>
 		<row>
 			<c>
 				<c>
@@ -2987,7 +3056,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>43</index>
+		<index>44</index>
 		<row>
 			<c>
 				<c>
@@ -3043,7 +3112,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>44</index>
+		<index>45</index>
 		<row>
 			<c>
 				<c>
@@ -3099,7 +3168,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>45</index>
+		<index>46</index>
 		<row>
 			<c>
 				<c>
@@ -3155,7 +3224,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>46</index>
+		<index>47</index>
 		<row>
 			<c>
 				<c>
@@ -3211,7 +3280,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>47</index>
+		<index>48</index>
 		<row>
 			<c>
 				<c>
@@ -3267,7 +3336,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>48</index>
+		<index>49</index>
 		<row>
 			<c>
 				<c>
@@ -3323,7 +3392,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>49</index>
+		<index>50</index>
 		<row>
 			<c>
 				<c>
@@ -3379,7 +3448,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>50</index>
+		<index>51</index>
 		<row>
 			<c>
 				<c>
@@ -3435,7 +3504,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>51</index>
+		<index>52</index>
 		<row>
 			<c>
 				<c>
@@ -3491,7 +3560,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>52</index>
+		<index>53</index>
 		<row>
 			<c>
 				<c>
@@ -3547,7 +3616,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>53</index>
+		<index>54</index>
 		<row>
 			<c>
 				<c>
@@ -3587,7 +3656,7 @@
 			</c>
 			<c>
 				<c>
-					<f>8</f>
+					<f>10</f>
 					<tl>
 						<v8:item>
 							<v8:lang>en</v8:lang>
@@ -3603,7 +3672,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>54</index>
+		<index>55</index>
 		<row>
 			<c>
 				<c>
@@ -3643,7 +3712,7 @@
 			</c>
 			<c>
 				<c>
-					<f>9</f>
+					<f>11</f>
 					<tl>
 						<v8:item>
 							<v8:lang>en</v8:lang>
@@ -3659,7 +3728,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>55</index>
+		<index>56</index>
 		<row>
 			<c>
 				<c>
@@ -3699,7 +3768,7 @@
 			</c>
 			<c>
 				<c>
-					<f>10</f>
+					<f>8</f>
 					<tl>
 						<v8:item>
 							<v8:lang>en</v8:lang>
@@ -3715,7 +3784,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>56</index>
+		<index>57</index>
 		<row>
 			<c>
 				<c>
@@ -3755,7 +3824,7 @@
 			</c>
 			<c>
 				<c>
-					<f>10</f>
+					<f>8</f>
 					<tl>
 						<v8:item>
 							<v8:lang>en</v8:lang>
@@ -3771,7 +3840,7 @@
 		</row>
 	</rowsItem>
 	<rowsItem>
-		<index>57</index>
+		<index>58</index>
 		<row>
 			<c>
 				<c>
@@ -3811,7 +3880,7 @@
 			</c>
 			<c>
 				<c>
-					<f>10</f>
+					<f>8</f>
 					<tl>
 						<v8:item>
 							<v8:lang>en</v8:lang>
@@ -3828,8 +3897,8 @@
 	</rowsItem>
 	<templateMode>true</templateMode>
 	<defaultFormatIndex>4</defaultFormatIndex>
-	<height>58</height>
-	<vgRows>58</vgRows>
+	<height>59</height>
+	<vgRows>59</vgRows>
 	<format>
 		<width>369</width>
 	</format>
@@ -3861,6 +3930,10 @@
 		<verticalAlignment>Bottom</verticalAlignment>
 		<textColor>#000000</textColor>
 		<textPlacement>Auto</textPlacement>
+	</format>
+	<format>
+		<width>72</width>
+		<fillType>Parameter</fillType>
 	</format>
 	<format>
 		<width>72</width>

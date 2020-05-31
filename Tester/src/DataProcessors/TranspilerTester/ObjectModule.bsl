@@ -37,7 +37,7 @@ Procedure init ()
 	TopDescriptor = undefined;
 	Reader.SetString ( Log );
 	fillDictionary ();
-	NameIndicator = ? ( Lang = "en", "#", "!" );
+	NameIndicator = ScenarioForm.NamePrefix ( Lang );
 	CheckFinishEditingCurrentArea = false;
 	CurrentForm = undefined;
 	FormTables = new Map ();
@@ -101,8 +101,7 @@ Procedure fillDictionary ()
 	Dictionary [ "clickFormattedStringHyperlink" ] = ? ( Lang = "en", "ClickFormattedStringHyperlink", "НажатьНаГиперссылкуВФорматированнойСтроке" );
 	Dictionary [ "choose" ] = ? ( Lang = "en", "Choose", "Выбрать" );
 	// There are Tester Methods. We can't use Catalogs.Assistant.Templates.Builtin
-	// because language of template is defined for user session language and can't be
-	// changed on fly
+	// because template language defined for user session and can't be changed on-fly
 	Dictionary [ "App" ] = ? ( Lang = "en", "App", "Приложение" );
 	Dictionary [ "MainWindow" ] = ? ( Lang = "en", "MainWindow", "ГлавноеОкно" );
 	Dictionary [ "Connect" ] = ? ( Lang = "en", "Connect", "Подключить" );

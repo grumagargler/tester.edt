@@ -145,10 +145,11 @@ Procedure ExecuteExpression ( Expression ) export
 EndProcedure 
 
 &AtClient
-Procedure OpenAssistant ( Table, NameColumn, Picking ) export
+Procedure OpenAssistant ( Table, NameColumn, Picking, Form, Application ) export
 	
 	name = ScenarioForm.ControlName ( Table, NameColumn );
-	p = new Structure ( "ControlName, ControlType, Picking", name, Table.CurrentData.Type, Picking );
+	p = new Structure ( "ControlName, ControlType, Picking, Form, Application",
+		name, Table.CurrentData.Type, Picking, Form, Application );
 	OpenForm ( "Catalog.Assistant.ChoiceForm", p, Table );
 	
 EndProcedure 
@@ -160,9 +161,15 @@ Function ControlName ( Table, NameColumn ) export
 	if ( row.Type = PredefinedValue ( "Enum.Controls.Form" ) ) then
 		return row.TitleText;
 	else
-		perfix = ? ( CurrentLanguage () = "ru", "!", "#" );
+		perfix = ScenarioForm.NamePrefix ( CurrentLanguage () );
 		return ? ( Table.CurrentItem = NameColumn, perfix + row.Name, row.TitleText );
 	endif; 
+	
+EndFunction
+
+Function NamePrefix ( Lang ) export
+
+	return ? ( Lang = "ru", "!", "#" );
 	
 EndFunction 
 

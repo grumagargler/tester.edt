@@ -1169,6 +1169,21 @@ where not Catalog.DeletionMark
       <types>EnumRef.Controls</types>
     </valueType>
   </parameters>
+  <parameters>
+    <name>Application</name>
+    <valueType>
+      <types>CatalogRef.Applications</types>
+    </valueType>
+    <keyParameter>true</keyParameter>
+  </parameters>
+  <parameters>
+    <name>Form</name>
+    <valueType>
+      <types>String</types>
+      <stringQualifiers/>
+    </valueType>
+    <keyParameter>true</keyParameter>
+  </parameters>
   <commandInterface>
     <navigationPanel/>
     <commandBar/>

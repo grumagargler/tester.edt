@@ -7,12 +7,12 @@
   </producedTypes>
   <name>ClusterAdministrator</name>
   <synonym>
-    <key>ru</key>
-    <value>Администратор кластера</value>
-  </synonym>
-  <synonym>
     <key>en</key>
     <value>Cluster Administrator</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Администратор кластера</value>
   </synonym>
   <synonym>
     <key>ro</key>
@@ -25,24 +25,24 @@
     </stringQualifiers>
   </type>
   <explanation>
-    <key>ru</key>
-    <value>Имя пользователя администратора кластера</value>
-  </explanation>
-  <explanation>
     <key>en</key>
     <value>Username of cluster administrator</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Имя пользователя администратора кластера</value>
   </explanation>
   <explanation>
     <key>ro</key>
     <value>Numele de utilizator al administratorului de cluster</value>
   </explanation>
   <toolTip>
-    <key>ru</key>
-    <value>Имя пользователя администратора кластера</value>
-  </toolTip>
-  <toolTip>
     <key>en</key>
     <value>Username of cluster administrator</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Имя пользователя администратора кластера</value>
   </toolTip>
   <toolTip>
     <key>ro</key>

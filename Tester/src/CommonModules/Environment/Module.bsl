@@ -14,7 +14,7 @@ Procedure DisplayCaption () export
 		parts.Add ( EnvironmentSrv.GetApplication () );
 	endif; 
 	parts.Add ( SessionUser );
-	SetClientApplicationCaption ( StrConcat ( parts, "." ) );
+	ClientApplication.SetCaption ( StrConcat ( parts, "." ) );
 	
 EndProcedure 
 

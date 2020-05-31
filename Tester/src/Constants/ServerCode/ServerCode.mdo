@@ -25,24 +25,24 @@
     <value>User's permission code. Used during application update</value>
   </explanation>
   <explanation>
-    <key>ro</key>
-    <value>Codul ce permite utilizatorului să intre în baza de date. Este folosit în timpul actualizării aplicației</value>
-  </explanation>
-  <explanation>
     <key>ru</key>
     <value>Код разрешения входа пользователя в базу. Используется при обновлении конфигурации</value>
+  </explanation>
+  <explanation>
+    <key>ro</key>
+    <value>Codul ce permite utilizatorului să intre în baza de date. Este folosit în timpul actualizării aplicației</value>
   </explanation>
   <toolTip>
     <key>en</key>
     <value>User's permission code. Used during application update</value>
   </toolTip>
   <toolTip>
-    <key>ro</key>
-    <value>Codul ce permite utilizatorului să intre în baza de date. Este folosit în timpul actualizării aplicației</value>
-  </toolTip>
-  <toolTip>
     <key>ru</key>
     <value>Код разрешения входа пользователя в базу. Используется при обновлении конфигурации</value>
+  </toolTip>
+  <toolTip>
+    <key>ro</key>
+    <value>Codul ce permite utilizatorului să intre în baza de date. Este folosit în timpul actualizării aplicației</value>
   </toolTip>
   <minValue xsi:type="core:UndefinedValue"/>
   <maxValue xsi:type="core:UndefinedValue"/>

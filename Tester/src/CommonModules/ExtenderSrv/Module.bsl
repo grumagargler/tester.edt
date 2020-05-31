@@ -22,3 +22,15 @@ Function ПозватьСервер ( Debug, Scenario, Params = undefined, Appli
 	return RunServer ( Debug, Scenario, Params, Application );
 	
 EndFunction
+
+Procedure CheckTable ( Debug, Table, Standard, Params = undefined, Options = undefined ) export
+	
+	TableProcessor.CompareVTAndTable ( Debug, Table, Standard, Params, Options );
+	
+EndProcedure 
+
+Procedure ПроверитьТаблицу ( Debug, Table, Standard, Params = undefined, Options = undefined ) export
+	
+	CheckTable ( Debug, Table, Standard, Params, Options );
+	
+EndProcedure 

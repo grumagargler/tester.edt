@@ -1438,19 +1438,6 @@ and Controls.Application = &amp;Application
     </extInfo>
   </attributes>
   <attributes>
-    <name>RetrieveControls</name>
-    <id>3</id>
-    <valueType>
-      <types>Boolean</types>
-    </valueType>
-    <view>
-      <common>true</common>
-    </view>
-    <edit>
-      <common>true</common>
-    </edit>
-  </attributes>
-  <attributes>
     <name>Controls</name>
     <id>4</id>
     <valueType>
@@ -1604,6 +1591,20 @@ and Controls.Application = &amp;Application
       <numberQualifiers>
         <precision>5</precision>
       </numberQualifiers>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
+  </attributes>
+  <attributes>
+    <name>SelectedForm</name>
+    <id>3</id>
+    <valueType>
+      <types>String</types>
+      <stringQualifiers/>
     </valueType>
     <view>
       <common>true</common>
