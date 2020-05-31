@@ -173,6 +173,9 @@
 				<field>ScriptContextMenuPickAction</field>
 			</item>
 			<item>
+				<field>ScriptContextMenuFormatTable</field>
+			</item>
+			<item>
 				<field>ScriptContextMenuAddBreakpoint</field>
 			</item>
 			<item>

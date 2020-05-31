@@ -566,9 +566,9 @@ EndFunction
 Function CheckingScript ( Method, Table, SelectedColumns, ByNames, Splitter ) export
 
 	this = createContext ( Debug );
-	escaped = readValues ( this, SelectedColumns, ByNames );
-	columns = fetchColumns ( Table, escaped, undefined );
+	columns = fetchColumns ( Table, SelectedColumns, undefined );
 	rows = fetchRows ( Table, columns.Names );
+	escaped = readValues ( this, SelectedColumns, ByNames );
 	text = buildScript ( Method, Table.Name, escaped, rows, this.Separators [ Splitter ], 0 );
 	return text;
 	

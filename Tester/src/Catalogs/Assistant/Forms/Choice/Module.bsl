@@ -224,7 +224,7 @@ EndProcedure
 &AtClient
 Function getLink ()
 	
-	return Lower ( AssistantRow.Help );
+	return ? ( AssistantRow = undefined, "", Lower ( AssistantRow.Help ) );
 	
 EndFunction 
 
