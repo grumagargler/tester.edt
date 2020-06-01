@@ -1255,7 +1255,7 @@ Function extractTablePart ( Row, Part )
 		// Definition ends
 		// | text";
 		// | text" )
-		rex.Pattern = "(^(\s+)?\|)(.+)?""(\s+)?(\)|;)";
+		rex.Pattern = "(^(\s+)?\|)""(\s+)?(\)|;)";
 		return rex.Test ( Row );
 	endif;
 	return result;

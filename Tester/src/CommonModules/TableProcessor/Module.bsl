@@ -426,8 +426,9 @@ Function compareValues ( This, Tested, Standard, Params )
 		if ( Params.Property ( id, value ) ) then
 			return comparisonResult ( TableProcessor.ValuesEqual ( Tested, value ), value );
 		endif;
-	elsif ( TypeOf ( Tested ) = Type ( "Number" ) ) then
-		return comparisonResult ( TableProcessor.ValuesEqual ( Standard, Tested ), Standard );
+	elsif ( TypeOf ( Tested ) = Type ( "Number" )
+		and TableProcessor.ValuesEqual ( Standard, Tested ) ) then
+		return comparisonResult ( true, Standard );
 	endif;
 	value = StrReplace ( Standard, "\%", This.Anchor1 );
 	value = Output.Sformat ( value, Params );
@@ -567,7 +568,7 @@ Function CheckingScript ( Method, Table, SelectedColumns, ByNames, Splitter ) ex
 
 	this = createContext ( Debug );
 	columns = fetchColumns ( Table, SelectedColumns, undefined );
-	rows = fetchRows ( Table, columns.Names );
+	rows = fetchRows ( this, Table, columns.Names );
 	escaped = readValues ( this, SelectedColumns, ByNames );
 	text = buildScript ( Method, Table.Name, escaped, rows, this.Separators [ Splitter ], 0 );
 	return text;
@@ -594,19 +595,19 @@ EndFunction
 Function valueToExpression ( This, Value, IsColumn )
 
 	prefix = Left ( Value, 1 );
-	special = "\%#,|'";
-	wildcart = "*?";
 	if ( prefix = "" ) then
 		return Value;
-	elsif ( prefix = " "
-		or Right ( Value, 1 ) = " "
-	 	or StrSplit ( Value, special + wildcart ).Count () > 1 ) then
-		inQuotes = true;
-	else
-		inQuotes = false;
 	endif;
-	expression = escapeValue ( Value, special + ? ( IsColumn, "", wildcart ) );
-	return ? ( inQuotes, "'" + expression + "'", expression );
+	special = "\%#'";
+	wildcart = "*?";
+	alwaysEscape = special + ? ( IsColumn, "", wildcart );
+	inQuotes = ( prefix = " " ) or ( Right ( Value, 1 ) = " " );
+	if ( inQuotes ) then
+		return "'" + escapeValue ( Value, alwaysEscape ) + "'";
+	else
+		splitters = ",|";
+		return escapeValue ( Value, alwaysEscape + splitters );
+	endif;
 	
 EndFunction
 
@@ -618,20 +619,37 @@ Function escapeValue ( Value, Escape )
 		char = Mid ( Escape, i, 1 );
 		s = StrReplace ( s, char, "\" + char );
 	enddo;
+	s = StrReplace ( s, """", """""" );
 	return s;
 
 EndFunction
 
 &AtClient
-Function fetchRows ( Table, Columns )
+Function fetchRows ( This, Table, Columns )
 	
 	rows = new Array ();
 	moving = startIteration ( Table );
 	while ( moving ) do
-		rows.Add ( fetchCells ( Table, Columns, true ) );
+		rows.Add ( extractCells ( This, Table, Columns ) );
 		moving = nextRow ( Table );
 	enddo;
 	return rows;
+	
+EndFunction
+
+&AtClient
+Function extractCells ( This, Table, Columns )
+
+	cells = new Array ();
+	for each column in Columns do
+		try
+			value = Table.GetCellText ( column );
+		except
+			value = "";
+		endtry;
+		cells.Add ( valueToExpression ( This, value, false ) );
+	enddo;
+	return cells;	
 	
 EndFunction
 
@@ -654,7 +672,7 @@ EndFunction
 #if ( Client ) then
 
 &AtClient
-Function fetchCells ( Table, Columns, Designer = false )
+Function fetchCells ( Table, Columns )
 
 	cells = new Array ();
 	for each column in Columns do
@@ -663,13 +681,7 @@ Function fetchCells ( Table, Columns, Designer = false )
 		except
 			value = "";
 		endtry;
-		if ( Designer
-			and ( Left ( value, 1 ) = " "
-			or Right ( value, 1 ) = " " ) ) then
-			cells.Add ( "'" + value + "'" );
-		else
-			cells.Add ( value );
-		endif;
+		cells.Add ( value );
 	enddo;
 	return cells;
 	
