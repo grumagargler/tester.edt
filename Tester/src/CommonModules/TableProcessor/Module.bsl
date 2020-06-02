@@ -511,7 +511,7 @@ Function fetchColumns ( Control, Header, Options )
 	#if ( Server ) then
 		columns = Control.Columns;
 	#else
-		columns = Control.GetChildObjects ();
+		columns = Control.FindObjects ();
 		field = Type ( "TestedFormField" );
 	#endif
 	for each column in columns do

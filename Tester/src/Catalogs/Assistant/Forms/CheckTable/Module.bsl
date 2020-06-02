@@ -36,7 +36,7 @@ Procedure fill ()
 	With ( Parameters.Form );
 	field = Type ( "TestedFormField" );
 	TableField = Get ( Parameters.Table );
-	for each column in TableField.GetChildObjects () do
+	for each column in TableField.FindObjects () do
 		if ( TypeOf ( column ) <> field ) then
 			continue;
 		endif;
