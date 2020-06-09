@@ -471,10 +471,10 @@ Procedure output ( Params, Processor, Builder, DataTemplate )
 		fix = not ( fixation.Use and fixation.Value = DataCompositionFixation.DontUse );
 		fixed = false;
 		lastHeight = 1;
+		empty = false;
 	else
 		fix = false;
 		empty = true;
-		template = getValuableTemplate ( DataTemplate.Body );
 	endif; 
 	Builder.BeginOutput ();
 	tabDoc = Params.Result;
@@ -496,10 +496,17 @@ Procedure output ( Params, Processor, Builder, DataTemplate )
 				lastHeight = tabDoc.TableHeight;
 			endif; 
 		endif; 
-		if ( not interactive
-			and empty
-			and template = item.Template ) then
-			empty = false;
+		if ( empty
+			and not interactive ) then
+			for each parameter in item.ParameterValues do
+				try
+					if ( ValueIsFilled ( parameter.Value ) ) then
+                    	empty = false;
+                    	break;
+					endif;
+				except
+				endtry;
+			enddo;
 		endif; 
 		Builder.OutputItem ( item );
 	enddo; 
@@ -507,30 +514,6 @@ Procedure output ( Params, Processor, Builder, DataTemplate )
 	Params.Empty = not interactive and empty;
 	
 EndProcedure
-
-Function getValuableTemplate ( Body, Start = false )
-	
-	for each item in Body do
-		itemType = TypeOf ( item );
-		if ( itemType = Type ( "DataCompositionTemplateTable" ) ) then
-			for each row in item.Rows do
-				return getValuableTemplate ( row.Body, true );
-			enddo; 
-		elsif ( itemType = Type ( "DataCompositionTemplateGroup" )
-			or itemType = Type ( "DataCompositionTemplateRecords" ) ) then
-			return getValuableTemplate ( item.Body, true );
-		else
-			if ( Start ) then
-				if ( itemType = Type ( "DataCompositionTemplateTableGroupTemplate" )
-					or itemType = Type ( "DataCompositionTemplateAreaTemplate" ) ) then
-					return Item.Template;
-				endif;
-			endif; 
-		endif;
-	enddo; 
-	return undefined;
-	
-EndFunction 
 
 Function Make ( Report, Variant, Settings ) export
 

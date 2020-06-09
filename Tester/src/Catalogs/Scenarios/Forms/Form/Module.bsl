@@ -2220,8 +2220,6 @@ Procedure selectTag()
 	if (menu = 0) then
 		Output.TagsListEmpty();
 		return;
-	elsif (menu = 1) then
-		newTag();
 	elsif (menu > 15) then
 		ShowChooseFromList(callback, tags);
 	else
