@@ -78,8 +78,7 @@ EndFunction
 
 Function systemChanges(Path)
 
-	return StrFind(Path, GetPathSeparator() + ".git") > 0
-	or StrEndsWith(Path, TesterSystemFolder) > 0
+	return StrStartsWith(FileSystem.GetFileName(Path), ".")
 	or StrEndsWith(Path, TesterWatcherBSLServerSettings) > 0;
 
 EndFunction
@@ -389,7 +388,7 @@ EndProcedure
 Function validFile(File, IsFolder)
 
 	if (IsFolder) then
-		return StrFind(File, ".") = 0;
+		return StrFind(FileSystem.GetFileName(File), ".") = 0;
 	else
 		ext = FileSystem.Extension(File);
 		return ext = RepositoryFiles.BSLFile()

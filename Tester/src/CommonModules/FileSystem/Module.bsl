@@ -46,17 +46,9 @@ EndFunction
 
 Function Extension ( File ) export
 
-	pos = 0;
-	ext = File;
-	while ( true ) do
-		pos = Find ( ext, "." );
-		if ( not pos ) then
-			break;
-		else
-			ext = Mid ( ext, pos + 1 );
-		endif;
-	enddo;
-	return ? ( ext = File, "", "." + Lower ( ext ) );
+	separator = StrFind ( File, GetPathSeparator (), SearchDirection.FromEnd );
+	dot = StrFind ( ".", File, SearchDirection.FromEnd );
+	return ? ( dot > separator, Lower ( Mid ( File, dot ) ), "" );
 
 EndFunction
 
