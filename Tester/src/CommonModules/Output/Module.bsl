@@ -2143,3 +2143,11 @@ Function TableDefinitionNotFound () export
 	return text;
 
 EndFunction
+
+&AtServer
+Procedure ScenarioTemplateLoadingError ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	text = NStr ( "en = 'Scenario template loading error: %Error. Scenario: %Scenario';ru = 'Произошла системная ошибка при загрузке шаблона сценария %Scenario: %Error'" );
+	putMessage ( text, Params, Field, DataKey, DataPath );
+
+EndProcedure

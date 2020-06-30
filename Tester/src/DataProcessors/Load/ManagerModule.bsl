@@ -1,7 +1,12 @@
 
 Procedure AssembleTemplate ( Data, Scenario ) export
 	
-	tabDoc = getSpreadsheet ( Data );
+	error = "";
+	tabDoc = getSpreadsheet ( Data, error );
+	if ( tabDoc = undefined ) then
+		Output.ScenarioTemplateLoadingError ( new Structure ( "Scenario, Error", Scenario, Error ) );
+		return;
+	endif;
 	anchor = Max ( 1, tabDoc.TableHeight - 1 );
 	areas = Scenario.Areas;
 	signature = tabDoc.Area ( anchor, 1, anchor, 1 ).Text;
@@ -23,12 +28,17 @@ Procedure AssembleTemplate ( Data, Scenario ) export
 	
 EndProcedure
 
-Function getSpreadsheet ( Data )
+Function getSpreadsheet ( Data, Error )
 	
 	storage = ? ( TypeOf ( Data ) = Type ( "BinaryData" ), Data, GetFromTempStorage ( Data ) );
 	stream = storage.OpenStreamForRead ();
 	tabDoc = new SpreadsheetDocument ();
-	tabDoc.Read ( stream );
+	try
+		tabDoc.Read ( stream );
+	except
+		Error = ErrorDescription ();
+		return undefined;
+	endtry;
 	stream.Close ();
 	return tabDoc;
 	
