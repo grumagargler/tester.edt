@@ -47,7 +47,7 @@ EndFunction
 Function Extension ( File ) export
 
 	separator = StrFind ( File, GetPathSeparator (), SearchDirection.FromEnd );
-	dot = StrFind ( ".", File, SearchDirection.FromEnd );
+	dot = StrFind ( File, ".", SearchDirection.FromEnd );
 	return ? ( dot > separator, Lower ( Mid ( File, dot ) ), "" );
 
 EndFunction

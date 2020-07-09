@@ -41,8 +41,7 @@ EndProcedure
 
 Procedure Proceed(Event, Path) export
 
-	if (myResponse(Path)
-		or systemChanges(Path)) then
+	if (myResponse(Path)) then
 		return;
 	elsif (externalRequest(Path)) then
 		if (Event = "Added" or Event = "Changed") then
@@ -50,6 +49,8 @@ Procedure Proceed(Event, Path) export
 				proceedRequest();
 			endif;
 		endif;
+	elsif ( systemChanges(Path) ) then
+		return;
 	else
 		if (Event = "Changed") then
 			proceedChanging(Path);
@@ -78,8 +79,9 @@ EndFunction
 
 Function systemChanges(Path)
 
-	return StrStartsWith(FileSystem.GetFileName(Path), ".")
-	or StrEndsWith(Path, TesterWatcherBSLServerSettings) > 0;
+	return StrFind(Path, TesterGitMask) > 0
+	or StrStartsWith(FileSystem.GetFileName(Path), ".")
+	or StrEndsWith(Path, TesterWatcherBSLServerSettings);
 
 EndFunction
 

@@ -58,6 +58,7 @@ var ScreenshotsCompressed export;
 var ExternalLibrary export;
 var FoldersWatchdog export;
 var TesterSystemFolder export;
+var TesterGitMask export;
 var TesterExternalRequests export;
 var TesterExternalRequestObject export;
 var TesterExternalRequestsApplication export;
@@ -138,7 +139,9 @@ Procedure init ()
 	si = new SystemInfo ();
 	FrameworkVersion = si.AppVersion;
 	TesterSystemFolder = RepositoryFiles.SystemFolder (); 
-	folder = TesterSystemFolder + GetPathSeparator ();
+	pathSeparator = GetPathSeparator ();
+	TesterGitMask = pathSeparator + RepositoryFiles.GitFolder ();
+	folder = TesterSystemFolder + pathSeparator;
 	TesterExternalRequests = folder + "request";
 	TesterExternalResponses = folder + "response";
 	TesterWatcherBuffer = new Array ();

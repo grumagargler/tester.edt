@@ -38,6 +38,13 @@ Function Gitignore () export
 EndFunction 
 
 &AtClient
+Function GitFolder () export
+	
+	return ".git";
+	
+EndFunction 
+
+&AtClient
 Function BSLServerSettings () export
 	
 	return ".bsl-language-server.json";
