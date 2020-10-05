@@ -85,7 +85,7 @@ Function updateScenario ( Scenario, Data, Context, Error )
 	Catalogs.Scenarios.SetSorting ( obj );
 	obj.DataExchange.Load = true;
 	try
-		obj.Write ();
+		ExchangeKillers.Write ( obj );
 	except
 		why = ErrorDescription ();
 		Error = Output.WatcherUpdatingError ( new Structure ( "Error, Scenario", why, Scenario ) );
@@ -208,7 +208,7 @@ Function initScenario ( Parent, Scenario, Context, IsFolder, Error )
 		obj.DataExchange.Load = true;
 		Catalogs.Scenarios.SetSorting ( obj );
 		try
-			obj.Write ();
+			ExchangeKillers.Write ( obj );
 		except
 			why = ErrorDescription ();
 			Error = Output.WatcherCreatingError ( new Structure ( "Error, Parent, File", why, Parent, Context.File ) );
@@ -222,7 +222,7 @@ Function initScenario ( Parent, Scenario, Context, IsFolder, Error )
 		obj.DeletionMark = false;
 		obj.Changed = Context.Changed;
 		try
-			obj.Write ();
+			ExchangeKillers.Write ( obj );
 		except
 			why = ErrorDescription ();
 			Error = Output.WatcherRestorationError ( new Structure ( "Error, Scenario, File", why, scenario, Context.File ) );
@@ -304,7 +304,7 @@ Function renameScenario ( Scenario, Application, NewFile, IsFolder, Error )
 	Catalogs.Scenarios.SetPath ( obj );
 	obj.DataExchange.Load = true;
 	try
-		obj.Write ();
+		ExchangeKillers.Write ( obj );
 	except
 		why = ErrorDescription ();
 		Error = Output.WatcherRenamingError ( new Structure ( "Error, Scenario, File", why, Scenario, NewFile ) );
@@ -355,7 +355,7 @@ Function removeScenario ( Scenario, Context, Error )
 	if ( extension = RepositoryFiles.MXLFile () ) then
 		DataProcessors.Load.ResetTemplate ( obj );
 		try
-			obj.Write ();
+			ExchangeKillers.Write ( obj );
 		except
 			why = ErrorDescription ();
 			Error = Output.WatcherTemplateRemovingError ( new Structure ( "Error, Scenario", why, Scenario ) );
@@ -365,7 +365,7 @@ Function removeScenario ( Scenario, Context, Error )
 	elsif ( extension = RepositoryFiles.BSLFile () ) then
 		obj.Script = "";
 		try
-			obj.Write ();
+			ExchangeKillers.Write ( obj );
 		except
 			why = ErrorDescription ();
 			Error = Output.WatcherScriptRemovingError ( new Structure ( "Error, Scenario", why, Scenario ) );
@@ -376,7 +376,7 @@ Function removeScenario ( Scenario, Context, Error )
 		if ( obj.Application = application ) then
 			obj.DeletionMark = true;
 			try
-				obj.Write ();
+				ExchangeKillers.Write ( obj );
 			except
 				why = ErrorDescription ();
 				Error = Output.WatcherRemovingError ( new Structure ( "Error, Scenario", why, Scenario ) );

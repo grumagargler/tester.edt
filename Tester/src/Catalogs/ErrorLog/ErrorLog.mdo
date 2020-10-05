@@ -413,6 +413,38 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <tabularSections uuid="1da4848a-4bac-4cd6-a696-9f86f7c73d90">
+    <producedTypes>
+      <objectType typeId="441f74e3-b3d5-4f4a-9fa3-66c2b7cebf63" valueTypeId="467a0545-d85d-4321-b37d-5cfcedc5cadb"/>
+      <rowType typeId="ddbcb448-256f-436d-b923-674d43ea9bc2" valueTypeId="51730c2b-8d72-4878-a38e-b93860803730"/>
+    </producedTypes>
+    <name>ApplicationStack</name>
+    <synonym>
+      <key>en</key>
+      <value>Application Stack</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Стек приложения</value>
+    </synonym>
+    <attributes uuid="159ce2ec-2547-4925-900c-1b5a25b75db8">
+      <name>Row</name>
+      <synonym>
+        <key>en</key>
+        <value>Row</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Строка</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers/>
+      </type>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
   <tabularSections uuid="594901ae-f522-4cef-825c-16cf04e4ba30">
     <producedTypes>
       <objectType typeId="2ce8d83a-13f3-468f-87d4-33bf346b7bf5" valueTypeId="03e09948-5a4a-454b-9405-92ad357fd50a"/>

@@ -233,6 +233,7 @@ Procedure InitDebug(SessionApplication = undefined, Offset = 0) export
 	
 	Debug = new Structure();
 	Debug.Insert("Stack", new Array());
+	Debug.Insert("ApplicationStack");
 	Debug.Insert("ShowProgress", true);
 	Debug.Insert("Level", 0);
 	Debug.Insert("Delay", 0);

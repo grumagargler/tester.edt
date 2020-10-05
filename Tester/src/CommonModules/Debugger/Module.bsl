@@ -64,6 +64,7 @@ Procedure noerrors ( DebugInfo )
 		DebugInfo.FallenScenario = undefined;
 		DebugInfo.ErrorLog = undefined;
 		DebugInfo.ErrorLine = undefined;
+		DebugInfo.ApplicationStack = undefined;
 	endif; 
 	
 EndProcedure 
@@ -259,13 +260,14 @@ Procedure ErrorCheck ( DebugInfo ) export
 			if ( DebugInfo.PreviousError = undefined
 				or DebugInfo.PreviousError <> description ) then
 				DebugInfo.PreviousError = description;
+				DebugInfo.ApplicationStack = DetailErrorDescription ( error );
 				// Pass this error on previous level
 				Runtime.ThrowError ( description, DebugInfo );
 			endif; 
 		endif; 
 	#endif
 	
-EndProcedure 
+EndProcedure
 
 &AtClient
 Procedure Recording ( Start ) export

@@ -31,6 +31,7 @@ Function Compose ( Debug, Error, Picture ) export
 	jobData = Debug.Job;
 	RuntimeSrv.AssignJob ( ThisObject, jobData );
 	loadStack ();
+	loadApplicationStack ( Debug );
 	loadModule ();
 	Write ();
 	RuntimeSrv.WriteError ( data, Scenario, Date, Ref, Debug.Level, jobData );
@@ -109,6 +110,22 @@ Function getArea ( Fall )
 	return item;
 	
 EndFunction
+
+Procedure loadApplicationStack ( Debug )
+	
+	erorrs = Debug.ApplicationStack;
+	if ( erorrs = undefined ) then
+		return;
+	endif;
+	for each item in StrSplit ( erorrs, Chars.LF ) do
+		if ( StrFind ( item, ".Tester." ) > 0 ) then
+			continue;
+		endif;
+		record = ApplicationStack.Add ();
+		record.Row = item;
+	enddo;
+	
+EndProcedure
 
 Procedure loadModule ()
 	
