@@ -1568,30 +1568,6 @@ Procedure SourcesFolderError ( Params = undefined, Field = "", DataKey = undefin
 	
 EndProcedure
 
-&AtServer
-Procedure IncorrectVersion ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
-	
-	text = NStr ( "en = 'Length of version should be equal to length of test-manager version %Framework'; ru = 'Длина строки с версией должна совпадать с длиной версии менеджера тестирования %Framework'" );
-	putMessage ( text, Params, Field, DataKey, DataPath );
-	
-EndProcedure
-
-&AtServer
-Procedure IncorrectIP ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
-	
-	text = NStr ( "en = 'IP-address is incorrect'; ru = 'Некорректный IP-адрес'" );
-	putMessage ( text, Params, Field, DataKey, DataPath );
-	
-EndProcedure
-
-&AtClient
-Function ProxyAlreadyStarted ( Params ) export
-
-	text = NStr ( "en = 'Proxy for the %Host:%Port has already been started'; ru = 'Прокси для %Host:%Port уже был запущен ранее'" );
-	return Sformat ( text, Params );
-
-EndFunction
-
 &AtClient
 Function UnableToClick ( Params ) export
 

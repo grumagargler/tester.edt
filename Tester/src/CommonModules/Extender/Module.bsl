@@ -13,16 +13,16 @@ Procedure Подключить ( ClearErrors = true, Port = undefined, Computer 
 EndProcedure 
 
 &AtClient
-Procedure Disconnect ( Close = false, ShutdownProxy = false ) export
+Procedure Disconnect ( Close = false ) export
 	
-	Test.DisconnectClient ( Close, ShutdownProxy );
+	Test.DisconnectClient ( Close );
 	
 EndProcedure 
 
 &AtClient
-Procedure Отключить ( Close = false, ShutdownProxy = false ) export
+Procedure Отключить ( Close = false ) export
 	
-	Disconnect ( Close, ShutdownProxy );
+	Disconnect ( Close );
 	
 EndProcedure 
 

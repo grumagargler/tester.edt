@@ -953,13 +953,12 @@ EndFunction
 &AtServerNoContext
 Function getParams(Functions, Row)
 
-	exp = Regexp.Create();
-	exp.Pattern = "(" + Functions + ")(\(| +\()(.+)\)";
-	matches = exp.Execute(Row);
-	if (matches.Count = 0) then
+	pattern = "(" + Functions + ")(\(| +\()(.+)\)";
+	matches = Regexp.Select(Row, pattern);
+	if (matches.Count () = 0) then
 		return undefined;
 	endif;
-	params = StrSplit(matches.Item(0).Submatches.Item(2), ",");
+	params = StrSplit(matches [ 3 ], ",");
 	for i = 0 to params.UBound() do
 		params[i] = TrimAll(StrReplace(params[i], """", ""));
 	enddo;
@@ -1152,9 +1151,8 @@ EndFunction
 &AtServerNoContext
 Function findConnect(Script)
 
-	exp = Regexp.Create();
-	exp.Pattern = "(^|\s+)(connect\W|подключить\W)";
-	return exp.Test(Script);
+	pattern = "(^|\s+)(connect\W|подключить\W)";
+	return Regexp.Test(Script, pattern);
 
 EndFunction
 
@@ -1231,32 +1229,30 @@ EndFunction
 &AtClient
 Function extractTablePart ( Row, Part )
 	
-	rex = Regexp.Create ();
 	result = new Structure ( "Indent, Text" );
 	if ( Part = 1 ) then
 		// Definition begins
 		// = "text
 		// ( "text
-		rex.Pattern = "((=(\s+)?"")|(\((\s+)?""))(.+)?";
-		return rex.Test ( Row );
+		pattern = "((=(\s+)?"")|(\((\s+)?""))(.+)?";
+		return Regexp.Test ( Row, pattern );
 	elsif ( Part = 2 ) then
 		// Header or Row
 		// | text
-		rex.Pattern = "^(\s+)?\|(.+)?";
-		matches = rex.Execute ( Row );
-		if ( matches.Count = 0 ) then
+		pattern = "^(\s+)?\|(.+)?";
+		matches = Regexp.Select ( Row, pattern );
+		if ( matches.Count () = 0 ) then
 			return undefined;
 		else
-			set = matches.Item ( 0 );
-			result.Indent = set.Submatches ( 0 );
-			result.Text = set.Submatches ( 1 );
+			result.Indent = matches [ 1 ];
+			result.Text = matches [ 2 ];
 		endif; 
 	else
 		// Definition ends
 		// | text";
 		// | text" )
-		rex.Pattern = "(^(\s+)?\|)""(\s+)?(\)|;)";
-		return rex.Test ( Row );
+		pattern = "(^(\s+)?\|)""(\s+)?(\)|;)";
+		return Regexp.Test ( Row, pattern );
 	endif;
 	return result;
 	

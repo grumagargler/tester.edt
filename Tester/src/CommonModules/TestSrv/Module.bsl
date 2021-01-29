@@ -4,7 +4,7 @@ Function Data ( val Scenario ) export
 	if ( app.IsEmpty () ) then
 		app = EnvironmentSrv.GetApplication ();
 	endif; 
-	result = new Structure ( "Scenario, Application, Computer, Port, ClientID, Connected, Proxy, Localhost, Version, ConnectedHost, ConnectedPort" );
+	result = new Structure ( "Scenario, Application, Computer, Port, ClientID, Connected, Version" );
 	info = getData ( app );
 	FillPropertyValues ( result, info );
 	result.Scenario = Scenario;
@@ -18,16 +18,10 @@ Function getData ( App )
 	
 	s = "
 	|select allowed Applications.Computer as Computer, Applications.ClientID as ClientID,
-	|	isnull ( Ports.Port, Applications.Port ) as Port,
-	|	case when isnull ( Sessions.Proxy, false ) then Sessions.Port else undefined end as Proxy,
-	|	case when isnull ( Sessions.Proxy, false ) then Sessions.Version else undefined end as Version,
-	|	case when isnull ( Sessions.Proxy, false ) then Sessions.Localhost else undefined end as Localhost
+	|	isnull ( Ports.Port, Applications.Port ) as Port
 	|from ";
 	if ( App.IsEmpty () ) then
-		s = s + "(
-		|	select value ( Catalog.Applications.EmptyRef ) as Ref, ""localhost"" as Computer,
-		|	0 as Port, """" as ClientID
-		|)";
+		s = s + "( select value ( Catalog.Applications.EmptyRef ) as Ref, 0 as Port, """" as ClientID )";
 	else
 		s = s + "Catalog.Applications";
 	endif;
@@ -76,17 +70,15 @@ EndFunction
 
 Function decompose ( Expression )
 	
-	exp = Regexp.Create ();
-	exp.Pattern = "([^<>=]+)(>|<|=|<>|>=|<=)([^<>=]+)"; // "Application = 1.2.3.4"
-	matches = Exp.Execute ( Expression );
-	if ( matches.Count = 0 ) then
+	pattern = "([^<>=]+)(>|<|=|<>|>=|<=)([^<>=]+)"; // "Application = 1.2.3.4"
+	matches = Regexp.Select ( Expression, pattern );
+	if ( matches.Count () = 0 ) then
 		return undefined;
 	endif; 
-	node = matches.Item ( 0 );
 	result = new Structure ();
-	result.Insert ( "Application", TrimAll ( node.Submatches ( 0 ) ) );
-	result.Insert ( "Operator", TrimAll ( node.Submatches ( 1 ) ) );
-	result.Insert ( "Version", TrimAll ( node.Submatches ( 2 ) ) );
+	result.Insert ( "Application", TrimAll ( matches [ 1 ] ) );
+	result.Insert ( "Operator", TrimAll ( matches [ 2 ] ) );
+	result.Insert ( "Version", TrimAll ( matches [ 3 ] ) );
 	return result;
 	
 EndFunction 
@@ -133,19 +125,18 @@ EndFunction
 
 Function filterByVersion ( Q, Operation )
 	
-	exp = Regexp.Create ();
-	exp.Pattern = "\d+";
+	pattern = "\d+";
 	parts = StrSplit ( Operation.Version, "." );
 	i = 0;
 	filter = new Array ();
 	for i = 1 to parts.Count () do
 		part = parts [ i - 1 ];
-		matches = Exp.Execute ( part );
+		matches = Regexp.Select ( part, pattern );
 		if ( matches.Count () = 0 ) then
 			break;
 		endif; 
 		try
-			x = Number ( matches.Item ( 0 ).Value );
+			x = Number ( matches [ 0 ] );
 		except
 			break;
 		endtry;

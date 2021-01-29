@@ -1,4 +1,10 @@
 
+Procedure DisconnectMe () export
+	
+	disconnect ( "Me" );
+	
+EndProcedure
+
 Function getSessions ( Filter )
 	
 	SetPrivilegedMode ( true );
@@ -50,24 +56,6 @@ Function getSessions ( Filter )
 	return sessions;
 	
 EndFunction
-
-Procedure DisconnectCopies () export
-	
-	disconnect ( "Copies" );
-	
-EndProcedure
-
-Procedure DisconnectMe () export
-	
-	disconnect ( "Me" );
-	
-EndProcedure
-
-Procedure DisconnectAll () export
-	
-	disconnect ( "All" );
-	
-EndProcedure
 
 Procedure LeaveMeAlone () export
 	

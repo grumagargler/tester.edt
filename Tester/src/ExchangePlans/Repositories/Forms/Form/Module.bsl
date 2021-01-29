@@ -131,7 +131,7 @@ Procedure AfterWrite(WriteParameters)
 
 	restartWatcher();
 	if ( InitFolder
-		and Object.Mapping ) then
+		or Object.Mapping ) then
 		file = Object.Folder + GetPathSeparator () + RepositoryFiles.Gitignore ();
 		LocalFiles.CheckExistence ( file, new NotifyDescription ( "GitignoreExists", ThisObject, file ) );
 	endif;
@@ -172,34 +172,41 @@ EndProcedure
 Procedure createBSLSettings ()
 	
 	settings = new Structure ();
-	settings.Insert ( "diagnosticLanguage", CurrentLanguage () );
+	lang = CurrentLanguage ();
+	settings.Insert ( "language", lang );
+	settings.Insert ( "diagnosticLanguage", lang );
 	diagnostics = new Structure ();
 	// https://1c-syntax.github.io/bsl-language-server/diagnostics/
-	diagnostics.Insert ( "CanonicalSpellingKeywords", false );
-	diagnostics.Insert ( "IfElseIfEndsWithElse", false );
-	diagnostics.Insert ( "UsingSynchronousCalls", false );
-	diagnostics.Insert ( "BeginTransactionBeforeTryCatch", false );
-	diagnostics.Insert ( "CommitTransactionOutsideTryCatch", false );
-	diagnostics.Insert ( "DeprecatedMessage", false );
-	diagnostics.Insert ( "MagicNumber", false );
-	diagnostics.Insert ( "MethodSize", false );
-	diagnostics.Insert ( "SpaceAtStartComment", false );
-	diagnostics.Insert ( "TimeoutsInExternalResources", false );
-	diagnostics.Insert ( "UnreachableCode", false );
-	diagnostics.Insert ( "UsingFindElementByString", false );
-	diagnostics.Insert ( "UsingHardcodeNetworkAddress", false );
-	diagnostics.Insert ( "UsingHardcodePath", false );
-	diagnostics.Insert ( "UsingHardcodeSecretInformation", false );
-	diagnostics.Insert ( "UsingModalWindows", false );
-	diagnostics.Insert ( "UsingObjectNotAvailableUnix", false );
-	diagnostics.Insert ( "UsingSynchronousCalls", false );
-	diagnostics.Insert ( "YoLetterUsage", false );
-	diagnostics.Insert ( "MissingCodeTryCatchEx", false );
+	diagnostics.Insert ( "computeTrigger", "onType" );
+	p = new Structure ();
+	p.Insert ( "CanonicalSpellingKeywords", false );
+	p.Insert ( "IfElseIfEndsWithElse", false );
+	p.Insert ( "UsingSynchronousCalls", false );
+	p.Insert ( "BeginTransactionBeforeTryCatch", false );
+	p.Insert ( "CommitTransactionOutsideTryCatch", false );
+	p.Insert ( "DeprecatedMessage", false );
+	p.Insert ( "MagicNumber", false );
+	p.Insert ( "MethodSize", false );
+	p.Insert ( "SpaceAtStartComment", false );
+	p.Insert ( "TimeoutsInExternalResources", false );
+	p.Insert ( "UnreachableCode", false );
+	p.Insert ( "UsingFindElementByString", false );
+	p.Insert ( "UsingHardcodeNetworkAddress", false );
+	p.Insert ( "UsingHardcodePath", false );
+	p.Insert ( "UsingHardcodeSecretInformation", false );
+	p.Insert ( "UsingModalWindows", false );
+	p.Insert ( "UsingObjectNotAvailableUnix", false );
+	p.Insert ( "UsingSynchronousCalls", false );
+	p.Insert ( "YoLetterUsage", false );
+	p.Insert ( "MissingCodeTryCatchEx", false );
+	p.Insert ( "CodeBlockBeforeSub", false );
+	p.Insert ( "CommentedCode", false );
+	diagnostics.Insert ( "parameters", p );
 	settings.Insert ( "diagnostics", diagnostics );
 	file = Object.Folder + GetPathSeparator () + TesterWatcherBSLServerSettings;
 	text = new TextDocument ();
 	text.SetText ( Conversion.ToJSON ( settings ) );
-	text.Write ( file );
+	text.Write ( file, , Chars.LF );
 
 EndProcedure
 

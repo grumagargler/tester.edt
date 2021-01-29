@@ -3,5 +3,5 @@
   <name>Regexp</name>
   <clientManagedApplication>true</clientManagedApplication>
   <server>true</server>
-  <returnValuesReuse>DuringSession</returnValuesReuse>
+  <externalConnection>true</externalConnection>
 </mdclass:CommonModule>

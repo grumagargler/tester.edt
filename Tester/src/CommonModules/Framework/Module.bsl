@@ -49,3 +49,12 @@ Function getCompatibility ()
 	return version;
 	
 EndFunction
+
+Function IsWindows () export
+	
+	info = new SystemInfo ();
+	type = info.PlatformType;
+	return type = PlatformType.Windows_x86
+	or type = PlatformType.Windows_x86_64;
+	
+EndFunction

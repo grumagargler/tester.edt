@@ -3,7 +3,6 @@ var ProcedureStarts;
 var ProcedureEnds;
 var RegionStarts;
 var RegionEnds;
-var Exp;
 var Script;
 var Deep;
 var Floor;
@@ -87,9 +86,9 @@ Function findArea ( Call )
 	while ( CurrentLine > 1 ) do
 		CurrentLine = CurrentLine - 1;
 		span = StrGetLine ( Script, CurrentLine );
-		fall = Lexer.AreaComment ( Exp, span );
+		fall = Lexer.AreaComment ( span );
 		if ( fall = undefined ) then
-			fall = Lexer.DeclarationName ( Exp, span );
+			fall = Lexer.DeclarationName ( span );
 		endif;
 		if ( fall <> undefined ) then
 			return getArea ( fall );
@@ -198,11 +197,11 @@ Procedure loadScript ()
 			newRow.Type = Enums.Module.Comment;
 		elsif ( Lexer.Declaration ( procedureStarts, normal ) <> undefined ) then
 			newRow.Type = Enums.Module.Procedure;
-		elsif ( Lexer.DeclarationEnds ( Exp, procedureEnds, normal ) ) then
+		elsif ( Lexer.DeclarationEnds ( procedureEnds, normal ) ) then
 			newRow.Type = Enums.Module.EndProcedure;
 		elsif ( Lexer.Declaration ( regionStarts, normal ) <> undefined ) then
 			newRow.Type = Enums.Module.Region;
-		elsif ( Lexer.DeclarationEnds ( Exp, regionEnds, normal ) ) then
+		elsif ( Lexer.DeclarationEnds ( regionEnds, normal ) ) then
 			newRow.Type = Enums.Module.EndRegion;
 		endif;
 	endif;
@@ -214,4 +213,3 @@ EndProcedure
 
 Lexer.ProcedureDescriptors ( ProcedureStarts, ProcedureEnds );
 Lexer.RegionDescriptors ( RegionStarts, RegionEnds );
-Exp = Regexp.Create ();

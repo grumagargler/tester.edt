@@ -15,7 +15,8 @@
   <containedObjects classId="9de14907-ec23-4a07-96f0-85521cb6b53b" objectId="08d7fa4b-1b0d-490a-b863-9f6a8a9d0e76"/>
   <containedObjects classId="51f2d5d8-ea4d-4064-8892-82951750031e" objectId="874ae187-f5c5-4671-82b4-69df2788b03e"/>
   <containedObjects classId="e68182ea-4237-4383-967f-90c1e3370bc7" objectId="33b8bdc1-cff3-4b3e-87ee-0dd98f902e3a"/>
-  <configurationExtensionCompatibilityMode>8.3.15</configurationExtensionCompatibilityMode>
+  <containedObjects classId="fb282519-d103-4dd3-bc12-cb271d631dfc" objectId="6cf9308b-0c13-4c2b-8a0f-9caf5cc4bc24"/>
+  <configurationExtensionCompatibilityMode>8.3.18</configurationExtensionCompatibilityMode>
   <defaultRunMode>ManagedApplication</defaultRunMode>
   <usePurposes>PersonalComputer</usePurposes>
   <defaultRoles>Role.User</defaultRoles>
@@ -30,6 +31,15 @@
       <lang>ru</lang>
     </pages>
   </help>
+  <usedMobileApplicationFunctionalities>
+    <functionality>
+      <use>true</use>
+    </functionality>
+    <functionality>
+      <functionality>OSBackup</functionality>
+      <use>true</use>
+    </functionality>
+  </usedMobileApplicationFunctionalities>
   <defaultStyle>Style.Tester</defaultStyle>
   <defaultLanguage>Language.Russian</defaultLanguage>
   <briefInformation>
@@ -75,7 +85,7 @@
   </configurationInformationAddress>
   <dataLockControlMode>Managed</dataLockControlMode>
   <objectAutonumerationMode>NotAutoFree</objectAutonumerationMode>
-  <compatibilityMode>8.3.14</compatibilityMode>
+  <compatibilityMode>8.3.18</compatibilityMode>
   <languages uuid="2acc92c2-1c55-47aa-b082-64aa3ab8687d">
     <name>English</name>
     <synonym>
@@ -218,6 +228,7 @@
   <commonModules>CommonModule.FullSearch</commonModules>
   <commonModules>CommonModule.Jobs</commonModules>
   <commonModules>CommonModule.Lexer</commonModules>
+  <commonModules>CommonModule.Libraries</commonModules>
   <commonModules>CommonModule.LocalFiles</commonModules>
   <commonModules>CommonModule.LockingForm</commonModules>
   <commonModules>CommonModule.Logins</commonModules>

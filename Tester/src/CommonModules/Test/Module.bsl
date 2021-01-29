@@ -38,7 +38,7 @@ Procedure AttachApplication ( Scenario ) export
 	
 EndProcedure
 	
-Procedure DisconnectClient ( Close = false, ShutdownProxy = false ) export
+Procedure DisconnectClient ( Close = false ) export
 	
 	if ( Close and ( MainWindow <> undefined ) ) then
 		MainWindow.Close ();
@@ -47,14 +47,6 @@ Procedure DisconnectClient ( Close = false, ShutdownProxy = false ) export
 		App.Disconnect ();
 		App = undefined;
 		Приложение = undefined;
-		if ( ShutdownProxy ) then
-			connection = proxyKey ( AppData.ConnectedHost, AppData.ConnectedPort );
-			if ( ProxyConnections [ connection ] <> undefined ) then
-				ProxyConnections [ connection ].Proxy.Stop ();
-				ProxyConnections [ connection ].Proxy = undefined;
-				ProxyConnections.Delete ( connection );
-			endif;
-		endif;
 	endif;
 	if ( AppData <> undefined ) then
 		AppData.Connected = false;
@@ -65,12 +57,6 @@ Procedure DisconnectClient ( Close = false, ShutdownProxy = false ) export
 	ГлавноеОкно = undefined;
 	
 EndProcedure 
-
-Function proxyKey ( Host, Port )
-	
-	return Host + "#" + Port;
-	
-EndFunction
 
 Procedure ConnectClient ( ClearErrors = true, Port = undefined, Computer = undefined ) export
 	
@@ -95,11 +81,6 @@ Procedure tryConnect ( ClearErrors, Port, Computer )
 		hostPort = ? ( Port = undefined, AppData.Port, Port );
 		AppData.ConnectedHost = host;
 		AppData.ConnectedPort = hostPort;
-		if ( AppData.Proxy <> undefined ) then
-			proxy = proxyConnection ();
-			host = proxy.Localhost;
-			hostPort = proxy.Port;
-		endif;
 		// Evaluation is required because TestedApplication is not defined as a Type
 		// outside of TestManager running mode
 		App = Eval ( "new TestedApplication ( host, hostPort, AppData.ClientID )" );
@@ -119,62 +100,6 @@ Procedure tryConnect ( ClearErrors, Port, Computer )
 			Forms.CloseWindows ();
 		endif; 
 	#endif
-	
-EndProcedure
-
-Function proxyConnection ()
-	
-	if ( ProxyConnections = undefined ) then
-		ProxyConnections = new Map ();
-	endif;
-	connection = proxyKey ( AppData.ConnectedHost, AppData.ConnectedPort );
-	if ( ProxyConnections [ connection ] = undefined ) then
-		proxyPort = AppData.Proxy;
-		for each entry in ProxyConnections do
-			lastPort = entry.Value.Port;
-			if ( lastPort >= proxyPort ) then
-				proxyPort = lastPort + 1;
-			endif;
-		enddo;
-		proxy = new ( "AddIn.Extender.Proxy" );
-		localhost = AppData.Localhost;
-		proxy.Start ( FrameworkVersion, localhost, proxyPort, AppData.ConnectedHost, AppData.ConnectedPort, AppData.Version );
-		ProxyConnections [ connection ] = new Structure ( "Localhost, Port, Proxy", localhost, proxyPort, proxy );
-	endif;
-	return ProxyConnections [ connection ];
-	
-EndFunction
-
-Function StartProxy ( Localhost, LocalPort, Host, Port, ServerVersion = undefined, ClientVersion = undefined ) export
-	
-	if ( ProxyConnections = undefined ) then
-		ProxyConnections = new Map ();
-	endif;
-	connection = proxyKey ( Host, Port );
-	if ( ProxyConnections [ connection ] = undefined ) then
-		proxy = new ( "AddIn.Extender.Proxy" );
-		proxy.Start ( ? ( ServerVersion = undefined, FrameworkVersion, ServerVersion ), Localhost, LocalPort, Host, Port, ClientVersion );
-		ProxyConnections [ connection ] = new Structure ( "Localhost, Port, Proxy", Localhost, LocalPort, proxy );
-	else
-		raise Output.ProxyAlreadyStarted ( new Structure ( "Host, Port", Host, Format ( Port, "NG=0;NZ=0" ) ) );
-	endif;
-	return ProxyConnections [ connection ];
-	
-EndFunction
-
-Procedure StopProxy ( Host, Port ) export
-	
-	if ( ProxyConnections = undefined ) then
-		return;
-	endif;
-	connection = proxyKey ( Host, Port );
-	proxy = ProxyConnections [ connection ];
-	if ( proxy = undefined ) then
-		return;
-	endif;
-	proxy.Proxy.Stop ();
-	proxy.Proxy = undefined;
-	ProxyConnections.Delete ( connection );
 	
 EndProcedure
 
@@ -228,19 +153,6 @@ Procedure CheckConnection () export
 		or MainWindow = undefined ) then
 		raise Output.TestedApplicationOffline ();
 	endif;
-	
-EndProcedure
-
-Procedure ShutdownProxy () export
-	
-	if ( ProxyConnections = undefined ) then
-		return;
-	endif;
-	for each connection in ProxyConnections do
-		connection.Value.Proxy.Stop ();
-		connection.Value.Proxy = undefined;
-	enddo;
-	ProxyConnections = undefined;
 	
 EndProcedure
 

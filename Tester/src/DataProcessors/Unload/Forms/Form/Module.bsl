@@ -560,7 +560,7 @@ Procedure createScript ( Params )
 		p = new Structure ( "File, Params", file, Params );
 		doc = new TextDocument ();
 		doc.SetText ( data.Script );
-		doc.BeginWriting ( new NotifyDescription ( "ScriptCreated", ThisObject, p ), file );
+		doc.BeginWriting ( new NotifyDescription ( "ScriptCreated", ThisObject, p ), file, , Chars.LF );
 	#endif
 		
 EndProcedure 

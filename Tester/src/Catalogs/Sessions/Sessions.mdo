@@ -79,96 +79,6 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
-  <attributes uuid="446c8232-361e-4ba1-9afa-6c3ba44f7725">
-    <name>Localhost</name>
-    <synonym>
-      <key>en</key>
-      <value>Localhost</value>
-    </synonym>
-    <synonym>
-      <key>ru</key>
-      <value>Localhost</value>
-    </synonym>
-    <type>
-      <types>String</types>
-      <stringQualifiers>
-        <length>15</length>
-      </stringQualifiers>
-    </type>
-    <toolTip>
-      <key>en</key>
-      <value>Local Network Adapter IP-address</value>
-    </toolTip>
-    <toolTip>
-      <key>ru</key>
-      <value>IP-адрес локального сетевого адаптера</value>
-    </toolTip>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:StringValue">
-      <value></value>
-    </fillValue>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
-  <attributes uuid="12acf88b-d727-495a-a1d8-639bb397550c">
-    <name>Port</name>
-    <synonym>
-      <key>en</key>
-      <value>Port</value>
-    </synonym>
-    <synonym>
-      <key>ru</key>
-      <value>Порт</value>
-    </synonym>
-    <type>
-      <types>Number</types>
-      <numberQualifiers>
-        <precision>5</precision>
-        <nonNegative>true</nonNegative>
-      </numberQualifiers>
-    </type>
-    <toolTip>
-      <key>en</key>
-      <value>Starting port of service ports which will be used for proxy connections</value>
-    </toolTip>
-    <toolTip>
-      <key>ru</key>
-      <value>Начало диапазона служебных портов, через которые будет производиться проксирование подключений</value>
-    </toolTip>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:UndefinedValue"/>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
-  <attributes uuid="c5a1fcfc-f948-4663-b398-3f1b3d03f706">
-    <name>Proxy</name>
-    <synonym>
-      <key>en</key>
-      <value>Use Proxy</value>
-    </synonym>
-    <synonym>
-      <key>ru</key>
-      <value>Использовать проксирование</value>
-    </synonym>
-    <type>
-      <types>Boolean</types>
-    </type>
-    <toolTip>
-      <key>en</key>
-      <value>Allow connections to test-clients regardless of 1C:Enterprise version</value>
-    </toolTip>
-    <toolTip>
-      <key>ru</key>
-      <value>Разрешать тестирование клиентских приложений разных версий платформы 1С:Предприятие</value>
-    </toolTip>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:UndefinedValue"/>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
   <attributes uuid="a893ff90-2634-4203-9d22-c64b86495d19">
     <name>User</name>
     <synonym>
@@ -193,38 +103,6 @@
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
     <fillValue xsi:type="core:UndefinedValue"/>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
-  <attributes uuid="684671f8-9bf8-4431-9ef2-0005643e9012">
-    <name>Version</name>
-    <synonym>
-      <key>en</key>
-      <value>1C:Enterprise Version</value>
-    </synonym>
-    <synonym>
-      <key>ru</key>
-      <value>Версия 1С:Предприятие</value>
-    </synonym>
-    <type>
-      <types>String</types>
-      <stringQualifiers>
-        <length>19</length>
-      </stringQualifiers>
-    </type>
-    <toolTip>
-      <key>en</key>
-      <value>Specify certain version of 1C:Enterprise in order to optimize connections to test-clients</value>
-    </toolTip>
-    <toolTip>
-      <key>ru</key>
-      <value>Укажите определенную версию платформы для оптимизации подключения к клиентам тестирования</value>
-    </toolTip>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:StringValue">
-      <value></value>
-    </fillValue>
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>

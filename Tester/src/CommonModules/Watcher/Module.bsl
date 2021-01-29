@@ -41,10 +41,27 @@ EndProcedure
 
 Procedure Proceed(Event, Path) export
 
+	// List of Events:
+	// Added = 1
+	// Removed = 2
+	// Changed = 3
+	// RenamedOld = 4
+	// RenamedNew = 5
+	// FolderAdded = 6
+	// FolderRemoved = 7
+	// FolderChanged = 8
+	// FolderRenamedOld = 9
+	// FolderRenamedNew = 0
+	// WatcherEntryRemoved = a
+	// WatcherEntryMoved = b
+	// VolumeUnmounted = c
+	// WatcherOverflow = d
+	// WatcherDisconnected = e
+	
 	if (myResponse(Path)) then
 		return;
 	elsif (externalRequest(Path)) then
-		if (Event = "Added" or Event = "Changed") then
+		if (Event = "1" or Event = "3") then
 			if (newRequest(Path)) then
 				proceedRequest();
 			endif;
@@ -52,19 +69,19 @@ Procedure Proceed(Event, Path) export
 	elsif ( systemChanges(Path) ) then
 		return;
 	else
-		if (Event = "Changed") then
+		if (Event = "3") then
 			proceedChanging(Path);
-		elsif (Event = "FolderAdded") then
+		elsif (Event = "6") then
 			proceedCreating(Path, true);
-		elsif (Event = "Added") then
+		elsif (Event = "1") then
 			proceedCreating(Path, false);
-		elsif (Event = "RenamedOld" or Event = "FolderRenamedOld") then
+		elsif (Event = "4" or Event = "9") then
 			TesterExternalRequestsRenaming = Path;
-		elsif (Event = "RenamedNew") then
+		elsif (Event = "5") then
 			proceedRenaming(Path, false);
-		elsif (Event = "FolderRenamedNew") then
+		elsif (Event = "0") then
 			proceedRenaming(Path, true);
-		elsif (Event = "Removed" or Event = "FolderRemoved") then
+		elsif (Event = "2" or Event = "7") then
 			proceedRemoving(Path);
 		endif;
 	endif;

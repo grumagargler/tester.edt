@@ -79,7 +79,6 @@ var RunningDelegatedJob export;
 var ВыполняетсяДелегированноеЗадание export;
 var CurrentDelegatedJob export;
 var PlatformFeatures export;
-var ProxyConnections export;
 var FrameworkVersion export;
 var UserDocumentsFolder export;
 
@@ -217,8 +216,8 @@ Procedure initExtender ()
 	#if ( not WebClient and not MobileClient ) then
 		info = new SystemInfo ();
 		type = info.PlatformType;
-		if ( type <> PlatformType.Windows_x86
-			and type <> PlatformType.Windows_x86_64 ) then
+		if ( type = PlatformType.MacOS_x86
+			and type = PlatformType.MacOS_x86 ) then
 			raise Output.OSNotSupported ();
 		endif;
 		if ( attachLibrary () ) then
@@ -393,13 +392,17 @@ EndProcedure
 Procedure ExternEventProcessing ( Source, Event, Data )
 	
 	if ( Source = "Watcher" ) then
-		stopListener ();
-		DetachIdleHandler ( "WatcherStartSyncing" );
-		TesterWatcherBuffer.Add ( new Structure ( "Event, Data", Event, Data ) );
-		if ( TesterWatcherBuffer.UBound () > TesterWatcherIndicationThreshold ) then
-			Status ( TesterWatcherListeningMessage );
+		if ( Event = "###E###" ) then
+			Message ( Data );
+		else
+			stopListener ();
+			DetachIdleHandler ( "WatcherStartSyncing" );
+			TesterWatcherBuffer.Add ( new Structure ( "Event, Data", Event, Data ) );
+			if ( TesterWatcherBuffer.UBound () > TesterWatcherIndicationThreshold ) then
+				Status ( TesterWatcherListeningMessage );
+			endif;
+			AttachIdleHandler ( "WatcherStartSyncing", 0.1, true );
 		endif;
-		AttachIdleHandler ( "WatcherStartSyncing", 0.1, true );
 	endif;
 
 EndProcedure

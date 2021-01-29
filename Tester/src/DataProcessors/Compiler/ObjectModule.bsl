@@ -18,14 +18,12 @@ var AtDefault;
 var AtClient;
 var AtServer;
 var ParametersLimit;
-var Exp;
 var ProgressStep;
 var ModuleSize;
 
 Function Compile() export
 	
 	init();
-	initExp();
 	enumerate();
 	compileProcedures(Program, false);
 	assemble();
@@ -42,12 +40,6 @@ Procedure init()
 	if (not RunSelected) then
 		Script = DF.Pick(Scenario, "Script");
 	endif;
-	
-EndProcedure
-
-Procedure initExp()
-	
-	Exp = Regexp.Create();
 	
 EndProcedure
 
@@ -108,13 +100,17 @@ Procedure fixReturn(Scope, SyntaxOnly)
 	running = not SyntaxOnly;
 	for i = 0 to Scope.UBound() do
 		row = Scope[i];
-		Exp.Pattern = "((^\s+)|^)(return;|возврат;|return\s+;|возврат\s+;)";
-		if (Exp.Test(row)) then
-			Scope[i] = Exp.Replace(row, "$1goto ~_return;");
+		pattern = "((^\s+)|^)(return;|возврат;|return\s+;|возврат\s+;)";
+		if (Regexp.Test(row, pattern)) then
+			if ( running ) then
+				Scope[i] = Regexp.Replace(row, pattern, "$1goto ~_return;");
+			else
+				Scope[i] = Regexp.Replace(row, pattern, "$1");
+			endif;
 		else
-			Exp.Pattern = "((^\s+)|^)(return\s+|возврат\s+)";
-			if (Exp.Test(row)) then
-				Scope[i] = Exp.Replace(row, "$1result = ");
+			pattern = "((^\s+)|^)(return\s+|возврат\s+)";
+			if (Regexp.Test(row, pattern)) then
+				Scope[i] = Regexp.Replace(row, pattern, "$1result = ");
 				if (running) then
 					Scope.Insert(i + 1, "goto ~_return;");
 				endif;
@@ -124,12 +120,12 @@ Procedure fixReturn(Scope, SyntaxOnly)
 	
 EndProcedure
 
-Procedure finalize(Scope)
+Procedure finalize(Scope, SyntaxOnly)
 	
 	s = "
 	|~_return:
 	|";
-	if ( not ServerOnly ) then
+	if ( not ( ServerOnly or SyntaxOnly ) ) then
 		s = s + "
 		|// Do not use if Client because of bug in 1C eval scope function
 		|" + Clauses.IfNotServer + "
@@ -329,7 +325,7 @@ Procedure extractProcedures(Scope, SyntaxOnly)
 			continue;
 		endif;
 		if (begin) then
-			end = Lexer.DeclarationEnds(Exp, ProcedureEnds, CurrentRow);
+			end = Lexer.DeclarationEnds(ProcedureEnds, CurrentRow);
 			if ( end ) then
 				details.End = i;
 			endif;
@@ -518,9 +514,9 @@ Procedure replaceCalls(Scope)
 				valve = ?(proc.Function, "Runtime.DeepFunction", "Runtime.DeepProcedure");
 				caller = valve + " ( this, Chronograph, _procedures, """ + procName + """" + ?(count = 0, " ", ", ");
 			endif;
-			Exp.Pattern = "(^| +|\t+|=|\+|-|;|/|\*|\\|\,|%|\(|\))(" + procName + "( +|\t+|)\()";
-			if (Exp.Test(row)) then
-				row = Exp.Replace(row, "$1" + caller);
+			pattern = "(^| +|\t+|=|\+|-|;|/|\*|\\|\,|%|\(|\))(" + procName + "( +|\t+|)\()";
+			if (Regexp.Test(row, pattern)) then
+				row = Regexp.Replace(row, pattern, "$1" + caller);
 			endif;
 		enddo;
 		Scope[i] = row;
@@ -556,7 +552,7 @@ Procedure assemble()
 	endif;
 	Program.Insert(0, debugger(1));
 	fixReturn(Program, false);
-	finalize(Program);
+	finalize(Program, false);
 	Compiled = StrConcat(Program, Chars.LF);
 	
 EndProcedure
@@ -597,10 +593,10 @@ EndFunction
 
 Function SyntaxCode() export
 	
-	initExp();
 	rows = StrSplit(Script, Chars.LF);
 	compileProcedures(rows, true);
 	fixReturn(rows, true);
+	finalize(rows, true);
 	composeClient(rows);
 	composeServer(rows);
 	return new Structure("Client, Server", ClientSyntax, ServerSyntax);

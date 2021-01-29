@@ -42,11 +42,11 @@ Function Declaration ( Descriptors, NormalRow ) export
 EndFunction
 
 &AtServer
-Function DeclarationEnds ( Exp, Descriptors, NormalRow ) export
+Function DeclarationEnds ( Descriptors, NormalRow ) export
 	
 	for each item in Descriptors do
-		Exp.Pattern = item + "($|\t| |\n)";
-		if ( Exp.Test ( NormalRow ) ) then
+		pattern = item + "($|\t| |\n)";
+		if ( Regexp.Test ( NormalRow, pattern ) ) then
 			return true;
 		endif;
 	enddo;
@@ -61,27 +61,27 @@ Function IsComment ( NormalRow ) export
 EndFunction
 
 &AtServer
-Function AreaComment ( Exp, Row ) export
+Function AreaComment ( Row ) export
 	
-	Exp.Pattern = "^\s*//\s*(!|#)\s*(.+)"; // #MyArea
-	matches = Exp.Execute ( Row );
-	if ( matches.Count = 0 ) then
+	pattern = "^\s*//\s*(!|#)\s*(.+)"; // #MyArea
+	matches = Regexp.Select ( Row, pattern );
+	if ( matches.Count () = 0 ) then
 		return undefined;
 	else
-		return matches.Item ( 0 ).Submatches.Item ( 1 );
+		return matches [ 2 ];
 	endif; 
 	
 EndFunction
 
 &AtServer
-Function DeclarationName ( Exp, Row ) export
+Function DeclarationName ( Row ) export
 	
-	Exp.Pattern = "^\s*(процедура|функция|#область|procedure|function|#region)\s+([a-z,_,A-Z,а-я,А-Я,0-9]+)";
-	matches = Exp.Execute ( Row );
-	if ( matches.Count = 0 ) then
+	pattern = "^\s*(процедура|функция|#область|procedure|function|#region)\s+([a-z,_,A-Z,а-я,А-Я,0-9]+)";
+	matches = Regexp.Select ( Row, pattern );
+	if ( matches.Count () = 0 ) then
 		return undefined;
 	else
-		return matches.Item ( 0 ).Submatches.Item ( 1 );
+		return matches [ 2 ];
 	endif; 
 	
 EndFunction

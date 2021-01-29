@@ -1,16 +1,22 @@
-Function Create () export
+
+Function Select ( From, How ) export
 	
-	#if ( Server ) then
-		SetPrivilegedMode ( true );
-	#endif
-	#if ( WebClient or MobileClient ) then
-		raise Output.WebClientDoesNotSupport ();
-	#else
-		exp = new COMObject ( "VBScript.RegExp" );
-		exp.MultiLine = true;
-		exp.Global = true;
-		exp.IgnoreCase = true;
-		return exp;
-	#endif
+	exp = Libraries.Init ( "Regex" );
+	result = exp.Select ( From, How );
+	return Conversion.FromJSON ( result );
+
+EndFunction
+
+Function Test ( What, How ) export
 	
-EndFunction 
+	exp = Libraries.Init ( "Regex" );
+	return exp.Test ( What, How );
+
+EndFunction
+
+Function Replace ( What, How, Replacement ) export
+	
+	exp = Libraries.Init ( "Regex" );
+	return exp.Replace ( What, How, Replacement );
+
+EndFunction

@@ -15,7 +15,6 @@ Function createContext ( Debug )
 	this.Insert ( "Debug", Debug );
 	this.Insert ( "TableTypes", new Structure ( "Standard, Testing, Formatting", 1, 2, 3 ) );
 	this.Insert ( "Types", new Structure ( "Column, Quote, Escape, EscapeInQuote", 0, 1, 2, 4 ) );
-	this.Insert ( "Regexp", Regexp.Create () );
 	this.Insert ( "Anchor1", Char ( 1 ) );
 	this.Insert ( "Anchor2", Char ( 2 ) );
 	this.Insert ( "Anchor3", Char ( 3 ) );
@@ -401,17 +400,19 @@ Function getBody ( TestingTable )
 	
 	body = TestingTable.Body;
 	#if ( Server ) then
-		if ( TypeOf ( body ) = Type ( "COMObject" ) ) then
-			table = new ValueTable ();
-			columns = table.Columns;
-			for each bodyColumn in body.Columns do
-				columns.Add ( bodyColumn.Name, , bodyColumn.Title );
-			enddo;
-			for each bodyRow in body do
-				row = table.Add ();
-				FillPropertyValues ( row, bodyRow );
-			enddo;
-			return table;
+		if ( Framework.IsWindows () ) then
+			if ( TypeOf ( body ) = Type ( "COMObject" ) ) then
+				table = new ValueTable ();
+				columns = table.Columns;
+				for each bodyColumn in body.Columns do
+					columns.Add ( bodyColumn.Name, , bodyColumn.Title );
+				enddo;
+				for each bodyRow in body do
+					row = table.Add ();
+					FillPropertyValues ( row, bodyRow );
+				enddo;
+				return table;
+			endif;
 		endif;
 	#endif	
 	return body;
@@ -450,9 +451,7 @@ Function compareValues ( This, Tested, Standard, Params )
 		value = StrReplace ( value, "?", "\?" );
 		value = StrReplace ( value, This.Anchor4, ".+" );
 		value = StrReplace ( value, This.Anchor5, "." );
-		exp = This.Regexp;
-		exp.Pattern = value;
-		return comparisonResult ( exp.Test ( Tested ), evaluatedStandard );
+		return comparisonResult ( Regexp.Test ( Tested, value ), evaluatedStandard );
 	else
 		return comparisonResult ( Tested = value, evaluatedStandard );
 	endif;

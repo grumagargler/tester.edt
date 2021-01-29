@@ -1,6 +1,4 @@
 &AtServer
-var Exp;
-&AtServer
 var NameDefined;
 &AtClient
 var NavigationComplete;
@@ -31,7 +29,6 @@ EndProcedure
 &AtServer
 Procedure applyParams ()
 	
-	Exp = Regexp.Create ();
 	Running = Picking;
 	params = putMethod ();
 	if ( params <> undefined ) then
@@ -47,16 +44,15 @@ EndProcedure
 Function putMethod ()
 
 	s = Parameters.Method;
-	Exp.Pattern = "(.+)\(";
-	matches = Exp.Execute ( s );
-	Method = TrimAll ( matches.Item ( 0 ).Submatches ( 0 ) );
-	Exp.Pattern = "\((.+)\)";
-	matches = Exp.Execute ( s );
-	if ( matches.Count = 0 ) then
+	pattern = "(.+)\(";
+	matches = Regexp.Select ( s, pattern );
+	Method = TrimAll ( matches [ 1 ] );
+	pattern = "\((.+)\)";
+	matches = Regexp.Select ( s, pattern );
+	if ( matches.Count () = 0 ) then
 		return undefined;
 	endif;
-	result = matches.Item ( 0 );
-	params = StrSplit ( result.Submatches ( 0 ), "," );
+	params = StrSplit ( matches [ 1 ], "," );
 	ParamsCount = params.Count ();
 	return params;
 	
@@ -66,15 +62,15 @@ EndFunction
 Procedure putParams ( Params )
 	
 	NameDefined = ( Parameters.ControlName = "" );
-	Exp.Pattern = "(.+)=(.+)";
+	pattern = "(.+)=(.+)";
 	for i = 0 to ParamsCount - 1 do
 		p = TrimAll ( Params [ i ] );
-		matches = exp.Execute ( p );
-		if ( matches.Count = 0 ) then
+		matches = Regexp.Select ( p, pattern );
+		if ( matches.Count () = 0 ) then
 			label = p;
 			mandatory = true;
 		else
-			label = TrimAll ( matches.Item ( 0 ).Submatches ( 0 ) );
+			label = TrimAll ( matches [ 1 ] );
 			mandatory = false;
 		endif; 
 		field = "Param" + ( i + 1 );

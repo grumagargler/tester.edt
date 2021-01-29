@@ -335,11 +335,10 @@ EndFunction
 
 Function FindErrors ( val Template, val Messages ) export
 	
-	exp = Regexp.Create ();
-	exp.Pattern = prepareTemplate ( Template );
+	pattern = prepareTemplate ( Template );
 	result = new Array ();
 	for each msg in Messages do
-		if ( exp.Test ( msg ) ) then
+		if ( Regexp.Test ( msg, pattern ) ) then
 			result.Add ( msg );
 		endif;
 	enddo; 
