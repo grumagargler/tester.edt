@@ -244,7 +244,7 @@ EndFunction
 
 Function lastVersion ()
 	
-	required = 3567;
+	required = 9035;
 	try
 		lib = new ( "AddIn.Extender.Root" );
 		version = lib.Version ();
