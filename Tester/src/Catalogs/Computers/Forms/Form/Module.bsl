@@ -1,4 +1,23 @@
 // *****************************************
+// *********** Form events
+
+&AtClient
+Procedure OnOpen ( Cancel )
+
+	if ( Framework.IsLinux () ) then
+		adjustHint ();
+	endif;
+
+EndProcedure
+
+&AtClient
+Procedure adjustHint ()
+	
+	Items.VSCode.InputHint = Output.LinuxVSCode ();
+	
+EndProcedure
+ 
+// *****************************************
 // *********** Group Form
 
 &AtClient
@@ -25,4 +44,4 @@ Procedure SelectFile ( File, Params ) export
 	endif; 
 	Object.VSCode = File [ 0 ];
 	
-EndProcedure 
+EndProcedure

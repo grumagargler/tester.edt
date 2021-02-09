@@ -81,8 +81,12 @@ Procedure tryConnect ( ClearErrors, Port, Computer )
 		hostPort = ? ( Port = undefined, AppData.Port, Port );
 		// Evaluation is required because TestedApplication is not defined as a Type
 		// outside of TestManager running mode
-		App = Eval ( "new TestedApplication ( host, hostPort, AppData.ClientID )" );
-		App.Connect ();
+		try
+			App = Eval ( "new TestedApplication ( host, hostPort, AppData.ClientID )" );
+			App.Connect ();
+		except
+			raise BriefErrorDescription ( ErrorInfo () );
+		endtry;
 		Приложение = App;
 		AppData.Connected = true;
 		initMainWindow ();

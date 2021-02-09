@@ -2127,3 +2127,10 @@ Procedure ScenarioTemplateLoadingError ( Params = undefined, Field = "", DataKey
 	putMessage ( text, Params, Field, DataKey, DataPath );
 
 EndProcedure
+
+&AtClient
+Function LinuxVSCode () export
+
+	return "code";
+
+EndFunction

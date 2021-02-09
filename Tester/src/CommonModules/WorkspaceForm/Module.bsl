@@ -105,7 +105,11 @@ Procedure executeStudio ( VSCode, Workspace, File = undefined )
 
 	#if ( ThinClient or ThickClientManagedApplication ) then
 		if ( VSCode = "" ) then
-			launcher = """" + SystemVariable ( "userprofile" ) + "\AppData\Local\Programs\Microsoft VS Code\Code.exe""";
+			if ( Framework.IsLinux () ) then
+				launcher = """code""";
+			else
+				launcher = """" + SystemVariable ( "userprofile" ) + "\AppData\Local\Programs\Microsoft VS Code\Code.exe""";
+			endif;
 		else
 			launcher = VSCode;
 		endif;

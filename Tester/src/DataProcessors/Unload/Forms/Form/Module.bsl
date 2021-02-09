@@ -350,9 +350,9 @@ Procedure toggleWatching ( On )
 		entry = FoldersWatchdog [ root.Key ];
 		if ( entry <> undefined ) then
 			if ( On ) then
-				entry.Lib.Start ( entry.Folder );
+				entry.Lib.Resume ();
 			else
-				entry.Lib.Stop ();
+				entry.Lib.Pause ();
 			endif;
 		endif;
 	enddo;

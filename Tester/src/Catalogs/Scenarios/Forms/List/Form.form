@@ -1110,6 +1110,7 @@
             </contextMenu>
             <type>LabelField</type>
             <editMode>Enter</editMode>
+            <autoCellHeight>true</autoCellHeight>
             <showInHeader>true</showInHeader>
             <headerHorizontalAlign>Left</headerHorizontalAlign>
             <showInFooter>true</showInFooter>
@@ -1161,6 +1162,7 @@
             </contextMenu>
             <type>LabelField</type>
             <editMode>Enter</editMode>
+            <autoCellHeight>true</autoCellHeight>
             <showInHeader>true</showInHeader>
             <headerHorizontalAlign>Left</headerHorizontalAlign>
             <showInFooter>true</showInFooter>
@@ -1220,7 +1222,6 @@
             <extInfo xsi:type="form:LabelFieldExtInfo">
               <width>8</width>
               <autoMaxWidth>true</autoMaxWidth>
-              <height>2</height>
               <autoMaxHeight>true</autoMaxHeight>
             </extInfo>
           </items>
@@ -1291,14 +1292,12 @@
           <type>LabelField</type>
           <editMode>Enter</editMode>
           <fixingInTable>Right</fixingInTable>
-          <autoCellHeight>true</autoCellHeight>
           <showInHeader>true</showInHeader>
           <headerHorizontalAlign>Left</headerHorizontalAlign>
           <showInFooter>true</showInFooter>
           <extInfo xsi:type="form:LabelFieldExtInfo">
             <width>4</width>
             <autoMaxWidth>true</autoMaxWidth>
-            <height>2</height>
             <autoMaxHeight>true</autoMaxHeight>
             <horizontalStretch>false</horizontalStretch>
             <textColor xsi:type="core:ColorDef">
