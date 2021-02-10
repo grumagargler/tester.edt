@@ -4,7 +4,7 @@ Function Data ( val Scenario ) export
 	if ( app.IsEmpty () ) then
 		app = EnvironmentSrv.GetApplication ();
 	endif; 
-	result = new Structure ( "Scenario, Application, Computer, Port, ClientID, Connected, Version" );
+	result = new Structure ( "Scenario, Application, Computer, Port, ClientID, Connected, Version, ConnectedHost, ConnectedPort" );
 	info = getData ( app );
 	FillPropertyValues ( result, info );
 	result.Scenario = Scenario;

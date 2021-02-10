@@ -217,7 +217,7 @@ Procedure initExtender ()
 		info = new SystemInfo ();
 		type = info.PlatformType;
 		if ( type = PlatformType.MacOS_x86
-			and type = PlatformType.MacOS_x86 ) then
+			or type = PlatformType.MacOS_x86 ) then
 			raise Output.OSNotSupported ();
 		endif;
 		if ( attachLibrary () ) then

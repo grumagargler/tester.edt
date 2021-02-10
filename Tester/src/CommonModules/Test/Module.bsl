@@ -79,6 +79,8 @@ Procedure tryConnect ( ClearErrors, Port, Computer )
 	#if ( ThinClient or ThickClientManagedApplication ) then
 		host = ? ( Computer = undefined, AppData.Computer, Computer );
 		hostPort = ? ( Port = undefined, AppData.Port, Port );
+		AppData.ConnectedHost = host;
+		AppData.ConnectedPort = hostPort;
 		// Evaluation is required because TestedApplication is not defined as a Type
 		// outside of TestManager running mode
 		try
