@@ -46,13 +46,13 @@ Function putMethod ()
 	s = Parameters.Method;
 	pattern = "(.+)\(";
 	matches = Regexp.Select ( s, pattern );
-	Method = TrimAll ( matches [ 1 ] );
+	Method = TrimAll ( matches [ 0 ].Groups [ 0 ] );
 	pattern = "\((.+)\)";
 	matches = Regexp.Select ( s, pattern );
 	if ( matches.Count () = 0 ) then
 		return undefined;
 	endif;
-	params = StrSplit ( matches [ 1 ], "," );
+	params = StrSplit ( matches [ 0 ].Groups [ 0 ], "," );
 	ParamsCount = params.Count ();
 	return params;
 	
@@ -70,7 +70,7 @@ Procedure putParams ( Params )
 			label = p;
 			mandatory = true;
 		else
-			label = TrimAll ( matches [ 1 ] );
+			label = TrimAll ( matches [ 0 ].Groups [ 0 ] );
 			mandatory = false;
 		endif; 
 		field = "Param" + ( i + 1 );

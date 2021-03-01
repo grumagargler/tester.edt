@@ -958,7 +958,7 @@ Function getParams(Functions, Row)
 	if (matches.Count () = 0) then
 		return undefined;
 	endif;
-	params = StrSplit(matches [ 3 ], ",");
+	params = StrSplit(matches [ 0 ].Groups [ 2 ], ",");
 	for i = 0 to params.UBound() do
 		params[i] = TrimAll(StrReplace(params[i], """", ""));
 	enddo;

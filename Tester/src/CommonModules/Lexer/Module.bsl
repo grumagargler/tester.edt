@@ -68,7 +68,7 @@ Function AreaComment ( Row ) export
 	if ( matches.Count () = 0 ) then
 		return undefined;
 	else
-		return matches [ 2 ];
+		return matches [ 0 ].Groups [ 1 ];
 	endif; 
 	
 EndFunction
@@ -81,7 +81,7 @@ Function DeclarationName ( Row ) export
 	if ( matches.Count () = 0 ) then
 		return undefined;
 	else
-		return matches [ 2 ];
+		return matches [ 0 ].Groups [ 1 ];
 	endif; 
 	
 EndFunction

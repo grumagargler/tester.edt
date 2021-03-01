@@ -76,9 +76,10 @@ Function decompose ( Expression )
 		return undefined;
 	endif; 
 	result = new Structure ();
-	result.Insert ( "Application", TrimAll ( matches [ 1 ] ) );
-	result.Insert ( "Operator", TrimAll ( matches [ 2 ] ) );
-	result.Insert ( "Version", TrimAll ( matches [ 3 ] ) );
+	match = matches [ 0 ].Groups;
+	result.Insert ( "Application", TrimAll ( match [ 0 ] ) );
+	result.Insert ( "Operator", TrimAll ( match [ 1 ] ) );
+	result.Insert ( "Version", TrimAll ( match [ 2 ] ) );
 	return result;
 	
 EndFunction 
@@ -136,7 +137,7 @@ Function filterByVersion ( Q, Operation )
 			break;
 		endif; 
 		try
-			x = Number ( matches [ 0 ] );
+			x = Number ( matches [ 0 ].Value );
 		except
 			break;
 		endtry;
