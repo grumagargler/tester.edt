@@ -9,6 +9,7 @@ Function getDebug ()
 	
 	Debug = new Structure();
 	Debug.Insert("Stack", new Array(1));
+	Debug.Insert("ApplicationStack");
 	Debug.Insert("ShowProgress", true);
 	Debug.Insert("Level", 0);
 	Debug.Insert("Delay", 0);
