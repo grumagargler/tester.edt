@@ -233,7 +233,7 @@ EndProcedure
 
 Function findAgent ( Agent )
 	
-	ref = Catalogs.Users.FindByDescription ( Agent );
+	ref = Catalogs.Users.FindByDescription ( Agent, true );
 	if ( ref.IsEmpty () ) then
 		raise Output.AgentNotFound ( new Structure ( "Agent", Agent ) );
 	endif;
@@ -243,7 +243,7 @@ EndFunction
 
 Function findComputer ( Computer )
 	
-	ref = Catalogs.Computers.FindByDescription ( Computer );
+	ref = Catalogs.Computers.FindByDescription ( Computer, true );
 	if ( ref.IsEmpty () ) then
 		raise Output.ComputerNotFound ( new Structure ( "Computer", Computer ) );
 	endif;

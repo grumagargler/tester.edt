@@ -36,7 +36,7 @@ EndFunction
 Function FindApplication ( Application ) export
 	
 	if ( TypeOf ( Application ) = Type ( "String" ) ) then
-		value = Catalogs.Applications.FindByDescription ( Application );
+		value = Catalogs.Applications.FindByDescription ( Application, true );
 		if ( value.IsEmpty () ) then
 			raise Output.ApplicationNotFound ( new Structure ( "Name", Application ) );
 		else
@@ -85,7 +85,7 @@ EndProcedure
 
 Function getComputer ( Name )
 	
-	host = Catalogs.Computers.FindByDescription ( Name );
+	host = Catalogs.Computers.FindByDescription ( Name, true );
 	if ( host.IsEmpty () ) then
 		obj = Catalogs.Computers.CreateItem ();
 		obj.Description = Name;

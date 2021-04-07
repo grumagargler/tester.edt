@@ -22,7 +22,7 @@ EndProcedure
 
 Procedure setUser ()
 	
-	currentUser = Catalogs.Users.FindByDescription ( UserName () );
+	currentUser = Catalogs.Users.FindByDescription ( UserName (), true );
 	SessionParameters.User = currentUser;
 	
 EndProcedure 

@@ -1,7 +1,7 @@
 
 Function Ref ( Path ) export
 
-	item = FindByDescription ( Path );
+	item = FindByDescription ( Path, true );
 	if ( item.IsEmpty () ) then
 		obj = CreateItem ();
 		obj.Description = Path;

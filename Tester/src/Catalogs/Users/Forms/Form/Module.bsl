@@ -225,7 +225,7 @@ EndProcedure
 &AtServer
 Function checkUsersName ()
 	
-	user = Catalogs.Users.FindByDescription ( Object.Description );
+	user = Catalogs.Users.FindByDescription ( Object.Description, true );
 	error = not user.IsEmpty () and ( user <> Object.Ref );
 	if ( error ) then
 		Output.UserNameAlreadyExists ( , "Description" );

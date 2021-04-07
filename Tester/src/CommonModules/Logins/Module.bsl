@@ -10,7 +10,7 @@ Procedure Init () export
 	
 	SetPrivilegedMode ( true );
 	name = Output.UserAdmin ();
-	user = Catalogs.Users.FindByDescription ( name );
+	user = Catalogs.Users.FindByDescription ( name, true );
 	if ( user.IsEmpty () ) then
 		user = Catalogs.Users.CreateItem ();
 		user.Email = "user@domain.com";

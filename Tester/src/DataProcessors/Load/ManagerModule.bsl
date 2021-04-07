@@ -67,7 +67,7 @@ EndProcedure
 
 Function getCreator ( User )
 	
-	ref = Catalogs.Users.FindByDescription ( User );
+	ref = Catalogs.Users.FindByDescription ( User, true );
 	if ( ref.IsEmpty () ) then
 		obj = Catalogs.Users.CreateItem ();
 		obj.Description = User;
