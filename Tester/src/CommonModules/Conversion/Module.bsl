@@ -130,7 +130,7 @@ Function ToJSON ( Object, Formatted = true ) export
 	
 	js = new JSONWriter ();
 	if ( Formatted ) then
-		settings = new JSONWriterSettings ( JSONLineBreak.Windows, Chars.Tab );
+		settings = new JSONWriterSettings ( JSONLineBreak.Unix, Chars.Tab );
 	else
 		settings = new JSONWriterSettings ( JSONLineBreak.None );
 	endif;
