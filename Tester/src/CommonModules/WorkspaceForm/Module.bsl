@@ -24,7 +24,7 @@ Procedure Create ( Reference ) export
 		doc = new TextDocument ();
 		doc.SetText ( Conversion.ToJSON ( body ) );
 		path = workspace.Path;
-		doc.BeginWriting ( new NotifyDescription ( "WorkspaceCreated", ThisObject, path ), path );
+		doc.BeginWriting ( new NotifyDescription ( "WorkspaceCreated", ThisObject, path ), path, , Chars.LF );
 	#endif
 
 EndProcedure

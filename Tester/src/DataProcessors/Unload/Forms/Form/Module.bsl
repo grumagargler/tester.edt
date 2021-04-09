@@ -600,7 +600,7 @@ Procedure createPropeties ( Params )
 		properties.Memo = data.Memo;
 		properties.Tags = data.Tags;
 		doc.SetText ( Conversion.ToJSON ( properties ) );
-		doc.BeginWriting ( new NotifyDescription ( "PropertiesCreated", ThisObject, p ), file );
+		doc.BeginWriting ( new NotifyDescription ( "PropertiesCreated", ThisObject, p ), file, , Chars.LF );
 	#endif
 		
 EndProcedure 
