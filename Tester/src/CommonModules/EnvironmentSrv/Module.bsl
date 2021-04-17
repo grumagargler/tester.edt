@@ -265,3 +265,9 @@ Function WebClient () export
 	return isClient ( "WebClient" );
 	
 EndFunction
+
+Function Library () export
+	
+	return Constants.Library.Get ();
+	
+EndFunction

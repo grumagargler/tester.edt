@@ -220,50 +220,11 @@ Procedure initExtender ()
 			or type = PlatformType.MacOS_x86 ) then
 			raise Output.OSNotSupported ();
 		endif;
-		if ( attachLibrary () ) then
-			if ( lastVersion () ) then
-				createExtender ();
-				return;
-			endif;
-		endif;
-		InstallAddIn ( "CommonTemplate.ExternalLibrary" );
-		if ( attachLibrary () ) then
-			if ( lastVersion () ) then
-				createExtender ();
-			endif;
-		endif;
+		Libraries.Load ();
+		ExternalLibrary = new ( "AddIn.Extender.Root" );
 	#endif
 
 EndProcedure 
-
-Function attachLibrary ()
-	
-	return AttachAddIn ( "CommonTemplate.ExternalLibrary", "Extender", AddInType.Native );
-	
-EndFunction 
-
-Function lastVersion ()
-	
-	required = 9039;
-	try
-		lib = new ( "AddIn.Extender.Root" );
-		version = lib.Version ();
-	except
-		version = 0;
-	endtry;
-	return version >= required;
-		
-EndFunction
-
-Procedure createExtender ()
-	
-	try
-		ExternalLibrary = new ( "AddIn.Extender.Root" );
-	except
-		ExternalLibrary = undefined;
-	endtry;
-	
-EndProcedure
 
 Procedure openScenario ()
 	
@@ -307,10 +268,31 @@ Procedure agentListener () export
 				ln = row.LineNumber;
 				CurrentDelegatedJob.Row = ln;
 				TesterAgent.StartScenario ( job, ln );
+				if ( IsBlankString ( row.Options ) ) then
+					options = ParametersService.JobRecord ();
+				else
+					options = Conversion.FromJSON ( row.Options );
+				endif;
+				app = options.PinApplication;
+				if ( app <> undefined ) then
+					PinApplication ( app );
+				endif;
+				version = options.PinVersion;
+				if ( version <> undefined ) then
+					PinApplication ( version );
+				endif;
 				try
 					Test.Exec ( row.Scenario, row.Application, , , , , params );
 				except
-					Disconnect ();
+				endtry;
+				try
+					if ( options.CloseAllAfter ) then
+						CloseAll ();
+					endif;
+					if ( options.Disconnect ) then
+						Disconnect ();
+					endif;
+				except
 				endtry;
 				TesterAgent.FinishScenario( job, ln );
 				splitSessions ();
@@ -333,11 +315,7 @@ EndProcedure
 
 Procedure splitSessions ()
 	
-	if ( ExternalLibrary = undefined ) then
-		return;
-	endif;
-	oneDotOneSecond = 1100;
-	ExternalLibrary.Pause ( oneDotOneSecond );
+	ExternalLibrary.Pause ( 2 );
 	
 EndProcedure
 

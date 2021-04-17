@@ -237,6 +237,7 @@
   <commonModules>CommonModule.Maintenance</commonModules>
   <commonModules>CommonModule.OnlineHelp</commonModules>
   <commonModules>CommonModule.Output</commonModules>
+  <commonModules>CommonModule.ParametersService</commonModules>
   <commonModules>CommonModule.Regexp</commonModules>
   <commonModules>CommonModule.Reporter</commonModules>
   <commonModules>CommonModule.ReporterForm</commonModules>
@@ -300,6 +301,7 @@
   <constants>Constant.CounterFull</constants>
   <constants>Constant.Exchange</constants>
   <constants>Constant.InfoEmail</constants>
+  <constants>Constant.Library</constants>
   <constants>Constant.ServerAdministrator</constants>
   <constants>Constant.ServerCode</constants>
   <constants>Constant.ServerPassword</constants>

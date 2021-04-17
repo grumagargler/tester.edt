@@ -99,10 +99,6 @@ EndProcedure
 
 Function GetVariable ( Name ) export
 	
-	if ( ExternalLibrary = undefined ) then
-		return "";
-	else
-		return ExternalLibrary.GetEnv ( Name );
-	endif; 
+	return ExternalLibrary.GetEnv ( Name );
 	
 EndFunction 

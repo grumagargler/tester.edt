@@ -261,11 +261,11 @@
     </type>
     <toolTip>
       <key>en</key>
-      <value>Source job with execution schedule</value>
+      <value>Leading or scheduled job</value>
     </toolTip>
     <toolTip>
       <key>ru</key>
-      <value>Исходное задание с расписанием запуска</value>
+      <value>Ведущее задание или задание по расписанию</value>
     </toolTip>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -497,6 +497,33 @@
       <minValue xsi:type="core:UndefinedValue"/>
       <maxValue xsi:type="core:UndefinedValue"/>
       <fillChecking>ShowError</fillChecking>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+    <attributes uuid="38256b11-b762-4c44-be48-6873a3675953">
+      <name>Options</name>
+      <synonym>
+        <key>en</key>
+        <value>Options</value>
+      </synonym>
+      <synonym>
+        <key>ru</key>
+        <value>Опции</value>
+      </synonym>
+      <type>
+        <types>String</types>
+        <stringQualifiers/>
+      </type>
+      <toolTip>
+        <key>en</key>
+        <value>Scenario options</value>
+      </toolTip>
+      <toolTip>
+        <key>ru</key>
+        <value>Опции работы сценария</value>
+      </toolTip>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
       <dataHistory>Use</dataHistory>
       <fullTextSearch>Use</fullTextSearch>
     </attributes>

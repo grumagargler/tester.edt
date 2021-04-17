@@ -2134,3 +2134,18 @@ Function LinuxVSCode () export
 	return "code";
 
 EndFunction
+
+Procedure WrongExternalLibrary ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	text = NStr ( "en = 'Wrong or missing library in the %File.
+                   |Internal library will be used instead'; ru = 'Не удалось загрузить библиотеку из файла %File. Будет использована внутренняя компонента'" );
+	Output.PutMessage ( text, Params, Field, DataKey, DataPath );
+
+EndProcedure
+
+Procedure LibraryFailed ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+
+	text = NStr ( "en = 'Failed to connect an external library. Operation of the system is not possible';ru = 'Не удалось подключить внешнюю компоненту. Корректная работа системы невозможна'" );
+	Output.PutMessage ( text, Params, Field, DataKey, DataPath );
+
+EndProcedure

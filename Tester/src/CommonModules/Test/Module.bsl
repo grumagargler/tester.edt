@@ -162,18 +162,12 @@ EndProcedure
 
 Procedure PauseExecution ( Seconds ) export
 	
-	if ( ExternalLibrary = undefined ) then
-		return;
-	endif;
-	ExternalLibrary.Pause ( 1000 * Seconds );
+	ExternalLibrary.Pause ( Seconds );
 	
 EndProcedure
 
 Procedure GotoSystemConsole () export
 	
-	if ( ExternalLibrary = undefined ) then
-		return;
-	endif;
 	ExternalLibrary.GotoConsole ();
 	
 EndProcedure

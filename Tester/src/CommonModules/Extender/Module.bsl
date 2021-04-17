@@ -679,15 +679,29 @@ Procedure УстановитьВерсию ( Version, Application = undefined ) 
 	
 EndProcedure 
 
-Procedure NewJob ( Agent, Scenario, Application = undefined, Parameters = undefined, Computer = undefined, Memo = undefined ) export
+Function ParametersSpace () export
 	
-	TesterAgent.CreateJob ( Agent, Scenario, Application, Parameters, Computer, Memo );
+	return ParametersService;
+	
+EndFunction
+
+Function ЗонаПараметров () export
+	
+	return ParametersService;
+	
+EndFunction
+
+Procedure NewJob ( Agent, Scenario, Application = undefined, Parameters = undefined, Computer = undefined,
+	Memo = undefined, Schedule = undefined ) export
+	
+	TesterAgent.CreateJob ( Agent, Scenario, Application, Parameters, Computer, Memo, Schedule );
 	
 EndProcedure
 
-Procedure СоздатьЗадание ( Agent, Scenario, Application = undefined, Parameters = undefined, Computer = undefined, Memo = undefined ) export
+Procedure СоздатьЗадание ( Agent, Scenario, Application = undefined, Parameters = undefined, Computer = undefined,
+	Memo = undefined, Schedule = undefined ) export
 	
-	NewJob ( Agent, Scenario, Application, Parameters, Computer, Memo );
+	NewJob ( Agent, Scenario, Application, Parameters, Computer, Memo, Schedule );
 	
 EndProcedure
 

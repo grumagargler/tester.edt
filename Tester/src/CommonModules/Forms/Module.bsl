@@ -283,16 +283,12 @@ EndProcedure
 
 Function Shoot ( Pattern, Compressed ) export
 	
-	if ( ExternalLibrary = undefined ) then
+	title = ? ( Pattern = "", ScreenshotsLocator, Pattern );
+	if ( title = "" ) then
 		return undefined;
 	else
-		title = ? ( Pattern = "", ScreenshotsLocator, Pattern );
-		if ( title = "" ) then
-			return undefined;
-		else
-			quality = ? ( Compressed = undefined, ScreenshotsCompressed, Compressed );
-			return ExternalLibrary.Shoot ( title, quality );
-		endif; 
+		quality = ? ( Compressed = undefined, ScreenshotsCompressed, Compressed );
+		return ExternalLibrary.Shoot ( title, quality );
 	endif; 
 	
 EndFunction 
@@ -318,20 +314,16 @@ EndFunction
 
 Procedure ToggleWindow ( Pattern, Maximize ) export
 	
-	if ( ExternalLibrary = undefined ) then
+	title = ? ( Pattern = "", ScreenshotsLocator, Pattern );
+	if ( title = "" ) then
 		return;
 	else
-		title = ? ( Pattern = "", ScreenshotsLocator, Pattern );
-		if ( title = "" ) then
-			return;
+		if ( Maximize ) then
+			ExternalLibrary.Maximize ( title );
 		else
-			if ( Maximize ) then
-				ExternalLibrary.Maximize ( title );
-			else
-				ExternalLibrary.Minimize ( title );
-			endif;
-		endif; 
-	endif;
+			ExternalLibrary.Minimize ( title );
+		endif;
+	endif; 
 	 
 EndProcedure
 
