@@ -15,6 +15,41 @@ EndFunction
 
 Function findJob ()
 	
+	timeout = true;
+	attempts = 15;
+	BeginTransaction ();
+	for attempt = 1 to attempts do
+		try
+			lockJobs ();
+			timeout = false;
+			break;
+		except
+			RollbackTransaction ();
+			BeginTransaction ();
+		endtry;
+	enddo;
+	if ( timeout ) then
+		RollbackTransaction ();
+		willTryAnotherTime = undefined;
+		return willTryAnotherTime;
+	endif;
+	job = getJob ();
+	CommitTransaction ();
+	return job;
+	
+EndFunction
+
+Procedure lockJobs ()
+	
+	lock = new DataLock ();
+	item = lock.Add ( "InformationRegister.Jobs" );
+	item.Mode = DataLockMode.Exclusive;
+	lock.Lock ();
+	
+EndProcedure
+
+Function getJob ()
+	
 	s = "
 	|select top 1 Jobs.Job as Job, Jobs.Job.Parameters as Parameters
 	|from InformationRegister.Jobs as Jobs
@@ -34,7 +69,7 @@ Function getScenarios ( Job )
 	
 	s = "
 	|select Scenarios.Scenario as Scenario, Scenarios.Application as Application,
-	|	Scenarios.LineNumber as LineNumber
+	|	Scenarios.LineNumber as LineNumber, Scenarios.Options as Options
 	|from Document.Job.Scenarios as Scenarios
 	|where Scenarios.Ref = &Job
 	|order by Scenarios.LineNumber
@@ -212,7 +247,7 @@ Function Canceled ( val Job ) export
 	
 EndFunction
 
-Procedure CreateJob ( val Agent, val Scenario, val Application, val Parameters, val Computer, val Memo ) export
+Procedure CreateJob ( val Agent, val Scenarios, val Application, val Parameters, val Computer, val Memo, val Schedule ) export
 	
 	obj = Documents.Job.CreateDocument ();
 	obj.Date = CurrentSessionDate ();
@@ -223,10 +258,34 @@ Procedure CreateJob ( val Agent, val Scenario, val Application, val Parameters, 
 	obj.Creator = SessionParameters.User;
 	obj.Parameters = Conversion.ToJSON ( Parameters, false );
 	obj.Memo = Memo;
-	obj.Mode = Enums.Running.Now;
-	row = obj.Scenarios.Add ();
-	row.Scenario = findScenario ( Scenario, Application );
-	row.Application = EnvironmentSrv.FindApplication ( Application );
+	if ( Schedule = undefined ) then
+		obj.Mode = Enums.Running.Now;
+	else
+		obj.Schedule = jobSchedule ( Schedule );
+		obj.Mode = Enums.Running.Schedule;
+	endif;
+	app = EnvironmentSrv.FindApplication ( Application );
+	stringType = Type ( "String" );
+	if ( TypeOf ( Scenarios ) = stringType ) then
+		row = obj.Scenarios.Add ();
+		p = ParametersService.JobRecord ();
+		p.Scenario = Scenarios;
+		row.Scenario = findScenario ( Scenarios, Application );
+		row.Application = app;
+		row.Options = Conversion.ToJSON ( p );
+	else
+		for each record in Scenarios do
+			row = obj.Scenarios.Add ();
+			scenario = record.Scenario;
+			if ( TypeOf ( scenario ) = stringType ) then
+				row.Scenario = findScenario ( scenario, Application );
+			else
+				row.Scenario = scenario;
+			endif;
+			row.Application = app;
+			row.Options = Conversion.ToJSON ( record );
+		enddo;
+	endif;
 	obj.Write ();
 	
 EndProcedure
@@ -258,5 +317,24 @@ Function findScenario ( Scenario, Application )
 		raise Output.ScenarioNotFound ( new Structure ( "Name", Scenario ) );
 	endif;
 	return ref;
+	
+EndFunction
+
+Function jobSchedule ( Schedule )
+	
+	type = TypeOf ( Schedule );
+	if ( type = Type ( "Date" ) ) then
+		date = Schedule;
+		begin = BegOfDay ( date );
+		time = Date ( 1, 1, 1 ) + ( date - begin );
+		plan = new JobSchedule ();
+		plan.BeginDate = begin;
+		plan.BeginTime = time;
+		return Conversion.ObjectToJSON ( plan );
+	elsif ( type = Type ( "JobSchedule" ) ) then
+		return Conversion.ObjectToJSON ( Schedule );
+	else
+		return Schedule;
+	endif;
 	
 EndFunction
