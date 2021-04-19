@@ -265,6 +265,7 @@
   <commonModules>CommonModule.Webhook</commonModules>
   <commonModules>CommonModule.WorkspaceForm</commonModules>
   <commonModules>CommonModule.WorkspaceFormSrv</commonModules>
+  <commonModules>CommonModule.AgentRunner</commonModules>
   <exchangePlans>ExchangePlan.Full</exchangePlans>
   <exchangePlans>ExchangePlan.Repositories</exchangePlans>
   <webServices>WebService.Exchange</webServices>

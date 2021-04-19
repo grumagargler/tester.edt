@@ -241,91 +241,14 @@ Procedure startAgent ()
 	
 	IAmAgent = EnvironmentSrv.StartAgent ();
 	ЯАгент = IAmAgent;
-	runListener ();
-	
-EndProcedure
-
-Procedure runListener ()
-	
-	#if ( ThinClient or ThickClientManagedApplication ) then
-		if ( IAmAgent ) then
-			AttachIdleHandler ( "agentListener", 5, true );
-		endif;
-	#endif
+	AgentRunner.Listen ();
 	
 EndProcedure
 
 Procedure agentListener () export
-	
-	#if ( ThinClient or ThickClientManagedApplication ) then
-		work = TesterAgent.GetWork ();
-		if ( work <> undefined ) then
-			job = work.Job;
-			params = ? ( work.Parameters = "", "", Conversion.FromJSON ( work.Parameters ) ); 
-			startServing ( job );
-			table = Collections.DeserializeTable ( work.Scenarios );
-			for each row in table do
-				ln = row.LineNumber;
-				CurrentDelegatedJob.Row = ln;
-				TesterAgent.StartScenario ( job, ln );
-				if ( IsBlankString ( row.Options ) ) then
-					options = ParametersService.JobRecord ();
-				else
-					options = Conversion.FromJSON ( row.Options );
-				endif;
-				app = options.PinApplication;
-				if ( app <> undefined ) then
-					PinApplication ( app );
-				endif;
-				version = options.PinVersion;
-				if ( version <> undefined ) then
-					PinApplication ( version );
-				endif;
-				try
-					Test.Exec ( row.Scenario, row.Application, , , , , params );
-				except
-				endtry;
-				try
-					if ( options.CloseAllAfter ) then
-						CloseAll ();
-					endif;
-					if ( options.Disconnect ) then
-						Disconnect ();
-					endif;
-				except
-				endtry;
-				TesterAgent.FinishScenario( job, ln );
-				splitSessions ();
-			enddo;
-			stopServing ();
-		endif;
-		runListener ();
-	#endif
-	
-EndProcedure
 
-Procedure startServing ( Job )
+	AgentRunner.Serve ();	
 	
-	RunningDelegatedJob = true;
-	ВыполняетсяДелегированноеЗадание = true;
-	CurrentDelegatedJob = new Structure ( "Job, Row", Job );
-	TesterAgent.Start ( Job );
-		
-EndProcedure
-
-Procedure splitSessions ()
-	
-	ExternalLibrary.Pause ( 2 );
-	
-EndProcedure
-
-Procedure stopServing ()
-	
-	TesterAgent.Finish ( CurrentDelegatedJob.Job );
-	RunningDelegatedJob = false;
-	ВыполняетсяДелегированноеЗадание = false;
-	CurrentDelegatedJob = undefined;
-		
 EndProcedure
 
 Procedure applyParameters ()
@@ -398,7 +321,7 @@ Procedure WatcherStartSyncing () export
 		index = index + 1;
 	enddo;
 	TesterWatcherBuffer.Clear ();
-	runListener ();
+	AgentRunner.Listen ();
 	
 EndProcedure
 

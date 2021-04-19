@@ -4,7 +4,7 @@ Function GetWork () export
 	if ( Jobs.GetBackground ( "Exchange" ) <> undefined ) then
 		return undefined;
 	endif;
-	job = findJob ();
+	job = takeJob ();
 	if ( job = undefined ) then
 		return undefined;
 	else
@@ -13,7 +13,7 @@ Function GetWork () export
 	
 EndFunction
 
-Function findJob ()
+Function takeJob ()
 	
 	timeout = true;
 	attempts = 15;
@@ -34,6 +34,9 @@ Function findJob ()
 		return willTryAnotherTime;
 	endif;
 	job = getJob ();
+	if ( job <> undefined ) then
+		start ( job.Job );
+	endif;
 	CommitTransaction ();
 	return job;
 	
@@ -80,7 +83,7 @@ Function getScenarios ( Job )
 	
 EndFunction
 
-Procedure Start ( val Job ) export
+Procedure start ( Job )
 	
 	TesterAgent.AgentStatus ( Enums.AgentStatuses.Busy );
 	SetPrivilegedMode ( true );

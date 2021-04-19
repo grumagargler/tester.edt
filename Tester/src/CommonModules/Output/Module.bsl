@@ -2149,3 +2149,11 @@ Procedure LibraryFailed ( Params = undefined, Field = "", DataKey = undefined, D
 	Output.PutMessage ( text, Params, Field, DataKey, DataPath );
 
 EndProcedure
+
+&AtClient
+Procedure AgentRunnerError ( Params = undefined, Field = "", DataKey = undefined, DataPath = "Object" ) export
+	
+	text = NStr ( "en = 'Failed to proceed %Job: %Error';ru = 'Возникла ошибка при обработке задания %Job: %Error'" );
+	putMessage ( text, Params, Field, DataKey, DataPath );
+	
+EndProcedure
