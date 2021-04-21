@@ -105,6 +105,18 @@ Function cancelInput ( Window )
 				return true;
 			except
 			endtry;
+			incorrectData = App.GetActiveWindow ().FindObject ( , "1?:*" );
+			if ( incorrectData <> undefined
+				and TypeOf ( incorrectData ) = Type ( "TestedForm" )
+				and incorrectData.FormName = "MessageBox" ) then
+				cancelEntry = incorrectData.FindObject ( , "Отменить ввод" );
+				if ( cancelEntry = undefined ) then
+					cancelEntry = incorrectData.FindObject ( , "Cancel entry" );
+				endif;
+				if ( cancelEntry <> undefined ) then
+					cancelEntry.Click ();
+				endif;
+			endif;
 		endif; 
 	elsif ( type = Type ( "TestedFormTable" ) ) then
 		try // Form could be locked by another Dialog
