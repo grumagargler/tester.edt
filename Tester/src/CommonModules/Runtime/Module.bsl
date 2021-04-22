@@ -314,7 +314,7 @@ Procedure saveError(Text, DebugInfo)
 	DebugInfo.ErrorLine = line;
 	DebugInfo.FallenScenario = scenario;
 	error = entry.Error;
-	Output.PutMessage(error, undefined, , log, "");
+	Output.PutMessage(error, undefined, "", log, "");
 	#if ( ThinClient or ThickClientManagedApplication ) then
 	if (ScenarioForm.IsOpen(scenario)) then
 		Notify(Enum.MessageActivateError(), line, scenario);
