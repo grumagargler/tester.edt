@@ -1822,6 +1822,7 @@
     <autoMaxRowsCount>true</autoMaxRowsCount>
     <selectionMode>MultiRow</selectionMode>
     <rowSelectionMode>Row</rowSelectionMode>
+    <header>true</header>
     <headerHeight>1</headerHeight>
     <footerHeight>1</footerHeight>
     <searchOnInput>Auto</searchOnInput>
@@ -1835,7 +1836,7 @@
     </rowPictureDataPath>
     <extInfo xsi:type="form:DynamicListTableExtInfo">
       <autoRefresh>true</autoRefresh>
-      <autoRefreshPeriod>60</autoRefreshPeriod>
+      <autoRefreshPeriod>10</autoRefreshPeriod>
       <period>
         <startDate>0001-01-01T00:00:00</startDate>
         <endDate>0001-01-01T00:00:00</endDate>
