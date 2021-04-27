@@ -223,7 +223,9 @@ Procedure delay ()
 	endif; 
 	stop = CurrentUniversalDateInMilliseconds () + delay;
 	while ( CurrentUniversalDateInMilliseconds () <= stop ) do
-		UserInterruptProcessing ();
+		#if ( not MobileClient ) then
+			UserInterruptProcessing ();
+		#endif
 	enddo; 
 	
 EndProcedure 

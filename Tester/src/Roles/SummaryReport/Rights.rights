@@ -15,6 +15,17 @@
 		</right>
 	</object>
 	<object>
+		<name>Report.JobsSummary</name>
+		<right>
+			<name>Use</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>InformationRegister.Log.Resource.Job</name>
 		<right>
 			<name>View</name>
@@ -45,6 +56,20 @@
 	</object>
 	<object>
 		<name>Report.Summary.Command.OpenByScenario</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Report.JobsSummary.Command.Show</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Report.JobsSummary.Command.OpenByScenario</name>
 		<right>
 			<name>View</name>
 			<value>true</value>

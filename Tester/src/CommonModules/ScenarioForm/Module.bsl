@@ -323,16 +323,18 @@ EndProcedure
 &AtClient
 Procedure ListDrag ( Form, Params, StandardProcessing, Target ) export
 	
-	if ( not draggingScenarios ( Params ) ) then
-		return;
-	endif;
-	action = Params.Action;
-	copying = ( action = DragAction.Copy );
-	if ( action = DragAction.Move
-		or copying ) then
-		StandardProcessing = false;
-		ScenarioForm.CopyMove ( Params.Value, Target, copying );
-	endif;
+	#if ( not MobileClient ) then
+		if ( not draggingScenarios ( Params ) ) then
+			return;
+		endif;
+		action = Params.Action;
+		copying = ( action = DragAction.Copy );
+		if ( action = DragAction.Move
+			or copying ) then
+			StandardProcessing = false;
+			ScenarioForm.CopyMove ( Params.Value, Target, copying );
+		endif;
+	#endif
 
 EndProcedure
 

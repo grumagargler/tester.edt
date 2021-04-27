@@ -65,6 +65,14 @@
     <fillValue xsi:type="core:UndefinedValue"/>
     <fillChecking>ShowError</fillChecking>
     <fullTextSearch>Use</fullTextSearch>
+    <format>
+      <key>en</key>
+      <value>DLF=D</value>
+    </format>
+    <format>
+      <key>ru</key>
+      <value>DLF=D</value>
+    </format>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
   </standardAttributes>
@@ -126,6 +134,7 @@
   <autonumbering>true</autonumbering>
   <defaultObjectForm>Document.Job.Form.Form</defaultObjectForm>
   <defaultListForm>Document.Job.Form.List</defaultListForm>
+  <defaultChoiceForm>Document.Job.Form.Choice</defaultChoiceForm>
   <posting>Deny</posting>
   <postInPrivilegedMode>true</postInPrivilegedMode>
   <unpostInPrivilegedMode>true</unpostInPrivilegedMode>
@@ -421,6 +430,11 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <forms uuid="da20b245-51ff-46a8-8250-e38252166d09">
+    <name>Choice</name>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
   <forms uuid="ccf548f3-5555-4366-8fdb-71b20a12d0a9">
     <name>Form</name>
     <usePurposes>PersonalComputer</usePurposes>

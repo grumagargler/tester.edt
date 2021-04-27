@@ -12,6 +12,6 @@ Procedure create ( Params )
 	
 	p = new Structure ( "Agent, Scenario, Application, Parameters, Computer, Memo, Schedule" );
 	FillPropertyValues ( p, Params );
-	TesterAgent.CreateJob ( p.Agent, p.Scenario, p.Application, p.Parameters, p.Computer, p.Memo, p.Schedule );
+	TesterAgent.CreateJob ( p.Agent, p.Scenario, p.Application, p.Parameters, p.Computer, p.Memo, p.Schedule, undefined );
 	
 EndProcedure

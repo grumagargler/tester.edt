@@ -159,12 +159,14 @@ EndFunction
 &AtClient
 Procedure GitignoreExists ( Exists, File ) export
 	
-	if ( not Exists ) then
-		text = new TextDocument ();
-		text.SetText ( RepositoryFiles.SystemFolder () + "/" );
-		text.Write ( File );
-	endif;
-	createBSLSettings ();
+	#if ( not MobileClient ) then
+		if ( not Exists ) then
+			text = new TextDocument ();
+			text.SetText ( RepositoryFiles.SystemFolder () + "/" );
+			text.Write ( File );
+		endif;
+		createBSLSettings ();
+	#endif
 	
 EndProcedure
 

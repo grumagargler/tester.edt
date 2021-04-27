@@ -692,16 +692,16 @@ Function ЗонаПараметров () export
 EndFunction
 
 Procedure NewJob ( Agent, Scenario, Application = undefined, Parameters = undefined, Computer = undefined,
-	Memo = undefined, Schedule = undefined ) export
+	Memo = undefined, Schedule = undefined, Parent = undefined ) export
 	
-	TesterAgent.CreateJob ( Agent, Scenario, Application, Parameters, Computer, Memo, Schedule );
+	TesterAgent.CreateJob ( Agent, Scenario, Application, Parameters, Computer, Memo, Schedule, Parent );
 	
 EndProcedure
 
 Procedure СоздатьЗадание ( Agent, Scenario, Application = undefined, Parameters = undefined, Computer = undefined,
-	Memo = undefined, Schedule = undefined ) export
+	Memo = undefined, Schedule = undefined, Parent = undefined ) export
 	
-	NewJob ( Agent, Scenario, Application, Parameters, Computer, Memo, Schedule );
+	NewJob ( Agent, Scenario, Application, Parameters, Computer, Memo, Schedule, Parent );
 	
 EndProcedure
 

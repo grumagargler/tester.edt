@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Report xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="136016c1-1959-4c65-aaac-8808e5c190bb">
+  <producedTypes>
+    <objectType typeId="cb0f670f-7c06-4b9d-badf-56303bf89db5" valueTypeId="ae648d37-735f-4bbe-93f9-c8249d033c76"/>
+    <managerType typeId="2be46656-fe69-4094-8565-96ed4f7ea9bc" valueTypeId="b14e0fed-f434-4d0d-87ae-afb003af51f1"/>
+  </producedTypes>
+  <name>JobsSummary</name>
+  <synonym>
+    <key>en</key>
+    <value>Summary by Jobs</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Сводка по заданиям</value>
+  </synonym>
+  <mainDataCompositionSchema>Report.JobsSummary.Template.Schema</mainDataCompositionSchema>
+  <help>
+    <pages>
+      <lang>en</lang>
+    </pages>
+    <pages>
+      <lang>ru</lang>
+    </pages>
+  </help>
+  <explanation>
+    <key>en</key>
+    <value>Current summary detailed by jobs</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Текущая сводка по сценариям в разрезе заданий</value>
+  </explanation>
+  <templates uuid="4ad037a1-2288-4e91-bf83-9de910543815">
+    <name>Schema</name>
+    <templateType>DataCompositionSchema</templateType>
+  </templates>
+  <commands uuid="dbce4e7d-79dd-4807-96af-39bfa0e4f449">
+    <name>OpenByScenario</name>
+    <synonym>
+      <key>en</key>
+      <value>Summary by Jobs</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сводка по заданиям</value>
+    </synonym>
+    <group>FormCommandBarImportant</group>
+    <commandParameterType>
+      <types>CatalogRef.Scenarios</types>
+      <types>DocumentRef.Job</types>
+    </commandParameterType>
+    <parameterUseMode>Multiple</parameterUseMode>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Scenarios summary by jobs</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Текущая сводка в разрезе заданий</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+  <commands uuid="b59fe433-0cff-4c75-b4b7-a7f0b2219dc3">
+    <name>Show</name>
+    <synonym>
+      <key>en</key>
+      <value>Summary by Jobs</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Сводка по заданиям</value>
+    </synonym>
+    <group>ActionsPanelReports</group>
+    <commandParameterType/>
+    <representation>Auto</representation>
+    <toolTip>
+      <key>en</key>
+      <value>Current summary detailed by jobs</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Текущая сводка по сценариям в разрезе заданий</value>
+    </toolTip>
+    <shortcut></shortcut>
+  </commands>
+</mdclass:Report>

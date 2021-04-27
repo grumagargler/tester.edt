@@ -478,7 +478,9 @@ EndProcedure
 &AtClientAtServerNoContext
 Procedure disableActualState ( Result )
 	
-	Result.StatePresentation.AdditionalShowMode = AdditionalShowMode.Irrelevance;
+	#if ( not MobileClient ) then
+		Result.StatePresentation.AdditionalShowMode = AdditionalShowMode.Irrelevance;
+	#endif
 	Result.StatePresentation.Visible = true;
 	
 EndProcedure

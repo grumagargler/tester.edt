@@ -357,6 +357,7 @@
   <enums>Enum.Statuses</enums>
   <enums>Enum.TableTypes</enums>
   <reports>Report.Common</reports>
+  <reports>Report.JobsSummary</reports>
   <reports>Report.Protocol</reports>
   <reports>Report.Scenarios</reports>
   <reports>Report.Summary</reports>

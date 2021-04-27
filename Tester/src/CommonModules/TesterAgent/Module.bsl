@@ -250,10 +250,12 @@ Function Canceled ( val Job ) export
 	
 EndFunction
 
-Procedure CreateJob ( val Agent, val Scenarios, val Application, val Parameters, val Computer, val Memo, val Schedule ) export
+Procedure CreateJob ( val Agent, val Scenarios, val Application, val Parameters, val Computer, val Memo,
+	val Schedule, val Parent ) export
 	
 	obj = Documents.Job.CreateDocument ();
 	obj.Date = CurrentSessionDate ();
+	obj.Job = Parent;
 	obj.Agent = findAgent ( Agent );
 	if ( Computer <> undefined ) then
 		obj.Computer = findComputer ( Computer );

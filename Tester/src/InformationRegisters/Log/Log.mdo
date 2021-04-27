@@ -254,6 +254,35 @@
     <dataHistory>Use</dataHistory>
     <fillValue xsi:type="core:UndefinedValue"/>
   </resources>
+  <resources uuid="1546e93e-0dcd-4b63-9793-b78a7753fd96">
+    <name>ParentJob</name>
+    <synonym>
+      <key>en</key>
+      <value>Parent Job</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Родительское задание</value>
+    </synonym>
+    <type>
+      <types>DocumentRef.Job</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Parent job</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Родительское задание</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+  </resources>
   <resources uuid="82415582-2515-49c5-bf98-f0db2074fa9f">
     <name>Row</name>
     <synonym>
