@@ -13,7 +13,8 @@ Procedure openReport ( References, ExecuteParameters )
 	p = ReportsSystem.GetParams ( "JobsSummary" );
 	filters = new Array ();
 	if ( TypeOf ( parameter ) = Type ( "DocumentRef.Job" ) ) then
-		filters.Add ( DC.CreateFilter ( "Job", References ) );
+		parent = DF.Pick ( parameter, "Job" );
+		filters.Add ( DC.CreateFilter ( "Job", ? ( parent.IsEmpty (), References, parent ) ) );
 	else
 		filter = DC.CreateFilter ( "Scenario" );
 		if ( References.Count () = 1 ) then

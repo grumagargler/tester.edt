@@ -226,7 +226,10 @@ EndProcedure
 Procedure AssignJob ( Record, Job ) export
 	
 	if ( Job <> undefined ) then
-		Record.Job = Job.Job;
+		ref = Job.Job;
+		Record.Job = ref;
+		parent = DF.Pick ( ref, "Job" );
+		Record.ParentJob = ? ( parent.IsEmpty (), ref, parent );
 		Record.Row = Job.Row;
 	endif;
 	

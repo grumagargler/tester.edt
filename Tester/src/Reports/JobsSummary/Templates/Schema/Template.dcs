@@ -246,6 +246,7 @@
 {select Scenario.*, Duration, Status.*, Application.*, Running, Passed, Fault, Severity.*, Job.*}
 from InformationRegister.Log as Log
 where Log.ParentJob &lt;&gt; value ( Document.Job.EmptyRef )
+and not Log.ParentJob.DeletionMark
 {where Log.Scenario.* as Scenario, Log.Scenario.Creator.* as Creator, Log.Scenario.LastCreator.* as LastCreator,
 Log.Scenario.Severity as Severity,
 Log.Scenario.Changed between &amp;ChangedFrom and &amp;ChangedTo,

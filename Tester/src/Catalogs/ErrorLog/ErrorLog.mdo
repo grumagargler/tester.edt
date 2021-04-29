@@ -225,6 +225,35 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <attributes uuid="019dc716-0759-4d63-b80b-a1a973c8c1ab">
+    <name>ParentJob</name>
+    <synonym>
+      <key>en</key>
+      <value>Parent Job</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Родительское задание</value>
+    </synonym>
+    <type>
+      <types>DocumentRef.Job</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Parent job</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Родительское задание</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillFromFillingValue>true</fillFromFillingValue>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <indexing>Index</indexing>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
   <attributes uuid="6cb2144a-639a-430d-af8f-513a3511e889">
     <name>Row</name>
     <synonym>
