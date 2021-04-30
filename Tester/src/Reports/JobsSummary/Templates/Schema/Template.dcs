@@ -7,25 +7,6 @@
 	<dataSet xsi:type="DataSetQuery">
 		<name>DataSet1</name>
 		<field xsi:type="DataSetFieldField">
-			<dataPath>Duration</dataPath>
-			<field>Duration</field>
-			<appearance>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:parameter>Format</dcscor:parameter>
-					<dcscor:value xsi:type="v8:LocalStringType">
-						<v8:item>
-							<v8:lang>en</v8:lang>
-							<v8:content>NS=3</v8:content>
-						</v8:item>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>NS=3</v8:content>
-						</v8:item>
-					</dcscor:value>
-				</dcscor:item>
-			</appearance>
-		</field>
-		<field xsi:type="DataSetFieldField">
 			<dataPath>Scenario</dataPath>
 			<field>Scenario</field>
 			<title xsi:type="v8:LocalStringType">
@@ -193,6 +174,9 @@
 					<v8:content>Задание</v8:content>
 				</v8:item>
 			</title>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+			</role>
 		</field>
 		<field xsi:type="DataSetFieldField">
 			<dataPath>Severity</dataPath>
@@ -236,15 +220,40 @@
 				</v8:item>
 			</title>
 		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Started</dataPath>
+			<field>Started</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Finished</dataPath>
+			<field>Finished</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Finished</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Завершено</v8:content>
+				</v8:item>
+			</title>
+		</field>
 		<dataSource>DataSource1</dataSource>
 		<query>select allowed Log.Scenario as Scenario, Log.Scenario.Severity as Severity,
 	Log.Status as Status, Log.Application as Application, Log.ParentJob as Job,
-	Log.Duration as Duration,
+	Spans.Started as Started,
+	case Spans.Finished when datetime ( 1, 1, 1 ) then &amp;CurrentDate else Spans.Finished end as Finished,
 	case Log.Status when value ( Enum.Statuses.Running ) then 1 else 0 end as Running,
 	case Log.Status when value ( Enum.Statuses.Passed ) then 1 else 0 end as Passed,
 	case Log.Status when value ( Enum.Statuses.Fault ) then 1 else 0 end as Fault
-{select Scenario.*, Duration, Status.*, Application.*, Running, Passed, Fault, Severity.*, Job.*}
+{select Scenario.*, Status.*, Application.*, Running, Passed, Fault, Severity.*, Job.*,
+Started, Finished}
 from InformationRegister.Log as Log
+	//
+	// Spans
+	//
+	left join InformationRegister.AgentJobs as Spans
+	on Spans.Job = Log.Job
 where Log.ParentJob &lt;&gt; value ( Document.Job.EmptyRef )
 and not Log.ParentJob.DeletionMark
 {where Log.Scenario.* as Scenario, Log.Scenario.Creator.* as Creator, Log.Scenario.LastCreator.* as LastCreator,
@@ -257,7 +266,7 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 	</dataSet>
 	<calculatedField>
 		<dataPath>Time</dataPath>
-		<expression>Conversion.MillisecondsToTime ( Duration )</expression>
+		<expression>Conversion.MillisecondsToTime ( 1000 * ( datediff ( min ( Started ), max ( Finished ), "second" ) ) )</expression>
 		<title xsi:type="v8:LocalStringType">
 			<v8:item>
 				<v8:lang>en</v8:lang>
@@ -268,9 +277,6 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 				<v8:content>Время</v8:content>
 			</v8:item>
 		</title>
-		<useRestriction>
-			<condition>true</condition>
-		</useRestriction>
 		<appearance>
 			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
 				<dcscor:parameter>HorizontalAlign</dcscor:parameter>
@@ -278,34 +284,6 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 			</dcscor:item>
 		</appearance>
 	</calculatedField>
-	<calculatedField>
-		<dataPath>StatusPresentation</dataPath>
-		<expression>ReportsExtender.StatusPresentation ( Status, sum ( Running ) + sum ( Fault ) + sum ( Passed ) + sum ( Missed ) )</expression>
-		<title xsi:type="v8:LocalStringType">
-			<v8:item>
-				<v8:lang>en</v8:lang>
-				<v8:content>Status</v8:content>
-			</v8:item>
-			<v8:item>
-				<v8:lang>ru</v8:lang>
-				<v8:content>Статус</v8:content>
-			</v8:item>
-		</title>
-		<useRestriction>
-			<field>true</field>
-			<condition>true</condition>
-			<group>true</group>
-			<order>true</order>
-		</useRestriction>
-	</calculatedField>
-	<totalField>
-		<dataPath>Duration</dataPath>
-		<expression>Sum(Duration)</expression>
-	</totalField>
-	<totalField>
-		<dataPath>Time</dataPath>
-		<expression>Conversion.MillisecondsToTime ( Sum ( Duration ) )</expression>
-	</totalField>
 	<totalField>
 		<dataPath>Fault</dataPath>
 		<expression>Sum(Fault)</expression>
@@ -323,8 +301,16 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 		<expression>Sum(Running)</expression>
 	</totalField>
 	<totalField>
-		<dataPath>StatusPresentation</dataPath>
-		<expression>StatusPresentation</expression>
+		<dataPath>Started</dataPath>
+		<expression>Min(Started)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Finished</dataPath>
+		<expression>Max(Finished)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Time</dataPath>
+		<expression>Time</expression>
 	</totalField>
 	<parameter>
 		<name>Period</name>
@@ -446,6 +432,19 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 		<expression>&amp;Period.StartDate</expression>
 		<availableAsField>false</availableAsField>
 	</parameter>
+	<parameter>
+		<name>CurrentDate</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Current date</v8:content>
+			</v8:item>
+		</title>
+		<value xsi:nil="true"/>
+		<useRestriction>true</useRestriction>
+		<expression>CurrentSessionDate ()</expression>
+		<availableAsField>false</availableAsField>
+	</parameter>
 	<template>
 		<name>Layout1</name>
 		<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
@@ -536,14 +535,6 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 					<dcsset:left xsi:type="dcscor:Field">Job</dcsset:left>
 					<dcsset:comparisonType>Equal</dcsset:comparisonType>
 					<dcsset:userSettingID>988e43f7-0a52-4022-a975-c82deb250d3d</dcsset:userSettingID>
-				</dcsset:item>
-				<dcsset:item xsi:type="dcsset:FilterItemComparison">
-					<dcsset:use>false</dcsset:use>
-					<dcsset:left xsi:type="dcscor:Field">Status</dcsset:left>
-					<dcsset:comparisonType>Equal</dcsset:comparisonType>
-					<dcsset:right xsi:type="dcscor:DesignTimeValue">Enum.Statuses.Fault</dcsset:right>
-					<dcsset:viewMode>Normal</dcsset:viewMode>
-					<dcsset:userSettingID>117cdf9c-bce7-4c16-aae4-2f1e3bd6e880</dcsset:userSettingID>
 				</dcsset:item>
 				<dcsset:item xsi:type="dcsset:FilterItemComparison">
 					<dcsset:use>false</dcsset:use>
@@ -645,6 +636,12 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 				<dcsset:selection>
 					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
 					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>Started</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>Finished</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
 						<dcsset:field>Running</dcsset:field>
 					</dcsset:item>
 					<dcsset:item xsi:type="dcsset:SelectedItemField">
@@ -654,17 +651,13 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 						<dcsset:field>Passed</dcsset:field>
 					</dcsset:item>
 					<dcsset:item xsi:type="dcsset:SelectedItemField">
-						<dcsset:field>Missed</dcsset:field>
-					</dcsset:item>
-					<dcsset:item xsi:type="dcsset:SelectedItemField">
 						<dcsset:field>Time</dcsset:field>
 					</dcsset:item>
 				</dcsset:selection>
 				<dcsset:outputParameters>
 					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-						<dcscor:use>false</dcscor:use>
 						<dcscor:parameter>VerticalOverallPlacement</dcscor:parameter>
-						<dcscor:value xsi:type="dcscor:DataCompositionTotalPlacement">End</dcscor:value>
+						<dcscor:value xsi:type="dcscor:DataCompositionTotalPlacement">None</dcscor:value>
 					</dcscor:item>
 					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
 						<dcscor:use>false</dcscor:use>
@@ -690,9 +683,6 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 					</dcsset:order>
 					<dcsset:selection>
 						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
-						<dcsset:item xsi:type="dcsset:SelectedItemField">
-							<dcsset:field>Job.Date</dcsset:field>
-						</dcsset:item>
 						<dcsset:item xsi:type="dcsset:SelectedItemField">
 							<dcsset:field>Job.Memo</dcsset:field>
 						</dcsset:item>
@@ -735,9 +725,6 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 						</dcsset:order>
 						<dcsset:selection>
 							<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
-							<dcsset:item xsi:type="dcsset:SelectedItemField">
-								<dcsset:field>Job.Date</dcsset:field>
-							</dcsset:item>
 							<dcsset:item xsi:type="dcsset:SelectedItemField">
 								<dcsset:field>Job.Memo</dcsset:field>
 							</dcsset:item>
