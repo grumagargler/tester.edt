@@ -238,15 +238,19 @@
 				</v8:item>
 			</title>
 		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Error</dataPath>
+			<field>Error</field>
+		</field>
 		<dataSource>DataSource1</dataSource>
 		<query>select allowed Log.Scenario as Scenario, Log.Scenario.Severity as Severity,
 	Log.Status as Status, Log.Application as Application, Log.ParentJob as Job,
-	Spans.Started as Started,
+	Log.Error as Error, Spans.Started as Started,
 	case Spans.Finished when datetime ( 1, 1, 1 ) then &amp;CurrentDate else Spans.Finished end as Finished,
 	case Log.Status when value ( Enum.Statuses.Running ) then 1 else 0 end as Running,
 	case Log.Status when value ( Enum.Statuses.Passed ) then 1 else 0 end as Passed,
 	case Log.Status when value ( Enum.Statuses.Fault ) then 1 else 0 end as Fault
-{select Scenario.*, Status.*, Application.*, Running, Passed, Fault, Severity.*, Job.*,
+{select Scenario.*, Status.*, Application.*, Running, Passed, Fault, Severity.*, Job.*, Error.*,
 Started, Finished}
 from InformationRegister.Log as Log
 	//
@@ -257,7 +261,7 @@ from InformationRegister.Log as Log
 where Log.ParentJob &lt;&gt; value ( Document.Job.EmptyRef )
 and not Log.ParentJob.DeletionMark
 {where Log.Scenario.* as Scenario, Log.Scenario.Creator.* as Creator, Log.Scenario.LastCreator.* as LastCreator,
-Log.Scenario.Severity as Severity,
+Log.Scenario.Severity as Severity, Log.Error.* as Error,
 Log.Scenario.Changed between &amp;ChangedFrom and &amp;ChangedTo,
 Log.ParentJob.Date between &amp;DateStart and &amp;DateEnd, Log.ParentJob.Computer.* as Computer,
 Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.* as Job}
@@ -281,6 +285,38 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
 				<dcscor:parameter>HorizontalAlign</dcscor:parameter>
 				<dcscor:value xsi:type="v8ui:HorizontalAlign">Right</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>Total</dataPath>
+		<expression>count ( Scenario )</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Total</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Всего</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+		</useRestriction>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Format</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>NG=0</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>NG=0</v8:content>
+					</v8:item>
+				</dcscor:value>
 			</dcscor:item>
 		</appearance>
 	</calculatedField>
@@ -311,6 +347,14 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 	<totalField>
 		<dataPath>Time</dataPath>
 		<expression>Time</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Total</dataPath>
+		<expression>Total</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Error</dataPath>
+		<expression>Error</expression>
 	</totalField>
 	<parameter>
 		<name>Period</name>
@@ -468,6 +512,11 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 		</parameter>
 		<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:DetailsAreaTemplateParameter">
 			<dcsat:name>DetailParameter</dcsat:name>
+			<dcsat:fieldExpression>
+				<dcsat:field>Error</dcsat:field>
+				<dcsat:expression>Error</dcsat:expression>
+			</dcsat:fieldExpression>
+			<dcsat:mainAction>OpenValue</dcsat:mainAction>
 		</parameter>
 	</template>
 	<template>
@@ -649,6 +698,9 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 					</dcsset:item>
 					<dcsset:item xsi:type="dcsset:SelectedItemField">
 						<dcsset:field>Passed</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>Total</dcsset:field>
 					</dcsset:item>
 					<dcsset:item xsi:type="dcsset:SelectedItemField">
 						<dcsset:field>Time</dcsset:field>
