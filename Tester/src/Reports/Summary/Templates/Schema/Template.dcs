@@ -272,6 +272,10 @@
 				</v8:item>
 			</title>
 		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Error</dataPath>
+			<field>Error</field>
+		</field>
 		<dataSource>DataSource1</dataSource>
 		<query>// Scenario sessions
 select allowed Sessions.Application as Application, Sessions.Session.User as User, Sessions.Session as Session,
@@ -365,7 +369,7 @@ from InformationRegister.Log as Log
 	and SystemVersions.Application = Sessions.Application
 {where Log.Session.* as Session, Log.Session.User.* as User, Log.Scenario.* as Scenario,
 	Log.Scenario.Creator.* as Creator, Log.Scenario.LastCreator.* as LastCreator, Log.Job.* as Job,
-	Log.Scenario.Changed between &amp;ChangedFrom and &amp;ChangedTo}
+	Log.Scenario.Changed between &amp;ChangedFrom and &amp;ChangedTo, Log.Error.* as Error}
 ;
 // Scenarios
 select allowed Scenarios.Scenario as Scenario, Scenarios.Application as Application,
@@ -754,6 +758,24 @@ from Scenarios as Scenarios
 					<dcsset:comparisonType>Equal</dcsset:comparisonType>
 					<dcsset:viewMode>Normal</dcsset:viewMode>
 					<dcsset:userSettingID>e44c8176-e073-4872-b443-88eeb5c75c82</dcsset:userSettingID>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:use>false</dcsset:use>
+					<dcsset:left xsi:type="dcscor:Field">Error.ApplicationError</dcsset:left>
+					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:right xsi:type="xs:boolean">true</dcsset:right>
+					<dcsset:presentation xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Code Errors Only</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Только программные ошибки</v8:content>
+						</v8:item>
+					</dcsset:presentation>
+					<dcsset:viewMode>Normal</dcsset:viewMode>
+					<dcsset:userSettingID>7fa47889-b865-4e01-9d5d-0e9ac14de801</dcsset:userSettingID>
 				</dcsset:item>
 				<dcsset:viewMode>Normal</dcsset:viewMode>
 				<dcsset:userSettingID>20281280-2c32-4b4c-afa5-0cbe89689598</dcsset:userSettingID>

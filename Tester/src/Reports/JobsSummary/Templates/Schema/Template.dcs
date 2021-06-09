@@ -613,6 +613,24 @@ Log.ParentJob.Agent.* as Agent, Log.Application.* as Application, Log.ParentJob.
 					<dcsset:viewMode>Normal</dcsset:viewMode>
 					<dcsset:userSettingID>e44c8176-e073-4872-b443-88eeb5c75c82</dcsset:userSettingID>
 				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:use>false</dcsset:use>
+					<dcsset:left xsi:type="dcscor:Field">Error.ApplicationError</dcsset:left>
+					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:right xsi:type="xs:boolean">true</dcsset:right>
+					<dcsset:presentation xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Code Errors Only</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Только программные ошибки</v8:content>
+						</v8:item>
+					</dcsset:presentation>
+					<dcsset:viewMode>Normal</dcsset:viewMode>
+					<dcsset:userSettingID>d94eaf47-4f04-486d-9fde-733aac8e5d5b</dcsset:userSettingID>
+				</dcsset:item>
 				<dcsset:viewMode>Normal</dcsset:viewMode>
 				<dcsset:userSettingID>20281280-2c32-4b4c-afa5-0cbe89689598</dcsset:userSettingID>
 			</dcsset:filter>

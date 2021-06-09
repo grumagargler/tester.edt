@@ -81,6 +81,33 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <attributes uuid="3d44268a-50d9-4b74-8c7a-f73278e4cd68">
+    <name>ApplicationError</name>
+    <synonym>
+      <key>en</key>
+      <value>Application Error</value>
+    </synonym>
+    <synonym>
+      <key>ru</key>
+      <value>Ошибка в приложении</value>
+    </synonym>
+    <type>
+      <types>Boolean</types>
+    </type>
+    <toolTip>
+      <key>en</key>
+      <value>Error happened in the tested application</value>
+    </toolTip>
+    <toolTip>
+      <key>ru</key>
+      <value>Ошибка произошла в тестируемом приложении</value>
+    </toolTip>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
   <attributes uuid="125845ef-71d2-41c3-a872-e4582b81f774">
     <name>Area</name>
     <synonym>

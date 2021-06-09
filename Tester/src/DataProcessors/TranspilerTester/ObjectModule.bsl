@@ -391,7 +391,9 @@ Procedure applyGotoRow ()
 			rollback ();
 		else
 			direction = Attributes [ "direction" ];
-			method = getTable ().Attributes [ "name" ] + "." + translate ( Node );
+			set = getTable ().Attributes;
+			method = ? ( set [ "name" ] = undefined, "<UnsupportedOrdinaryFormTable>", set [ "name" ] )
+				+ "." + translate ( Node );
 			if ( direction = undefined
 				or direction = "down" ) then
 				addCall ( method, translate ( "search" ) );
@@ -567,10 +569,9 @@ Function getTable ()
 
 	table = parentNode ( "FormTable", "name" );
 	if ( table = undefined ) then
-		return undefined;
-	else
-		return table;
+		table = parentNode ( "FormTable" ); // System table without testclient support mechanism
 	endif;
+	return table;
 
 EndFunction
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="81c15177-d92c-47ae-a875-6c5b756ef51f">
+  <producedTypes>
+    <managerType typeId="54c03622-bc21-4ea3-a323-f8fda3500f38" valueTypeId="d3acdaf1-dcf3-478f-939a-9c874f4840c8"/>
+    <valueManagerType typeId="cdf5c52f-f2d4-497d-aeaf-861696e91269" valueTypeId="862e1794-5562-417a-84ae-e577a236d045"/>
+    <valueKeyType typeId="856d0922-3735-467c-a2d2-a9705473ef49" valueTypeId="501bf609-a73e-4c93-9614-6b2d3e5d152e"/>
+  </producedTypes>
+  <name>ID</name>
+  <synonym>
+    <key>en</key>
+    <value>Environment ID</value>
+  </synonym>
+  <synonym>
+    <key>ru</key>
+    <value>Идентификатор окружения</value>
+  </synonym>
+  <type>
+    <types>String</types>
+    <stringQualifiers>
+      <length>10</length>
+    </stringQualifiers>
+  </type>
+  <explanation>
+    <key>en</key>
+    <value>The last ID of the test environment (0-9, A-Z characters are allowed)</value>
+  </explanation>
+  <explanation>
+    <key>ru</key>
+    <value>Последний идентификатор тестового окружения (0-9, A-Z символы допустимы)</value>
+  </explanation>
+  <toolTip>
+    <key>en</key>
+    <value>The last ID of the test environment (0-9, A-Z characters are allowed)</value>
+  </toolTip>
+  <toolTip>
+    <key>ru</key>
+    <value>Последний идентификатор тестового окружения (0-9, A-Z символы допустимы)</value>
+  </toolTip>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>

@@ -15,23 +15,13 @@ Procedure Serve () export
 			work = TesterAgent.GetWork ();
 			if ( work <> undefined ) then
 				job = work.Job;
-				params = ? ( work.Parameters = "", "", Conversion.FromJSON ( work.Parameters ) ); 
 				startServing ( job );
 				table = Collections.DeserializeTable ( work.Scenarios );
-				for each row in table do
-					ln = row.LineNumber;
-					CurrentDelegatedJob.Row = ln;
-					TesterAgent.StartScenario ( job, ln );
-					options = getJobOptions ( row );
-					applyOptionsBeforeExec ( options );
-					try
-						Test.Exec ( row.Scenario, row.Application, , , , , params );
-					except
-					endtry;
-					applyOptionsAfterExec ( options );
-					TesterAgent.FinishScenario ( job, ln );
-					splitSessions ();
-				enddo;
+				try
+					proceed ( work, table );
+				except
+					Output.AgentRunnerError ( new Structure ( "Job, Error", job, ErrorDescription () ) );
+				endtry;
 				stopServing ();
 			endif;
 		except
@@ -48,6 +38,35 @@ Procedure startServing ( Job )
 	ВыполняетсяДелегированноеЗадание = true;
 	CurrentDelegatedJob = new Structure ( "Job, Row", Job );
 		
+EndProcedure
+
+Procedure proceed ( Work, Table )
+	
+	job = Work.Job;
+	params = ? ( Work.Parameters = "", "", Conversion.FromJSON ( Work.Parameters ) ); 
+	for each row in Table do
+		error = undefined;
+		ln = row.LineNumber;
+		CurrentDelegatedJob.Row = ln;
+		TesterAgent.StartScenario ( job, ln );
+		try
+			options = getJobOptions ( row );
+			applyOptionsBeforeExec ( options );
+			try
+				Test.Exec ( row.Scenario, row.Application, , , , , params );
+			except
+			endtry;
+			applyOptionsAfterExec ( options );
+		except
+			error = ErrorDescription ();
+		endtry;
+		TesterAgent.FinishScenario ( job, ln );
+		splitSessions ();
+		if ( error <> undefined ) then
+			raise error;
+		endif;
+	enddo;
+	
 EndProcedure
 
 Function getJobOptions ( Row )

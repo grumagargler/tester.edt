@@ -123,6 +123,7 @@ Procedure loadApplicationStack ( Debug )
 		record = ApplicationStack.Add ();
 		record.Row = item;
 	enddo;
+	ApplicationError = ApplicationStack.Count () > 0;
 	
 EndProcedure
 

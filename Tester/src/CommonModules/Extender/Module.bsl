@@ -875,3 +875,17 @@ Procedure ЗапуститьТест ( Scenario, Application = undefined, Ignore
 	RunTest ( Scenario, Application, IgnoreLocking );
 	
 EndProcedure
+
+&AtClient
+Function TestingID () export
+	
+	return EnvironmentSrv.TestingID ();
+	
+EndFunction
+
+&AtClient
+Function ИДОкружения () export
+	
+	return TestingID ();
+	
+EndFunction

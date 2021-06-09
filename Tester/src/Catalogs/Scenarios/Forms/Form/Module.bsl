@@ -1078,7 +1078,7 @@ EndProcedure
 &AtClient
 Procedure insertIdentifier()
 
-	Items.Script.SelectedText = Environment.GenerateID();
+	Items.Script.SelectedText = TestingID ();
 
 EndProcedure
 

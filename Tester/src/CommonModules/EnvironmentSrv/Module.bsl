@@ -271,3 +271,48 @@ Function Library () export
 	return Constants.Library.Get ();
 	
 EndFunction
+
+Function TestingID () export
+	
+	newTransaction = not TransactionActive ();
+	if ( newTransaction ) then
+		BeginTransaction ();
+	endif;
+	lock = new DataLock ();
+	item = lock.Add ( "Constant.ID" );
+	item.Mode = DataLockMode.Exclusive;
+	lock.Lock ();
+	id = newID ( Constants.ID.Get () );
+	Constants.ID.Set ( id );
+	if ( newTransaction ) then
+		CommitTransaction ();
+	endif;
+	return id;
+	
+EndFunction
+
+Function newID ( LastID )
+	
+	id = ? ( IsBlankString ( LastID ), "A000", LastID );
+	i = StrLen ( id );
+	suffix = new Array ();
+	while ( i > 0 ) do
+		k = CharCode ( Mid ( id, i, 1 ) ) + 1;
+		// 48 -> 57 | 65 -> 90
+		//  0 -> 9  |  A -> Z
+		if ( k > 90 ) then
+			x = 48;
+		elsif ( k > 57 and k < 65 ) then
+			x = 65;
+		else
+			x = k;
+		endif;
+		suffix.Insert ( 0, Char ( x ) );
+		if ( x >= k ) then
+			break;
+		endif;
+		i = i - 1;
+	enddo;
+	return Left ( id, i - 1 ) + StrConcat ( suffix );
+
+EndFunction

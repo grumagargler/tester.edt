@@ -370,7 +370,7 @@ EndProcedure
 Procedure generateID()
 
 	response = prepareResponse();
-	response.Insert("GeneratedID", Environment.GenerateID());
+	response.Insert("GeneratedID", TestingID());
 	Watcher.SendResponse(response);
 
 EndProcedure
