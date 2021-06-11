@@ -352,8 +352,8 @@ EndFunction
 Function prepareTemplate ( Template )
 	
 	s = Template;
-	s = StrReplace ( s, "*", "[\s\S]+" );
-	s = StrReplace ( s, "?", "[\s\S]" );
+	s = StrReplace ( s, "*", ".+" );
+	s = StrReplace ( s, "?", "." );
 	return s;
 	
 EndFunction 
