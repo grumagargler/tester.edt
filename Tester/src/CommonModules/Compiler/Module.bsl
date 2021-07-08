@@ -9,7 +9,7 @@ Function Build ( val Scenario, val ProgramCode = undefined, val ServerOnly = fal
 	
 EndFunction
 
-Function Call ( val Scenario, val Module, val IsVersion, val Application, val InsideFolder ) export
+Function Call ( val Scenario, val Module, val IsVersion, val Application, val InsideFolder, val OnServer ) export
 	
 	parent = ? ( InsideFolder, getParent ( Module, IsVersion ), undefined );
 	ref = RuntimeSrv.FindScenario ( Scenario, getApplication ( Module, IsVersion ), Application, parent );
@@ -18,7 +18,7 @@ Function Call ( val Scenario, val Module, val IsVersion, val Application, val In
 	endif;
 	processor = DataProcessors.Compiler.Create ();
 	processor.Scenario = ref;
-	processor.ServerOnly = false;
+	processor.ServerOnly = OnServer;
 	result = new Structure ( "Compilation, Scenario", processor.Compile (), ref );
 	return result;
 	

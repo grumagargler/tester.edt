@@ -413,12 +413,14 @@ Function Perform(Scenario, Params = undefined, Application = undefined, InsideFo
 	
 	#if ( Server ) then
 	dbg = ServerDebug;
+	onServer = true;
 	#else
 	dbg = Debug;
+	onServer = true;
 	#endif
 	level = dbg.Level;
 	stack = dbg.Stack[level];
-	program = Compiler.Call(Scenario, stack.Module, stack.IsVersion, Application, InsideFolder);
+	program = Compiler.Call(Scenario, stack.Module, stack.IsVersion, Application, InsideFolder, onServer);
 	return callProgram ( Program, Scenario, Params, dbg );
 	
 EndFunction
