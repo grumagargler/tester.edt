@@ -416,7 +416,7 @@ Function Perform(Scenario, Params = undefined, Application = undefined, InsideFo
 	onServer = true;
 	#else
 	dbg = Debug;
-	onServer = true;
+	onServer = false;
 	#endif
 	level = dbg.Level;
 	stack = dbg.Stack[level];
