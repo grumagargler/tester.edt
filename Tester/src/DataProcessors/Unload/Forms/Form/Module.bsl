@@ -404,7 +404,10 @@ Procedure unloadScenarios ()
 		p.BaseName = getBaseName ( p );
 		createFolder ( p );
 	else
-		BeginDeletingFiles ( ContinueUnloading, root, row.Delete );
+		victim = row.Delete;
+		BeginDeletingFiles ( ContinueUnloading,
+			root + Slash + FileSystem.GetParent ( victim ),
+			FileSystem.GetFileName ( victim ) );
 	endif; 
 	
 EndProcedure 
