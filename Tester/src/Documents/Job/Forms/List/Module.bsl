@@ -39,7 +39,7 @@ EndProcedure
 &AtServer
 Procedure filterByScenario ()
 	
-	DC.ChangeFilter ( List, "Scenarios.Scenario", ScenarioFilter, not ScenarioFilter.IsEmpty () );
+	DC.ChangeFilter ( List, "Scenario", ScenarioFilter, not ScenarioFilter.IsEmpty () );
 	
 EndProcedure
 

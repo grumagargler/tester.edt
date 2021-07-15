@@ -129,7 +129,7 @@ EndProcedure
 Procedure ListSelection ( Item, SelectedRow, Field, StandardProcessing )
 	
 	if ( openError ( Field )
-		or showError ()
+		or showError ( Field )
 		or openJob ( Field ) ) then
 		StandardProcessing = false;
 	endif; 
@@ -148,8 +148,11 @@ Function openError ( Field )
 EndFunction 
 
 &AtClient
-Function showError ()
+Function showError ( Field )
 	
+	if ( Field.Name <> "Status" ) then
+		return false;
+	endif;
 	error = Items.List.CurrentData.Error;
 	if ( error.IsEmpty ()
 		or not DF.Pick ( error, "ScreenshotExists" ) ) then
