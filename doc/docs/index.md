@@ -12,6 +12,8 @@
 
 Репозиторий демо тестов для ERP2 (демо): <https://github.com/grumagargler/ERP2>
 
+Пример решения, написанного с использованием системы Тестер: <https://github.com/Contabilizare/c5>
+
 Разработчик: Решитко Дмитрий, <grumagargler@gmail.com>
 
 Поддержка: <https://gitter.im/tester1c/Lobby>, [Телеграмм канал](https://web.telegram.org/#/im?p=@testspro1c)

@@ -198,6 +198,7 @@
   <commonTemplates>CommonTemplate.Reports</commonTemplates>
   <commonTemplates>CommonTemplate.Rights</commonTemplates>
   <commonTemplates>CommonTemplate.Worker</commonTemplates>
+  <commonModules>CommonModule.AgentRunner</commonModules>
   <commonModules>CommonModule.Appearance</commonModules>
   <commonModules>CommonModule.AppearanceSrv</commonModules>
   <commonModules>CommonModule.CachedCalls</commonModules>
@@ -265,7 +266,6 @@
   <commonModules>CommonModule.Webhook</commonModules>
   <commonModules>CommonModule.WorkspaceForm</commonModules>
   <commonModules>CommonModule.WorkspaceFormSrv</commonModules>
-  <commonModules>CommonModule.AgentRunner</commonModules>
   <exchangePlans>ExchangePlan.Full</exchangePlans>
   <exchangePlans>ExchangePlan.Repositories</exchangePlans>
   <webServices>WebService.Exchange</webServices>
